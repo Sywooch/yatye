@@ -7,9 +7,8 @@ use backend\assets\RwandaguideAsset;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-
 $this->title = 'Services';
-//$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $this->title;
 
 RwandaguideAsset::register($this);
 ?>

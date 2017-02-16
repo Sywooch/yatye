@@ -6,6 +6,9 @@ use yii\helpers\Html;
 /* @var $model backend\models\Category */
 
 $this->title =  $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Categories'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
 ?>
 <div class="background-white p20">

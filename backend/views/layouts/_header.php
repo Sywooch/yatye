@@ -10,6 +10,7 @@ use yii\helpers\Url;
 use yii\bootstrap\Modal;
 use kartik\form\ActiveForm;
 use kartik\widgets\Typeahead;
+use yii\widgets\Breadcrumbs;
 
 ?>
 
@@ -25,10 +26,12 @@ use kartik\widgets\Typeahead;
                 <div class="header-content">
                     <div class="header-bottom">
                         <ul class="header-nav-primary nav nav-pills collapse navbar-collapse">
-                            <?php if(Yii::$app->user->can('delete')) : ?>
-                                <li><a href="<?php echo Yii::$app->request->baseUrl; ?>/user/admin/">User management</i></a></li>
+                            <?php if (Yii::$app->user->can('delete')) : ?>
+                                <li><a href="<?php echo Yii::$app->request->baseUrl; ?>/user/admin/">User
+                                        management</i></a></li>
                             <?php endif; ?>
-                            <li><a href="<?php echo Yii::$app->request->baseUrl; ?>/backup-restore">Backup Restore</i></a></li>
+                            <li><a href="<?php echo Yii::$app->request->baseUrl; ?>/backup-restore">Backup
+                                    Restore</i></a></li>
                         </ul>
                         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
                                 data-target=".header-nav-primary">
@@ -98,6 +101,13 @@ use kartik\widgets\Typeahead;
                             <?php endif; ?>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="header-statusbar-right">
+                <div class="hidden-xs visible-lg">
+                    <?= Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]) ?>
                 </div>
             </div>
         </div>

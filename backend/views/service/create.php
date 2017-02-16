@@ -7,8 +7,8 @@ use yii\helpers\Html;
 /* @var $model backend\models\Service */
 
 $this->title = 'Create Service';
-//$this->params['breadcrumbs'][] = ['label' => 'Services', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => 'Services', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-sm-12">
