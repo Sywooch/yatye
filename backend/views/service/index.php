@@ -70,13 +70,13 @@ RwandaguideAsset::register($this);
                                                                     <table>
                                                                         <tr>
                                                                             <td>
-                                                                                <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-eye']), Yii::$app->request->baseUrl . '/service/view?id=' . $service->id, ['class' => 'btn btn-primary btn-circle', 'title' => 'View ' . $service->name]) ?>
+                                                                                <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-eye']), Yii::$app->request->baseUrl . '/service/view?id=' . $service->id, ['class' => 'btn btn-primary btn-xs', 'title' => 'View ' . $service->name]) ?>
                                                                             </td>
                                                                             <td>
-                                                                                <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-edit']), Yii::$app->request->baseUrl . '/service/update?id=' . $service->id, ['class' => 'btn btn-primary btn-circle', 'title' => 'Update ' . $service->name]) ?>
+                                                                                <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-edit']), Yii::$app->request->baseUrl . '/service/update?id=' . $service->id, ['class' => 'btn btn-primary btn-xs', 'title' => 'Update ' . $service->name]) ?>
                                                                             </td>
                                                                             <td>
-                                                                                <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-plus']), Yii::$app->request->baseUrl . '/service/add-places?service_id=' . $service->id, ['class' => 'btn btn-primary btn-circle', 'title' => 'Add places ' . $service->name]) ?>
+                                                                                <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-plus']), Yii::$app->request->baseUrl . '/service/add-places?service_id=' . $service->id, ['class' => 'btn btn-primary btn-xs', 'title' => 'Add places ' . $service->name]) ?>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
