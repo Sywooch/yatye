@@ -23,7 +23,7 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
 <!--        <div class="row mt30">-->
 <!--            --><?php //foreach ($ads['840x120'] as $ad) : ?>
 <!---->
-<!--<!--                -->--><?php ////if ($ad->image != '') : ?>
+<!--                --><?php //if ($ad->image != '') : ?>
 <!--                    --><?php //echo $ad->title ?>
 <!--                    <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">-->
 <!--                        <a href="--><?php //echo $ad->url ?><!--" target="_blank">-->
@@ -32,7 +32,7 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
 <!--                                 alt="--><?php //echo $ad->title ?><!--">-->
 <!--                        </a>-->
 <!--                    </div>-->
-<!--<!--                -->--><?php ////endif; ?>
+<!--                --><?php //endif; ?>
 <!--            --><?php //endforeach; ?>
 <!--        </div>-->
 <!--    --><?php //endif; ?>
