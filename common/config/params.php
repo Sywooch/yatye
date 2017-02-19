@@ -48,7 +48,7 @@ return [
     'pragmaticmates-logo-jpg' => 'http://localhost/rwandaguide/frontend/web/files/images/pragmaticmates-logo.jpg',
 
     'ads' => 'files/uploads/ads/',
-    'ads_images' => 'http://localhost/rwandaguide/frontend/web/files/uploads/ads/',
+    'ads_images' => 'http://rwandaguide.info/frontend/web/files/uploads/ads/',
 
     'inactive' => 0,
     'active' => 1,
