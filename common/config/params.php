@@ -47,6 +47,9 @@ return [
     'pragmaticmates-logo-png' => 'http://localhost/rwandaguide/frontend/web/files/images/pragmaticmates-logo.png',
     'pragmaticmates-logo-jpg' => 'http://localhost/rwandaguide/frontend/web/files/images/pragmaticmates-logo.jpg',
 
+    'ads' => 'files/uploads/ads/',
+    'ads_images' => 'http://localhost/rwandaguide/frontend/web/files/uploads/ads/',
+
     'inactive' => 0,
     'active' => 1,
     'pending' => 2,
@@ -112,6 +115,13 @@ return [
     'place' => 1,
     'visitor' => 2,
     'user' => 3,
+
+    '468x60' => 1,
+    '840x120' => 2,
+    '250x250' => 3,
+    '260x400' => 4,
+    '180x150' => 5,
+    '240x200' => 6,
 
 
     'favicon' => 'http://rwandaguide.info/frontend/web/files/images/favicon-96x96.png',

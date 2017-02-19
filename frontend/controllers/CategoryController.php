@@ -2,14 +2,11 @@
 
 namespace frontend\controllers;
 
+use backend\models\Ads;
 use backend\models\Place;
 use backend\models\Post;
-use backend\models\PostCategory;
 use Yii;
 use backend\models\Category;
-use common\models\Ads;
-use yii\data\Pagination;
-use yii\web\NotFoundHttpException;
 use common\components\BaseController;
 
 class CategoryController extends BaseController
@@ -39,6 +36,8 @@ class CategoryController extends BaseController
             $articles = Post::getPostsByType(1);
             $news = Post::getPostsByType(3);
 
+            $ads = Ads::getAds();
+
             Yii::$app->view->registerMetaTag([
                 'name' => 'keywords',
                 'content' => [$model->name,],
@@ -54,6 +53,7 @@ class CategoryController extends BaseController
                 'get_most_viewed' => $get_most_viewed,
                 'articles' => $articles,
                 'news' => $news,
+                'ads' => $ads,
 
             ]);
 

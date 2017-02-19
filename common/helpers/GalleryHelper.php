@@ -51,12 +51,32 @@ class GalleryHelper
         return true;
     }
 
-    public static function deleteGallery($path){
+    public static function deleteGallery($path)
+    {
 
         try {
             unlink($path);
         } catch (\Exception $e) {
             //error
+        }
+    }
+
+    public static function uploadAds($image, $path, $min_width, $min_height)
+    {
+        //Get Image width and height using SimpleImage class
+        $simpleImage = new SimpleImage($image);
+        $width = $simpleImage->get_width();
+        $height = $simpleImage->get_height();
+
+        Yii::warning('width : ' . $width);
+        Yii::warning('height : ' . $height);
+
+        if ($width == $min_width && $height == $min_height) {
+            $simpleImage->save($path);
+            return true;
+        } else {
+            Yii::$app->getSession()->setFlash("fail", 'Please upload the exact dimensions');
+            return false;
         }
     }
 }

@@ -8,5 +8,5 @@
 ?>
 
 <div class="col-sm-6 col-lg-4">
-    <img src="http://placehold.it/250x200" alt="">
+    <img class="img-responsive div" src="http://placehold.it/240x200.png&text=Advertise Here" alt="Advertise Here">
 </div>

@@ -31,15 +31,20 @@ $dataProvider->pagination = [
                                 $itemContent = $this->render('_list_item',['model' => $model]);
 
                                 /* Display an Advertisement after the first list item */
-//                                if ($index == 1) {
-//                                    $adContent = $this->render('_ad');
-//                                    $itemContent .= $adContent;
-//                                }
-//
-//                                if ($index == 6) {
-//                                    $adContent = $this->render('_ad');
-//                                    $itemContent .= $adContent;
-//                                }
+                                if ($index == 2) {
+                                    $adContent = $this->render('_ad');
+                                    $itemContent .= $adContent;
+                                }
+
+                                if ($index == 5) {
+                                    $adContent = $this->render('_ad');
+                                    $itemContent .= $adContent;
+                                }
+
+                                if ($index == 8) {
+                                    $adContent = $this->render('_ad');
+                                    $itemContent .= $adContent;
+                                }
 
                                 return $itemContent;
 

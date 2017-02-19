@@ -6,8 +6,11 @@ use yii\helpers\Html;
 /* @var $model backend\models\Pricing */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Pricing',
-]) . $model->title;
+        'modelClass' => 'Pricing',
+    ]) . $model->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pricing'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="row">
     <div class="col-sm-12">

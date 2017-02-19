@@ -53,6 +53,30 @@ use yii\helpers\Url;
         <?php endif; ?>
 
         <div class="widget">
+            <div class="row">
+                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">
+            </div>
+        </div>
+
+        <div class="widget">
+            <div class="row">
+                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">
+            </div>
+        </div>
+
+        <div class="widget">
+            <div class="row">
+                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">
+            </div>
+        </div>
+
+        <div class="widget">
+            <div class="row">
+                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">
+            </div>
+        </div>
+
+        <div class="widget">
             <h2 class="widgettitle"><?php echo Yii::t('app', 'Articles') ?></h2>
             <div class="row bootstrap snippet">
                 <div class="div card-tab">
@@ -107,7 +131,6 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
-
         <div class="widget">
             <h2 class="widgettitle"><?php echo Yii::t('app', 'Directory') ?></h2>
             <div class="row bootstrap snippet">

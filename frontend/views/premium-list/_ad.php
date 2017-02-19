@@ -8,5 +8,5 @@
 ?>
 
 <div class="card-row">
-    <img class="img-responsive" src="http://placehold.it/850x150.png&text=Advertise Here" alt="">
+    <img class="img-responsive div" src="http://placehold.it/840x120.png&text=Advertise Here" alt="">
 </div>

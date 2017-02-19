@@ -7,6 +7,8 @@ use yii\helpers\Html;
 /* @var $model backend\models\Pricing */
 
 $this->title = Yii::t('app', 'New Pricing');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pricing'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-sm-12">

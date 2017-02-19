@@ -88,5 +88,14 @@
                 <span class="subtitle">Blog Management</span>
             </a>
         </li>
+
+        <li class="<?php echo preg_match('/ads/', $this->context->route, $matched) ? 'active' : '' ?>">
+            <a href="<?php echo Yii::$app->request->baseUrl; ?>/ads/">
+                <span class="icon"><i class="fa fa-magic"></i></span>
+                <span class="title">Ads
+                </span>
+                <span class="subtitle">Ads Management</span>
+            </a>
+        </li>
     </ul>
 </div>
