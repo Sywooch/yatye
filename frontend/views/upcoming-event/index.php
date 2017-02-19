@@ -19,11 +19,13 @@ $this->title = $model->name;
                         <div class="detail-gallery">
                             <?php if ($model->banner != null) { ?>
                                 <div class="detail-gallery-preview">
-                                    <a href="#">
-                                        <img alt="<?php echo $model->name ?>"
-                                             src="<?php echo Yii::$app->params['event_images'] . $model->banner ?>"
-                                             style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 32px; width: 652px;'>
-                                    </a>
+                                    <div class="row">
+                                        <a href="#">
+                                            <img alt="<?php echo $model->name ?>"
+                                                 src="<?php echo Yii::$app->params['event_images'] . $model->banner ?>"
+                                                 style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 32px; width: 652px;'>
+                                        </a>
+                                    </div>
                                 </div>
                             <?php } else { ?>
                                 <div class="detail-gallery-preview">
@@ -41,18 +43,6 @@ $this->title = $model->name;
                                 </div>
                             <?php } ?>
                         </div>
-
-                        <!--                        --><?php //if ($model->banner != null): ?>
-                        <!--                            <img src="-->
-                        <?php //echo Yii::$app->params['event_images'] . $model->banner; ?><!--"-->
-                        <!--                                 alt="--><?php //echo $model->name; ?><!--"-->
-                        <!--                                 style=' width: 100%; "Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 32px;'>-->
-                        <!--                        --><?php //else: ?>
-                        <!--                            <img src="-->
-                        <?php //echo Yii::$app->params['tmp']; ?><!--product-5.jpg"-->
-                        <!--                                 alt="--><?php //echo $model->name; ?><!--"-->
-                        <!--                                 style=' width: 100%; "Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 32px;'>-->
-                        <!--                        --><?php //endif; ?>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="row">
