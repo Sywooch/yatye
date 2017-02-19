@@ -123,9 +123,9 @@ class DataHelpers
     public static function getUpcomingEvents()
     {
         return Event::find()
-//            ->where(new Expression('`start_at` >= CURRENT_TIME'))
-//            ->andWhere(['status' => Yii::$app->params['active']])
-//            ->orderBy(new Expression('`start_at`'))
+            ->where(new Expression('`start_at` >= CURRENT_TIME'))
+            ->andWhere(['status' => Yii::$app->params['active']])
+            ->orderBy(new Expression('`start_at`'))
             ->all();
     }
 

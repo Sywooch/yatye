@@ -22,8 +22,9 @@ $this->title = $model->name;
                                     <div class="row">
                                         <a href="#">
                                             <img alt="<?php echo $model->name ?>"
-                                                 src="<?php echo Yii::$app->params['event_images'] . $model->banner ?>"
-                                                 style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 32px; width: 652px;'>
+                                                 style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 32px; width: 652px;'
+                                                src="<?php echo Yii::$app->params['event_images'] . $model->banner ?>">
+
                                         </a>
                                     </div>
                                 </div>
