@@ -38,6 +38,8 @@ class CategoryController extends BaseController
 
             $ads = Ads::getAds();
 
+            Yii::warning('Ads : ' . print_r($ads, true));
+
             Yii::$app->view->registerMetaTag([
                 'name' => 'keywords',
                 'content' => [$model->name,],
