@@ -52,29 +52,29 @@ use yii\helpers\Url;
             </div>
         <?php endif; ?>
 
-        <div class="widget">
-            <div class="row">
-                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">
-            </div>
-        </div>
-
-        <div class="widget">
-            <div class="row">
-                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">
-            </div>
-        </div>
-
-        <div class="widget">
-            <div class="row">
-                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">
-            </div>
-        </div>
-
-        <div class="widget">
-            <div class="row">
-                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">
-            </div>
-        </div>
+<!--        <div class="widget">-->
+<!--            <div class="row">-->
+<!--                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="widget">-->
+<!--            <div class="row">-->
+<!--                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="widget">-->
+<!--            <div class="row">-->
+<!--                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="widget">-->
+<!--            <div class="row">-->
+<!--                <img class="img-responsive div" src="http://placehold.it/260x400.png&text=Advertise Here" alt="Ads">-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div class="widget">
             <h2 class="widgettitle"><?php echo Yii::t('app', 'Articles') ?></h2>
