@@ -27,7 +27,7 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
                     <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
                         <a href="<?php echo $ad->url ?>" target="_blank">
                             <img class="img-responsive div"
-                                 src="<?php echo Yii::$app->params['ads'] . $ad->image ?>"
+                                 src="<?php echo Yii::$app->params['ads_images'] . $ad->image ?>"
                                  alt="<?php echo $ad->title ?>">
                         </a>
                     </div>
