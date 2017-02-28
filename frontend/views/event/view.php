@@ -73,10 +73,6 @@ $this->title = $model->name;
                                                             <td><?= $model->description ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Link:</td>
-                                                            <td><?= $model->slug ?></td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>Address:</td>
                                                             <td><?= $model->address ?></td>
                                                         </tr>

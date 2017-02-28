@@ -51,10 +51,6 @@ $this->title = $model->name;
                                                         <td><?= $model->description ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Link:</td>
-                                                        <td><?= $model->slug ?></td>
-                                                    </tr>
-                                                    <tr>
                                                         <td>Location:</td>
                                                         <td>
                                                             Province: <?= $model->getProvinceName() ?><br>
