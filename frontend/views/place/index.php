@@ -23,7 +23,7 @@ $this->title = 'Places';
             <div class="background-white p20 mb30">
                 <h3 class="page-title">
                     List of my places
-                    <?= Html::a('Add new place', ['create'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
+                    <?= Html::a('Add', ['create'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
                 </h3>
                 <div class="row">
                     <div class="table-responsive">

@@ -24,7 +24,7 @@ $this->title = Yii::t('app', 'Events');
             <div class="background-white p20 mb30">
                 <h3 class="page-title">
                     <?php echo Yii::t('app', 'List of my Events'); ?>
-                    <?= Html::a('Add new place', ['create'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
+                    <?= Html::a('Add', ['create'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
                 </h3>
                 <div class="row">
                     <div class="table-responsive">
@@ -36,15 +36,6 @@ $this->title = Yii::t('app', 'Events');
                                 'address',
                                 'start_at',
                                  'end_at',
-                                // 'banner',
-                                // 'profile_type',
-                                // 'latitude',
-                                // 'longitude',
-                                // 'created_at',
-                                // 'updated_at',
-                                // 'status',
-                                // 'created_by',
-                                // 'updated_by',
                                 [
                                     'class' => 'yii\grid\ActionColumn',
                                     'template' => '{view} {update} {delete}',
@@ -67,6 +58,7 @@ $this->title = Yii::t('app', 'Events');
                                     ],
                                 ],
                             ],
+                            'tableOptions' => ['class' => 'table mb0'],
                         ]); ?>
                     </div>
                 </div>
