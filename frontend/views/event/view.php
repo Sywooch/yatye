@@ -73,10 +73,6 @@ $this->title = $model->name;
                                                             <td><?= $model->description ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Link:</td>
-                                                            <td><?= $model->slug ?></td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>Address:</td>
                                                             <td><?= $model->address ?></td>
                                                         </tr>
@@ -88,12 +84,12 @@ $this->title = $model->name;
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Created_at:</td>
+                                                            <td>Created at:</td>
                                                             <td><?= $model->created_at ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Created_by:</td>
-                                                            <td><?= $model->created_by ?></td>
+                                                            <td>Created by:</td>
+                                                            <td><?= $model->getUser() ?></td>
                                                         </tr>
 
                                                         <tr>

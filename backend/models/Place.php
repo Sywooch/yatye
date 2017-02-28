@@ -8,11 +8,13 @@
 
 namespace backend\models;
 
+use common\helpers\RecordHelpers;
 use common\models\Cell;
 use common\models\District;
 use common\models\Place as BasePlace;
 use common\models\Province;
 use common\models\Sector;
+use frontend\models\UserProfile;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -207,11 +209,11 @@ class Place extends BasePlace
         return $select;
     }
 
-    public function getUser($user_id)
-    {
-        $user = User::findOne(['id' => $user_id]);
-        return $user->username . ' (' . $user->email . ')';
-    }
+//    public function getUser($user_id)
+//    {
+//        $user = User::findOne(['id' => $user_id]);
+//        return $user->username . ' (' . $user->email . ')';
+//    }
 
     public function getContacts()
     {
@@ -267,5 +269,18 @@ class Place extends BasePlace
             ->orderBy('`user`.`email`')
             ->all();
         return $select;
+    }
+
+    public function getUser()
+    {
+        if ($already_exists = RecordHelpers::userHas('user_profile')) {
+            $user_profile = UserProfile::findOne(['user_id' => $this->created_by]);
+            return $user_profile->first_name . ' ' . $user_profile->last_name;
+        }
+        else{
+            $user = User::findOne(['id' => $this->created_by]);
+            return $user->username;
+        }
+
     }
 }

@@ -49,11 +49,19 @@ class UpcomingEventController extends BaseController
             $socials = $model->getSocials();
             $tags = $model->getTags();
 
+            $time = [
+                'start_date'=>date('M d, Y', strtotime($model->start_at)),
+                'start_time'=>date('H:i', strtotime($model->start_at)),
+                'end_date'=>date('M d, Y', strtotime($model->end_at)),
+                'end_time'=>date('H:i', strtotime($model->end_at)),
+            ];
+
             return $this->render('index', [
                 'model' => $model,
                 'contacts' => $contacts,
                 'socials' => $socials,
                 'tags' => $tags,
+                'time' => $time,
             ]);
 
         } else {
