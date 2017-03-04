@@ -222,11 +222,11 @@ $this->registerJs("$(window).load(function () {
 <!-- End of LiveChat code -->
 
 <!-- Quick Sprout: Grow your traffic -->
-<script>
-    (function(e,t,n,c,r){c=e.createElement(t),c.async=1,c.src=n,
-        r=e.getElementsByTagName(t)[0],r.parentNode.insertBefore(c,r)})
-    (document,"script","https://cdn.quicksprout.com/qs.js");
-</script>
+<!--<script>-->
+<!--    (function(e,t,n,c,r){c=e.createElement(t),c.async=1,c.src=n,-->
+<!--        r=e.getElementsByTagName(t)[0],r.parentNode.insertBefore(c,r)})-->
+<!--    (document,"script","https://cdn.quicksprout.com/qs.js");-->
+<!--</script>-->
 <!-- End Quick Sprout -->
 
 
