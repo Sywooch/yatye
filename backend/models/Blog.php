@@ -49,8 +49,6 @@ class Blog extends BaseBlog
                 // In case of attribute that contains slug has different name
                 // 'slugAttribute' => 'alias',
             ],
-//            'bedezign\yii2\audit\AuditTrailBehavior',
-
         ];
     }
 
