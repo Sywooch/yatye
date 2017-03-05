@@ -29,6 +29,10 @@ use yii\widgets\Breadcrumbs;
                             <?php if (Yii::$app->user->can('delete')) : ?>
                                 <li><a href="<?php echo Yii::$app->request->baseUrl; ?>/user/admin/">User
                                         management</i></a></li>
+                                <li class="<?php echo preg_match('/customer-management/', $this->context->route, $matched) ? 'active' : '' ?>">
+                                    <a href="<?php echo Yii::$app->request->baseUrl; ?>/customer-management/"
+                                       title="Customer Management">Customer Management</a>
+                                </li>
                             <?php endif; ?>
                             <li><a href="<?php echo Yii::$app->request->baseUrl; ?>/backup-restore">Backup
                                     Restore</i></a></li>
@@ -68,8 +72,8 @@ use yii\widgets\Breadcrumbs;
                         <div class="header-statusbar-search">
 
                             <?php if (
-                                Yii::$app->controller->id != 'role' &&
-                                Yii::$app->controller->id != 'permission'
+                                Yii::$app->controller->id != 'role'
+                                && Yii::$app->controller->id != 'permission'
                                 && Yii::$app->controller->id != 'admin'
                                 && Yii::$app->controller->id != 'post'
                             ): ?>

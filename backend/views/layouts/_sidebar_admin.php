@@ -25,9 +25,6 @@
         <li class="<?php echo preg_match('/pricing/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/pricing/" title="Pricing"><i class="fa fa-money"></i></a>
         </li>
-        <li class="<?php echo preg_match('/customer-management/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/customer-management/" title="Customer Management"><i class="fa fa-registered"></i></a>
-        </li>
     </ul>
 </div>
 <div class="sidebar-secondary-admin">
