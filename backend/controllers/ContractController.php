@@ -5,29 +5,14 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Contract;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use backend\components\AdminController as BackendAdminController;
 
 /**
  * ContractController implements the CRUD actions for Contract model.
  */
-class ContractController extends Controller
+class ContractController extends BackendAdminController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Contract models.

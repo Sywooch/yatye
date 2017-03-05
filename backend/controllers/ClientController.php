@@ -5,30 +5,14 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Client;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use backend\components\AdminController as BackendAdminController;
 
 /**
  * ClientController implements the CRUD actions for Client model.
  */
-class ClientController extends Controller
+class ClientController extends BackendAdminController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Client models.
      * @return mixed

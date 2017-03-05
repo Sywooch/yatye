@@ -5,30 +5,15 @@ namespace backend\controllers;
 use Yii;
 use backend\models\InvoiceItem;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\components\AdminController as BackendAdminController;
 
 /**
  * InvoiceItemController implements the CRUD actions for InvoiceItem model.
  */
-class InvoiceItemController extends Controller
+class InvoiceItemController extends BackendAdminController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all InvoiceItem models.
      * @return mixed
