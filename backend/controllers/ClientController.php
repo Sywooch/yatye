@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\helpers\Helpers;
 use Yii;
 use backend\models\Client;
 use yii\data\ActiveDataProvider;
@@ -48,12 +49,14 @@ class ClientController extends BackendAdminController
     public function actionCreate()
     {
         $model = new Client();
+        $status = Helpers::getStatus();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'status' => $status,
             ]);
         }
     }
@@ -67,12 +70,14 @@ class ClientController extends BackendAdminController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $status = Helpers::getStatus();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'status' => $status,
             ]);
         }
     }

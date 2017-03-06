@@ -38,8 +38,8 @@ class Contract extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'client_id', 'title', 'status', 'created_at', 'created_by', 'updated_by'], 'required'],
-            [['id', 'client_id', 'status', 'created_by', 'updated_by'], 'integer'],
+            [['client_id', 'title', 'status', 'created_at', 'created_by', 'updated_by'], 'required'],
+            [['client_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['summary'], 'string'],
             [['start_at', 'end_at', 'created_at', 'updated_at'], 'safe'],
             [['title', 'path'], 'string', 'max' => 255],

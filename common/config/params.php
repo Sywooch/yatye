@@ -50,6 +50,8 @@ return [
     'ads' => 'files/uploads/ads/',
     'ads_images' => 'http://rwandaguide.info/frontend/web/files/uploads/ads/',
 
+    'contracts'=> 'files/uploads/contracts/',
+
     'inactive' => 0,
     'active' => 1,
     'pending' => 2,

@@ -10,6 +10,7 @@ namespace common\helpers;
 
 use backend\models\Gallery;
 use Yii;
+use yii\helpers\FileHelper;
 
 class Helpers
 {
@@ -244,5 +245,19 @@ class Helpers
                 '240x200',
             ]
         );
+    }
+
+    public static function makDir($path)
+    {
+        if (!is_dir($path)) {
+            if (FileHelper::createDirectory($path, 0777, true) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        else {
+            return true;
+        }
     }
 }

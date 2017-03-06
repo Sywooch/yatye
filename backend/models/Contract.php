@@ -10,12 +10,16 @@ namespace backend\models;
 
 use Yii;
 use common\models\Contract as BaseContract;
+use yii\base\Exception;
 use yii\behaviors\BlameableBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\web\UploadedFile;
 
 class Contract extends BaseContract
 {
+    public $contract_doc;
+
     public function behaviors()
     {
         return [
@@ -38,13 +42,58 @@ class Contract extends BaseContract
     public function rules()
     {
         return [
-            [['id', 'client_id', 'title'], 'required'],
-            [['id', 'client_id', 'status', 'created_by', 'updated_by'], 'integer'],
+            [['client_id', 'title'], 'required'],
+            [['client_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['summary'], 'string'],
             [['start_at', 'end_at', 'created_at', 'updated_at'], 'safe'],
             [['title', 'path'], 'string', 'max' => 255],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
             [['status'], 'default', 'value' => Yii::$app->params['pending']],
+            [['contract_doc'], 'file', 'extensions' => 'PDF', 'maxSize' => 1024 * 1024],
+
         ];
+    }
+
+    public function uploadContractFile()
+    {
+        $file = UploadedFile::getInstance($this, 'contract_doc');
+        if ($file) {
+            $file_name = rand() . rand() . date("Ymdhis") . '.' . $file->extension;
+            $this->path = $file_name;
+            $this->save();
+            return $file;
+        } else {
+            return false;
+        }
+
+    }
+
+    public function getContractFile($id)
+    {
+        return Yii::$app->params['frontend_alias'] . Yii::$app->params['contracts'] . $id . '/';
+    }
+
+    public function getClient()
+    {
+        return Client::findOne(['id' => $this->client_id])->name;
+    }
+
+    public function getStatus()
+    {
+        if ($this->status == Yii::$app->params['active']) {
+            $status = Yii::t('app', 'Active');
+        } elseif ($this->status == Yii::$app->params['inactive']) {
+            $status = Yii::t('app', 'Inactive');
+        } elseif ($this->status == Yii::$app->params['pending']) {
+            $status = Yii::t('app', 'Pending');
+        } elseif ($this->status == Yii::$app->params['rejected']) {
+            $status = Yii::t('app', 'Rejected');
+        } elseif ($this->status == Yii::$app->params['draft']) {
+            $status = Yii::t('app', 'Draft');
+        } else {
+            $status = Yii::t('app', 'Not set');
+        }
+
+        return $status;
     }
 }

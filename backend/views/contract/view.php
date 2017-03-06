@@ -10,7 +10,7 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Contracts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="contract-view">
+<div class="background-white p20 mb50">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -28,14 +28,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'client_id',
+            [
+                'attribute' => 'client_id',
+                'label' => Yii::t('app', 'Client'),
+                'value' => function ($model) {
+                    return $model->getClient();
+                },
+            ],
             'title',
             'summary:ntext',
             'path',
             'start_at',
             'end_at',
             'status',
+            [
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'value' => function ($model) {
+                    return $model->getStatus();
+                },
+            ],
             'created_at',
             'updated_at',
             'created_by',
