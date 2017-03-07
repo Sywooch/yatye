@@ -8,7 +8,7 @@
 <div class="sidebar-admin">
     <ul>
         <li class="<?php echo preg_match('/site/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/site/"><i class="fa fa-tachometer"></i></a>
+            <a href="<?php echo Yii::$app->request->baseUrl; ?>/site/" title="Dashboard" ><i class="fa fa-tachometer"></i></a>
         </li>
         <li class="<?php echo preg_match('/gallery/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/gallery/" title="Gallery"><i class="fa fa-photo"></i></a>

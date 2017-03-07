@@ -185,12 +185,19 @@ $this->title = $model->name;
                                 </div>
 
                                 <div class="tab-pane" id="working-hours">
-                                    <?=
-                                    $this->render('_working_hours', [
-                                        'model' => $model,
-                                        'working_hours' => $working_hours,
-                                    ])
-                                    ?>
+                                    <?php if (!empty($working_hours)) : ?>
+                                        <?=
+                                        $this->render('_working_hours', [
+                                            'model' => $model,
+                                            'working_hours' => $working_hours,
+                                        ])
+                                        ?>
+                                    <?php else:?>
+                                        <div class="alert alert-info">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            Will be available shortly
+                                        </div>
+                                    <?php endif;?>
                                 </div>
                                 <div class="tab-pane" id="other-places">
                                     <div class="row">
