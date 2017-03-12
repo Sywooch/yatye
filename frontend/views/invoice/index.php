@@ -47,8 +47,6 @@ $this->title = 'Invoice ' . $model->id;
                             </div>
                             <div class="col-sm-4">
                                 <h4><?php echo Yii::t('app', 'Payment Details') ?></h4>
-
-                                <!--                            <strong>--><?php //echo Yii::t('app', 'TIN') ?><!--:</strong> 10101010101<br>-->
                                 <strong><?php echo Yii::t('app', 'Payment Type') ?>:</strong> <?php echo $model->getTypes() ?><br>
                                 <strong><?php echo Yii::t('app', 'Duration') ?>:</strong> <?php echo $contract->getPeriod() ?><br>
                             </div>
@@ -76,7 +74,6 @@ $this->title = 'Invoice ' . $model->id;
                                 ?>
                                 <tr>
                                     <td><?php echo $i ?></td>
-                                    <td><?php echo $invoice_item->name ?></td>
                                     <td><?php echo $invoice_item->name ?></td>
                                     <td><?php echo $invoice_item->quantity ?></td>
                                     <td><?php echo $invoice_item->unit_cost ?> Rwf</td>
