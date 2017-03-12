@@ -1,18 +1,23 @@
 <?php
-/* @var $this yii\web\View */
+/**
+ * Created by PhpStorm.
+ * User: ntezi
+ * Date: 29/05/2016
+ * Time: 02:34
+ */
+
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\GridView;
 
-$this->title = 'Views Details';
+$this->title = 'View List';
+$this->params['breadcrumbs'][] = ['label' => 'Views', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="background-white p30 mb50">
-    <h4 class="page-title"><?= Html::encode($this->title) ?></h4>
-    <div class="row">
-        <div class="col-sm-12">
-            <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-arrow-left']), Yii::$app->request->baseUrl . '/views', ['class' => 'btn btn-primary']) ?>
-        </div>
-    </div>
+    <h4 class="page-title">
+        <?= Html::encode($this->title) ?>
+        <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-arrow-left']), ['/views'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
+    </h4>
 
     <div class="row">
         <?php echo GridView::widget([
@@ -30,3 +35,4 @@ $this->title = 'Views Details';
         ]); ?>
     </div>
 </div>
+

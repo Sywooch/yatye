@@ -30,10 +30,12 @@ class InitiateController extends Controller
                 $rows[] = [
                     'place_id' => $place->id,
                     'day' => $day,
-                    'opening_time' => '07:00:00',
-                    'closing_time' => '19:00:00',
+                    'opening_time' => '08:00:00',
+                    'closing_time' => '17:00:00',
                     'status' => 2,
                     'created_at' => date('Y-m-d H:i:s'),
+                    'created_by' => 1,
+                    'updated_by' => 1,
 
                 ];
             }
@@ -41,7 +43,7 @@ class InitiateController extends Controller
             $models = WorkingHours::findAll(['place_id' => $place->id]);
 
             if (!$models) {
-                Yii::$app->db->createCommand()->batchInsert(WorkingHours::tableName(), ['place_id', 'day', 'opening_time', 'closing_time', 'status', 'created_at'], $rows)->execute();
+                Yii::$app->db->createCommand()->batchInsert(WorkingHours::tableName(), ['place_id', 'day', 'opening_time', 'closing_time', 'status', 'created_at', 'created_by', 'updated_by'], $rows)->execute();
             }
         }
     }

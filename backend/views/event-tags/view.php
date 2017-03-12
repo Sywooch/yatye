@@ -28,11 +28,29 @@ $this->title = $model->name;
         'attributes' => [
             'name',
             'descriptions:ntext',
-            'status',
+            [
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'value' => function ($model) {
+                    return $model->getStatus();
+                },
+            ],
             'created_at',
             'updated_at',
-            'created_by',
-            'updated_by',
+            [
+                'attribute' => 'created_by',
+                'label' => Yii::t('app', 'Created By'),
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+            ],
+            [
+                'attribute' => 'updated_by',
+                'label' => Yii::t('app', 'Updated By'),
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+            ],
         ],
     ]) ?>
 

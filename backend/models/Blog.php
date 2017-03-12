@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use common\models\BlogReview;
 use Yii;
 use common\models\Blog as BaseBlog;
@@ -76,5 +77,14 @@ class Blog extends BaseBlog
     {
 
         return BlogReview::find()->where(['blog_id' => $this->id])->count();
+    }
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

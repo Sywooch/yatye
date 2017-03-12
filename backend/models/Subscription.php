@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Subscription as BaseSubscription;
 use yii\behaviors\TimestampBehavior;
@@ -82,6 +83,8 @@ class Subscription extends BaseSubscription
 
         return $place ? $place->name : '-';
     }
-
-
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
 }

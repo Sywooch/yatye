@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Contact as BaseContact;
 use yii\behaviors\BlameableBehavior;
@@ -75,5 +76,15 @@ class Contact extends BaseContact
         endif;
 
         return $contact_type;
+    }
+
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

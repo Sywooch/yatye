@@ -7,6 +7,7 @@
  */
 
 namespace backend\models;
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\PostCategory as BasePostCategory;
 use yii\behaviors\BlameableBehavior;
@@ -84,5 +85,13 @@ class PostCategory extends BasePostCategory
             ->where(['post_category_id' => $this->id, 'status'=>Yii::$app->params['active']])
             ->orderBy(new Expression('updated_at DESC'));
     }
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
 
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
+    }
 }

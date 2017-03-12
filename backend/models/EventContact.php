@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\EventContact as BaseEventContact;
 use yii\behaviors\BlameableBehavior;
@@ -70,5 +71,15 @@ class EventContact extends BaseEventContact
         endif;
 
         return $contact_type;
+    }
+
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

@@ -7,6 +7,7 @@
  */
 
 namespace backend\models;
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\PostType as BasePostType;
 use yii\behaviors\BlameableBehavior;
@@ -30,7 +31,7 @@ class PostType extends BasePostType
             'blameable' => [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => false,
+                'updatedByAttribute' => 'updated_by',
             ],
 
             'sluggable' => [
@@ -50,9 +51,9 @@ class PostType extends BasePostType
     public function rules()
     {
         return [
-            [['name', 'slug', 'created_at'], 'required'],
+            [['name', 'slug'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
-            [['status', 'created_by'], 'integer'],
+            [['status', 'created_by', 'updated_by'], 'integer'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['name'], 'unique'],
             [['slug'], 'unique'],
@@ -65,13 +66,14 @@ class PostType extends BasePostType
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'slug' => 'Slug',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'status' => 'Status',
-            'created_by' => 'Created By',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'status' => Yii::t('app', 'Status'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
         ];
     }
 
@@ -80,5 +82,14 @@ class PostType extends BasePostType
         return Post::find()
             ->where(['post_type_id' => $this->id, 'status'=>Yii::$app->params['active']])
             ->orderBy(new Expression('updated_at DESC'));
+    }
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

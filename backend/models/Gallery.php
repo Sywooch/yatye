@@ -11,6 +11,7 @@ namespace backend\models;
 
 use common\components\SimpleImage;
 use common\helpers\GalleryHelper;
+use common\helpers\ValueHelpers;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
@@ -212,5 +213,12 @@ class Gallery extends BaseGallery
 
         return $place_name;
     }
-
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
+    }
 }

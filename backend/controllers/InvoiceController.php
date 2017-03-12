@@ -2,9 +2,15 @@
 
 namespace backend\controllers;
 
+use backend\models\Client;
+use backend\models\Contract;
+use backend\models\InvoiceItem;
+use common\helpers\Helpers;
 use Yii;
 use backend\models\Invoice;
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use backend\components\AdminController as BackendAdminController;
 
@@ -48,12 +54,42 @@ class InvoiceController extends BackendAdminController
     public function actionCreate()
     {
         $model = new Invoice();
+        $status = Helpers::getStatus();
+        $clients = ArrayHelper::map(Client::find()->orderBy('name')->all(), 'id', 'name');
+        $contracts = ArrayHelper::map(Contract::find()->orderBy('title')->all(), 'id', 'title');
+        $types = $model->getInvoiceTypes();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $count = count(Yii::$app->request->post('InvoiceItem', []));
+        $invoice_items = [new InvoiceItem()];
+
+        for ($i = 1; $i < $count; $i++) {
+            $invoice_items[] = new InvoiceItem();
+        }
+        $post = Yii::$app->request->post('InvoiceItem');
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $transaction = $model->getDb()->beginTransaction();
+            try {
+                $model->save();
+                $model->saveInvoiceItems($post, $invoice_items);
+                $transaction->commit();
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
+            } catch (\Throwable $e) {
+                $transaction->rollBack();
+                throw $e;
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'status' => $status,
+                'clients' => $clients,
+                'invoice_items' => $invoice_items,
+                'types' => $types,
+                'contracts' => $contracts,
             ]);
         }
     }
@@ -67,14 +103,43 @@ class InvoiceController extends BackendAdminController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if ($model->status == Yii::$app->params['not_paid']){
+            $status = Helpers::getStatus();
+            $clients = ArrayHelper::map(Client::find()->orderBy('name')->all(), 'id', 'name');
+            $contracts = ArrayHelper::map(Contract::find()->orderBy('title')->all(), 'id', 'title');
+            $invoice_items = $model->getInvoiceItems();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            $types = $model->getInvoiceTypes();
+
+            $post = Yii::$app->request->post('InvoiceItem');
+            if ($model->load(Yii::$app->request->post())) {
+                $transaction = $model->getDb()->beginTransaction();
+                try {
+                    $model->save();
+                    $model->saveInvoiceItems($post, $invoice_items);
+                    $transaction->commit();
+                } catch (\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                } catch (\Throwable $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                    'status' => $status,
+                    'clients' => $clients,
+                    'invoice_items' => $invoice_items,
+                    'types' => $types,
+                    'contracts' => $contracts,
+                ]);
+            }
+        }else{
+            return $this->redirect(['index']);
         }
+
     }
 
     /**
@@ -104,5 +169,13 @@ class InvoiceController extends BackendAdminController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionPaid($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = Yii::$app->params['paid'];
+        $model->save();
+        return $this->redirect(['index']);
     }
 }

@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\EventTags as BaseEventTags;
 use yii\behaviors\BlameableBehavior;
@@ -46,5 +47,14 @@ class EventTags extends BaseEventTags
             [['name'], 'string', 'max' => 255],
             [['status'], 'default', 'value' => Yii::$app->params['active']],
         ];
+    }
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

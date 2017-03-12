@@ -8,6 +8,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\widgets\DateTimePicker;
 use vova07\imperavi\Widget as Redactor;
 
 /* @var $this yii\web\View */
@@ -33,10 +34,22 @@ use vova07\imperavi\Widget as Redactor;
                 <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="form-group">
-                <?= $form->field($model, 'start_at')->textInput() ?>
+                <?php echo $form->field($model, 'start_at')->widget(DateTimePicker::classname(), [
+                    'options' => ['placeholder' => Yii::t('app', ''), 'class' => 'form-control'],
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd hh:ii'
+                    ]
+                ]); ?>
             </div>
             <div class="form-group">
-                <?= $form->field($model, 'end_at')->textInput() ?>
+                <?php echo $form->field($model, 'end_at')->widget(DateTimePicker::classname(), [
+                    'options' => ['placeholder' => Yii::t('app', ''), 'class' => 'form-control'],
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd hh:ii'
+                    ]
+                ]); ?>
             </div>
             <div class="form-group">
                 <?= $form->field($model, 'banner')->textInput(['maxlength' => true]) ?>

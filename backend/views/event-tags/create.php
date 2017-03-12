@@ -7,6 +7,8 @@ use yii\helpers\Html;
 /* @var $model backend\models\EventTags */
 
 $this->title = Yii::t('app', 'Create Event Tags');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Event Tags'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-sm-12">

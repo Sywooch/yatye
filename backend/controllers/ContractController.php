@@ -2,9 +2,12 @@
 
 namespace backend\controllers;
 
+use backend\models\Client;
+use common\helpers\Helpers;
 use Yii;
 use backend\models\Contract;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use backend\components\AdminController as BackendAdminController;
 
@@ -49,12 +52,28 @@ class ContractController extends BackendAdminController
     public function actionCreate()
     {
         $model = new Contract();
+        $status = Helpers::getStatus();
+        $clients = ArrayHelper::map(Client::find()->orderBy('name')->all(), 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $file = $model->uploadContractFile();
+            $path = $model->getContractFile($model->id);
+
+            if (Helpers::makDir($path)) {
+                if ($file === false) {
+                    $model->path = null;
+                } else {
+                    $file->saveAs($path . $model->path);
+                }
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'clients' => $clients,
+                'status' => $status,
             ]);
         }
     }
@@ -68,12 +87,29 @@ class ContractController extends BackendAdminController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $status = Helpers::getStatus();
+        $clients = ArrayHelper::map(Client::find()->orderBy('name')->all(), 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $file = $model->uploadContractFile();
+
+            $path = $model->getContractFile($model->id);
+
+            if (Helpers::makDir($path)) {
+                if ($file === false) {
+                    $model->path = null;
+                } else {
+                    $file->saveAs($path . $model->path);
+                }
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'clients' => $clients,
+                'status' => $status,
             ]);
         }
     }

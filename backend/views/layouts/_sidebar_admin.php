@@ -7,6 +7,9 @@
 ?>
 <div class="sidebar-admin">
     <ul>
+        <li class="<?php echo preg_match('/site/', $this->context->route, $matched) ? 'active' : '' ?>">
+            <a href="<?php echo Yii::$app->request->baseUrl; ?>/site/" title="Dashboard" ><i class="fa fa-tachometer"></i></a>
+        </li>
         <li class="<?php echo preg_match('/gallery/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/gallery/" title="Gallery"><i class="fa fa-photo"></i></a>
         </li>
@@ -25,20 +28,10 @@
         <li class="<?php echo preg_match('/pricing/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/pricing/" title="Pricing"><i class="fa fa-money"></i></a>
         </li>
-        <li class="<?php echo preg_match('/customer-management/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/customer-management/" title="Customer Management"><i class="fa fa-registered"></i></a>
-        </li>
     </ul>
 </div>
 <div class="sidebar-secondary-admin">
     <ul>
-        <li class="<?php echo preg_match('/site/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/site/">
-                <span class="icon"><i class="fa fa-tachometer"></i></span>
-                <span class="title">Dashboard</span>
-                <span class="subtitle">Summary of activities</span>
-            </a>
-        </li>
 
         <li class="<?php echo preg_match('/place/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/place/">

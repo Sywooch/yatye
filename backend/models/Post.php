@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Post as BasePost;
 use yii\behaviors\BlameableBehavior;
@@ -153,5 +154,15 @@ class Post extends BasePost
             ->orderBy(['updated_at' => SORT_DESC])
             ->limit(3)
             ->all();
+    }
+
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

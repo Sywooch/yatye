@@ -8,8 +8,10 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\InvoiceItem as BaseInvoiceItem;
+use yii\base\Model;
 use yii\behaviors\BlameableBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
@@ -46,5 +48,14 @@ class InvoiceItem extends BaseInvoiceItem
             [['description'], 'string', 'max' => 125],
             [['status'], 'default', 'value' => Yii::$app->params['pending']],
         ];
+    }
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

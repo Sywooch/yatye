@@ -6,7 +6,6 @@ $this->title = Yii::$app->name;
 ?>
 
 <div class="background-white p20 mb50">
-
     <div class="row">
         <div class="col-sm-12 col-lg-4">
             <div class="row">

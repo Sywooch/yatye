@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Ads as BaseAds;
 use yii\behaviors\BlameableBehavior;
@@ -120,5 +121,13 @@ class Ads extends BaseAds
         ];
     }
 
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
 
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
+    }
 }

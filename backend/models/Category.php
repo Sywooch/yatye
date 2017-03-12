@@ -9,6 +9,7 @@
 namespace backend\models;
 
 use backend\models\Service;
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Category as BaseCategory;
 use yii\behaviors\BlameableBehavior;
@@ -23,28 +24,31 @@ class Category extends BaseCategory
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'slug'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
-            [['status', 'created_by', 'type'], 'integer'],
+            [['status', 'created_by', 'updated_by', 'type'], 'integer'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 500],
             [['name'], 'unique'],
             [['slug'], 'unique'],
-            [['type'], 'default', 'value' => 0],
+            [['type', 'status'], 'default', 'value' => 0],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'slug' => 'Slug',
-            'description' => 'Description',
-            'image' => 'Image',
-            'created_at' => 'Created',
-            'updated_at' => 'Updated',
-            'status' => 'Status',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
+            'description' => Yii::t('app', 'Description'),
+            'image' => Yii::t('app', 'Image'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'status' => Yii::t('app', 'Status'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
+            'type' => Yii::t('app', 'Type'),
         ];
     }
 
@@ -62,7 +66,7 @@ class Category extends BaseCategory
             'blameable' => [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => false,
+                'updatedByAttribute' => 'updated_by',
             ],
 
             'sluggable' => [
@@ -340,5 +344,14 @@ class Category extends BaseCategory
         }
 
         return $select->orderBy(new Expression('RAND()'))->all();
+    }
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

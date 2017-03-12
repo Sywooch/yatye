@@ -50,6 +50,8 @@ return [
     'ads' => 'files/uploads/ads/',
     'ads_images' => 'http://rwandaguide.info/frontend/web/files/uploads/ads/',
 
+    'contracts'=> 'files/uploads/contracts/',
+
     'inactive' => 0,
     'active' => 1,
     'pending' => 2,
@@ -61,6 +63,15 @@ return [
     'draft' => 8,
     'sent' => 9,
     'imported' => 10,
+    'paid' => 11,
+    'not_paid' => 12,
+
+
+    //For invoices types
+
+    'normal_sell'=>1,
+    'proforma'=>0,
+    'credit'=>2,
 
     'A_TYPE' => 1,
     'B_TYPE' => 2,

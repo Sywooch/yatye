@@ -6,6 +6,7 @@ use yii\helpers\Url;
 use yii\grid\GridView;
 
 $this->title = 'Views';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="background-white p20 mb50">
@@ -21,7 +22,7 @@ $this->title = 'Views';
                     'label' => 'Name',
                     'format' => 'raw',
                     'value' => function ($model) {
-                        return Html::a($model['name'], ['/views-list', 'views_id' => $model['id']]);
+                        return Html::a($model['name'], ['list', 'id' => $model['id']]);
                     },
                 ],
                 'views',

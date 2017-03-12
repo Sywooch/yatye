@@ -8,33 +8,46 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="client-form">
+<div class="background-white p20 mb50">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'tin')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'type')->textInput() ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <?= $form->field($model, 'tin')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <?php echo $form->field($model, 'type')->dropDownList($status, [
+                'prompt' => Yii::t('app', 'Type'),
+            ]); ?>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <?php echo $form->field($model, 'status')->dropDownList($status, [
+                'prompt' => Yii::t('app', 'Status'),
+            ]); ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
