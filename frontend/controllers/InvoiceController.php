@@ -47,7 +47,7 @@ class InvoiceController extends BaseEventController
             // A4 paper format
             'format' => Pdf::FORMAT_A4,
             // portrait orientation
-            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'orientation' => Pdf::ORIENT_LANDSCAPE,
             // stream to browser inline
             'destination' => Pdf::DEST_BROWSER,
             // your html content input
