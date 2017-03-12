@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\PricingItem as BasePricingItem;
 use yii\behaviors\BlameableBehavior;
@@ -45,5 +46,15 @@ class PricingItem extends BasePricingItem
                 'updatedByAttribute' => 'updated_by',
             ],
         ];
+    }
+
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

@@ -34,8 +34,8 @@ class Invoice extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'client_id', 'status', 'created_at', 'created_by', 'updated_by'], 'required'],
-            [['id', 'client_id', 'vat', 'status', 'created_by', 'updated_by'], 'integer'],
+            [['client_id', 'status', 'created_at', 'created_by', 'updated_by'], 'required'],
+            [['client_id', 'vat', 'status', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
         ];

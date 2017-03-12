@@ -30,7 +30,13 @@ $this->title = $model->subject;
                 'message:ntext',
                 'created_at',
                 'updated_at',
-                'status',
+                [
+                    'attribute' => 'status',
+                    'label' => Yii::t('app', 'Status'),
+                    'value' => function ($model) {
+                        return $model->getStatus();
+                    },
+                ],
 //                'ip_address',
             ],
         ]) ?>

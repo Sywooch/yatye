@@ -9,6 +9,7 @@
 namespace backend\models;
 
 use common\helpers\EmailHelper;
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\NewsLetter as BaseNewsLetter;
 use yii\behaviors\BlameableBehavior;
@@ -97,5 +98,13 @@ class NewsLetter extends BaseNewsLetter
         }
     }
 
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
 
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
+    }
 }

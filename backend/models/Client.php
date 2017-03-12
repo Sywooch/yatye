@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Client as BaseClient;
 use yii\behaviors\BlameableBehavior;
@@ -47,5 +48,15 @@ class Client extends BaseClient
             [['status'], 'default', 'value' => Yii::$app->params['pending']],
             [['code'], 'default', 'value' => 'code'],
         ];
+    }
+
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

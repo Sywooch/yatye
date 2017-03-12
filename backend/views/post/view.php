@@ -82,15 +82,15 @@ $this->title = $model->title;
                             </tr>
                             <tr>
                                 <td>Created By:</td>
-                                <td><?= $model->created_by ?></td>
+                                <td><?= $model->getUser() ?></td>
                             </tr>
                             <tr>
                                 <td>Updated By:</td>
-                                <td><?= $model->updated_by ?></td>
+                                <td><?= $model->getUser() ?></td>
                             </tr>
                             <tr>
                                 <td>Status:</td>
-                                <td><?= $model->status ?></td>
+                                <td><?= $model->getStatus() ?></td>
                             </tr>
                             </tbody>
                         </table>

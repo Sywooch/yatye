@@ -9,6 +9,7 @@
 namespace backend\models;
 
 use common\helpers\RecordHelpers;
+use common\helpers\ValueHelpers;
 use common\models\Cell;
 use common\models\District;
 use common\models\Place as BasePlace;
@@ -271,16 +272,13 @@ class Place extends BasePlace
         return $select;
     }
 
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
     public function getUser()
     {
-        if ($already_exists = RecordHelpers::userHas('user_profile')) {
-            $user_profile = UserProfile::findOne(['user_id' => $this->created_by]);
-            return $user_profile->first_name . ' ' . $user_profile->last_name;
-        }
-        else{
-            $user = User::findOne(['id' => $this->created_by]);
-            return $user->username;
-        }
-
+        return ValueHelpers::getUser($this);
     }
 }

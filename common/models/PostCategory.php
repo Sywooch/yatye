@@ -15,6 +15,7 @@ use Yii;
  * @property string $updated_at
  * @property integer $status
  * @property integer $created_by
+ * @property integer $updated_by
  *
  * @property Post[] $posts
  * @property PostType $postType
@@ -35,8 +36,8 @@ class PostCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_type_id', 'name', 'slug', 'created_at'], 'required'],
-            [['post_type_id', 'status', 'created_by'], 'integer'],
+            [['post_type_id', 'name', 'slug', 'created_at', 'updated_by'], 'required'],
+            [['post_type_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['name'], 'unique'],
@@ -50,14 +51,15 @@ class PostCategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'post_type_id' => 'Post Type ID',
-            'name' => 'Name',
-            'slug' => 'Slug',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'status' => 'Status',
-            'created_by' => 'Created By',
+            'id' => Yii::t('app', 'ID'),
+            'post_type_id' => Yii::t('app', 'Post Type ID'),
+            'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'status' => Yii::t('app', 'Status'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
         ];
     }
 

@@ -39,19 +39,6 @@ $this->title = 'Customer Management';
             <div class="row">
                 <div class="col-sm-6">
                     <div class="statusbox">
-                        <h2>Contracts</h2>
-                        <div class="statusbox-content">
-                            <strong>0</strong>
-                            <span></span>
-                        </div>
-
-                        <div class="statusbox-actions">
-                            <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), Yii::$app->request->baseUrl . '/contract', ['class' => '']) ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="statusbox">
                         <h2>Clients</h2>
                         <div class="statusbox-content">
                             <strong>0</strong>
@@ -60,6 +47,19 @@ $this->title = 'Customer Management';
 
                         <div class="statusbox-actions">
                             <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), Yii::$app->request->baseUrl . '/client', ['class' => '']) ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="statusbox">
+                        <h2>Contracts</h2>
+                        <div class="statusbox-content">
+                            <strong>0</strong>
+                            <span></span>
+                        </div>
+
+                        <div class="statusbox-actions">
+                            <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), Yii::$app->request->baseUrl . '/contract', ['class' => '']) ?>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,8 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Subscription */
 
 $this->title = $model->email;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Subscriptions'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="background-white p30">
     <div class="row">
@@ -26,10 +28,15 @@ $this->title = $model->email;
         <?= DetailView::widget([
             'model' => $model,
             'attributes' => [
-                'id',
                 'email:email',
                 'verified',
-                'status',
+                [
+                    'attribute' => 'status',
+                    'label' => Yii::t('app', 'Status'),
+                    'value' => function ($model) {
+                        return $model->getStatus();
+                    },
+                ],
                 'place',
                 'visitor',
                 'user',
@@ -38,7 +45,13 @@ $this->title = $model->email;
                 'unsubscribe_user',
                 'created_at',
                 'updated_at',
-                'place_id',
+                [
+                    'attribute' => 'place_id',
+                    'label' => Yii::t('app', 'Place Name'),
+                    'value' => function ($model) {
+                        return $model->getPlaceName();
+                    },
+                ],
             ],
         ]) ?>
     </div>

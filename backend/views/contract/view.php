@@ -40,7 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'path',
             'start_at',
             'end_at',
-            'status',
+            [
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'value' => function ($model) {
+                    return $model->getStatus();
+                },
+            ],
             [
                 'attribute' => 'status',
                 'label' => Yii::t('app', 'Status'),
@@ -50,8 +56,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'created_at',
             'updated_at',
-            'created_by',
-            'updated_by',
+            [
+                'attribute' => 'created_by',
+                'label' => Yii::t('app', 'Created By'),
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+            ],
+            [
+                'attribute' => 'updated_by',
+                'label' => Yii::t('app', 'Updated By'),
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+            ],
         ],
     ]) ?>
 

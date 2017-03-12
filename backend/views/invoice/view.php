@@ -6,11 +6,11 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Invoice */
 
-$this->title = $model->id;
+$this->title = 'Invoice ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Invoices'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="invoice-view">
+<div class="background-white p20 mb50">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -28,14 +28,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'client_id',
+            [
+                'attribute' => 'client_id',
+                'label' => Yii::t('app', 'Client'),
+                'value' => function ($model) {
+                    return $model->getClient();
+                },
+            ],
             'vat',
-            'status',
+            [
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'value' => function ($model) {
+                    return $model->getStatus();
+                },
+            ],
             'created_at',
             'updated_at',
-            'created_by',
-            'updated_by',
+            [
+                'attribute' => 'created_by',
+                'label' => Yii::t('app', 'Created By'),
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+            ],
+            [
+                'attribute' => 'updated_by',
+                'label' => Yii::t('app', 'Updated By'),
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+            ],
         ],
     ]) ?>
 

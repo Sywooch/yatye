@@ -7,6 +7,8 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Category */
 
 $this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Categories'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-view">
 
@@ -19,15 +21,35 @@ $this->title = $model->name;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-//            'id',
             'name',
             'slug',
             'description',
             'image',
             'created_at',
             'updated_at',
-            'status',
-            'created_by',
+            [
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'value' => function ($model) {
+                    return $model->getStatus();
+                },
+            ],
+            'created_at',
+            'updated_at',
+            [
+                'attribute' => 'created_by',
+                'label' => Yii::t('app', 'Created By'),
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+            ],
+            [
+                'attribute' => 'updated_by',
+                'label' => Yii::t('app', 'Updated By'),
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+            ],
             'type',
         ],
     ]) ?>

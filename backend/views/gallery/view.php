@@ -29,11 +29,31 @@ $this->title = $model->getPlaceName() . ' - ' . $model->getServiceName();
                 'model' => $model,
                 'attributes' => [
                     'place_id',
-//                    'title',
+                    'service_id',
+                    'title',
                     'caption',
                     'expire_at',
-                    'status',
-                    'service_id',
+                    [
+                        'attribute' => 'status',
+                        'label' => Yii::t('app', 'Status'),
+                        'value' => function ($model) {
+                            return $model->getStatus();
+                        },
+                    ],
+                    [
+                        'attribute' => 'created_by',
+                        'label' => Yii::t('app', 'Created By'),
+                        'value' => function ($model) {
+                            return $model->getUser();
+                        },
+                    ],
+                    [
+                        'attribute' => 'updated_by',
+                        'label' => Yii::t('app', 'Updated By'),
+                        'value' => function ($model) {
+                            return $model->getUser();
+                        },
+                    ],
                 ],
             ]) ?>
         </div>

@@ -11,7 +11,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="row">
-<!--    <pre>--><?php //echo  print_r($actions); ?><!--</pre>-->
     <div class="col-sm-12">
         <div class="page-title">
             <h1><?= Html::encode($this->title) ?></h1>
@@ -76,7 +75,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ],
                     ],
-
                     'tableOptions' => ['class' => 'table mb0'],
                 ]); ?>
             </div>

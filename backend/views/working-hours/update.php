@@ -6,9 +6,9 @@ use yii\helpers\Html;
 /* @var $model common\models\WorkingHours */
 
 $this->title = 'Update: ' . ' ' . $model->day;
-//$this->params['breadcrumbs'][] = ['label' => 'Working Hours', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-//$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => 'Working Hours', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="row">
     <div class="page-title">

@@ -28,9 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'user_id',
-            'place_id',
+            [
+                'attribute' => 'user_id',
+                'label' => Yii::t('app', 'User'),
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+            ],
             'first_name',
             'last_name',
             'birthdate',
@@ -42,7 +47,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'expire_at',
             'updated_at',
             'avatar',
-            'status',
+            [
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'value' => function ($model) {
+                    return $model->getStatus();
+                },
+            ],
         ],
     ]) ?>
 

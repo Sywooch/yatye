@@ -9,6 +9,7 @@
 namespace frontend\models;
 
 use backend\models\Place;
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Enquiry as BaseEnquiry;
 use yii\db\ActiveRecord;
@@ -25,7 +26,7 @@ class Enquiry extends BaseEnquiry
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'email', 'subject', 'ip_address'], 'string', 'max' => 255],
             ['email', 'email'],
-            [['status'], 'default', 'value' => Yii::$app->params['active']],
+            [['status'], 'default', 'value' => Yii::$app->params['pending']],
         ];
     }
 
@@ -58,5 +59,9 @@ class Enquiry extends BaseEnquiry
     public function getPlaceName()
     {
         return Place::findOne($this->place_id)->name;
+    }
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
     }
 }

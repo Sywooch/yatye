@@ -40,7 +40,7 @@ class Gallery extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['place_id'], 'required'],
+            [['place_id', 'created_at', 'status', 'created_by', 'updated_by'], 'required'],
             [['place_id', 'status', 'created_by', 'service_id', 'updated_by'], 'integer'],
             [['logo'], 'string'],
             [['created_at', 'expire_at', 'updated_at'], 'safe'],
@@ -56,20 +56,20 @@ class Gallery extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'place_id' => 'Place ID',
-            'name' => 'Name',
-            'title' => 'Title',
-            'caption' => 'Caption',
-            'path' => 'Path',
-            'logo' => 'Logo',
-            'created_at' => 'Created At',
-            'expire_at' => 'Expire At',
-            'updated_at' => 'Updated At',
-            'status' => 'Status',
-            'created_by' => 'Created By',
-            'service_id' => 'Service ID',
-            'updated_by' => 'Updated By',
+            'id' => Yii::t('app', 'ID'),
+            'place_id' => Yii::t('app', 'Place ID'),
+            'name' => Yii::t('app', 'Name'),
+            'title' => Yii::t('app', 'Title'),
+            'caption' => Yii::t('app', 'Caption'),
+            'path' => Yii::t('app', 'Path'),
+            'logo' => Yii::t('app', 'Logo'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'expire_at' => Yii::t('app', 'Expire At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'status' => Yii::t('app', 'Status'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'service_id' => Yii::t('app', 'Service ID'),
+            'updated_by' => Yii::t('app', 'Updated By'),
         ];
     }
 

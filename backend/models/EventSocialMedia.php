@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\EventSocialMedia as BaseEventSocialMedia;
 use yii\behaviors\BlameableBehavior;
@@ -74,5 +75,14 @@ class EventSocialMedia extends BaseEventSocialMedia
         endif;
 
         return $social_type;
+    }
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

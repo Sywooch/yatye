@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Contract as BaseContract;
 use yii\base\Exception;
@@ -80,20 +81,11 @@ class Contract extends BaseContract
 
     public function getStatus()
     {
-        if ($this->status == Yii::$app->params['active']) {
-            $status = Yii::t('app', 'Active');
-        } elseif ($this->status == Yii::$app->params['inactive']) {
-            $status = Yii::t('app', 'Inactive');
-        } elseif ($this->status == Yii::$app->params['pending']) {
-            $status = Yii::t('app', 'Pending');
-        } elseif ($this->status == Yii::$app->params['rejected']) {
-            $status = Yii::t('app', 'Rejected');
-        } elseif ($this->status == Yii::$app->params['draft']) {
-            $status = Yii::t('app', 'Draft');
-        } else {
-            $status = Yii::t('app', 'Not set');
-        }
+        return ValueHelpers::getStatus($this);
+    }
 
-        return $status;
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 }

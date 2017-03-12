@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Service as BaseService;
 use yii\behaviors\BlameableBehavior;
@@ -27,7 +28,7 @@ class Service extends BaseService
             'blameable' => [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => false,
+                'updatedByAttribute' => 'updated_by',
             ],
 
             'sluggable' => [
@@ -50,6 +51,7 @@ class Service extends BaseService
             'updated_at' => 'Updated',
             'status' => 'Status',
             'created_by' => 'Created By',
+            'updated_by' => Yii::t('app', 'Updated By'),
         ];
     }
 
@@ -58,7 +60,7 @@ class Service extends BaseService
     {
         return [
             [['category_id', 'name', 'slug'], 'required'],
-            [['category_id', 'status', 'created_by'], 'integer'],
+            [['category_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 125],
@@ -169,5 +171,13 @@ class Service extends BaseService
 
         return $select;
     }
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
 
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
+    }
 }

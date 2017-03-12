@@ -16,6 +16,8 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  * @property integer $status
+ * @property integer $created_by
+ * @property integer $updated_by
  *
  * @property Place $place
  */
@@ -35,8 +37,8 @@ class WorkingHours extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['place_id', 'day', 'created_at'], 'required'],
-            [['place_id', 'status'], 'integer'],
+            [['place_id', 'day', 'created_at', 'created_by', 'updated_by'], 'required'],
+            [['place_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['opening_time', 'closing_time', 'created_at', 'updated_at'], 'safe'],
             [['closed'], 'string'],
             [['day'], 'string', 'max' => 20],
@@ -51,15 +53,17 @@ class WorkingHours extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'place_id' => 'Place ID',
-            'day' => 'Day',
-            'opening_time' => 'Opening Time',
-            'closing_time' => 'Closing Time',
-            'closed' => 'Closed',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'status' => 'Status',
+            'id' => Yii::t('app', 'ID'),
+            'place_id' => Yii::t('app', 'Place ID'),
+            'day' => Yii::t('app', 'Day'),
+            'opening_time' => Yii::t('app', 'Opening Time'),
+            'closing_time' => Yii::t('app', 'Closing Time'),
+            'closed' => Yii::t('app', 'Closed'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'status' => Yii::t('app', 'Status'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
         ];
     }
 

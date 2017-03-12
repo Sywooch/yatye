@@ -9,6 +9,7 @@
 namespace backend\models;
 
 use common\helpers\RecordHelpers;
+use common\helpers\ValueHelpers;
 use frontend\models\UserProfile;
 use Yii;
 use common\models\Event as BaseEvent;
@@ -111,16 +112,13 @@ class Event extends BaseEvent
         return EventSocialMedia::findAll(['event_id' => $this->id]);
     }
 
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
     public function getUser()
     {
-        if ($already_exists = RecordHelpers::userHas('user_profile')) {
-            $user_profile = UserProfile::findOne(['user_id' => $this->created_by]);
-            return $user_profile->first_name . ' ' . $user_profile->last_name;
-        }
-        else{
-            $user = User::findOne(['id' => $this->created_by]);
-            return $user->username;
-        }
-
+        return ValueHelpers::getUser($this);
     }
 }

@@ -10,7 +10,6 @@ use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use backend\components\AdminController as BackendAdminController;
-use yii\web\UploadedFile;
 
 /**
  * ContractController implements the CRUD actions for Contract model.

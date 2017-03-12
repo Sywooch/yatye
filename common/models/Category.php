@@ -16,6 +16,7 @@ use Yii;
  * @property string $updated_at
  * @property integer $status
  * @property integer $created_by
+ * @property integer $updated_by
  * @property integer $type
  *
  * @property Service[] $services
@@ -36,9 +37,9 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'slug', 'created_at', 'status', 'created_by', 'updated_by'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
-            [['status', 'created_by', 'type'], 'integer'],
+            [['status', 'created_by', 'updated_by', 'type'], 'integer'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 500],
             [['name'], 'unique'],
@@ -52,16 +53,17 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'slug' => 'Slug',
-            'description' => 'Description',
-            'image' => 'Image',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'status' => 'Status',
-            'created_by' => 'Created By',
-            'type' => 'Type',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
+            'description' => Yii::t('app', 'Description'),
+            'image' => Yii::t('app', 'Image'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'status' => Yii::t('app', 'Status'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
+            'type' => Yii::t('app', 'Type'),
         ];
     }
 
