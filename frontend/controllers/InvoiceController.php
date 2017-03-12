@@ -12,7 +12,7 @@ class InvoiceController extends BaseEventController
 {
     public function actionIndex()
     {
-        $model = Invoice::findOne(2);
+        $model = Invoice::findOne(1);
         $client = $model->getClient();
         $invoice_items = $model->getInvoiceItems();
         $contract = $model->getContract();
