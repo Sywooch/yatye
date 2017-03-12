@@ -27,7 +27,7 @@ class InvoiceController extends BaseEventController
 
     public function actionPdf()
     {
-        $model = Invoice::findOne(2);
+        $model = Invoice::findOne(1);
         $client = $model->getClient();
         $invoice_items = $model->getInvoiceItems();
         $contract = $model->getContract();
