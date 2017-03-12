@@ -4,7 +4,7 @@ return [
     'timeZone' => 'Africa/Kigali',
     'components' => [
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\FileCache', // in case I want to clear cache : ./yii cache/flush-all
         ],
 
         'session' => [

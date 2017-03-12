@@ -88,4 +88,27 @@ class Contract extends BaseContract
     {
         return ValueHelpers::getUser($this);
     }
+
+    public function getPeriod() {
+        $day   = 24 * 3600;
+
+        $start_at  = strtotime($this->start_at);
+        $end_at    = strtotime($this->end_at);
+        $diff  = abs($end_at - $start_at);
+
+        Yii::warning('Day : ' . $day);
+        Yii::warning('Start at : ' . $day);
+        Yii::warning('End at : ' . $end_at);
+        Yii::warning('Diff : ' . $diff);
+
+        $years   = floor($diff / (365*60*60*24));
+        $months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+        $days    = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+        $out   = array();
+        if ($years) $out[] = "$years Year" . ($years > 1 ? 's' : '');
+        if ($months) $out[] = "$months Month" . ($months > 1 ? 's' : '');
+        if ($days)  $out[] = "$days Day" . ($days > 1 ? 's' : '');
+        return implode(', ', $out);
+    }
 }

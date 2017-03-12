@@ -28,7 +28,11 @@ use kartik\widgets\DatePicker;
     <div class="row">
         <div class="col-md-6 col-lg-6">
             <?php echo $form->field($model, 'start_at')->widget(DatePicker::classname(), [
-                'options' => ['placeholder' => Yii::t('app', ''), 'class' => 'form-control', 'value' => date('Y-m-d')],
+                'options' => [
+                    'placeholder' => Yii::t('app', ''),
+                    'class' => 'form-control',
+                    'value' => date('Y-m-d')
+                ],
                 'pluginOptions' => [
                     'autoclose' => true,
                     'format' => 'yyyy-mm-dd'

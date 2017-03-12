@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\Client;
+use backend\models\Contract;
 use backend\models\InvoiceItem;
 use common\helpers\Helpers;
 use Yii;
@@ -55,7 +56,8 @@ class InvoiceController extends BackendAdminController
         $model = new Invoice();
         $status = Helpers::getStatus();
         $clients = ArrayHelper::map(Client::find()->orderBy('name')->all(), 'id', 'name');
-
+        $contracts = ArrayHelper::map(Contract::find()->orderBy('title')->all(), 'id', 'title');
+        $types = $model->getInvoiceTypes();
 
         $count = count(Yii::$app->request->post('InvoiceItem', []));
         $invoice_items = [new InvoiceItem()];
@@ -86,6 +88,8 @@ class InvoiceController extends BackendAdminController
                 'status' => $status,
                 'clients' => $clients,
                 'invoice_items' => $invoice_items,
+                'types' => $types,
+                'contracts' => $contracts,
             ]);
         }
     }
@@ -99,33 +103,43 @@ class InvoiceController extends BackendAdminController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $status = Helpers::getStatus();
-        $clients = ArrayHelper::map(Client::find()->orderBy('name')->all(), 'id', 'name');
-        $invoice_items = $model->getInvoiceItems();
+        if ($model->status == Yii::$app->params['not_paid']){
+            $status = Helpers::getStatus();
+            $clients = ArrayHelper::map(Client::find()->orderBy('name')->all(), 'id', 'name');
+            $contracts = ArrayHelper::map(Contract::find()->orderBy('title')->all(), 'id', 'title');
+            $invoice_items = $model->getInvoiceItems();
 
-        $post = Yii::$app->request->post('InvoiceItem');
-        if ($model->load(Yii::$app->request->post())) {
-            $transaction = $model->getDb()->beginTransaction();
-            try {
-                $model->save();
-                $model->saveInvoiceItems($post, $invoice_items);
-                $transaction->commit();
-            } catch (\Exception $e) {
-                $transaction->rollBack();
-                throw $e;
-            } catch (\Throwable $e) {
-                $transaction->rollBack();
-                throw $e;
+            $types = $model->getInvoiceTypes();
+
+            $post = Yii::$app->request->post('InvoiceItem');
+            if ($model->load(Yii::$app->request->post())) {
+                $transaction = $model->getDb()->beginTransaction();
+                try {
+                    $model->save();
+                    $model->saveInvoiceItems($post, $invoice_items);
+                    $transaction->commit();
+                } catch (\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                } catch (\Throwable $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                    'status' => $status,
+                    'clients' => $clients,
+                    'invoice_items' => $invoice_items,
+                    'types' => $types,
+                    'contracts' => $contracts,
+                ]);
             }
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'status' => $status,
-                'clients' => $clients,
-                'invoice_items' => $invoice_items,
-            ]);
+        }else{
+            return $this->redirect(['index']);
         }
+
     }
 
     /**
@@ -155,5 +169,13 @@ class InvoiceController extends BackendAdminController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionPaid($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = Yii::$app->params['paid'];
+        $model->save();
+        return $this->redirect(['index']);
     }
 }

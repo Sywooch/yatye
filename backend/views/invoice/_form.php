@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use unclead\widgets\TabularInput;
-use unclead\widgets\MultipleInputColumn;
 use unclead\widgets\TabularColumn;
+use kartik\widgets\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Invoice */
@@ -15,9 +15,25 @@ use unclead\widgets\TabularColumn;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php echo $form->field($model, 'client_id')->dropDownList($clients, [
-        'prompt' => Yii::t('app', 'Client'),
-    ]); ?>
+    <div class="row">
+        <div class="col-md-3 col-lg-3">
+            <?php echo $form->field($model, 'client_id')->dropDownList($clients, [
+                'prompt' => Yii::t('app', 'Client'),
+            ]); ?>        </div>
+        <div class="col-md-3 col-lg-3">
+            <?php echo $form->field($model, 'type')->dropDownList($types, [
+                'prompt' => Yii::t('app', 'Type'),
+            ]); ?>
+        </div>
+        <div class="col-md-3 col-lg-3">
+            <?php echo $form->field($model, 'contract_id')->dropDownList($contracts, [
+                'prompt' => Yii::t('app', 'Contract'),
+            ]); ?>
+        </div>
+        <div class="col-md-3 col-lg-3">
+            <?= $form->field($model, 'discount')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
     <?php echo TabularInput::widget([
         'models' => $invoice_items,

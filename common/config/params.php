@@ -63,6 +63,15 @@ return [
     'draft' => 8,
     'sent' => 9,
     'imported' => 10,
+    'paid' => 11,
+    'not_paid' => 12,
+
+
+    //For invoices types
+
+    'normal_sell'=>1,
+    'proforma'=>0,
+    'credit'=>2,
 
     'A_TYPE' => 1,
     'B_TYPE' => 2,
