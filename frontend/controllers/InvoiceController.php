@@ -45,7 +45,7 @@ class InvoiceController extends BaseEventController
             // set to use core fonts only
             'mode' => Pdf::MODE_CORE,
             // A4 paper format
-            'format' => Pdf::FORMAT_LETTER,
+            'format' => Pdf::FORMAT_A4,
             // portrait orientation
             'orientation' => Pdf::ORIENT_LANDSCAPE,
             // stream to browser inline
