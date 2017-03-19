@@ -19,7 +19,7 @@ $dataProvider->pagination = [
     <div class="row">
         <div class="col-sm-8 col-lg-9">
             <div class="content">
-                <div class="cards-row div p30">
+                <div class="cards-row p30">
                     <div class="row">
                         <?= ListView::widget([
                             'options' => [
@@ -58,9 +58,9 @@ $dataProvider->pagination = [
                             'layout' => '{items}{pager}',
 
                             'pager' => [
-                                'prevPageLabel' => 'Prev',
-                                'nextPageLabel' => 'Next',
-                                'maxButtonCount' => 12,
+                                'prevPageLabel' => false,
+                                'nextPageLabel' => false,
+                                'maxButtonCount' => 10,
                                 'options' => [
                                     'class' => 'pager col-xs-12'
                                 ]

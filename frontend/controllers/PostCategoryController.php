@@ -18,13 +18,6 @@ class PostCategoryController extends BaseController
         $model = PostCategory::findOne(['slug' => $slug]);
 
         if ($model) {
-
-            Yii::$app->view->registerMetaTag([
-                'name' => 'keywords',
-                'content' => [$model->name,],
-            ]);
-
-
             $dataProvider = new ActiveDataProvider([
                 'query' => $model->getPosts(),
 

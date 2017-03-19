@@ -16,11 +16,6 @@ class NearbyPlacesController extends AdminController
 
 //        $places = Category::getNearbyPlaces(Yii::$app->request->get('distance'));
 
-        Yii::$app->view->registerMetaTag([
-            'name' => 'keywords',
-            'content' => ['nearby-places', 'Rwanda Guide'],
-        ]);
-
         return $this->render('index', [
             'places' => $model->getNearbyPlaces(Yii::$app->request->get('distance')),
         ]);

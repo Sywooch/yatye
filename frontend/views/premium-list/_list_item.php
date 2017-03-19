@@ -10,7 +10,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
 <?php //$tab = 'tab-';?>
-<div class="card-row item" data-key="<?= $model['place_id'] ?>">
+<div class="card-row item div" data-key="<?= $model['place_id'] ?>">
     <div class="card-row-inner">
         <div class="card-row-image"
              data-background-image="<?php echo Yii::$app->params['thumbnails'] . $model['logo'] ?>">

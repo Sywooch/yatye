@@ -8,39 +8,27 @@
 ?>
 
 <div class="background-white p20 div">
-    <div class="detail-overview-hearts">
-        <?php if ($views > 10): ?>
-            <i class="fa fa-eye" style="color: #5d4942;"></i>
-            <strong><?php echo $views ?> </strong>people viewed it
-        <?php endif; ?>
-    </div>
-    <div class="detail-overview-rating">
-        <?php $average = $ratings->showAverageRating($model->id);
-        if ($average > 1): ?>
+    <div class="row p20">
+        <div class="detail-overview-hearts">
+            <?php if ($views > 10): ?>
+                <i class="fa fa-eye" style="color: #5d4942;"></i>
+                <small><b><?php echo $views ?></b></small> <?php echo Yii::t('app', 'people viewed it') ?>
+            <?php endif; ?>
+        </div>
+        <div class="detail-overview-rating">
             <div id="showAverage">
-
-                <i class="fa fa-star" style="color: #bfa649;"></i>
-                <strong><?php echo round($average);; ?> /
-                    5 </strong>average of ratings
+                <?php echo $model->getRatingStars()?>&nbsp;&nbsp;&nbsp;
+                <button type="button" id="rateMe" class="btn btn-secondary btn-xs"><?php echo Yii::t('app', 'Add your rate') ?></button>
             </div>
-        <?php endif; ?>
-        <div id="rateIt">
-            <?php echo $this->render('_rating-form', [
-                'model' => $model,
-                'ratings' => $ratings,
-                'place_id' => $place_id,
-            ]); ?>
+            <div id="rateIt">
+                <?php echo $this->render('_rating-form', [
+                    'model' => $model,
+                    'ratings' => $ratings,
+                    'place_id' => $place_id,
+                ]); ?>
+            </div>
         </div>
     </div>
-
-    <div class="detail-actions row">
-        <div class="col-sm-4">
-            <button type="button" id="rateMe" class="btn btn-secondary btn-claim btn-xs">
-                <i class="fa fa-star-half-o"></i> Rate
-            </button>
-        </div>
-    </div>
-    <br>
     <div class="row">
         <div class="col-sm-3">
             <ul class="share list-unstyled">
@@ -81,9 +69,16 @@
         <div class="col-sm-3">
             <ul class="share list-unstyled">
                 <li><a href="https://www.pinterest.com/pin/create/button/"><img
-                            src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png"/></a>
+                                src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png"/></a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+<?php $this->registerJs('$(document).ready(function(){
+        $("#rateIt").hide();
+        $("#rateMe").click(function(){
+            $("#showAverage").hide();
+            $("#rateIt").show();
+        });
+    })'); ?>

@@ -71,6 +71,7 @@ class BaseController extends Controller
     {
         return [
             'place_model' => DataHelpers::getPlace(),
+            'get_keywords' => DataHelpers::getKeywords(),
             'has_profile' => RecordHelpers::hasProfile(),
             'get_all_places' => DataHelpers::getAllPlaces(),
             'all_services' => DataHelpers::getAllServices(),

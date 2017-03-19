@@ -65,11 +65,9 @@ $dataProvider->pagination = [
                             'layout' => '{items}{pager}',
 
                             'pager' => [
-//                                'firstPageLabel' => 'First',
-//                                'lastPageLabel' => 'Last',
-                                'prevPageLabel' => 'Prev',
-                                'nextPageLabel' => 'Next',
-                                'maxButtonCount' => 12,
+                                'prevPageLabel' => false,
+                                'nextPageLabel' => false,
+                                'maxButtonCount' => 10,
                                 'options' => [
                                     'class' => 'pager col-xs-12'
                                 ]

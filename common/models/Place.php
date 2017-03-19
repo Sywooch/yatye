@@ -22,7 +22,7 @@ use Yii;
  * @property string $street
  * @property double $latitude
  * @property double $longitude
- * @property string $profile_type
+ * @property integer $profile_type
  * @property string $created_at
  * @property string $expire_at
  * @property string $updated_at
@@ -32,13 +32,13 @@ use Yii;
  * @property integer $category
  * @property integer $main
  *
- * @property Address[] $addresses
- * @property Ads $ads
  * @property Contact[] $contacts
+ * @property Enquiry[] $enquiries
  * @property Gallery[] $galleries
  * @property PlaceService[] $placeServices
  * @property Service[] $services
  * @property Product $product
+ * @property Ratings[] $ratings
  * @property Review[] $reviews
  * @property SocialMedia[] $socialMedia
  * @property UserPlace[] $userPlaces
@@ -65,11 +65,11 @@ class Place extends \yii\db\ActiveRecord
         return [
             [['name', 'slug', 'created_at'], 'required'],
             [['description'], 'string'],
-            [['province_id', 'district_id', 'sector_id', 'cell_id', 'village_id', 'views', 'status', 'created_by', 'category', 'main'], 'integer'],
+            [['province_id', 'district_id', 'sector_id', 'cell_id', 'village_id', 'profile_type', 'views', 'status', 'created_by', 'category', 'main'], 'integer'],
             [['latitude', 'longitude'], 'number'],
             [['created_at', 'expire_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'logo', 'neighborhood', 'street'], 'string', 'max' => 255],
-            [['code', 'profile_type'], 'string', 'max' => 50],
+            [['code'], 'string', 'max' => 50],
             [['name'], 'unique'],
         ];
     }
@@ -110,25 +110,17 @@ class Place extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAddresses()
-    {
-        return $this->hasMany(Address::className(), ['place_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAds()
-    {
-        return $this->hasOne(Ads::className(), ['place_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getContacts()
     {
         return $this->hasMany(Contact::className(), ['place_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEnquiries()
+    {
+        return $this->hasMany(Enquiry::className(), ['place_id' => 'id']);
     }
 
     /**
@@ -161,6 +153,14 @@ class Place extends \yii\db\ActiveRecord
     public function getProduct()
     {
         return $this->hasOne(Product::className(), ['place_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRatings()
+    {
+        return $this->hasMany(Ratings::className(), ['place_id' => 'id']);
     }
 
     /**

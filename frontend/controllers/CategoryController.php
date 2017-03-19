@@ -21,11 +21,6 @@ class CategoryController extends BaseController
         $model = Category::findOne(['slug' => $slug]);
 
         if (!is_null($model)) {
-            Yii::$app->view->registerMetaTag([
-                'name' => 'keywords',
-                'content' => [$model->name, 'Rwanda', 'Kigali', 'Rwanda Guide'],
-            ]);
-
             $premium_places = $model->getPremiumPlaces();
             $basic_places = $model->getBasicPlaces();
             $free_places = $model->getFreePlaces();

@@ -26,33 +26,33 @@ class SecurityController extends BaseSecurityController
         return BaseController::accessDataByIds($id);
     }
 
-    /**
-     * Logs in a user.
-     *
-     * @return mixed
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            $this->goHome();
-        }
-
-        /** @var LoginForm $model */
-        $model = Yii::createObject(LoginForm::className());
-
-        $this->performAjaxValidation($model);
-
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
-            return $this->redirect(Yii::$app->request->baseUrl . '/dashboard');
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-                'module' => $this->module,
-            ]);
-        }
-
-
-    }
+//    /**
+//     * Logs in a user.
+//     *
+//     * @return mixed
+//     */
+//    public function actionLogin()
+//    {
+//        if (!Yii::$app->user->isGuest) {
+//            $this->goBack();
+//        }
+//
+//        /** @var LoginForm $model */
+//        $model = Yii::createObject(LoginForm::className());
+//
+//        $this->performAjaxValidation($model);
+//
+//        if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
+//            return $this->redirect(Yii::$app->request->baseUrl . '/dashboard');
+//        } else {
+//            return $this->render('login', [
+//                'model' => $model,
+//                'module' => $this->module,
+//            ]);
+//        }
+//
+//
+//    }
 
     /**
      * Logs out the current user.

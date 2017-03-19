@@ -33,13 +33,6 @@ class LocationController extends BaseController
         $model = District::findOne(['name'=>$slug]);
         $service_categories = Category::find()->where(['status' => Yii::$app->params['active']])->orderBy('RAND()')->all();
 
-
-        Yii::$app->view->registerMetaTag([
-            'name' => 'keywords',
-            'content' => ['Location', $model->name],
-        ]);
-
-
         return $this->render('district', [
             'model' => $model,
             'service_categories' => $service_categories,

@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use backend\models\Subscription;
 use common\helpers\EmailHelper;
+use common\helpers\MetaTagHelpers;
 use frontend\models\Enquiry;
 use Yii;
 use frontend\models\ContactForm;
@@ -25,36 +26,16 @@ class PlaceDetailsController extends AdminController
     {
         $model = Place::findOne(['slug' => $slug, 'status' => Yii::$app->params['active']]);
 
-
         if ($model) {
-            Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => [$model->name,]]);
-
-            Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->description]);
-
-            Yii::$app->view->registerMetaTag(['property' => 'og:url', 'content' => 'http://rwandaguide.info/place-details//' . $model->slug]);
-            Yii::$app->view->registerMetaTag(['property' => 'og:type', 'content' => 'website']);
-            Yii::$app->view->registerMetaTag(['property' => 'og:title', 'content' => $model->name]);
-            Yii::$app->view->registerMetaTag(['property' => 'og:description', 'content' => $model->description]);
-            Yii::$app->view->registerMetaTag(['property' => 'og:image', 'content' => Yii::$app->params['galleries'] . $model->logo]);
-            Yii::$app->view->registerMetaTag(['property' => 'fb:app_id', 'content' => '1569960559930538']);
-
-            Yii::$app->view->registerMetaTag(['itemprop' => 'description', 'content' => $model->description]);
-            Yii::$app->view->registerMetaTag(['itemprop' => 'image', 'content' => Yii::$app->params['galleries'] . $model->logo]);
-            Yii::$app->view->registerMetaTag(['itemprop' => 'name', 'content' => $model->name]);
-
-            Yii::$app->view->registerMetaTag(['name' => 'twitter:card', 'content' => 'summary_large_image']);
-            Yii::$app->view->registerMetaTag(['name' => 'twitter:site', 'content' => '@rwandaguide2015']);
-            Yii::$app->view->registerMetaTag(['name' => 'twitter:creator', 'content' => '@rwandaguide2015']);
-            Yii::$app->view->registerMetaTag(['name' => 'twitter:title', 'content' => $model->name]);
-            Yii::$app->view->registerMetaTag(['name' => 'twitter:description', 'content' => $model->description]);
-            Yii::$app->view->registerMetaTag(['name' => 'twitter:image:src', 'content' => Yii::$app->params['galleries'] . $model->logo]);
-            Yii::$app->view->registerMetaTag(['name' => 'twitter:image:alt', 'content' => $model->name]);
-            Yii::$app->view->registerMetaTag(['name' => 'twitter:domain', 'content' => 'rwandaguide.info']);
+            $title = $model->name;
+            $description = $model->description;
+            $image = Yii::$app->params['galleries'] . $model->logo;
+            $url = 'http://rwandaguide.info/place-details//' . $model->slug;
+            MetaTagHelpers::registerMetaTag($title, $description, $image, $url);
 
             Views::insertViews($model->id);
 
-            $views = Views::findOne(['place_id' => $model->id, 'status' => Yii::$app->params['active']]);
-
+            $views = $model->getViews();
             $photos = $model->getPhotos();
             $working_hours = $model->getHours();
             $socials = $model->getSocials();
@@ -99,8 +80,7 @@ class PlaceDetailsController extends AdminController
                 'related_place_ids' => $related_place_ids,
                 'related_places' => $related_places,
                 'other_places' => $other_places,
-
-                'views' => (!empty($views)) ? $views->views : 0,
+                'views' => $views,
             ]);
 
         } else {

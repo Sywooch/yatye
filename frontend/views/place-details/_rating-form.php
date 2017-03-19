@@ -33,7 +33,7 @@ use kartik\rating\StarRating;
     ])?>
 
     <div class="form-group">
-        <?= Html::submitButton('Rate It!', ['class' =>'btn btn-primary btn-xs']) ?>
+        <?= Html::submitButton('Save', ['class' =>'btn btn-primary btn-xs']) ?>
     </div>
 
 

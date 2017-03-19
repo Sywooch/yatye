@@ -21,10 +21,6 @@ class ListController extends BaseController
 
 
         if (!is_null($model)) {
-            Yii::$app->view->registerMetaTag([
-                'name' => 'keywords',
-                'content' => [$model->name, ],
-            ]);
             return $this->render('index', [
                 'model' => $model,
                 'place_list' => $model->getCategoryList(),

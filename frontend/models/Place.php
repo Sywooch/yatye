@@ -14,6 +14,7 @@ use Yii;
 use backend\models\Place as BasePlace;
 use yii\db\Expression;
 use yii\db\Query;
+use yii\helpers\ArrayHelper;
 
 class Place extends BasePlace
 {
@@ -54,16 +55,73 @@ class Place extends BasePlace
         return Service::find()->where(['category_id' => 5])->all();
     }
 
-    public function getRatings($id)
+    public function getRatings()
     {
-        $rating = new Ratings();
+        $get_ratings = Ratings::find()->asArray()->where(['place_id' => $this->id])->all();
+        $ratings = ArrayHelper::map($get_ratings, 'id', 'ratings');
+        $ratingsSum = array_sum($ratings);
+        $ratingsCount = count($ratings);
 
-        return $rating->getAverageRating($id) ? $rating->getAverageRating($id) : '';
+        if ($ratingsCount) {
+            $averageRating = $ratingsSum / $ratingsCount;
+        } else {
+            $averageRating = 0;
+        }
+        return round($averageRating);
+    }
+
+    public function getRatingStars()
+    {
+        $ratings = $this->getRatings();
+
+        if ($ratings == 1) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 2) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 3) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 4) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 5) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+        } else {
+            $star = '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        }
+        return $star;
+    }
+
+    public function getViews()
+    {
+        $view = Views::findOne(['place_id' => $this->id, 'status' => Yii::$app->params['active']]);
+        return (!empty($view)) ? $view->views : 0;
     }
 
     public function getCategoryName()
     {
-
         $model = new Service();
         return $model->getCategoryName();
     }

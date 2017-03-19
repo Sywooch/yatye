@@ -37,5 +37,5 @@ phpunit.phar
 #htaccess
 .htaccess
 
-common/components
-common/models
+#common/components
+#common/models

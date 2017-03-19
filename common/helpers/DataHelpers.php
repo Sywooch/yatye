@@ -10,6 +10,7 @@ namespace common\helpers;
 
 use backend\models\Category;
 use backend\models\Event;
+use backend\models\EventTags;
 use common\models\Province;
 use Yii;
 use backend\models\Place;
@@ -27,27 +28,52 @@ class DataHelpers
 
     public static function getServices($category_id)
     {
-        return Service::find()->where(['category_id' => $category_id])->select(['id', 'name'])->orderBy('name')->asArray()->all();
+        return Service::find()
+            ->where(['category_id' => $category_id])
+            ->andWhere(['status' => Yii::$app->params['active']])
+            ->select(['id', 'name'])->orderBy('name')
+            ->asArray()
+            ->all();
     }
 
     public static function getDistricts($province_id)
     {
-        return District::find()->where(['province_id' => $province_id])->select(['id', 'name'])->orderBy('name')->asArray()->all();
+        return District::find()
+            ->where(['province_id' => $province_id])
+            ->select(['id', 'name'])
+            ->orderBy('name')
+            ->asArray()
+            ->all();
     }
 
     public static function getSectors($district_id)
     {
-        return Sector::find()->where(['district_id' => $district_id])->select(['id', 'name'])->orderBy('name')->asArray()->all();
+        return Sector::find()
+            ->where(['district_id' => $district_id])
+            ->select(['id', 'name'])
+            ->orderBy('name')
+            ->asArray()
+            ->all();
     }
 
     public static function getCells($sector_id)
     {
-        return Cell::find()->where(['sector_id' => $sector_id])->select(['id', 'name'])->orderBy('name')->asArray()->all();
+        return Cell::find()
+            ->where(['sector_id' => $sector_id])
+            ->select(['id', 'name'])
+            ->orderBy('name')
+            ->asArray()
+            ->all();
     }
 
     public static function getPostCategories($post_type_id)
     {
-        return PostCategory::find()->where(['post_type_id' => $post_type_id])->select(['id', 'name'])->orderBy('name')->asArray()->all();
+        return PostCategory::find()
+            ->where(['post_type_id' => $post_type_id])
+            ->select(['id', 'name'])
+            ->orderBy('name')
+            ->asArray()
+            ->all();
     }
 
     public static function getProvinces()
@@ -127,6 +153,51 @@ class DataHelpers
             ->andWhere(['status' => Yii::$app->params['active']])
             ->orderBy(new Expression('`start_at`'))
             ->all();
+    }
+
+    public static function getKeywords()
+    {
+        $places = Place::findAll(['status' => Yii::$app->params['active']]);
+        $categories = Category::findAll(['status' => Yii::$app->params['active']]);
+        $services = Service::findAll(['status' => Yii::$app->params['active']]);
+        $posts = Post::findAll(['status' => Yii::$app->params['active']]);
+        $post_categories = PostCategory::findAll(['status' => Yii::$app->params['active']]);
+        $events = Event::findAll(['status' => Yii::$app->params['active']]);
+        $event_tags = EventTags::findAll(['status' => Yii::$app->params['active']]);
+
+        $keywords = array();
+
+        foreach ($places as $place) {
+            $keywords[] = $place->name;
+        }
+
+        foreach ($categories as $category) {
+            $keywords[] = $category->name . ' in Rwanda';
+        }
+
+        foreach ($services as $service) {
+            $keywords[] = $service->name . ' in Rwanda';
+        }
+
+        foreach ($posts as $post) {
+            $keywords[] = $post->title;
+        }
+
+        foreach ($post_categories as $post_category) {
+            $keywords[] = 'Rwanda Guide - Posts - ' . $post_category->name;
+        }
+
+        foreach ($events as $event) {
+            $keywords[] = 'Rwanda Guide - Events - ' . $event->name;
+        }
+
+        foreach ($event_tags as $event_tag) {
+            $keywords[] = 'Rwanda - Events - ' . $event_tag->name;
+        }
+
+        $keywords[] = implode(",", Yii::$app->params['meta_classification']);
+
+        return implode(",", $keywords);
     }
 
 }

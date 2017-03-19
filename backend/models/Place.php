@@ -61,13 +61,13 @@ class Place extends BasePlace
     public function rules()
     {
         return [
-            [['name'], 'required', 'on' => ['create', 'update']],
+            [['name', 'slug', 'created_at'], 'required'],
             [['description'], 'string'],
-            [['province_id', 'district_id', 'sector_id', 'cell_id', 'village_id', 'views', 'status', 'created_by', 'category', 'main'], 'integer'],
+            [['province_id', 'district_id', 'sector_id', 'cell_id', 'village_id', 'profile_type', 'views', 'status', 'created_by', 'category', 'main'], 'integer'],
             [['latitude', 'longitude'], 'number'],
             [['created_at', 'expire_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'logo', 'neighborhood', 'street'], 'string', 'max' => 255],
-            [['code', 'profile_type'], 'string', 'max' => 50],
+            [['code'], 'string', 'max' => 50],
             [['name'], 'unique'],
         ];
     }
