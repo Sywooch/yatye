@@ -44,8 +44,8 @@ return [
 
     'tmp' => 'http://localhost/rwandaguide/frontend/web/files/images/tmp/',
 
-    'pragmaticmates-logo-png' => 'http://localhost/rwandaguide/frontend/web/files/images/pragmaticmates-logo.png',
-    'pragmaticmates-logo-jpg' => 'http://localhost/rwandaguide/frontend/web/files/images/pragmaticmates-logo.jpg',
+    'pragmaticmates-logo-png' => 'http://rwandaguide.info/frontend/web/files/images/pragmaticmates-logo.png',
+    'pragmaticmates-logo-jpg' => 'http://rwandaguide.info/frontend/web/files/images/pragmaticmates-logo.jpg',
 
     'ads' => 'files/uploads/ads/',
     'ads_images' => 'http://rwandaguide.info/frontend/web/files/uploads/ads/',
@@ -86,7 +86,7 @@ return [
     'PREMIUM' => 2,
     'BASIC' => 1,
     'FREE' => 0,
-    'NOT_DEFINED' => 3,
+    'NOT_DEFINED' => -1,
 
     'PHYSICAL_ADDRESS' => 1,
     'PO_BOX' => 2,
@@ -166,4 +166,15 @@ return [
     'tumblr_icon' => 'http://rwandaguide.info/frontend/web/files/images/tumblr@2x.png',
     'linkedin_icon' => 'http://rwandaguide.info/frontend/web/files/images/',
     'youtube_icon' => 'http://rwandaguide.info/frontend/web/files/images/youtube@2x.png',
+
+    'meta_twitter_id' => 'rwandaguide_',
+    'meta_image' => 'http://rwandaguide.info/frontend/web/files/images/RG.jpg',
+    'meta_description' => 'Rwanda Guide is a directory of fun places to explore for those visiting Rwanda or for locals to discover new places.',
+    'meta_classification' => [
+        'News of Rwanda',
+        'Remarkable Rwanda',
+        'The land of a thousand hills',
+    ],
+    'meta_abstract' => 'This website will help you find more information about a place you would like to visit. This website also helps businesses reach out to potential clients about their services.',
+
 ];

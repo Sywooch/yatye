@@ -101,7 +101,7 @@ use yii\helpers\Url;
             </div>
         </div>
         <?php if ($model->description != null): ?>
-            <div class="detail-description"><?php echo $model->description ?></div>
+            <div class="detail-description"><?php echo nl2br($model->description) ?></div>
         <?php endif; ?>
         <?php if (!empty($socials)): ?>
             <div class="detail-follow">

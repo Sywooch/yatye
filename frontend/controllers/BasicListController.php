@@ -18,14 +18,8 @@ class BasicListController extends BaseController
         $model = Category::findOne(['slug' => $slug]);
 
         if (!is_null($model)) {
-            Yii::$app->view->registerMetaTag([
-                'name' => 'keywords',
-                'content' => [$model->name, ],
-            ]);
-
             $dataProvider = new ArrayDataProvider([
                 'allModels' => $model->getFreePlaces(),
-
             ]);
 
             return $this->render('index', [

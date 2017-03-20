@@ -23,10 +23,6 @@ class ServiceController extends BaseController
 
 
         if (!is_null($model)) {
-            Yii::$app->view->registerMetaTag([
-                'name' => 'keywords',
-                'content' => [$model->name, ],
-            ]);
 //            $get_services = $model->getPlacesFromService();
 //
 //            $count = $get_services->count();

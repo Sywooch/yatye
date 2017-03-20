@@ -1,6 +1,6 @@
-/*Bootstrap snippet: accordion collapse buttons*/
-/*body{margin-top:20px;}*/
-
+.ratings,.detail-content .detail-overview-rating i {
+    color: #bfa649;
+}
 .panel-title a {
     display: block;
     position: relative;
