@@ -10,42 +10,37 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
 <?php //$tab = 'tab-';?>
-<div class="card-row item div" data-key="<?= $model['place_id'] ?>">
+<div class="card-row item div" data-key="<?= $model->id ?>">
     <div class="card-row-inner">
-        <div class="card-row-image"
-             data-background-image="<?php echo Yii::$app->params['thumbnails'] . $model['logo'] ?>">
-            <div class="card-row-label"><a href="#">
-                    <small><?php echo $model['service_name'] ?></small></a>
-            </div>
+        <div class="card-row-image" data-background-image="<?php echo $model->getThumbnailLogo() ?>">
+            <div class="card-row-label"><a href="#"><small></small></a></div>
         </div>
 
         <div class="card-row-body">
-            <h2 class="card-row-title"><a
-                    href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model['place_slug'] ?>" target="_blank"><?php echo $model['place_name'] ?></a>
+            <h2 class="card-row-title">
+                <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model->slug ?>" target="_blank"><?php echo $model->name ?></a>
             </h2>
 
-            <?php $data_by_ids = $this->context->accessDataByIds($model['place_id']);
-            $contacts = $data_by_ids['get_place_contacts']; ?>
+            <?php $data_by_ids = $this->context->accessDataByIds($model->id);$contacts = $data_by_ids['get_place_contacts']; ?>
 
             <div class="panel-group drop-accordion" id="accordion" role="tablist"
                  aria-multiselectable="true">
                 <?php if (!empty($contacts)): ?>
                     <div class="panel panel-default">
                         <div class="panel-heading tab-collapsed" role="tab"
-                             id="heading-<?php echo $model['place_id'] ?>">
+                             id="heading-<?php echo $model->id ?>">
                             <h4 class="panel-title">
                                 <a class="collapse-controle" data-toggle="collapse"
                                    data-parent="#accordion"
-                                   href="#collapse-<?php echo $model['place_id'] ?>" aria-expanded="true"
-                                   aria-controls="collapse-<?php echo $model['place_id'] ?>">
-                                    Contacts
+                                   href="#collapse-<?php echo $model->id ?>" aria-expanded="true"
+                                   aria-controls="collapse-<?php echo $model->id ?>">Contacts
                                     <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
                                 </a>
                             </h4>
                         </div>
-                        <div id="collapse-<?php echo $model['place_id'] ?>"
+                        <div id="collapse-<?php echo $model->id ?>"
                              class="panel-collapse collapse" role="tabpanel"
-                             aria-labelledby="heading-<?php echo $model['place_id'] ?>"
+                             aria-labelledby="heading-<?php echo $model->id ?>"
                              aria-expanded="true">
                             <div class="panel-body">
                                 <?php foreach ($contacts as $contact): ?>
@@ -101,25 +96,25 @@ use yii\helpers\Url;
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading tab-collapsed" role="tab"
-                         id="heading-<?php echo $model['place_id'] ?>">
+                         id="heading-<?php echo $model->id ?>">
                         <h4 class="panel-title">
                             <a class="collapse-controle" data-toggle="collapse"
                                data-parent="#accordion"
-                               href="#collapse-location-<?php echo $model['place_id'] ?>"
+                               href="#collapse-location-<?php echo $model->id ?>"
                                aria-expanded="true"
-                               aria-controls="collapse-location-<?php echo $model['place_id'] ?>">
+                               aria-controls="collapse-location-<?php echo $model->id ?>">
                                 Location
                                 <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
                             </a>
                         </h4>
                     </div>
-                    <div id="collapse-location-<?php echo $model['place_id'] ?>"
+                    <div id="collapse-location-<?php echo $model->id ?>"
                          class="panel-collapse collapse" role="tabpanel"
-                         aria-labelledby="heading-<?php echo $model['place_id'] ?>"
+                         aria-labelledby="heading-<?php echo $model->id ?>"
                          aria-expanded="true">
                         <div class="panel-body">
 
-                            <?php $data_by_ids = $this->context->accessDataByIds($model['place_id']);
+                            <?php $data_by_ids = $this->context->accessDataByIds($model->id);
                             $place = $data_by_ids['get_place_by_id']; ?>
 
                             <?php if ($place->street != null): ?>

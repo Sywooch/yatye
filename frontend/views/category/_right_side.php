@@ -12,12 +12,15 @@ use yii\helpers\Url;
 
 <div class="card-tab">
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#viewed" aria-controls="viewed" role="tab"
-                                                  data-toggle="tab">Most Viewed</a></li>
-        <li role="presentation"><a href="#recent" aria-controls="recent" role="tab"
-                                   data-toggle="tab">New places</a></li>
-        <li role="presentation"><a href="#categories" aria-controls="categories" role="tab"
-                                   data-toggle="tab">Categories</a></li>
+        <li role="presentation" class="active">
+            <a href="#viewed" aria-controls="viewed" role="tab" data-toggle="tab">Most Viewed</a>
+        </li>
+        <li role="presentation">
+            <a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">New places</a>
+        </li>
+        <li role="presentation">
+            <a href="#categories" aria-controls="categories" role="tab" data-toggle="tab">Categories</a>
+        </li>
 
     </ul>
 
@@ -29,11 +32,11 @@ use yii\helpers\Url;
                     <div class="widget">
                         <ul class="menu">
                             <?php foreach ($get_most_viewed as $most_viewed): ?>
-
                                 <li>
-                                    <a href="<?php echo Url::to(['/place-details/' . $most_viewed['slug']]) ?>"
-                                       target="_blank"><?php echo $most_viewed['name'] ?>
-                                        <strong><?php echo $most_viewed['views'] ?></strong></a>
+                                    <a href="<?php echo Url::to(['/place-details/' . $most_viewed->slug]) ?>"
+                                       target="_blank"><?php echo $most_viewed->name ?>
+                                        <strong><?php echo $most_viewed->getViews() ?></strong>
+                                    </a>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -63,7 +66,8 @@ use yii\helpers\Url;
 
                             <li>
                                 <a href="<?php echo Url::to(['/place-details/' . $recent_added_place->slug]) ?>"
-                                   target="_blank"><?php echo $recent_added_place->name ?></a>
+                                   target="_blank"><?php echo $recent_added_place->name ?>
+                                </a>
                             </li>
                         <?php endforeach; ?>
                     </ul>

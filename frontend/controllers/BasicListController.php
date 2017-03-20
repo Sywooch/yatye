@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use backend\models\Category;
 use common\components\BaseController;
+use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 
 class BasicListController extends BaseController
@@ -18,8 +19,8 @@ class BasicListController extends BaseController
         $model = Category::findOne(['slug' => $slug]);
 
         if (!is_null($model)) {
-            $dataProvider = new ArrayDataProvider([
-                'allModels' => $model->getFreePlaces(),
+            $dataProvider = new ActiveDataProvider([
+                'query' => $model->getFreeList(),
             ]);
 
             return $this->render('index', [

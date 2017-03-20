@@ -22,32 +22,22 @@ class CategoryController extends BaseController
 
         if (!is_null($model)) {
 
-            $premium_places = $model->getPremiumList();
-            $basic_places = $model->getBasicList();
-            $free_places = $model->getFreeList();
-
-            $services = $model->getService();
-            $a_places = $model->getAPlaces();
+            $premium_places = $model->getPremiumList()->all();
+            $basic_places = $model->getBasicList()->all();
+            $free_places = $model->getFreeList()->all();
+            $services = $model->getServices();
             $get_most_viewed = $model->getMostViewed();
             $recent_added_places = Place::getRecentAddedPlaces();
             $articles = Post::getPostsByType(1);
             $news = Post::getPostsByType(3);
-
             $ads = Ads::getAds();
 
-            Yii::warning('Ads : ' . print_r($ads, true));
-
-            Yii::$app->view->registerMetaTag([
-                'name' => 'keywords',
-                'content' => [$model->name,],
-            ]);
             return $this->render('index', [
                 'model' => $model,
                 'premium_places' => $premium_places,
                 'basic_places' => $basic_places,
                 'free_places' => $free_places,
                 'services' => $services,
-                'a_places' => $a_places,
                 'recent_added_places' => $recent_added_places,
                 'get_most_viewed' => $get_most_viewed,
                 'articles' => $articles,

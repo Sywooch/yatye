@@ -16,6 +16,7 @@ use common\models\Place as BasePlace;
 use common\models\Province;
 use common\models\Sector;
 use frontend\models\UserProfile;
+use frontend\models\Views;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -111,6 +112,11 @@ class Place extends BasePlace
     public function getThisPlaceServiceName($category_id)
     {
         return Service::findOne($this->getServiceId($category_id))->name;
+    }
+
+    public function getViews()
+    {
+        return Views::findOne(['place_id' => $this->id, 'status' => Yii::$app->params['active']])->views;
     }
 
 
