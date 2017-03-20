@@ -10,4 +10,4 @@ use yii\helpers\Url;
 ?>
 
 <a href="<?php echo Url::to(['/filter']) ?>" class="header-action-inner"
-   title="Filter" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-filter"></i></a>
+   title="Filter" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-search"></i></a>
