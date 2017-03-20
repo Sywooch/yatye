@@ -8,7 +8,6 @@
 
 namespace backend\models;
 
-use backend\models\Service;
 use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Category as BaseCategory;
@@ -20,7 +19,6 @@ use yii\db\Query;
 
 class Category extends BaseCategory
 {
-
     public function rules()
     {
         return [
@@ -35,23 +33,6 @@ class Category extends BaseCategory
         ];
     }
 
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'slug' => Yii::t('app', 'Slug'),
-            'description' => Yii::t('app', 'Description'),
-            'image' => Yii::t('app', 'Image'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'status' => Yii::t('app', 'Status'),
-            'created_by' => Yii::t('app', 'Created By'),
-            'updated_by' => Yii::t('app', 'Updated By'),
-            'type' => Yii::t('app', 'Type'),
-        ];
-    }
-
     public function behaviors()
     {
         return [
@@ -63,6 +44,7 @@ class Category extends BaseCategory
                 ],
                 'value' => new Expression('NOW()'),
             ],
+
             'blameable' => [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
@@ -76,10 +58,98 @@ class Category extends BaseCategory
                 // In case of attribute that contains slug has different name
                 // 'slugAttribute' => 'alias',
             ],
-//            'bedezign\yii2\audit\AuditTrailBehavior',
-
         ];
     }
+
+    public function getServices()
+    {
+        return Service::find()
+            ->where(['category_id' => $this->id, 'status' => Yii::$app->params['active']])
+            ->andWhere('`service`.`type` != ' . Yii::$app->params['E_TYPE'])
+            ->all();
+    }
+
+    public function getServiceIds()
+    {
+        $services = $this->getServices();
+        $service_ids = array();
+        foreach ($services as $service) {
+            $service_ids[] = $service->id;
+        }
+        return $service_ids;
+    }
+
+    public function getPlaceServices()
+    {
+        $service_ids = $this->getServiceIds();
+        return PlaceService::find()->distinct()->where(['in', 'service_id', $service_ids])->all();
+    }
+
+    public function getPlaceIds()
+    {
+        $place_ids = array();
+        $place_services = $this->getPlaceServices();
+        foreach ($place_services as $place_service) {
+            $place_ids[] = $place_service->place_id;
+        }
+        return $place_ids;
+    }
+
+    public function getList()
+    {
+        $place_ids = $this->getPlaceIds();
+        return Place::find()
+            ->where(['in', 'id', $place_ids])
+            ->andWhere(['status' => Yii::$app->params['active']]);
+    }
+
+    public function getOneRandomPlace()
+    {
+        $list = $this->getList();
+        return $list->andWhere(['!=', 'logo', ''])->orderBy(new Expression('RAND()'))->limit(1)->all();
+    }
+
+    public function getPictures()
+    {
+        $logos = array();
+        $places = $this->getOneRandomPlace();
+        foreach ($places as $place) {
+            $logos[] = $place->logo;
+        }
+
+        return Yii::$app->params['thumbnails'] . $logos[0];
+    }
+
+    public function getPremiumList()
+    {
+        return $this->getList()
+            ->andWhere(['profile_type' => Yii::$app->params['PREMIUM']])
+            ->orderBy(new Expression('RAND()'))
+            ->limit(6)
+            ->all();
+    }
+
+    public function getBasicList()
+    {
+        return $this->getList()
+            ->andWhere(['profile_type' => Yii::$app->params['BASIC']])
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM']))
+            ->limit(6)
+            ->all();
+    }
+
+    public function getFreeList()
+    {
+        return $this->getList()
+            ->andWhere(['profile_type' => Yii::$app->params['FREE']])
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['BASIC']))
+            ->limit(16)
+            ->all();
+    }
+
+
+    /*################################################################################*/
+
 
     public function selectPlacesFromCategories()
     {
@@ -122,6 +192,7 @@ class Category extends BaseCategory
 
         return $select->groupBy('`place_service`.`place_id`')->all();
     }
+
 
     public function getRandomPictures($category_id, $district_id = null)
     {
@@ -345,6 +416,7 @@ class Category extends BaseCategory
 
         return $select->orderBy(new Expression('RAND()'))->all();
     }
+
     public function getStatus()
     {
         return ValueHelpers::getStatus($this);

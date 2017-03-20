@@ -19,35 +19,30 @@ use yii\helpers\Url;
         </div>
         <div class="cards-simple-wrapper">
             <div id="basic-list" class="row">
-                <?php $i = 0;
-                $limit = 12;
-                foreach ($free_places as $free_place): $i++;
-                    if ($i > $limit) break; ?>
+                <?php foreach ($free_places as $free_place):?>
                     <div class="col-sm-6 col-lg-3">
-                        <div class="card-simple"
-                             data-background-image="<?php echo Yii::$app->params['thumbnails'] . $free_place['logo'] ?>">
+                        <div class="card-simple" data-background-image="<?php echo $free_place->getThumbnailLogo() ?>">
                             <div class="card-simple-background">
                                 <div class="card-simple-content">
-                                    <h2><?php echo Html::a($free_place['place_name'], Url::to(['/place-details/' . $free_place['place_slug']]), ['class' => ''], ['target' => '_blank']) ?></h2>
+                                    <h2><?php echo Html::a($free_place->name, Url::to(['/place-details/' . $free_place->slug]), ['target' => '_blank']) ?></h2>
 
                                     <div class="card-simple-actions">
-                                        <?php echo Html::a('', Url::to(['/place-details/' . $free_place['place_slug']]), ['class' => 'fa fa-eye'], ['target' => '_blank']) ?>
+                                        <?php echo Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), Url::to(['/place-details/' . $free_place->slug]), ['target' => '_blank']) ?>
                                     </div>
                                 </div>
                                 <div class="card-simple-label">
-                                    <small><?php echo $free_place['service_name'] ?></small>
+                                    <small><?php echo $free_place->getThisPlaceServiceName($model->id) ?></small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
-            <?php if (count($free_places) >= 12) : ?>
+            <?php if (count($free_places) >= 16) : ?>
                 <div class="row">
                     <div
                         class="col-xs-12 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5">
-                        <a href="<?php echo Url::to(['/basic-list/' . $model->slug]) ?>"
-                           class="btn btn-secondary btn-md btn-block">View all</a>
+                        <a href="<?php echo Url::to(['/basic-list/' . $model->slug]) ?>" class="btn btn-secondary btn-md btn-block">View all</a>
                     </div>
                 </div>
             <?php endif; ?>

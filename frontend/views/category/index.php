@@ -11,7 +11,6 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
         'model' => $model,
         'premium_places' => $premium_places,
         'services' => $services,
-        'a_places' => $a_places,
         'recent_added_places' => $recent_added_places,
         'get_most_viewed' => $get_most_viewed,
     ]); ?>

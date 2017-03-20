@@ -72,6 +72,51 @@ class Place extends BasePlace
         ];
     }
 
+    public function getLogo()
+    {
+        return Yii::$app->params['galleries'] . $this->logo;
+    }
+
+    public function getThumbnailLogo()
+    {
+        return Yii::$app->params['thumbnails'] . $this->logo;
+    }
+
+    public function getCurrentCategory($category_id)
+    {
+        return Category::findOne($category_id);
+    }
+
+    public function getServiceIds($category_id)
+    {
+        $category = $this->getCurrentCategory($category_id);
+        return $category->getServiceIds();
+    }
+
+    public function getThisPlaceService($category_id)
+    {
+        $service_ids = $this->getServiceIds($category_id);
+        return PlaceService::find()
+            ->where(['in', 'service_id', $service_ids])
+            ->andWhere(['place_id' => $this->id])
+            ->one();
+    }
+
+    public function getServiceId($category_id)
+    {
+        $place_service = $this->getThisPlaceService($category_id);
+        return $place_service->service_id;
+    }
+
+    public function getThisPlaceServiceName($category_id)
+    {
+        return Service::findOne($this->getServiceId($category_id))->name;
+    }
+
+
+    /*###################################################################################*/
+
+
     public function getProvinceName()
     {
         $province_name = NULL;

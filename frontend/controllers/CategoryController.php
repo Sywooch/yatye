@@ -21,9 +21,11 @@ class CategoryController extends BaseController
         $model = Category::findOne(['slug' => $slug]);
 
         if (!is_null($model)) {
-            $premium_places = $model->getPremiumPlaces();
-            $basic_places = $model->getBasicPlaces();
-            $free_places = $model->getFreePlaces();
+
+            $premium_places = $model->getPremiumList();
+            $basic_places = $model->getBasicList();
+            $free_places = $model->getFreeList();
+
             $services = $model->getService();
             $a_places = $model->getAPlaces();
             $get_most_viewed = $model->getMostViewed();
