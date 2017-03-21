@@ -17,6 +17,7 @@ use common\helpers\ValueHelpers;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use common\models\Category as BaseCategory;
+use yii\db\Query;
 
 class Category extends BaseCategory
 {
@@ -65,8 +66,6 @@ class Category extends BaseCategory
     public function getServices()
     {
         return Service::findAll(['category_id' => $this->id, 'status' => Yii::$app->params['active']]);
-        //->andWhere('`service`.`type` != ' . Yii::$app->params['E_TYPE'])
-
     }
 
     public function getServiceIds()
@@ -81,16 +80,24 @@ class Category extends BaseCategory
 
     public function getPlaceServices()
     {
-        $service_ids = $this->getServiceIds();
-        return PlaceService::find()->distinct()->where(['in', 'service_id', $service_ids])->all();
+        return (new Query())
+            ->select('DISTINCT `place_service`.`place_id`')
+            ->from('`service`, `place_service`')
+            ->where('`service`.`id` = `place_service`.`service_id`')
+            ->andWhere('`service`.`category_id` = ' . $this->id)
+            ->andWhere("`service`.`status` = " . Yii::$app->params['active'])
+            ->andWhere('`service`.`type` != ' . Yii::$app->params['E_TYPE'])
+            ->all();
     }
 
     public function getPlaceIds()
     {
+
         $place_ids = array();
         $place_services = $this->getPlaceServices();
+
         foreach ($place_services as $place_service) {
-            $place_ids[] = $place_service->place_id;
+            $place_ids[] = $place_service['place_id'];
         }
         return $place_ids;
     }
@@ -106,7 +113,10 @@ class Category extends BaseCategory
     public function getOneRandomPlace()
     {
         $list = $this->getList();
-        return $list->andWhere(['!=', 'logo', ''])->orderBy(new Expression('RAND()'))->limit(1)->all();
+        return $list->andWhere(['!=', 'logo', ''])
+            ->orderBy(new Expression('RAND()'))
+            ->limit(1)
+            ->all();
     }
 
     public function getPictures()
@@ -116,7 +126,6 @@ class Category extends BaseCategory
         foreach ($places as $place) {
             $logos[] = $place->logo;
         }
-
         return Yii::$app->params['thumbnails'] . $logos[0];
     }
 
@@ -131,16 +140,16 @@ class Category extends BaseCategory
     public function getBasicList()
     {
         return $this->getList()
-            ->andWhere(['profile_type' => Yii::$app->params['BASIC']])
-            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM']))
+            //->andWhere(['profile_type' => Yii::$app->params['BASIC']])
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM'] . ', RAND()'))
             ->limit(6);
     }
 
     public function getFreeList()
     {
         return $this->getList()
-            ->andWhere(['profile_type' => Yii::$app->params['FREE']])
-            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['BASIC']))
+            //->andWhere(['profile_type' => Yii::$app->params['FREE']])
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['BASIC'] . ', RAND()'))
             ->limit(16);
     }
 
