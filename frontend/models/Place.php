@@ -55,20 +55,6 @@ class Place extends BasePlace
         return Service::find()->where(['category_id' => 5])->all();
     }
 
-    public function getRatings()
-    {
-        $get_ratings = Ratings::find()->asArray()->where(['place_id' => $this->id])->all();
-        $ratings = ArrayHelper::map($get_ratings, 'id', 'ratings');
-        $ratingsSum = array_sum($ratings);
-        $ratingsCount = count($ratings);
-
-        if ($ratingsCount) {
-            $averageRating = $ratingsSum / $ratingsCount;
-        } else {
-            $averageRating = 0;
-        }
-        return round($averageRating);
-    }
 
     public function getViews()
     {

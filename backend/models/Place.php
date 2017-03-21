@@ -15,6 +15,7 @@ use common\models\District;
 use common\models\Place as BasePlace;
 use common\models\Province;
 use common\models\Sector;
+use frontend\models\Ratings;
 use frontend\models\UserProfile;
 use frontend\models\Views;
 use yii\behaviors\BlameableBehavior;
@@ -24,6 +25,7 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\db\Query;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 class Place extends BasePlace
 {
@@ -128,6 +130,21 @@ class Place extends BasePlace
     public function getUser()
     {
         return ValueHelpers::getUser($this);
+    }
+
+    public function getRatings()
+    {
+        $get_ratings = Ratings::find()->asArray()->where(['place_id' => $this->id])->all();
+        $ratings = ArrayHelper::map($get_ratings, 'id', 'ratings');
+        $ratingsSum = array_sum($ratings);
+        $ratingsCount = count($ratings);
+
+        if ($ratingsCount) {
+            $averageRating = $ratingsSum / $ratingsCount;
+        } else {
+            $averageRating = 0;
+        }
+        return round($averageRating);
     }
 
     public function getRatingStars()
