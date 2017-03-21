@@ -21,10 +21,10 @@ $keywords = $data['get_keywords'];
 <!--<meta http-equiv="refresh" content="30">-->
 <meta http-equiv="cache-control" content="no-cache"/>
 <meta http-equiv="expires" content="30"/>
-
-<meta name="serp-rank" position="1"/>
-<meta name="serps" content="1, 2, 3, 10, 11, ATF"/>
 <meta name="google-site-verification" content="PSEIUTyoAIopuk7Q8t8B6M6WiF711Udi3dT1YE6LBFk"/>
-<meta name="alexa" content="100"/>
-<meta name="googlebot" content="all, index, follow, none, noindex, nofollow, noarchive, nosnippet"/>
-<meta name="pagerank™" content="10"/>
+
+<!--<meta name="serp-rank" position="1"/>-->
+<!--<meta name="serps" content="1, 2, 3, 10, 11, ATF"/>-->
+<!--<meta name="alexa" content="100"/>-->
+<!--<meta name="googlebot" content="all, index, follow, none, noindex, nofollow, noarchive, nosnippet"/>-->
+<!--<meta name="pagerank™" content="10"/>-->
