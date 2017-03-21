@@ -168,7 +168,7 @@ class DataHelpers
         $keywords = array();
 
         foreach ($places as $place) {
-            $keywords[] = $place->name;
+//            $keywords[] = $place->name;
         }
 
         foreach ($categories as $category) {
@@ -180,19 +180,19 @@ class DataHelpers
         }
 
         foreach ($posts as $post) {
-            $keywords[] = $post->title;
+//            $keywords[] = $post->title;
         }
 
         foreach ($post_categories as $post_category) {
-            $keywords[] = 'Rwanda Guide - Posts - ' . $post_category->name;
+//            $keywords[] = 'Rwanda Guide - Posts - ' . $post_category->name;
         }
 
         foreach ($events as $event) {
-            $keywords[] = 'Rwanda Guide - Events - ' . $event->name;
+//            $keywords[] = 'Rwanda Guide - Events - ' . $event->name;
         }
 
         foreach ($event_tags as $event_tag) {
-            $keywords[] = 'Rwanda - Events - ' . $event_tag->name;
+//            $keywords[] = 'Rwanda - Events - ' . $event_tag->name;
         }
 
         $keywords[] = implode(",", Yii::$app->params['meta_classification']);
