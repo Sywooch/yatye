@@ -70,50 +70,6 @@ class Place extends BasePlace
         return round($averageRating);
     }
 
-    public function getRatingStars()
-    {
-        $ratings = $this->getRatings();
-
-        if ($ratings == 1) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 2) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 3) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 4) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 5) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-        } else {
-            $star = '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        }
-        return $star;
-    }
-
     public function getViews()
     {
         $view = Views::findOne(['place_id' => $this->id, 'status' => Yii::$app->params['active']]);

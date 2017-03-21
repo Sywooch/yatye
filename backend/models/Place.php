@@ -130,9 +130,49 @@ class Place extends BasePlace
         return ValueHelpers::getUser($this);
     }
 
+    public function getRatingStars()
+    {
+        $ratings = $this->getRatings();
 
-    /*###################################################################################*/
-
+        if ($ratings == 1) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 2) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 3) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 4) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 5) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+        } else {
+            $star = '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        }
+        return $star;
+    }
 
     public function getProvinceName()
     {
@@ -214,6 +254,11 @@ class Place extends BasePlace
 
         return $profile_type;
     }
+
+    /*###################################################################################*/
+
+
+
 
     public static function searchPlaces($POST_VARIABLE)
     {

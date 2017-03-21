@@ -117,8 +117,6 @@ class Service extends BaseService
         return self::findAll(['category_id' => $category_id]);
     }
 
-    /*#######################################################################################*/
-
     public function getStatus()
     {
         return ValueHelpers::getStatus($this);

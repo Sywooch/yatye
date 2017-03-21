@@ -8,8 +8,6 @@
 
 namespace backend\models;
 
-
-use frontend\models\Place;
 use Yii;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
