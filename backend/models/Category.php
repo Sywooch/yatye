@@ -9,6 +9,7 @@
 namespace backend\models;
 
 
+use frontend\models\Place;
 use Yii;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
@@ -92,7 +93,6 @@ class Category extends BaseCategory
 
     public function getPlaceIds()
     {
-
         $place_ids = array();
         $place_services = $this->getPlaceServices();
 

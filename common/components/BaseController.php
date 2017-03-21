@@ -13,6 +13,7 @@ use Yii;
 use backend\models\Place;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use yii\web\Controller;
 use common\helpers\DataHelpers;
 use common\helpers\Helpers;
@@ -96,5 +97,90 @@ class BaseController extends Controller
         endif;
 
         return $url;
+    }
+
+    public function actionServices()
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+
+            if ($parents != null) {
+                $cat_id = $parents[0];
+
+                $out = DataHelpers::getServices($cat_id);
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
+    }
+
+    public function actionDistricts()
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+
+            if ($parents != null) {
+                $cat_id = $parents[0];
+
+                $out = DataHelpers::getDistricts($cat_id);
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
+    }
+
+    public function actionSectors()
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+
+            if ($parents != null) {
+                $cat_id = $parents[0];
+
+                $out = DataHelpers::getSectors($cat_id);
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
+    }
+
+    public function actionCells()
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+
+            if ($parents != null) {
+                $cat_id = $parents[0];
+
+                $out = DataHelpers::getCells($cat_id);
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
+    }
+
+    public function actionPostCategories()
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+
+            if ($parents != null) {
+                $cat_id = $parents[0];
+
+                $out = DataHelpers::getPostCategories($cat_id);
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
     }
 }

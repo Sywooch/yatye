@@ -24,6 +24,9 @@ use yii\helpers\Url;
                                 <div class="carousel-caption">
                                     <div class="hero-slider-content">
                                         <h1><?php echo $premium_place->name; ?></h1>
+                                        <div class="hero-slider-rating">
+                                            <?php echo $premium_place->getRatingStars() ?>
+                                        </div>
                                     </div>
 
                                     <div class="hero-slider-actions">

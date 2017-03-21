@@ -80,7 +80,8 @@ class Place extends BasePlace
 
     public function getThumbnailLogo()
     {
-        return Yii::$app->params['thumbnails'] . $this->logo;
+        return ($this->logo != null) ? Yii::$app->params['thumbnails'] . $this->logo : Yii::$app->params['pragmaticmates-logo-jpg'];
+
     }
 
     public function getCurrentCategory($category_id)
@@ -117,6 +118,16 @@ class Place extends BasePlace
     public function getViews()
     {
         return Views::findOne(['place_id' => $this->id, 'status' => Yii::$app->params['active']])->views;
+    }
+
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
     }
 
 
@@ -323,13 +334,4 @@ class Place extends BasePlace
         return $select;
     }
 
-    public function getStatus()
-    {
-        return ValueHelpers::getStatus($this);
-    }
-
-    public function getUser()
-    {
-        return ValueHelpers::getUser($this);
-    }
 }

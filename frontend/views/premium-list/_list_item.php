@@ -8,12 +8,23 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+$session = Yii::$app->session;
+$category_id = $session->get('category_id');
 ?>
-<?php //$tab = 'tab-';?>
 <div class="card-row item div" data-key="<?= $model->id ?>">
     <div class="card-row-inner">
         <div class="card-row-image" data-background-image="<?php echo $model->getThumbnailLogo() ?>">
-            <div class="card-row-label"><a href="#"><small></small></a></div>
+            <div class="card-row-label">
+                <a href="#">
+                    <small><?php echo $model->getThisPlaceServiceName($category_id) ?></small>
+                </a>
+            </div>
+            <div class="card-row-price" style="background-color: transparent;">
+                <div class="card-row-rating">
+                    <?php echo $model->getRatingStars() ?>
+                </div>
+            </div>
+
         </div>
 
         <div class="card-row-body">

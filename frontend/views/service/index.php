@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use yii\widgets\ListView;
 $this->title = Yii::$app->name . ' - ' . $model->name;
 $dataProvider->pagination = [
-    'pageSize' => 6,
+    'pageSize' => 12,
 ];
 ?>
 <div class="container">
@@ -38,8 +38,8 @@ $dataProvider->pagination = [
                         'layout' => '{items}{pager}',
 
                         'pager' => [
-                            'prevPageLabel' => 'Prev',
-                            'nextPageLabel' => 'Next',
+                            'prevPageLabel' => false,
+                            'nextPageLabel' => false,
                             'maxButtonCount' => 12,
                             'options' => [
                                 'class' => 'pager col-xs-12'

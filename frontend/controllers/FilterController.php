@@ -2,14 +2,14 @@
 
 namespace frontend\controllers;
 
+use common\components\BaseController;
 use Yii;
 use yii\helpers\ArrayHelper;
 use frontend\models\Filter;
 use common\models\Province;
 use backend\models\Category;
-use backend\components\AdminController;
 
-class FilterController extends AdminController
+class FilterController extends BaseController
 {
     public function actionIndex()
     {

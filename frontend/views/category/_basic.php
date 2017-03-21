@@ -32,7 +32,11 @@ use yii\helpers\Url;
 
                                 <div class="card-meta">
                                     <i class="fa fa-map-o"></i> <?php echo $basic_place->neighborhood ?>
-                                    <br><i class="fa fa-map-o"></i> <?php echo $basic_place->street ?>
+                                    <br><br><i class="fa fa-map-o"></i> <?php echo $basic_place->street ?>
+                                </div>
+
+                                <div class="card-rating">
+                                    <?php echo $basic_place->getRatingStars() ?>
                                 </div>
                                 <div class="card-actions">
                                     <?php echo Html::a('', Url::to(['/place-details/' . $basic_place->slug]), ['class' => 'fa fa-eye', 'target' => '_blank']) ?>

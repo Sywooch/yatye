@@ -17,6 +17,8 @@ class BasicListController extends BaseController
     public function actionSlug($slug)
     {
         $model = Category::findOne(['slug' => $slug]);
+        $session = Yii::$app->session;
+        $session->set('category_id', $model->id);
 
         if (!is_null($model)) {
             $dataProvider = new ActiveDataProvider([
