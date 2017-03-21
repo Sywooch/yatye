@@ -148,7 +148,7 @@ class EmailHelper
         $html .= '<table>
                 <tr>
                     <td align="center" style="padding: 20px 0;background: #ffffff;color: white;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block;border: none;height: auto;line-height: 100%;margin: 0 auto;float: none;width: 100% !important;max-width: 166.666666666667px">
-                        <img style="max-width: 100%;margin: 0 auto;display: block;" src="' . Yii::$app->params["logo_320_festive"] . '">
+                        <img style="max-width: 100%;margin: 0 auto;display: block;" src="' . Yii::$app->params["logo_320"] . '">
                     </td>
                 </tr>
                 <tr>

@@ -19,18 +19,18 @@ use yii\helpers\Url;
                         <?php $active = ' active';
                         foreach ($premium_places as $premium_place): ?>
                             <div class="item<?php echo $active; ?>">
-                                <div class="item-bg"
-                                     style="background-image: url(<?php echo Yii::$app->params['galleries'] . $premium_place['logo'] ?>)"></div>
-                                <img style="width: 617px; height: 347px;" src="<?php echo Yii::$app->params['galleries'] . $premium_place['logo'] ?>"
-                                     alt="<?php echo $premium_place['place_name']; ?>">
-
+                                <div class="item-bg" style="background-image: url(<?php echo $premium_place->getLogo() ?>)"></div>
+                                <img style="width: 617px; height: 347px;" src="<?php echo $premium_place->getLogo() ?>" alt="<?php echo $premium_place->name; ?>">
                                 <div class="carousel-caption">
                                     <div class="hero-slider-content">
-                                        <h1><?php echo $premium_place['place_name']; ?></h1>
+                                        <h1><?php echo $premium_place->name; ?></h1>
+                                        <div class="hero-slider-rating">
+                                            <?php echo $premium_place->getRatingStars() ?>
+                                        </div>
                                     </div>
 
                                     <div class="hero-slider-actions">
-                                        <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), Url::to(['/place-details/' . $premium_place['place_slug'], ['target' => '_blank']])) ?>
+                                        <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), Url::to(['/place-details/' . $premium_place->slug, ['target' => '_blank']])) ?>
                                     </div>
                                 </div>
                             </div>

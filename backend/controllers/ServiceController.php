@@ -136,12 +136,13 @@ class ServiceController extends BackendAdminController
     public function actionAddPlaces()
     {
         $service_id = Yii::$app->request->get('service_id');
+        $session = Yii::$app->session;
+        $session->set('service_id', $service_id);
 
         $POST_VARIABLE = Yii::$app->request->post('PlaceService');
         $model = Service::findOne($service_id);
 
         $url = Url::to(['service/add-places', 'service_id' => $service_id]);
-
 
         $place_service = new PlaceService();
         $available_places = PlaceService::getNotServicePlaces($service_id);
@@ -159,20 +160,18 @@ class ServiceController extends BackendAdminController
             return $this->redirect($url);
         }
         else{
-//            Yii::$app->getSession()->setFlash("fail", Yii::t('app', 'Places are not added.'));
-//            return $this->redirect($url);
 
-            $dataProvider = new ArrayDataProvider([
-                'allModels' => $places,
+            $dataProvider = new ActiveDataProvider([
+                'query' => $model->getList(),
                 'pagination' => [
                     'pageSize' => 20,
                 ],
                 'sort' => ['attributes' => ['name']],
             ]);
+
             return $this->render('add_places', [
                 'model' => $model,
                 'dataProvider' => $dataProvider,
-                'places' => $places,
                 'place_service' => $place_service,
                 'available_places' => $available_places,
 

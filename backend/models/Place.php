@@ -15,7 +15,9 @@ use common\models\District;
 use common\models\Place as BasePlace;
 use common\models\Province;
 use common\models\Sector;
+use frontend\models\Ratings;
 use frontend\models\UserProfile;
+use frontend\models\Views;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -23,6 +25,7 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\db\Query;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 class Place extends BasePlace
 {
@@ -70,6 +73,122 @@ class Place extends BasePlace
             [['code'], 'string', 'max' => 50],
             [['name'], 'unique'],
         ];
+    }
+
+    public function getLogo()
+    {
+        return Yii::$app->params['galleries'] . $this->logo;
+    }
+
+    public function getThumbnailLogo()
+    {
+        return ($this->logo != null) ? Yii::$app->params['thumbnails'] . $this->logo : Yii::$app->params['pragmaticmates-logo-jpg'];
+
+    }
+
+    public function getCurrentCategory($category_id)
+    {
+        return Category::findOne($category_id);
+    }
+
+    public function getServiceIds($category_id)
+    {
+        $category = $this->getCurrentCategory($category_id);
+        return $category->getServiceIds();
+    }
+
+    public function getThisPlaceService($category_id)
+    {
+        $service_ids = $this->getServiceIds($category_id);
+        return PlaceService::find()
+            ->where(['in', 'service_id', $service_ids])
+            ->andWhere(['place_id' => $this->id])
+            ->one();
+    }
+
+    public function getServiceId($category_id)
+    {
+        $place_service = $this->getThisPlaceService($category_id);
+        return $place_service->service_id;
+    }
+
+    public function getThisPlaceServiceName($category_id)
+    {
+        return Service::findOne($this->getServiceId($category_id))->name;
+    }
+
+    public function getViews()
+    {
+        return Views::findOne(['place_id' => $this->id, 'status' => Yii::$app->params['active']])->views;
+    }
+
+    public function getStatus()
+    {
+        return ValueHelpers::getStatus($this);
+    }
+
+    public function getUser()
+    {
+        return ValueHelpers::getUser($this);
+    }
+
+    public function getRatings()
+    {
+        $get_ratings = Ratings::find()->asArray()->where(['place_id' => $this->id])->all();
+        $ratings = ArrayHelper::map($get_ratings, 'id', 'ratings');
+        $ratingsSum = array_sum($ratings);
+        $ratingsCount = count($ratings);
+
+        if ($ratingsCount) {
+            $averageRating = $ratingsSum / $ratingsCount;
+        } else {
+            $averageRating = 0;
+        }
+        return round($averageRating);
+    }
+
+    public function getRatingStars()
+    {
+        $ratings = $this->getRatings();
+
+        if ($ratings == 1) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 2) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 3) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 4) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        } elseif ($ratings == 5) {
+            $star = '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+            $star .= '<i class="fa fa-star ratings"></i>';
+        } else {
+            $star = '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        }
+        return $star;
     }
 
     public function getProvinceName()
@@ -152,6 +271,11 @@ class Place extends BasePlace
 
         return $profile_type;
     }
+
+    /*###################################################################################*/
+
+
+
 
     public static function searchPlaces($POST_VARIABLE)
     {
@@ -272,13 +396,4 @@ class Place extends BasePlace
         return $select;
     }
 
-    public function getStatus()
-    {
-        return ValueHelpers::getStatus($this);
-    }
-
-    public function getUser()
-    {
-        return ValueHelpers::getUser($this);
-    }
 }

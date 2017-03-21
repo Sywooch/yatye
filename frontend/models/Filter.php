@@ -71,7 +71,7 @@ class Filter extends BaseFilter
             $results = $query->count();
             $this->ip_address = Yii::$app->request->getUserIP();
             $this->results = $results;
-            $this->user_id = Yii::$app->user->identity->id;
+            //$this->user_id = Yii::$app->user->identity->id;
             $this->save();
         }
 

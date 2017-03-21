@@ -8,6 +8,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 ?>
 
 <?php if (!empty($basic_places)): ?>
@@ -15,31 +16,30 @@ use yii\helpers\Url;
         <div class="page-header">
             <h1><?php echo Yii::t('app', 'Hand Picked by Rwanda Guide') ?></h1>
 
-            <p>Check out the best places. Each one is worth of visiting.
-                Experience which you will never forget.</p>
+            <p>Check out the best places. Each one is worth of visiting. Experience which you will never forget.</p>
         </div>
         <div class="cards-wrapper">
             <div class="row">
-                <?php $i = 0;
-                $limit = 6;
-                foreach ($basic_places as $basic_place): $i++;
-                    if ($i > $limit) break; ?>
+                <?php foreach ($basic_places as $basic_place): ?>
                     <div class="col-sm-4">
-                        <div class="card"
-                             data-background-image="<?php echo Yii::$app->params['thumbnails'] . $basic_place['logo'] ?>">
+                        <div class="card" data-background-image="<?php echo $basic_place->getThumbnailLogo() ?>">
                             <div class="card-label">
-                                <small><?= Html::a($basic_place['service_name'], Url::to(['/place-details/' . $basic_place['place_slug']]), ['target' => '_blank']) ?></small>
+                                <small><?= Html::a($basic_place->getThisPlaceServiceName($model->id), Url::to(['/place-details/' . $basic_place->slug]), ['target' => '_blank']) ?></small>
                             </div>
 
                             <div class="card-content">
-                                <h2><?= Html::a($basic_place['place_name'], Url::to(['/place-details/' . $basic_place['place_slug']]), ['target' => '_blank']) ?></h2>
+                                <h2><?= Html::a($basic_place->name, Url::to(['/place-details/' . $basic_place->name]), ['target' => '_blank']) ?></h2>
 
                                 <div class="card-meta">
-                                    <i class="fa fa-map-o"></i> <?php echo $basic_place['neighborhood'] ?>
-                                    <br><i class="fa fa-map-o"></i> <?php echo $basic_place['street'] ?>
+                                    <i class="fa fa-map-o"></i> <?php echo $basic_place->neighborhood ?>
+                                    <br><br><i class="fa fa-map-o"></i> <?php echo $basic_place->street ?>
+                                </div>
+
+                                <div class="card-rating">
+                                    <?php echo $basic_place->getRatingStars() ?>
                                 </div>
                                 <div class="card-actions">
-                                    <?php echo Html::a('', Url::to(['/place-details/' . $basic_place['place_slug']]), ['class' => 'fa fa-eye', 'target' => '_blank']) ?>
+                                    <?php echo Html::a('', Url::to(['/place-details/' . $basic_place->slug]), ['class' => 'fa fa-eye', 'target' => '_blank']) ?>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ use yii\helpers\Url;
             <?php if (count($basic_places) >= 6) : ?>
                 <div class="row">
                     <div
-                        class="col-xs-12 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5">
+                            class="col-xs-12 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5">
                         <a href="<?php echo Url::to(['/premium-list/' . $model->slug]) ?>"
                            class="btn btn-secondary btn-md btn-block">View all</a>
                     </div>

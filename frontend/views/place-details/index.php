@@ -129,20 +129,25 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
                 <h2>You may also like</h2>
                 <div class="cards-simple-wrapper">
                     <div class="row">
+
                         <?php foreach ($related_places as $related_place): ?>
                             <div class="col-sm-6 col-lg-3">
-                                <div class="card-simple"
-                                     data-background-image="<?php echo ($related_place->logo != null) ? Yii::$app->params['thumbnails'] . $related_place->logo : Yii::$app->params['pragmaticmates-logo-jpg'] ?>">
+                                <div class="card-simple" data-background-image="<?php echo $related_place->getThumbnailLogo() ?>">
                                     <div class="card-simple-background">
                                         <div class="card-simple-content">
                                             <h2>
-                                                <a href="<?php echo Url::to(['/place-details/' . $related_place->slug]) ?>"><?php echo $related_place->name; ?></a>
+                                                <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $related_place->slug ?>" target="_blank"><?php echo $related_place->name ?></a>
                                             </h2>
+
+                                            <div class="card-simple-rating">
+                                                <?php echo $related_place->getRatingStars() ?>
+                                            </div>
+
                                             <div class="card-simple-actions">
-                                                <a href="<?php echo Url::to(['/place-details/' . $related_place->slug]) ?>"
-                                                   class="fa fa-eye"></a>
+                                                <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $related_place->slug ?>" target="_blank" class="fa fa-eye"></a>
                                             </div>
                                         </div>
+                                        <div class="card-simple-label" style="opacity: 0.7"><small><?php echo $related_place->street ?></small></div>
                                     </div>
                                 </div>
                             </div>

@@ -9,15 +9,19 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
-<div class="card-row  div p30" data-key="<?= $model['place_id'] ?>">
+<div class="card-row  div p30" data-key="<?= $model->id ?>">
     <div class="card-row-inner">
-        <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model['place_slug'] ?>">
-            <div class="card-row-image" data-background-image="<?php echo Yii::$app->params['thumbnails'] . $model['logo'] ?>"></div>
+        <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model->slug ?>">
+            <div class="card-row-image" data-background-image="<?php echo $model->getThumbnailLogo() ?>"></div>
         </a>
         <div class="card-row-body" style="padding: 5px;">
             <div class="card-row-properties" style="padding: 5px;">
-                <h2 class="card-row-title"><a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model['place_slug'] ?>"><?php echo $model['place_name'] ?></a></h2>
-                <?php $data_by_ids = $this->context->accessDataByIds($model['place_id']);
+                <h2 class="card-row-title">
+                    <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model->slug ?>">
+                        <?php echo $model->name ?>
+                    </a>
+                </h2>
+                <?php $data_by_ids = $this->context->accessDataByIds($model->id);
                 $place = $data_by_ids['get_place_by_id']; ?>
                 <dl>
                     <?php if ($place->street != null): ?>

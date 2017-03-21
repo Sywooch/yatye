@@ -8,6 +8,7 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
 $dataProvider->pagination = [
     'pageSize' => 12,
 ];
+$category = $model;
 ?>
 
 <div class="container">

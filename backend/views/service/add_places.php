@@ -23,7 +23,6 @@ $this->title = $model->name;
             <div class="row">
                 <div class="col-sm-12">
                     <?php $form = ActiveForm::begin([
-//                    'type' => ActiveForm::TYPE_INLINE,
                         'action' => Url::to(['service/add-places', 'service_id' => $model->id]),
                     ]); ?>
 
@@ -67,7 +66,7 @@ $this->title = $model->name;
                     'label' => 'Name',
                     'format' => 'raw',
                     'value' => function ($model) {
-                        return Html::a($model['name'], ['/settings', 'id' => $model['id']], ['target' => '_blank']);
+                        return Html::a($model->name, ['/settings', 'id' => $model->id], ['target' => '_blank']);
                     },
                 ],
                 [
@@ -75,7 +74,9 @@ $this->title = $model->name;
                     'template' => '{delete-item}',
                     'buttons' => [
                         'delete-item' => function ($url, $model) {
-                            return Html::a(Html::tag('i', '', ['class' => 'fa fa-trash']), Yii::$app->request->baseUrl . '/place-service/delete-item/?place_id=' . $model['id'] . '&service_id=' . $model['service_id'], [
+                            $session = Yii::$app->session;
+                            $service_id = $session->get('service_id');
+                            return Html::a(Html::tag('i', '', ['class' => 'fa fa-trash']), Yii::$app->request->baseUrl . '/place-service/delete-item/?place_id=' . $model->id . '&service_id=' . $service_id, [
                                 'class' => 'btn btn-danger btn-xs',
                                 'data' => [
                                     'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),

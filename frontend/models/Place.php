@@ -55,64 +55,6 @@ class Place extends BasePlace
         return Service::find()->where(['category_id' => 5])->all();
     }
 
-    public function getRatings()
-    {
-        $get_ratings = Ratings::find()->asArray()->where(['place_id' => $this->id])->all();
-        $ratings = ArrayHelper::map($get_ratings, 'id', 'ratings');
-        $ratingsSum = array_sum($ratings);
-        $ratingsCount = count($ratings);
-
-        if ($ratingsCount) {
-            $averageRating = $ratingsSum / $ratingsCount;
-        } else {
-            $averageRating = 0;
-        }
-        return round($averageRating);
-    }
-
-    public function getRatingStars()
-    {
-        $ratings = $this->getRatings();
-
-        if ($ratings == 1) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 2) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 3) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 4) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 5) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-        } else {
-            $star = '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        }
-        return $star;
-    }
 
     public function getViews()
     {
