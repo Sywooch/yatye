@@ -78,12 +78,17 @@ class DataHelpers
 
     public static function getProvinces()
     {
-        return Province::find()->orderBy(new Expression('RAND()'))->all();
+        return Province::find()
+            ->orderBy(new Expression('RAND()'))
+            ->all();
     }
 
     public static function getAllCategories()
     {
-        return Category::find()->where(['status' => Yii::$app->params['active']])->orderBy(new Expression('RAND()'))->all();
+        return Category::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->orderBy(new Expression('RAND()'))
+            ->all();
     }
 
     public static function getAllPostCategories()

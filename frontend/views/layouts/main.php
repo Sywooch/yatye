@@ -57,7 +57,7 @@ AppAsset::register($this);
     <?php echo $this->render('@app/views/layouts/header/_header') ?>
     <?php echo $this->render('@app/views/layouts/_messages') ?>
     <div class="main">
-        <div class="main-inner" style="padding-top: 30px;">
+        <div class="main-inner" style="padding: 50px 0">
             <div class="content">
                 <?= $content ?>
             </div>

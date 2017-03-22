@@ -10,6 +10,7 @@
 <?php $this->registerJs("$(window).load(function () {
         $('.pre-load').fadeIn(5000);
     });"); ?>
+
 <script
     src="http://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing&amp;sensor=false"
     type="text/javascript"></script>

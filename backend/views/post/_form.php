@@ -12,13 +12,7 @@ use vova07\imperavi\Widget as Redactor;
 ?>
 <div class="background-white p20 mb50">
 
-    <?php $data = $this->context->accessDataByIds($model->post_type_id);
-    $post_categories = $data['get_post_categories'];
-
-    $post_categories_data_in_array = $this->context->accessDataByIds($post_categories);
-    $post_categories_in_array = $post_categories_data_in_array['get_data_in_array'];
-
-    $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="col-md-6 col-lg-6">
             <div class="form-group">
@@ -26,23 +20,20 @@ use vova07\imperavi\Widget as Redactor;
                     'id' => 'post_type_id',
                     'options' => ['id' => 'post_type_id'],
                     'prompt' => Yii::t('app', 'Select a post category ...'),
-                ]);
-                ?>
+                ])->label(false); ?>
             </div>
         </div>
         <div class="col-md-6 col-lg-6">
             <div class="form-group">
                 <?php echo $form->field($model, 'post_category_id')->widget(DepDrop::className(), [
                     'options' => ['id' => 'post_category_id'],
-                    'data' => $post_categories_in_array,
+                    'data' => $this->context->accessPostCategories($model),
                     'pluginOptions' => [
                         'depends' => ['post_type_id'],
                         'placeholder' => Yii::t('app', 'Select a post category ...'),
                         'url' => Url::to(['/post/post-categories'])
                     ]
-                ]);
-                ?>
-
+                ])->label(false); ?>
             </div>
         </div>
     </div>
@@ -56,7 +47,6 @@ use vova07\imperavi\Widget as Redactor;
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="form-group">
@@ -69,16 +59,12 @@ use vova07\imperavi\Widget as Redactor;
                         ],
                         'imageUpload' => Url::to(['/post/image-upload'])
                     ]
-                ]);
-                ?>
+                ]); ?>
             </div>
         </div>
     </div>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

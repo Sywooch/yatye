@@ -15,12 +15,25 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="page-title">
             <h1><?= Html::encode($this->title) ?></h1>
         </div>
-        <div class="background-white p30 mb50">
-            <h4 class="page-title">
-                <?= Html::encode($this->title) ?>
+
+        <div class="panel">
+            <div class="panel-body">
+                <?= $this->render('_search', [
+                    'model' => $searchModel,
+                    'provinces' => $provinces,
+                    'categories' => $categories,
+                    'profile_types' => $profile_types,
+                    'status' => $status,
+
+                ]) ?>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-heading">
                 <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-upload']), ['/import-places'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
-            </h4>
-            <div class="row">
+            </div>
+            <div class="panel-body">
                 <?php echo GridView::widget([
                     'dataProvider' => $dataProvider,
                     'showFooter' => true,

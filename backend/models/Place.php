@@ -83,7 +83,6 @@ class Place extends BasePlace
     public function getThumbnailLogo()
     {
         return ($this->logo != null) ? Yii::$app->params['thumbnails'] . $this->logo : Yii::$app->params['pragmaticmates-logo-jpg'];
-
     }
 
     public function getCurrentCategory($category_id)
@@ -149,46 +148,16 @@ class Place extends BasePlace
 
     public function getRatingStars()
     {
+        $stars = '';
         $ratings = $this->getRatings();
-
-        if ($ratings == 1) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 2) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 3) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 4) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-        } elseif ($ratings == 5) {
-            $star = '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-            $star .= '<i class="fa fa-star ratings"></i>';
-        } else {
-            $star = '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
-            $star .= '<i class="fa fa fa-star-o ratings"></i>';
+        for ($i = 1; $i <= 5; $i++) {
+            if ($ratings < $i) {
+                $stars .= '<i class="fa fa fa-star-o ratings"></i>';
+            }else{
+                $stars .= '<i class="fa fa fa-star ratings"></i>';
+            }
         }
-        return $star;
+        return $stars;
     }
 
     public function getProvinceName()
@@ -272,28 +241,15 @@ class Place extends BasePlace
         return $profile_type;
     }
 
+    public static function searchPlaces($post)
+    {
+        return Place::find()->filterWhere(['like', 'name', $post['name']]);;
+    }
+
     /*###################################################################################*/
 
 
 
-
-    public static function searchPlaces($POST_VARIABLE)
-    {
-        $conditions = array();
-
-        if (isset($POST_VARIABLE['name']) && !empty($POST_VARIABLE['name'])) {
-
-            $conditions[] = "`name` LIKE '%" . $POST_VARIABLE['name'] . "%'";
-        }
-
-        $query = Place::find();
-
-        if (count($conditions) > 0) {
-            $query = $query->andWhere(implode(' AND ', $conditions));
-        }
-
-        return $query;
-    }
 
     public function generateCodes($place)
     {
@@ -334,15 +290,11 @@ class Place extends BasePlace
         return $select;
     }
 
-//    public function getUser($user_id)
-//    {
-//        $user = User::findOne(['id' => $user_id]);
-//        return $user->username . ' (' . $user->email . ')';
-//    }
-
     public function getContacts()
     {
-        return Contact::find()->where(['place_id' => $this->id, 'status' => Yii::$app->params['active']])->orderBy('type')->all();
+        return Contact::find()
+            ->where(['place_id' => $this->id, 'status' => Yii::$app->params['active']])
+            ->orderBy('type')->all();
     }
 
     public function getOtherPlaces()
@@ -368,15 +320,15 @@ class Place extends BasePlace
 
     public static function getRecentAddedPlaces()
     {
-        return Place::find()->where(['status' => Yii::$app->params['active']])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
-
+        return Place::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->orderBy(['created_at' => SORT_DESC])->limit(5)
+            ->all();
     }
 
     public function getContact($contact_type)
     {
-
         return Contact::findAll(['place_id' => $this->id, 'type' => $contact_type]);
-
     }
 
     public function getPlaceUsers()

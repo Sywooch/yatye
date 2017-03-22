@@ -60,34 +60,31 @@ AppAsset::register($this);
     }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="page-wrapper">
-    <div class="a">
-        <div class="page-wrapper">
-            <header class="header">
-                <div class="header-wrapper">
-                    <div class="container">
-                        <div class="header-inner">
-                            <div class="header-logo">
-                                <?php echo $this->render('@app/views/layouts/header/_header_logo') ?>
+    <header class="header">
+        <div class="header-wrapper">
+            <div class="container">
+                <div class="header-inner">
+                    <div class="header-logo">
+                        <?php echo $this->render('@app/views/layouts/header/_header_logo') ?>
+                    </div>
+                    <div class="header-content">
+                        <div class="header-top">
+                            <?php echo $this->render('@app/views/layouts/header/_header_top') ?>
+                        </div>
+                        <div class="header-bottom">
+                            <div class="header-action">
+                                <?php echo $this->render('@app/views/layouts/header/_header_filter') ?>
                             </div>
-                            <div class="header-content">
-                                <div class="header-top">
-                                    <?php echo $this->render('@app/views/layouts/header/_header_top') ?>
-                                </div>
-                                <div class="header-bottom">
-                                    <div class="header-action">
-                                        <?php echo $this->render('@app/views/layouts/header/_header_filter') ?>
-                                    </div>
-                                    <?php //echo $this->render('@app/views/layouts/header/_header_bottom') ?>
-                                </div>
-                            </div>
+                            <?php //echo $this->render('@app/views/layouts/header/_header_bottom') ?>
                         </div>
                     </div>
                 </div>
-            </header>
-            <?php echo $this->render('@app/views/layouts/_messages') ?>
-            <?= $content ?>
+            </div>
         </div>
-    </div>
+    </header>
+    <?php echo $this->render('@app/views/layouts/_messages') ?>
+    <?= $content ?>
+
     <?php echo $this->render('@app/views/layouts/scripts/_twitter') ?>
     <?php echo $this->render('@app/views/layouts/scripts/_other_scripts') ?>
     <?php $this->endBody() ?>

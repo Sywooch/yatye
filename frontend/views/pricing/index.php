@@ -15,7 +15,7 @@ $dataProvider->pagination = [
     <div class="mt-80">
         <div class="page-header">
             <h1><?php echo Yii::t('app', 'Fair Pricing') ?></h1>
-            <p><?php echo Yii::t('app', 'Rwanda Guide offers the best pricing options for your business to get discovered and enable it to reach out to new customers.') ?> <?php echo Yii::t('app', 'If you are interested <br>in special plan don\'t hesitate and ') ?><a href="http://rwandaguide.info/site/contact">contact us</a>.</p>
+            <p><?php echo Yii::t('app', 'Rwanda Guide offers the best pricing options for your business to get discovered and enable it to reach out to new customers.') ?> <?php echo Yii::t('app', 'If you are interested <br>in special plan don\'t hesitate and ') ?><a href="http://rwandaguide.info/contact-us">contact us</a>.</p>
         </div>
 
         <div class="pricings">
