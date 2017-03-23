@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "views_list".
  *
+ * @property integer $id
  * @property integer $views_id
- * @property integer $view
  * @property string $ip_address
  * @property string $created_at
  *
@@ -30,7 +30,8 @@ class ViewsList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['views_id', 'view'], 'integer'],
+            [['views_id', 'ip_address'], 'required'],
+            [['views_id'], 'integer'],
             [['created_at'], 'safe'],
             [['ip_address'], 'string', 'max' => 255],
             [['views_id'], 'exist', 'skipOnError' => true, 'targetClass' => Views::className(), 'targetAttribute' => ['views_id' => 'id']],
@@ -43,10 +44,10 @@ class ViewsList extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'views_id' => 'Views ID',
-            'view' => 'View',
-            'ip_address' => 'Ip Address',
-            'created_at' => 'Created At',
+            'id' => Yii::t('app', 'ID'),
+            'views_id' => Yii::t('app', 'Views ID'),
+            'ip_address' => Yii::t('app', 'Ip Address'),
+            'created_at' => Yii::t('app', 'Created At'),
         ];
     }
 

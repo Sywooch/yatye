@@ -133,17 +133,9 @@ class Place extends BasePlace
 
     public function getRatings()
     {
-        $get_ratings = Ratings::find()->asArray()->where(['place_id' => $this->id])->all();
-        $ratings = ArrayHelper::map($get_ratings, 'id', 'ratings');
-        $ratingsSum = array_sum($ratings);
-        $ratingsCount = count($ratings);
+        $ratings = Ratings::findOne(['place_id' => $this->id]);
 
-        if ($ratingsCount) {
-            $averageRating = $ratingsSum / $ratingsCount;
-        } else {
-            $averageRating = 0;
-        }
-        return round($averageRating);
+        return (!empty($ratings)) ? $ratings->average : 0;
     }
 
     public function getRatingStars()

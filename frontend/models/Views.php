@@ -38,52 +38,43 @@ class Views extends BaseViews
             [['views'], 'number'],
             [['views'], 'default', 'value' => 0],
             [['place_id'], 'unique'],
-            [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => Place::className(), 'targetAttribute' => ['place_id' => 'id']],
-        ];
+            [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => Place::className(), 'targetAttribute' => ['place_id' => 'id']],];
     }
 
     public static function insertViews($place_id)
     {
-
         $views = Views::findOne(['place_id' => $place_id]);
 
-
-
-        try {
-            if (!empty($views)) {
-                $views->views = $views->views + 1;
-//                $views->save(0);
-
-                if ($views->save(0)) {
-                    $views_list = new ViewsList();
-                    $views_list->views_id = $views->id;
-                    $views_list->view = 1;
-                    $views_list->ip_address = Yii::$app->request->getUserIP();
-                    $views_list->save(0);
-                }
-
-            } else {
-
-                $model = new Views();
-
-                $model->views = 1;
-                $model->place_id = $place_id;
-//                $model->id = Yii::$app->request->getUserIP();
-                $model->status = Yii::$app->params['active'];
-//                $model->save(0);
-
-                if ($model->save(0)) {
-                    $views_list = new ViewsList();
-                    $views_list->views_id = $model->id;
-                    $views_list->view = 1;
-                    $views_list->ip_address = Yii::$app->request->getUserIP();
-                    $views_list->save(0);
-                }
-            }
-        } catch (\Exception $e) {
-
+        if (!empty($views)) {
+            $model = $views;
+        }else{
+            $model = new Views();
         }
 
+        $transaction = $model->getDb()->beginTransaction();
+        try {
+
+            if ($model->isNewRecord) {
+                $model->place_id = $place_id;
+                $model->status = Yii::$app->params['active'];
+            }
+
+            $model->views = $model->views + 1;
+            $model->save();
+
+            $views_list = new ViewsList();
+            $views_list->views_id = $model->id;
+            $views_list->ip_address = Yii::$app->request->getUserIP();
+            $views_list->save();
+
+            $transaction->commit();
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
     }
 
     public static function getViews()

@@ -9,11 +9,13 @@ use Yii;
  *
  * @property integer $id
  * @property integer $place_id
- * @property double $ratings
+ * @property integer $average
  * @property string $created_at
  * @property string $updated_at
- * @property string $ip
  * @property integer $status
+ *
+ * @property Place $place
+ * @property RatingsList[] $ratingsLists
  */
 class Ratings extends \yii\db\ActiveRecord
 {
@@ -31,11 +33,11 @@ class Ratings extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['place_id', 'ratings', 'created_at', 'ip'], 'required'],
-            [['place_id', 'status'], 'integer'],
-            [['ratings'], 'number'],
+            [['place_id', 'average', 'created_at', 'status'], 'required'],
+            [['place_id', 'average', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['ip'], 'string', 'max' => 125],
+            [['place_id'], 'unique'],
+            [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => Place::className(), 'targetAttribute' => ['place_id' => 'id']],
         ];
     }
 
@@ -45,13 +47,28 @@ class Ratings extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'place_id' => 'Place ID',
-            'ratings' => 'Ratings',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'ip' => 'Ip',
-            'status' => 'Status',
+            'id' => Yii::t('app', 'ID'),
+            'place_id' => Yii::t('app', 'Place ID'),
+            'average' => Yii::t('app', 'Average'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'status' => Yii::t('app', 'Status'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPlace()
+    {
+        return $this->hasOne(Place::className(), ['id' => 'place_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRatingsLists()
+    {
+        return $this->hasMany(RatingsList::className(), ['rating_id' => 'id']);
     }
 }

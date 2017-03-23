@@ -7,6 +7,8 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\EventTags */
 
 $this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Event Tags'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $model->name;
 ?>
 <div class="background-white p20 mb50">
 

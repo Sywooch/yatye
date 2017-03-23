@@ -8,6 +8,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 ?>
 
 <?php if (!empty($premium_places)): ?>
@@ -19,8 +20,10 @@ use yii\helpers\Url;
                         <?php $active = ' active';
                         foreach ($premium_places as $premium_place): ?>
                             <div class="item<?php echo $active; ?>">
-                                <div class="item-bg" style="background-image: url(<?php echo $premium_place->getLogo() ?>)"></div>
-                                <img style="width: 617px; height: 347px;" src="<?php echo $premium_place->getLogo() ?>" alt="<?php echo $premium_place->name; ?>">
+                                <div class="item-bg"
+                                     style="background-image: url(<?php echo $premium_place->getLogo() ?>)"></div>
+                                <img style="width: 617px; height: 347px;" src="<?php echo $premium_place->getLogo() ?>"
+                                     alt="<?php echo $premium_place->name; ?>">
                                 <div class="carousel-caption">
                                     <div class="hero-slider-content">
                                         <h1><?php echo $premium_place->name; ?></h1>
@@ -30,7 +33,9 @@ use yii\helpers\Url;
                                     </div>
 
                                     <div class="hero-slider-actions">
-                                        <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), Url::to(['/place-details/' . $premium_place->slug, ['target' => '_blank']])) ?>
+                                        <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']),
+                                            Url::to(['/place-details/' . $premium_place->slug]),
+                                            ['target' => '_blank']) ?>
                                     </div>
                                 </div>
                             </div>

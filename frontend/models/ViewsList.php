@@ -27,4 +27,15 @@ class ViewsList extends BaseViewsList
             ],
         ];
     }
+
+    public function rules()
+    {
+        return [
+            [['views_id', 'ip_address'], 'required'],
+            [['views_id'], 'integer'],
+            [['created_at'], 'safe'],
+            [['ip_address'], 'string', 'max' => 255],
+            [['views_id'], 'exist', 'skipOnError' => true, 'targetClass' => Views::className(), 'targetAttribute' => ['views_id' => 'id']],
+        ];
+    }
 }
