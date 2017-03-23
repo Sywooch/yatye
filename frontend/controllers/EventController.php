@@ -2,16 +2,16 @@
 
 namespace frontend\controllers;
 
-use backend\helpers\Helpers;
-use backend\models\EventContact;
-use backend\models\EventHasTags;
-use backend\models\EventSocialMedia;
 use Yii;
 use backend\models\Event;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
-use backend\controllers\EventController as BaseEventController;
+use backend\helpers\Helpers;
+use backend\models\EventContact;
+use backend\models\EventHasTags;
+use backend\models\EventSocialMedia;
+use backend\components\BaseEventController;
 
 /**
  * EventController implements the CRUD actions for Event model.

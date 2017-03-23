@@ -79,4 +79,23 @@ class GalleryHelper
             return false;
         }
     }
+
+    public static function uploadEvents($image, $path)
+    {
+        //Get Image width and height using SimpleImage class
+        $simpleImage = new SimpleImage($image);
+        $width = $simpleImage->get_width();
+        $height = $simpleImage->get_height();
+
+        Yii::warning('width : ' . $width);
+        Yii::warning('height : ' . $height);
+
+        if ($image && $path != null) {
+            $simpleImage->save($path);
+            return true;
+        } else {
+            Yii::$app->getSession()->setFlash("fail", 'There is an error while uploading your event image');
+            return false;
+        }
+    }
 }
