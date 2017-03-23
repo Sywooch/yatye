@@ -40,5 +40,13 @@ class RatingsList extends BaseRatingsList
         ];
     }
 
+    public function beforeValidate()
+    {
+        $this->rating = (double)$this->rating;
+        $this->rating_id = (int)$this->rating_id;
+
+        return parent::beforeValidate();
+    }
+
 
 }
