@@ -159,6 +159,29 @@ class Event extends BaseEvent
         ];
     }
 
+    public function getDate()
+    {
+        $today = strtotime(date("Y-m-d"));
+        $start_date = strtotime($this->start_date);
+
+        $date_diff = $start_date - $today;
+        $difference = floor($date_diff / (60 * 60 * 24));
+        if ($difference == 0) {
+            $date = Yii::t('app', 'Today');
+        } else if ($difference == 1) {
+            $date = Yii::t('app', 'Tomorrow');
+        } else {
+            $date = date('D d M, Y', $start_date);
+        }
+
+        return $date;
+    }
+
+    public function getBanner()
+    {
+        return ($this->banner != null) ? Yii::$app->params['event_images'] . $this->banner : Yii::$app->params['pragmaticmates-logo-jpg'];
+    }
+
 
     /*#################################################################################*/
 

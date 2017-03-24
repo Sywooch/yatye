@@ -18,9 +18,8 @@ $this->title = $model->name;
                     <div class="col-md-6 col-lg-6">
                         <?php if ($model->banner != null) { ?>
                             <a href="#">
-                                <img alt="<?php echo $model->name ?>"
-                                     style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 32px; width: 652px;'
-                                     src="<?php echo Yii::$app->params['event_images'] . $model->banner ?>">
+                                <img class="img-responsive img-alt" alt="<?php echo $model->name ?>"
+                                     src="<?php echo $model->getBanner() ?>">
 
                             </a>
                         <?php } else { ?>
@@ -138,7 +137,7 @@ $this->title = $model->name;
                         </div>
                     </div>
                     <div class="post-meta clearfix div">
-                        <div class="post-meta-date"><i>Start </i> : <?php echo $model->start_date; ?>
+                        <div class="post-meta-date"><i>Start </i> : <?php echo $model->getDate(); ?>
                             <?php echo ($model->start_time != null) ? 'at ' . date('H:i', strtotime($model->start_time)) : ''; ?>
                         </div>
                         <div class="post-meta-date"><i>End </i> : <?php echo $model->end_date; ?>

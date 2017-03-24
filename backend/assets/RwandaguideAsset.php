@@ -15,8 +15,8 @@ class RwandaguideAsset extends AssetBundle{
     public $sourcePath = '@app/../dist/rwandaguide';
     public $basePath = '@vendor';
     public $css = [
-//        'css/rwandaguide.css',
-        'css/rwandaguide.min.css',
+        'css/rwandaguide.css',
+//        'css/rwandaguide.min.css',
     ];
     public $js = [
         'js/rwandaguide.js',

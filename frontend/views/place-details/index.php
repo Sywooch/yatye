@@ -12,8 +12,8 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
                     <div class="detail-gallery-preview">
                         <a href="#">
                             <img alt="<?php echo $model->name ?>"
-                                 src="<?php echo Yii::$app->params['galleries'] . $model->logo ?>"
-                                 style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 32px; width: 652px;'>
+                                 src="<?php echo $model->getLogo() ?>"
+                                 class="img-responsive img-alt">
                         </a>
                     </div>
                 <?php } else { ?>
@@ -39,7 +39,7 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
                             <a data-target="<?php echo Yii::$app->params['galleries'] . $photo->name ?>">
                                 <img src="<?php echo Yii::$app->params['tn_thumbnails'] . $photo->name ?>"
                                      alt="<?php echo $model->name ?>"
-                                     style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 12px;'>
+                                     class="img-responsive img-alt-thumbnail_tn">
                             </a>
                         </li>
                     <?php endforeach;
@@ -67,7 +67,7 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
                                                 <a href="listing-detail.html">
 
                                                     <?php if ($other_place['logo'] != null) : ?>
-                                                        <img style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 12px;width: 80px; height: 60px;'
+                                                        <img class="img-responsive img-alt-thumbnail_tn"
                                                              src="<?php echo Yii::$app->params['tn_thumbnails'] . $other_place['logo'] ?>"
                                                              alt="<?php echo $other_place['name'] ?>">
                                                     <?php else : ?>
