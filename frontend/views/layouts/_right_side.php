@@ -44,7 +44,7 @@ use yii\helpers\Url;
                                 <h4>
                                     <a href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>"><?php echo $upcoming_event->address; ?></a>
                                 </h4>
-                                <div class="card-small-price"><?php echo date('D d M, Y',strtotime($upcoming_event->start_at));?></div>
+                                <div class="card-small-price"><?php echo date('D d M, Y',strtotime($upcoming_event->start_date));?></div>
                             </div>
                         </div>
                     </div>
