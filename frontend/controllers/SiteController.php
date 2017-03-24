@@ -45,9 +45,9 @@ class SiteController extends BaseController
             ->all();
 
         $up_coming_events = Event::find()
-            ->where(new Expression('`start_at` >= CURRENT_DATE'))
+            ->where(new Expression('`start_date` >= CURRENT_DATE'))
             ->andWhere(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('`start_at` ASC LIMIT 6'))
+            ->orderBy(new Expression('`start_date` ASC LIMIT 6'))
             ->all();
 
         return $this->render('index', [
