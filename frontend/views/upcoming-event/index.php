@@ -80,14 +80,12 @@ $this->title = $model->name;
                                         <?php endif; ?>
                                         <?php if ($contact->type === Yii::$app->params['SKYPE']): ?>
                                             <div class="detail-contact-skype">
-                                                <i class="fa fa-skype"></i> <a
-                                                        href="<?php echo $contact->name ?>"><?php echo $contact->name ?></a>
+                                                <i class="fa fa-skype"></i> <a href="<?php echo $contact->name ?>"><?php echo $contact->name ?></a>
                                             </div>
                                         <?php endif; ?>
                                         <?php if ($contact->type === Yii::$app->params['WEBSITE']): ?>
                                             <div class="detail-contact-website">
-                                                <i class="fa fa-globe"></i> <a
-                                                        href="<?php echo $contact->name ?>">Visit website</a>
+                                                <i class="fa fa-globe"></i> <a href="<?php echo $contact->name ?>" target="_blank">Visit website</a>
                                             </div>
                                         <?php endif; ?>
 
@@ -104,43 +102,35 @@ $this->title = $model->name;
                                     <?php foreach ($socials as $social):
                                         if ($social->type == Yii::$app->params['FACEBOOK']): ?>
                                             <a class="follow-btn facebook" href="<?php echo $social->name; ?>"
-                                               target="_blank"><i
-                                                        class="fa fa-facebook"></i></a>
+                                               target="_blank"><i class="fa fa-facebook"></i></a>
                                         <?php endif;
                                         if ($social->type == Yii::$app->params['YOUTUBE']): ?>
                                             <a class="follow-btn youtube" href="<?php echo $social->name; ?>"
-                                               target="_blank"><i
-                                                        class="fa fa-youtube"></i></a>
+                                               target="_blank"><i class="fa fa-youtube"></i></a>
                                         <?php endif;
                                         if ($social->type == Yii::$app->params['TWITTER']): ?>
                                             <a class="follow-btn twitter" href="<?php echo $social->name; ?>"
-                                               target="_blank"><i
-                                                        class="fa fa-twitter"></i></a>
+                                               target="_blank"><i class="fa fa-twitter"></i></a>
                                         <?php endif;
                                         if ($social->type == Yii::$app->params['GOOGLE_PLUS']): ?>
                                             <a class="follow-btn google-plus" href="<?php echo $social->name; ?>"
-                                               target="_blank"><i
-                                                        class="fa fa-google-plus"></i></a>
+                                               target="_blank"><i class="fa fa-google-plus"></i></a>
                                         <?php endif;
                                         if ($social->type == Yii::$app->params['INSTAGRAM']): ?>
                                             <a class="follow-btn instagram" href="<?php echo $social->name; ?>"
-                                               target="_blank"><i
-                                                        class="fa fa-instagram"></i></a>
+                                               target="_blank"><i class="fa fa-instagram"></i></a>
                                         <?php endif;
                                         if ($social->type == Yii::$app->params['PINTREST']): ?>
                                             <a class="follow-btn pinterest" href="<?php echo $social->name; ?>"
-                                               target="_blank"><i
-                                                        class="fa fa-pinterest"></i></a>
+                                               target="_blank"><i class="fa fa-pinterest"></i></a>
                                         <?php endif;
                                         if ($social->type == Yii::$app->params['FLICKLR']): ?>
                                             <a class="follow-btn flickr" href="<?php echo $social->name; ?>"
-                                               target="_blank"><i
-                                                        class="fa fa-flickr"></i></a>
+                                               target="_blank"><i class="fa fa-flickr"></i></a>
                                         <?php endif;
                                         if ($social->type == Yii::$app->params['TRIPADVISOR']): ?>
                                             <a class="follow-btn tripadvisor" href="<?php echo $social->name; ?>"
-                                               target="_blank"><i
-                                                        class="fa fa-tripadvisor"></i></a>
+                                               target="_blank"><i class="fa fa-tripadvisor"></i></a>
                                         <?php endif;
                                     endforeach; ?>
                                 </div>
@@ -149,10 +139,10 @@ $this->title = $model->name;
                     </div>
                     <div class="post-meta clearfix div">
                         <div class="post-meta-date"><i>Start </i> : <?php echo $model->start_date; ?>
-                            <?php echo ($model->start_time != null) ? 'at ' . $model->start_time : ''; ?>
+                            <?php echo ($model->start_time != null) ? 'at ' . date('H:i', strtotime($model->start_time)) : ''; ?>
                         </div>
                         <div class="post-meta-date"><i>End </i> : <?php echo $model->end_date; ?>
-                            <?php echo ($model->end_time != null) ? 'at ' . $model->end_time : ''; ?>
+                            <?php echo ($model->end_time != null) ? 'at ' . date('H:i', strtotime($model->end_time)) : ''; ?>
                         </div>
                         <div class="post-meta-categories">
                             <div class="fb-share-button" data-href="http://rwandaguide.info/<?php echo  Yii::$app->request->getUrl() ?>" data-layout="button_count"></div>
