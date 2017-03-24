@@ -77,11 +77,15 @@ class Event extends BaseEvent
         return Yii::$app->params['frontend_alias'] . Yii::$app->params['event'];
     }
 
-    public function getParmetters()
+    public function getThumbnailPath()
+    {
+        return Yii::$app->params['frontend_alias'] . Yii::$app->params['thumbnails'];
+    }
+
+    public function getParameters()
     {
         $status = Helpers::getStatus();
         $profile_types = Helpers::getProfileType();
-
 
         $contact_types = Helpers::getContactTypes();
         $contacts = [new EventContact()];
@@ -129,7 +133,7 @@ class Event extends BaseEvent
         ]);
 
         return [
-            'model'=> $this,
+            'model' => $this,
             'status' => $status,
             'profile_types' => $profile_types,
 

@@ -27,40 +27,39 @@ $this->title = Yii::t('app', 'Events');
                     <?= Html::a('Add', ['create'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
                 </h3>
                 <div class="row">
-                    <div class="table-responsive">
-                        <?= GridView::widget([
-                            'dataProvider' => $dataProvider,
-                            'columns' => [
-                                ['class' => 'yii\grid\SerialColumn'],
-                                'name',
-                                'address',
-                                'start_at',
-                                 'end_at',
-                                [
-                                    'class' => 'yii\grid\ActionColumn',
-                                    'template' => '{view} {update} {delete}',
-                                    'buttons' => [
-                                        'view' => function ($url, $model) {
-                                            return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $url . '/' . $model->slug, ['class' => 'btn btn-primary btn-xs']);
-                                        },
-                                        'update' => function ($url, $model) {
-                                            return Html::a(Html::tag('i', '', ['class' => 'fa fa-edit']), $url, ['class' => 'btn btn-secondary btn-xs']);
-                                        },
-                                        'delete' => function ($url, $model) {
-                                            return Html::a(Html::tag('i', '', ['class' => 'fa fa-trash']), $url, [
-                                                'class' => 'btn btn-danger btn-xs',
-                                                'data' => [
-                                                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                                                    'method' => 'post',
-                                                ],
-                                            ]);
-                                        },
-                                    ],
+                    <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
+                            'name',
+                            'start_date',
+                            'start_time',
+                            'end_date',
+                            'end_time',
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'template' => '{view} {update} {delete}',
+                                'buttons' => [
+                                    'view' => function ($url, $model) {
+                                        return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $url . '/' . $model->slug, ['class' => 'btn btn-primary btn-xs']);
+                                    },
+                                    'update' => function ($url, $model) {
+                                        return Html::a(Html::tag('i', '', ['class' => 'fa fa-edit']), $url, ['class' => 'btn btn-secondary btn-xs']);
+                                    },
+                                    'delete' => function ($url, $model) {
+                                        return Html::a(Html::tag('i', '', ['class' => 'fa fa-trash']), $url, [
+                                            'class' => 'btn btn-danger btn-xs',
+                                            'data' => [
+                                                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                                                'method' => 'post',
+                                            ],
+                                        ]);
+                                    },
                                 ],
                             ],
-                            'tableOptions' => ['class' => 'table mb0'],
-                        ]); ?>
-                    </div>
+                        ],
+                        'tableOptions' => ['class' => 'table mb0'],
+                    ]); ?>
                 </div>
             </div>
         </div>

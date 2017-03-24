@@ -2,18 +2,15 @@
 
 namespace frontend\controllers;
 
-use common\helpers\GalleryHelper;
+
+use backend\models\Gallery;
 use Yii;
 use backend\models\Event;
 use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
-use backend\helpers\Helpers;
-use backend\models\EventContact;
-use backend\models\EventHasTags;
-use backend\models\EventSocialMedia;
 use backend\components\BaseEventController;
 use yii\web\UploadedFile;
+use common\helpers\GalleryHelper;
 
 /**
  * EventController implements the CRUD actions for Event model.
@@ -44,7 +41,7 @@ class EventController extends BaseEventController
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        return $this->render('view', $model->getParmetters());
+        return $this->render('view', $model->getParameters());
     }
 
     /**
@@ -63,16 +60,19 @@ class EventController extends BaseEventController
         if ($model->load(Yii::$app->request->post())) {
             $model->image_file = UploadedFile::getInstance($model, 'image_file');
             $file_name = rand() . rand() . date("Ymdhis") . '.' . $model->image_file->extension;
+            $thumbnail_file_name = 'tn_' . $file_name;
 
             $path = $model->getPath() . $file_name;
+            $thumbnail_path = $model->getThumbnailPath() . $thumbnail_file_name;
             $file_name = preg_replace('/\s+/', '', $file_name);
             if (GalleryHelper::uploadEvents($model->image_file->tempName, $path)) {
+                //Save thumbnails
+                GalleryHelper::resizeBeforeUpload($model->image_file->tempName, $thumbnail_path, 180, 150, 120);
                 $model->banner = $file_name;
                 $model->save(0);
                 return $this->redirect(['view', 'id' => $model->id]);
             }
             else{
-
                 return $this->render('create', $params);
             }
 
@@ -100,11 +100,20 @@ class EventController extends BaseEventController
 
             if ($model->image_file){
                 $file_name = rand() . rand() . date("Ymdhis") . '.' . $model->image_file->extension;
+                $thumbnail_file_name = 'tn_' . $file_name;
+
                 $path = $model->getPath() . $file_name;
+                $thumbnail_path = $model->getThumbnailPath() . $thumbnail_file_name;
+
                 $file_name = preg_replace('/\s+/', '', $file_name);
 
                 if (GalleryHelper::uploadEvents($model->image_file->tempName, $path)) {
+
+                    //Save thumbnails
+                    GalleryHelper::resizeBeforeUpload($model->image_file->tempName, $thumbnail_path, 180, 150, 120);
                     $model->banner = $file_name;
+
+                    //Delete Existing Image
                     GalleryHelper::deleteGallery($old_image);
                 }
                 else{

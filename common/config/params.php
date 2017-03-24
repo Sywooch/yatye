@@ -38,7 +38,7 @@ return [
     'post_thumbnails' => 'http://rwandaguide.info/frontend/web/files/uploads/post/thumbnails/tn_',
 
     'event' => 'files/uploads/event/',
-    'event_thumbnail' => 'files/uploads/post/thumbnails/',
+    'thumbnails' => 'files/uploads/event/thumbnails/',
     'event_images' => 'http://rwandaguide.info/frontend/web/files/uploads/event/',
     'event_thumbnails' => 'http://rwandaguide.info/frontend/web/files/uploads/event/thumbnails/tn_',
 

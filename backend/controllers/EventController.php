@@ -59,7 +59,7 @@ class EventController extends BaseEventController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $params = $model->getParmetters();
+        $params = $model->getParameters();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->image_file = UploadedFile::getInstance($model, 'image_file');

@@ -148,10 +148,12 @@ $this->title = $model->name;
                         </div>
                     </div>
                     <div class="post-meta clearfix div">
-                        <div class="post-meta-date"><i>Start </i> : <?php echo $time['start_date']; ?>
-                            at <?php echo $time['start_time']; ?></div>
-                        <div class="post-meta-date"><i>End </i> : <?php echo $time['end_date']; ?>
-                            at <?php echo $time['end_time']; ?></div>
+                        <div class="post-meta-date"><i>Start </i> : <?php echo $model->start_date; ?>
+                            <?php echo ($model->start_time != null) ? 'at ' . $model->start_time : ''; ?>
+                        </div>
+                        <div class="post-meta-date"><i>End </i> : <?php echo $model->end_date; ?>
+                            <?php echo ($model->end_time != null) ? 'at ' . $model->end_time : ''; ?>
+                        </div>
                         <div class="post-meta-categories">
                             <div class="fb-share-button" data-href="http://rwandaguide.info/<?php echo  Yii::$app->request->getUrl() ?>" data-layout="button_count"></div>
                         </div>
