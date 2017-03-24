@@ -3,22 +3,19 @@
 namespace backend\controllers;
 
 
-
+use common\helpers\GalleryHelper;
 use Yii;
 use backend\models\Event;
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
 use backend\models\EventContact;
 use backend\models\EventHasTags;
 use backend\models\EventSocialMedia;
-use backend\models\Gallery;
 use backend\models\UserEvent;
 use common\helpers\Helpers;
-use common\helpers\RecordHelpers;
-use yii\web\UploadedFile;
 use backend\components\BaseEventController;
+use yii\web\UploadedFile;
 
 /**
  * EventController implements the CRUD actions for Event model.
@@ -62,83 +59,29 @@ class EventController extends BaseEventController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $status = Helpers::getStatus();
-        $profile_types = Helpers::getProfileType();
-
-
-        $contact_types = Helpers::getContactTypes();
-        $contacts = [new EventContact()];
-        $contactDataProvider = new ActiveDataProvider([
-            'query' => EventContact::find()->where(['event_id' => $id]),
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);
-
-        /*Socials*/
-        $social_types = Helpers::getSocialTypes();
-        $socials = [new EventSocialMedia()];
-        $socialDataProvider = new ActiveDataProvider([
-            'query' => EventSocialMedia::find()->where(['event_id' => $id]),
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);
-
-        /*Tags*/
-        $event_has_tags = new EventHasTags();
-        $tags = EventHasTags::getNotTags($id);
-        $tagDataProvider = new ArrayDataProvider([
-            'allModels' => $model->getTags(),
-            'sort' => [
-                'attributes' => ['name'],
-            ],
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);
-
-        /*User*/
-        $user_event = new UserEvent();
-        $users = UserEvent::getUsers($id);
-        $userDataProvider = new ArrayDataProvider([
-            'allModels' => $model->getEventUsers(),
-            'sort' => [
-                'attributes' => ['email'],
-            ],
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);
+        $params = $model->getParmetters();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $model->image_file = UploadedFile::getInstance($model, 'image_file');
+            $old_image = $model->getPath() . $model->banner;
+
+            if ($model->image_file) {
+                $file_name = rand() . rand() . date("Ymdhis") . '.' . $model->image_file->extension;
+                $path = $model->getPath() . $file_name;
+                $file_name = preg_replace('/\s+/', '', $file_name);
+
+                if (GalleryHelper::uploadEvents($model->image_file->tempName, $path)) {
+                    $model->banner = $file_name;
+                    GalleryHelper::deleteGallery($old_image);
+                } else {
+                    return $this->render('update', $params);
+                }
+            }
+
+            $model->save(0);
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
-                'model' => $model,
-                'status' => $status,
-                'profile_types' => $profile_types,
-
-                /*Contacts*/
-                'contactDataProvider' => $contactDataProvider,
-                'contact_types' => $contact_types,
-                'contacts' => $contacts,
-
-                /*Socials*/
-                'socialDataProvider' => $socialDataProvider,
-                'social_types' => $social_types,
-                'socials' => $socials,
-
-                /*Tags*/
-                'tagDataProvider' => $tagDataProvider,
-                'event_has_tags' => $event_has_tags,
-                'tags' => $tags,
-
-                /*User*/
-                'userDataProvider' => $userDataProvider,
-                'user_event' => $user_event,
-                'users' => $users,
-            ]);
+            return $this->render('update', $params);
         }
     }
 

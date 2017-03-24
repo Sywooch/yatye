@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use backend\helpers\Helpers;
 use common\helpers\RecordHelpers;
 use common\helpers\ValueHelpers;
 use frontend\models\UserProfile;
@@ -16,6 +17,8 @@ use common\models\Event as BaseEvent;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\data\ActiveDataProvider;
+use yii\data\ArrayDataProvider;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\db\Query;
@@ -23,6 +26,7 @@ use yii\db\Query;
 class Event extends BaseEvent
 {
     public $image_file;
+    public $date;
 
     public function behaviors()
     {
@@ -53,18 +57,106 @@ class Event extends BaseEvent
     public function rules()
     {
         return [
-            [['image_file'], 'safe'],
-            [['image_file'], 'file', 'extensions' => ['png', 'jpg', 'jpeg', 'gif'], 'maxFiles' => 50, 'maxSize' => 1024 * 1024],
-            [['name', 'start_at', 'end_at'], 'required'],
+            [['name', 'start_date', 'end_date'], 'required'],
             [['description'], 'string'],
-            [['start_at', 'end_at', 'created_at', 'updated_at'], 'safe'],
+            [['start_date', 'end_date', 'start_time', 'end_time', 'created_at', 'updated_at'], 'safe'],
             [['profile_type', 'status', 'created_by', 'updated_by'], 'integer'],
             [['latitude', 'longitude'], 'number'],
             [['name', 'address', 'banner', 'slug'], 'string', 'max' => 255],
             [['name'], 'unique'],
             [['status'], 'default', 'value' => Yii::$app->params['pending']],
+            [['image_file'], 'required', 'on' => 'create'],
+            [['image_file'], 'safe'],
+            [['image_file'], 'file', 'extensions' => ['png', 'jpg', 'jpeg', 'gif'], 'maxFiles' => 50, 'maxSize' => 1024 * 1024],
         ];
     }
+
+
+    public function getPath()
+    {
+        return Yii::$app->params['frontend_alias'] . Yii::$app->params['event'];
+    }
+
+    public function getParmetters()
+    {
+        $status = Helpers::getStatus();
+        $profile_types = Helpers::getProfileType();
+
+
+        $contact_types = Helpers::getContactTypes();
+        $contacts = [new EventContact()];
+        $contactDataProvider = new ActiveDataProvider([
+            'query' => EventContact::find()->where(['event_id' => $this->id]),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+
+        /*Socials*/
+        $social_types = Helpers::getSocialTypes();
+        $socials = [new EventSocialMedia()];
+        $socialDataProvider = new ActiveDataProvider([
+            'query' => EventSocialMedia::find()->where(['event_id' => $this->id]),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+
+        /*Tags*/
+        $event_has_tags = new EventHasTags();
+        $tags = EventHasTags::getNotTags($this->id);
+        $tagDataProvider = new ArrayDataProvider([
+            'allModels' => $this->getTags(),
+            'sort' => [
+                'attributes' => ['name'],
+            ],
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+
+        /*User*/
+        $user_event = new UserEvent();
+        $users = UserEvent::getUsers($this->id);
+        $userDataProvider = new ArrayDataProvider([
+            'allModels' => $this->getEventUsers(),
+            'sort' => [
+                'attributes' => ['email'],
+            ],
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+
+        return [
+            'model'=> $this,
+            'status' => $status,
+            'profile_types' => $profile_types,
+
+            /*Contacts*/
+            'contactDataProvider' => $contactDataProvider,
+            'contact_types' => $contact_types,
+            'contacts' => $contacts,
+
+            /*Socials*/
+            'socialDataProvider' => $socialDataProvider,
+            'social_types' => $social_types,
+            'socials' => $socials,
+
+            /*Tags*/
+            'tagDataProvider' => $tagDataProvider,
+            'event_has_tags' => $event_has_tags,
+            'tags' => $tags,
+
+            /*User*/
+            'userDataProvider' => $userDataProvider,
+            'user_event' => $user_event,
+            'users' => $users,
+        ];
+    }
+
+
+    /*#################################################################################*/
 
     public function getTags()
     {
@@ -104,7 +196,10 @@ class Event extends BaseEvent
 
     public function getContacts()
     {
-        return EventContact::find()->where(['event_id' => $this->id, 'status' => Yii::$app->params['active']])->orderBy('type')->all();
+        return EventContact::find()
+            ->where(['event_id' => $this->id, 'status' => Yii::$app->params['active']])
+            ->orderBy('type')
+            ->all();
     }
 
     public function getSocials()

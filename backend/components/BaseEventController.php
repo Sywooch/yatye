@@ -8,17 +8,17 @@
 
 namespace backend\components;
 
-use backend\models\EventContact;
-use backend\models\EventHasTags;
-use backend\models\EventSocialMedia;
-use backend\models\Gallery;
-use backend\models\UserEvent;
-use common\helpers\GalleryHelper;
-use common\helpers\RecordHelpers;
+
 use Yii;
 use backend\components\AdminController as BackendAdminController;
 use yii\base\Model;
 use yii\web\UploadedFile;
+use backend\models\EventContact;
+use backend\models\EventHasTags;
+use backend\models\EventSocialMedia;
+use backend\models\UserEvent;
+use common\helpers\GalleryHelper;
+use common\helpers\RecordHelpers;
 
 class BaseEventController extends BackendAdminController
 {
