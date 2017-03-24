@@ -170,7 +170,7 @@ class BaseEventController extends BackendAdminController
                 $model->save(0);
 
 //                $thumbnail_file_name = 'tn_' . $file_name;
-//                $thumbnail_path = Yii::$app->params['frontend_alias'] . Yii::$app->params['thumbnails'] . $thumbnail_file_name;
+//                $thumbnail_path = Yii::$app->params['frontend_alias'] . Yii::$app->params['event_thumbnail'] . $thumbnail_file_name;
 //
 //                $max_width_768 = 768;
 //                $max_width_180 = 180;
