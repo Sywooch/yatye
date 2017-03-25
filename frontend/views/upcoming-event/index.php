@@ -137,10 +137,10 @@ $this->title = $model->name;
                         </div>
                     </div>
                     <div class="post-meta clearfix div">
-                        <div class="post-meta-date"><i>Start </i> : <?php echo $model->getDate(); ?>
+                        <div class="post-meta-date"><i>Start </i> : <?php echo $model->getDate($model->start_date); ?>
                             <?php echo ($model->start_time != null) ? 'at ' . date('H:i', strtotime($model->start_time)) : ''; ?>
                         </div>
-                        <div class="post-meta-date"><i>End </i> : <?php echo $model->end_date; ?>
+                        <div class="post-meta-date"><i>End </i> : <?php echo $model->getDate($model->end_date); ?>
                             <?php echo ($model->end_time != null) ? 'at ' . date('H:i', strtotime($model->end_time)) : ''; ?>
                         </div>
                         <div class="post-meta-categories">

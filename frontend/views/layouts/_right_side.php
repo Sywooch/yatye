@@ -40,7 +40,7 @@ use yii\helpers\Url;
                                     <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
                                         <?php echo $upcoming_event->address; ?></a>
                                 </h4>
-                                <div class="card-small-price"><?php echo $upcoming_event->getDate();?></div>
+                                <div class="card-small-price"><?php echo $upcoming_event->getDate($upcoming_event->start_date);?></div>
                             </div>
                         </div>
                     </div>
