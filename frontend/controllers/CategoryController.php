@@ -22,9 +22,9 @@ class CategoryController extends BaseController
 
         if (!is_null($model)) {
 
-            $premium_places = $model->getPremiumList()->all();
-            $basic_places = $model->getBasicList()->all();
-            $free_places = $model->getFreeList()->all();
+            $premium_places = $model->getPremiumList()->limit(10)->all();
+            $basic_places = $model->getBasicList()->limit(6)->all();
+            $free_places = $model->getFreeList()->limit(16)->all();
             $services = $model->getServices();
             $get_most_viewed = $model->getMostViewed();
             $recent_added_places = Place::getRecentAddedPlaces();

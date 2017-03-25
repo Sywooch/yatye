@@ -6,7 +6,7 @@ use yii\widgets\ListView;
 $this->title = Yii::$app->name . ' - ' . $model->name;
 
 $dataProvider->pagination = [
-    'pageSize' => 12,
+    'pageSize' => 24,
 ];
 $category = $model;
 ?>

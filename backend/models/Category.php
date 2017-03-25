@@ -131,24 +131,19 @@ class Category extends BaseCategory
     {
         return $this->getList()
             ->andWhere(['profile_type' => Yii::$app->params['PREMIUM']])
-            ->orderBy(new Expression('RAND()'))
-            ->limit(6);
+            ->orderBy(new Expression('RAND()'));
     }
 
     public function getBasicList()
     {
         return $this->getList()
-            //->andWhere(['profile_type' => Yii::$app->params['BASIC']])
-            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM'] . ', RAND()'))
-            ->limit(6);
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM'] . ', RAND()'));
     }
 
     public function getFreeList()
     {
         return $this->getList()
-            //->andWhere(['profile_type' => Yii::$app->params['FREE']])
-            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['BASIC'] . ', RAND()'))
-            ->limit(16);
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['BASIC'] . ', RAND()'));
     }
 
     public function getViews()
