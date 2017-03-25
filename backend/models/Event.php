@@ -232,8 +232,6 @@ class Event extends BaseEvent
         return ValueHelpers::getUser($this);
     }
 
-    /*#################################################################################*/
-
     public function getEventUsers()
     {
         return (new Query())
