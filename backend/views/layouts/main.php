@@ -45,9 +45,6 @@ endif;
                             <div class="content-admin-main">
                                 <div class="content-admin-main-inner">
                                     <div class="container-fluid">
-                                        <?= Breadcrumbs::widget([
-                                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                                        ]) ?>
                                         <?= $content ?>
                                     </div>
                                 </div>
