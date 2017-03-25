@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
-            'address',
+//            'address',
             'start_date',
             'start_time',
             'end_date',
