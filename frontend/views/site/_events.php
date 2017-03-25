@@ -19,17 +19,16 @@ use yii\helpers\Url;
                     <div class="grid">
                         <?php if (!empty($up_coming_events)):
                             foreach ($up_coming_events as $event):?>
-
                                 <div class="grid-item col-xs-12 col-sm-3">
                                     <div class="card" data-background-image="<?php echo $event->getBanner(); ?>">
                                         <div class="card-label">
-                                            <a href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
+                                            <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
                                                 <?php echo $event->getDate($event->start_date) ?>
                                             </a>
                                         </div>
                                         <div class="card-content">
                                             <h2 style="font-size: 18px;">
-                                                <a href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
+                                                <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
                                                     <?php echo $event->name ?>
                                                 </a>
                                             </h2>
@@ -39,7 +38,7 @@ use yii\helpers\Url;
                                                 </div>
                                             <?php endif; ?>
                                             <div class="card-actions">
-                                                <a href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>"
+                                                <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>"
                                                    class="fa fa-eye"></a>
                                             </div>
                                         </div>
