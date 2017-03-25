@@ -26,7 +26,9 @@ class EventController extends BaseEventController
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Event::find()->orderBy(new Expression('`start_date` ASC')),
+            'query' => Event::find()
+                ->where(new Expression('`start_date` >= CURRENT_TIMESTAMP'))
+                ->orderBy(new Expression('`start_date` ASC')),
         ]);
 
         return $this->render('index', [
