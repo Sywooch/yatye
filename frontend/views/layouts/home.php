@@ -106,7 +106,7 @@ AppAsset::register($this);
                 element: "#directory",
                 title: "Directory",
                 content: "Start browsing our directory by clicking each category.",
-                placement: "bottom",
+                placement: "top",
             },
             {
                 element: "#events",
