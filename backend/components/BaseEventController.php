@@ -25,6 +25,12 @@ class BaseEventController extends BackendAdminController
     public function actionAddContacts()
     {
         $event_id = Yii::$app->request->get('event_id');
+        $app_id = Yii::$app->request->get('app_id');
+        Yii::warning('App ID ' . $app_id);
+        $url = $this->redirect(['view', 'id' => $event_id]);
+        if ($app_id == 'app-backend'){
+            $url = $this->redirect(['update', 'id' => $event_id]);
+        }
         $count = count(Yii::$app->request->post('EventContact', []));
         $contacts = [new EventContact()];
 
@@ -43,17 +49,23 @@ class BaseEventController extends BackendAdminController
                 $j++;
             }
             Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Contacts successfully added.'));
-            return $this->redirect(['update', 'id' => $event_id]);
+            return $url;
 
         } else {
             Yii::$app->getSession()->setFlash("fail", Yii::t('app', 'Contacts are not added.'));
-            return $this->redirect(['update', 'id' => $event_id]);
+            return $url;
         }
     }
 
     public function actionAddSocials()
     {
         $event_id = Yii::$app->request->get('event_id');
+        $app_id = Yii::$app->request->get('app_id');
+        Yii::warning('App ID ' . $app_id);
+        $url = $this->redirect(['view', 'id' => $event_id]);
+        if ($app_id == 'app-backend'){
+            $url = $this->redirect(['update', 'id' => $event_id]);
+        }
 
         $count = count(Yii::$app->request->post('EventSocialMedia', []));
         $socials = [new EventSocialMedia()];
@@ -72,11 +84,11 @@ class BaseEventController extends BackendAdminController
                 $j++;
             }
             Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Social media is set successfully!'));
-            return $this->redirect(['update', 'id' => $event_id]);
+            return $url;
 
         } else {
             Yii::$app->getSession()->setFlash("fail", Yii::t('app', 'Social media did not set! Try again'));
-            return $this->redirect(['update', 'id' => $event_id]);
+            return $url;
         }
     }
 
@@ -87,11 +99,8 @@ class BaseEventController extends BackendAdminController
         $post = Yii::$app->request->post('EventHasTags');
 
         Yii::warning('App ID ' . $app_id);
-
         $url = $this->redirect(['view', 'id' => $event_id]);
-
         if ($app_id == 'app-backend'){
-
             $url = $this->redirect(['update', 'id' => $event_id]);
         }
 
