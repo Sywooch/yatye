@@ -109,8 +109,8 @@ class Event extends BaseEvent
         /*Tags*/
         $event_has_tags = new EventHasTags();
         $tags = EventHasTags::getNotTags($this->id);
-        $tagDataProvider = new ArrayDataProvider([
-            'allModels' => $this->getTags(),
+        $tagDataProvider = new ActiveDataProvider([
+            'query' => $this->getEventTags(),
             'sort' => [
                 'attributes' => ['name'],
             ],
@@ -122,8 +122,8 @@ class Event extends BaseEvent
         /*User*/
         $user_event = new UserEvent();
         $users = UserEvent::getUsers($this->id);
-        $userDataProvider = new ArrayDataProvider([
-            'allModels' => $this->getEventUsers(),
+        $userDataProvider = new ActiveDataProvider([
+            'query' => $this->getUsers(),
             'sort' => [
                 'attributes' => ['email'],
             ],
@@ -182,43 +182,31 @@ class Event extends BaseEvent
         return ($this->banner != null) ? Yii::$app->params['event_images'] . $this->banner : Yii::$app->params['pragmaticmates-logo-jpg'];
     }
 
-
-    /*#################################################################################*/
-
-    public function getTags()
+    public function getEventHasTags()
     {
-        $query = new Query();
-
-        $select = $query
-            ->select('`event_tags`.`id`')
-            ->addSelect('`event_tags`.`name`')
-            ->addSelect('`event_tags`.`status`')
-            ->addSelect('`event_has_tags`.`event_id`')
-            ->from('`event_tags`, `event`, `event_has_tags`')
-            ->where('`event`.`id` = `event_has_tags`.`event_id`')
-            ->andWhere('`event_tags`.`id` = `event_has_tags`.`event_tag_id`')
-            ->andWhere('`event`.`id` = ' . $this->id)
-            ->orderBy('`event_tags`.`name`')
+        return (new Query())
+            ->select('DISTINCT `event_has_tags`.`event_tag_id`')
+            ->from('`event_tags`, `event_has_tags`')
+            ->where('`event_tags`.`id` = `event_has_tags`.`event_tag_id`')
+            ->andWhere('`event_has_tags`.`event_id` = ' . $this->id)
             ->all();
-
-        return $select;
     }
 
-    public function getEventUsers()
+    public function getEventTagIds()
     {
-        $query = new Query();
+        $event_tag_ids = array();
+        $event_has_tags = $this->getEventHasTags();
 
-        $select = $query
-            ->select('`user`.`id`')
-            ->addSelect('`user`.`email`')
-            ->addSelect('`user_event`.`event_id`')
-            ->from('`user`, `event`, `user_event`')
-            ->where('`event`.`id` = `user_event`.`event_id`')
-            ->andWhere('`user`.`id` = `user_event`.`user_id`')
-            ->andWhere('`event`.`id` = ' . $this->id)
-            ->orderBy('`user`.`email`')
-            ->all();
-        return $select;
+        foreach ($event_has_tags as $event_has_tag) {
+            $event_tag_ids[] = $event_has_tag['event_tag_id'];
+        }
+        return $event_tag_ids;
+    }
+
+    public function getEventTags()
+    {
+        $event_tag_ids = $this->getEventTagIds();
+        return EventTags::find()->where(['in', 'id', $event_tag_ids]);
     }
 
     public function getContacts()
@@ -243,4 +231,34 @@ class Event extends BaseEvent
     {
         return ValueHelpers::getUser($this);
     }
+
+    /*#################################################################################*/
+
+    public function getEventUsers()
+    {
+        return (new Query())
+            ->select('DISTINCT `user_event`.`user_id`')
+            ->from('`user`, `user_event`')
+            ->where('`user`.`id` = `user_event`.`user_id`')
+            ->andWhere('`user_event`.`event_id` = ' . $this->id)
+            ->all();
+    }
+
+    public function getUserIds()
+    {
+        $user_ids = array();
+        $user_events = $this->getEventUsers();
+
+        foreach ($user_events as $user_event) {
+            $user_ids[] = $user_event['user_id'];
+        }
+        return $user_ids;
+    }
+
+    public function getUsers()
+    {
+        $user_ids = $this->getUserIds();
+        return User::find()->where(['in', 'id', $user_ids]);
+    }
+
 }

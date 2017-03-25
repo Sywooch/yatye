@@ -166,10 +166,10 @@ $this->title = $model->name;
                     <?php endif; ?>
 
                     <div class="post-meta-tags clearfix">
-                        <?php if (!empty($tags)): ?>
+                        <?php if (!empty($event_tags)): ?>
                             <ul>
-                                <?php foreach ($tags as $tag): ?>
-                                    <li class="tag"><a href="#"><?php echo $tag['name']; ?></a></li>
+                                <?php foreach ($event_tags as $event_tag): ?>
+                                    <li class="tag"><a href="#"><?php echo $event_tag->name; ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>

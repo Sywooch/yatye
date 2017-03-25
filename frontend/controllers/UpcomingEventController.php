@@ -31,13 +31,14 @@ class UpcomingEventController extends BaseController
             $contacts = $model->getContacts();
             $socials = $model->getSocials();
             $tags = $model->getTags();
-
+            $event_tags = $model->getEventTags();
 
             return $this->render('index', [
                 'model' => $model,
                 'contacts' => $contacts,
                 'socials' => $socials,
                 'tags' => $tags,
+                'event_tags' => $event_tags,
             ]);
 
         } else {

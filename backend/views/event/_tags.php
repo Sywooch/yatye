@@ -12,6 +12,7 @@ use yii\helpers\Url;
 use kartik\select2\Select2;
 use yii\grid\GridView;
 
+
 ?>
 
 <div class="row">
@@ -61,8 +62,10 @@ use yii\grid\GridView;
                         'template' => '{delete}',
                         'buttons' => [
                             'delete' => function ($url, $model) {
+                                $session = Yii::$app->session;
+                                $event_id = $session->get('event_id');
                                 return Html::a(Html::tag('i', '',
-                                    ['class' => 'fa fa-trash']), Yii::$app->request->baseUrl . '/event/delete-item/?event_tag_id=' . $model['id'] . '&event_id=' . $model['event_id'],
+                                    ['class' => 'fa fa-trash']), Yii::$app->request->baseUrl . '/event/delete-item/?event_tag_id=' . $model->id . '&event_id=' . $event_id,
                                     [
                                         'class' => 'btn btn-danger btn-xs',
                                         'data' => [

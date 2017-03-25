@@ -23,7 +23,7 @@ use yii\helpers\Url;
                     <div class="cards-small">
                         <div class="card-small">
                             <div class="card-small-image">
-                                <a href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
+                                <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
                                     <img class="img-responsive img-alt-thumbnail_tn"
                                          src="<?php echo $upcoming_event->getBanner(); ?>"
                                          alt="<?php echo $upcoming_event->name; ?>">
@@ -33,11 +33,11 @@ use yii\helpers\Url;
 
                             <div class="card-small-content">
                                 <h3>
-                                    <a href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
+                                    <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
                                         <?php echo $upcoming_event->name; ?></a>
                                 </h3>
                                 <h4>
-                                    <a href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
+                                    <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
                                         <?php echo $upcoming_event->address; ?></a>
                                 </h4>
                                 <div class="card-small-price"><?php echo $upcoming_event->getDate();?></div>

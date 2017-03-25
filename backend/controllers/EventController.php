@@ -61,6 +61,9 @@ class EventController extends BaseEventController
         $model = $this->findModel($id);
         $params = $model->getParameters();
 
+        $session = Yii::$app->session;
+        $session->set('event_id', $model->id);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->image_file = UploadedFile::getInstance($model, 'image_file');
             $old_image = $model->getPath() . $model->banner;
