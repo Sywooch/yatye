@@ -43,16 +43,8 @@ class SiteController extends BaseController
             ->andWhere(['!=', 'id', 5])
             ->orderBy('RAND()')
             ->all();
-
-        $up_coming_events = Event::find()
-            ->where(new Expression('`start_date` >= CURRENT_DATE'))
-            ->andWhere(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('`start_date` ASC LIMIT 6'))
-            ->all();
-
         return $this->render('index', [
             'service_categories' => $service_categories,
-            'up_coming_events' => $up_coming_events,
         ]);
     }
 

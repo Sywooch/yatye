@@ -61,9 +61,13 @@ $this->title = Yii::$app->name;
             <!--            </div>-->
 
             <!--Up coming events-->
-            <?php if (!empty($up_coming_events) && count($up_coming_events) >= 6) : //&& count($up_coming_events) >= 6
+            <?php
+            $data = $this->context->accessData();
+            $upcoming_events = $data['get_upcoming_events'];
+
+            if (!empty($upcoming_events) && count($upcoming_events) >= 5) : //&& count($up_coming_events) >= 6
                 echo $this->render('_events', [
-                    'up_coming_events' => $up_coming_events,
+                    'up_coming_events' => $upcoming_events,
                 ]);
             endif; ?>
 

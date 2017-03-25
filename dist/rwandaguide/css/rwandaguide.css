@@ -553,7 +553,7 @@ Ref: http://codepen.io/chelovekov/pen/ayKAn
 }
 
 .img-alt-thumbnail_tn, .img-alt-thumbnail, .img-alt {
-    "Helvetica Neue", Helvetica, Arial, sans-serif;
+"Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #5d4942;
 
 }
@@ -568,4 +568,8 @@ Ref: http://codepen.io/chelovekov/pen/ayKAn
 
 .img-alt {
     font-size: 32px;
+}
+
+.card-label, .card-simple-label, .card-row-label {
+    text-align: center;
 }

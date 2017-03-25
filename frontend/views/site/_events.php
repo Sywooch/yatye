@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 ?>
     <div class="container">
-        <div class="block background-white p30 row div">
+        <div class="block background-white p30 mt30 mb30 row div">
             <div class="text-center" style="margin-top: -30px">
                 <h1><?php echo Yii::t('app', 'Upcoming events') ?></h1>
             </div>

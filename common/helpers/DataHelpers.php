@@ -157,6 +157,7 @@ class DataHelpers
             ->where(new Expression('`start_date` >= CURRENT_TIMESTAMP'))
             ->andWhere(['status' => Yii::$app->params['active']])
             ->orderBy(new Expression('`start_date`'))
+            ->limit(8)
             ->all();
     }
 
