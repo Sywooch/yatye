@@ -171,7 +171,7 @@ class Event extends BaseEvent
         } else if ($difference == 1) {
             $date = Yii::t('app', 'Tomorrow');
         } else if ($difference <= 7) {
-            $date = date('D', $_date);
+            $date = date('l', $_date);
         } else {
             $date = date('D d M, Y', $_date);
         }
