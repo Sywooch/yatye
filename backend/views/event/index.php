@@ -9,7 +9,7 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Events');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="background-white p20">
+<div class="background-white p30 row">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
