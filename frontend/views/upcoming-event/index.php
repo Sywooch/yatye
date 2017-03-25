@@ -8,13 +8,13 @@ $this->title = $model->name;
 ?>
 
 <div class="container">
-    <div class="row detail-content">
+    <div class="row">
         <div class="col-sm-8 col-lg-9">
             <div class="content">
                 <div class="page-title">
                     <h1><?php echo $model->name; ?></h1>
                 </div>
-                <div class="posts post-detail background-white p20 div row">
+                <div class="posts detail-content post-detail background-white p20 div row">
                     <div class="col-md-6 col-lg-6">
                         <?php if ($model->banner != null) { ?>
                             <a href="#">

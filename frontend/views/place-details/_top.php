@@ -24,7 +24,6 @@
                 <?php echo $this->render('_rating-form', [
                     'model' => $model,
                     'ratings' => $ratings,
-                    'place_id' => $place_id,
                 ]); ?>
             </div>
         </div>

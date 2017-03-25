@@ -4,51 +4,25 @@ use yii\helpers\Url;
 
 $this->title = Yii::$app->name . ' - ' . $model->name;
 ?>
-<div class="container">
+<div class="content">
+
+    <!--Banner-->
+    <?php if ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']): ?>
+        <?php echo $this->render('_banner', [
+            'model' => $model,
+        ]); ?>
+    <?php endif; ?>
     <div class="row detail-content">
         <div class="col-sm-7">
-            <div class="detail-gallery">
-                <?php if ($model->logo != null) { ?>
-                    <div class="detail-gallery-preview">
-                        <a href="#">
-                            <img alt="<?php echo $model->name ?>"
-                                 src="<?php echo $model->getLogo() ?>"
-                                 class="img-responsive img-alt">
-                        </a>
-                    </div>
-                <?php } else { ?>
-                    <div class="detail-gallery-preview">
-                        <div class="cards-wrapper">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card"
-                                         data-background-image="<?php echo Yii::$app->params['pragmaticmates-logo-jpg'] ?>">
-                                        <div class="card-content">
-                                            <h2><a href="#"><?php echo $model->name ?></a></h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php }
-                if (!empty($photos)){ ?>
-                <ul class="detail-gallery-index div">
-                    <?php foreach ($photos as $photo): ?>
-                        <li class="detail-gallery-list-item active">
-                            <a data-target="<?php echo Yii::$app->params['galleries'] . $photo->name ?>">
-                                <img src="<?php echo Yii::$app->params['tn_thumbnails'] . $photo->name ?>"
-                                     alt="<?php echo $model->name ?>"
-                                     class="img-responsive img-alt-thumbnail_tn">
-                            </a>
-                        </li>
-                    <?php endforeach;
-                    } ?>
-                </ul>
-            </div>
 
-            <?php if (($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']) && ($model->latitude != null || $model->longitude != null))  : ?>
-                <!--Maps-->
+            <!--Gallery-->
+            <?php echo $this->render('_gallery', [
+                'model' => $model,
+                'photos' => $photos,
+            ]); ?>
+            <!--Maps-->
+            <?php if (($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC'])
+                && ($model->latitude != null || $model->longitude != null))  : ?>
                 <?php echo $this->render('_map', [
                     'model' => $model,
                 ]); ?>
@@ -107,7 +81,6 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
             ]); ?>
         </div>
 
-
         <!--Right Side-->
         <div class="col-sm-5">
             <?php echo $this->render('_right_side', [
@@ -120,41 +93,15 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
                 'working_hours' => $working_hours,
                 'amenities' => $amenities,
                 'contact_form' => $contact_form,
-
             ]); ?>
         </div>
 
         <div class="col-sm-12">
-            <?php if (!empty($related_places)) : ?>
-                <h2>You may also like</h2>
-                <div class="cards-simple-wrapper">
-                    <div class="row">
-
-                        <?php foreach ($related_places as $related_place): ?>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="card-simple" data-background-image="<?php echo $related_place->getThumbnailLogo() ?>">
-                                    <div class="card-simple-background">
-                                        <div class="card-simple-content">
-                                            <h2>
-                                                <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $related_place->slug ?>" target="_blank"><?php echo $related_place->name ?></a>
-                                            </h2>
-
-                                            <div class="card-simple-rating">
-                                                <?php echo $related_place->getRatingStars() ?>
-                                            </div>
-
-                                            <div class="card-simple-actions">
-                                                <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $related_place->slug ?>" target="_blank" class="fa fa-eye"></a>
-                                            </div>
-                                        </div>
-                                        <div class="card-simple-label" style="opacity: 0.7"><small><?php echo $related_place->street ?></small></div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
+            <?php if (!empty($related_places)) :
+                echo $this->render('_related', [
+                    'model' => $model,
+                    'related_places' => $related_places,
+                ]); endif; ?>
         </div>
     </div>
 </div>

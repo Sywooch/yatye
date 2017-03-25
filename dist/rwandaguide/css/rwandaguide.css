@@ -573,3 +573,9 @@ Ref: http://codepen.io/chelovekov/pen/ayKAn
 .card-label, .card-simple-label, .card-row-label {
     text-align: center;
 }
+
+.popover-title {
+    color: #c6af5c;
+    font-size: 18px;
+    background-color: #5d4942;
+}

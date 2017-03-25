@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 ?>
     <div class="container">
-        <div class="block background-white p30 mt30 mb30 row div">
+        <div id="events" class="block background-white p30 mt30 mb30 row div">
             <div class="text-center" style="margin-top: -30px">
                 <h1><?php echo Yii::t('app', 'Upcoming events') ?></h1>
             </div>
@@ -22,13 +22,15 @@ use yii\helpers\Url;
                                 <div class="grid-item col-xs-12 col-sm-3">
                                     <div class="card" data-background-image="<?php echo $event->getBanner(); ?>">
                                         <div class="card-label">
-                                            <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
+                                            <a target="_blank"
+                                               href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
                                                 <?php echo $event->getDate($event->start_date) ?>
                                             </a>
                                         </div>
                                         <div class="card-content">
                                             <h2 style="font-size: 18px;">
-                                                <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
+                                                <a target="_blank"
+                                                   href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
                                                     <?php echo $event->name ?>
                                                 </a>
                                             </h2>
@@ -38,7 +40,8 @@ use yii\helpers\Url;
                                                 </div>
                                             <?php endif; ?>
                                             <div class="card-actions">
-                                                <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>"
+                                                <a target="_blank"
+                                                   href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>"
                                                    class="fa fa-eye"></a>
                                             </div>
                                         </div>

@@ -90,6 +90,42 @@ AppAsset::register($this);
 <?php echo $this->render('@app/views/layouts/scripts/_twitter') ?>
 <?php echo $this->render('@app/views/layouts/scripts/_other_scripts') ?>
 <?php $this->endBody() ?>
+
+<script>
+    // Instance the tour
+    var tour = new Tour({
+        steps: [
+            {
+                element: "#filter",
+                title: "Filter",
+                content: "When click on this button you go directly to the filter page. " +
+                "You may get the filtered list based on your choices",
+                placement: "left",
+            },
+            {
+                element: "#directory",
+                title: "Directory",
+                content: "Start browsing our directory by clicking each category.",
+                placement: "bottom",
+            },
+            {
+                element: "#events",
+                title: "Upcoming events",
+                content: "Check out upcoming events",
+                placement: "top",
+            }
+        ]});
+
+    // Initialize the tour
+    tour.init();
+
+    // Start the tour
+//    tour.start();
+
+    tour.restart();
+
+</script>
+
 </body>
 </html>
 <?php $this->endPage() ?>

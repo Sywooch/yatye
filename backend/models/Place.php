@@ -145,7 +145,7 @@ class Place extends BasePlace
         for ($i = 1; $i <= 5; $i++) {
             if ($ratings < $i) {
                 $stars .= '<i class="fa fa fa-star-o ratings"></i>';
-            }else{
+            } else {
                 $stars .= '<i class="fa fa fa-star ratings"></i>';
             }
         }
@@ -238,9 +238,28 @@ class Place extends BasePlace
         return Place::find()->filterWhere(['like', 'name', $post['name']]);;
     }
 
+    public function getGalleries()
+    {
+        return Gallery::find()
+            ->where(['place_id' => $this->id])
+            ->orderBy(new Expression('RAND()'))
+            ->limit(1)
+            ->all();
+    }
+
+    public function getPhoto()
+    {
+        $photo = array();
+        $galleries = $this->getGalleries();
+        foreach ($galleries as $gallery) {
+            $photo[] = $gallery->name;
+        }
+
+        Yii::warning('galleries : ' . $photo[0]);
+        return Yii::$app->params['galleries'] . $photo[0];
+    }
+
     /*###################################################################################*/
-
-
 
 
     public function generateCodes($place)
