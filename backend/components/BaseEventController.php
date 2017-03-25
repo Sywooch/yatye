@@ -83,19 +83,29 @@ class BaseEventController extends BackendAdminController
     public function actionAddTags()
     {
         $event_id = Yii::$app->request->get('event_id');
-        $POST_VARIABLE = Yii::$app->request->post('EventHasTags');
+        $app_id = Yii::$app->request->get('app_id');
+        $post = Yii::$app->request->post('EventHasTags');
+
+        Yii::warning('App ID ' . $app_id);
+
+        $url = $this->redirect(['view', 'id' => $event_id]);
+
+        if ($app_id == 'app-backend'){
+
+            $url = $this->redirect(['update', 'id' => $event_id]);
+        }
 
         if (Yii::$app->request->isPost) {
-            foreach ($POST_VARIABLE['event_tag_id'] as $key => $event_tag_id) {
+            foreach ($post['event_tag_id'] as $key => $event_tag_id) {
                 $model = new EventHasTags();
                 RecordHelpers::saveModelHasData($model, 'event_id', 'event_tag_id', $event_id, $event_tag_id);
             }
 
             Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Tags successfully added.'));
-            return $this->redirect(['update', 'id' => $event_id]);
+            return $url;
         } else {
             Yii::$app->getSession()->setFlash("fail", Yii::t('app', 'Tags are not added.'));
-            return $this->redirect(['update', 'id' => $event_id]);
+            return $url;
         }
     }
 
