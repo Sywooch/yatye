@@ -25,13 +25,13 @@ use yii\helpers\Url;
                                         <div class="card-label">
                                             <?php
                                             $date = new DateTime();
-                                            $match_date = new DateTime($event->start_at);
+                                            $match_date = new DateTime($event->start_date);
                                             $interval = $date->diff($match_date);
 
                                             if ($interval->days == 0): ?>
                                                 <a href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>"><?php echo Yii::t('app', 'Today') ?></a>
                                             <?php else : ?>
-                                                <a href="#"><?php echo date('D d M', strtotime($event->start_at)) ?></a>
+                                                <a href="#"><?php echo date('D d M', strtotime($event->start_date)) ?></a>
                                             <?php endif; ?>
                                         </div>
                                         <div class="card-content">
