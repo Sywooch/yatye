@@ -7,6 +7,7 @@ use backend\models\Gallery;
 use Yii;
 use backend\models\Event;
 use yii\data\ActiveDataProvider;
+use yii\db\Expression;
 use yii\web\NotFoundHttpException;
 use backend\components\BaseEventController;
 use yii\web\UploadedFile;
@@ -25,7 +26,7 @@ class EventController extends BaseEventController
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Event::find(),
+            'query' => Event::find()->orderBy(new Expression('`start_date` ASC')),
         ]);
 
         return $this->render('index', [
