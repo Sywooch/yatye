@@ -8,6 +8,7 @@ use Yii;
 use backend\models\Event;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
+use yii\db\Expression;
 use yii\web\NotFoundHttpException;
 use backend\models\EventContact;
 use backend\models\EventHasTags;
@@ -30,7 +31,9 @@ class EventController extends BaseEventController
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Event::find(),
+            'query' => Event::find()
+                ->where(new Expression('`start_date` >= CURRENT_TIMESTAMP'))
+                ->orderBy(new Expression('`start_date` ASC')),
         ]);
 
         return $this->render('index', [
