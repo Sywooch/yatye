@@ -21,22 +21,17 @@ use yii\helpers\Url;
                             foreach ($up_coming_events as $event):?>
 
                                 <div class="grid-item col-xs-12 col-sm-3">
-                                    <div class="card" data-background-image="<?php echo ($event->banner != null) ? Yii::$app->params['event_images'] . $event->banner : Yii::$app->params['tmp'] . 'product-3.jpg' ?>">
+                                    <div class="card" data-background-image="<?php echo $event->getBanner(); ?>">
                                         <div class="card-label">
-                                            <?php
-                                            $date = new DateTime();
-                                            $match_date = new DateTime($event->start_date);
-                                            $interval = $date->diff($match_date);
-
-                                            if ($interval->days == 0): ?>
-                                                <a href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>"><?php echo Yii::t('app', 'Today') ?></a>
-                                            <?php else : ?>
-                                                <a href="#"><?php echo date('D d M', strtotime($event->start_date)) ?></a>
-                                            <?php endif; ?>
+                                            <a href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
+                                                <?php echo $event->getDate($event->start_date) ?>
+                                            </a>
                                         </div>
                                         <div class="card-content">
                                             <h2 style="font-size: 18px;">
-                                                <a href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>"><?php echo $event->name ?></a>
+                                                <a href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
+                                                    <?php echo $event->name ?>
+                                                </a>
                                             </h2>
                                             <?php if ($event->address != null): ?>
                                                 <div class="card-meta">
