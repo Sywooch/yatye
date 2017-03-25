@@ -74,8 +74,6 @@ $this->title = Yii::$app->name;
         </div>
     </div>
 </div>
-<?php echo $this->render('@app/views/layouts/_footer') ?>
-
 <?php $this->registerJs("
         $(function(){
             var m = new Masonry($('.grid').get()[0], {

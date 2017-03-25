@@ -7,7 +7,7 @@
  */
 ?>
 
-<div class="footer-top visible-md visible-lg" style="padding: 15px;">
+<div class="footer-top visible-md visible-lg" style="padding: 15px; background-color: white;">
     <div class="row pre-load">
         <div class="col-sm-3">
             <a data-pin-do="embedUser" data-pin-board-width="370" data-pin-scale-height="230"
