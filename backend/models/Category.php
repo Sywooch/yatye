@@ -180,4 +180,25 @@ class Category extends BaseCategory
     {
         return ValueHelpers::getUser($this);
     }
+
+    public function getOneRandomGallery()
+    {
+        $service_ids = $this->getServiceIds();
+        return Gallery::find()
+            ->where(['in', 'service_id', $service_ids])
+            ->andWhere(['!=', 'name', ''])
+            ->orderBy(new Expression('RAND()'))
+            ->limit(1)
+            ->all();
+    }
+
+    public function getGalleries()
+    {
+        $photo = array();
+        $galleries = $this->getOneRandomGallery();
+        foreach ($galleries as $gallery) {
+            $photo[] = $gallery->name;
+        }
+        return Yii::$app->params['thumbnails'] . $photo[0];
+    }
 }

@@ -30,7 +30,7 @@ $this->title = Yii::$app->name;
                             </div>
                             <?php if (!empty($service_categories)):foreach ($service_categories as $category): ?>
                                 <div class="col-xs-12 col-sm-4 item">
-                                    <div class="card" data-background-image="<?php echo $category->getPictures() ?>">
+                                    <div class="card" data-background-image="<?php echo $category->getGalleries() ?>">
                                         <div class="card-content">
                                             <h2>
                                                 <a href="<?php echo Url::to(['/category/' . $category->slug]) ?>"><?php echo $category->name ?></a>
