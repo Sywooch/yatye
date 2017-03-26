@@ -129,6 +129,7 @@ class GalleryController extends BackendAdminController
                 'categories' => $categories,
                 'place_id' => $place_id,
                 'places' => $places,
+                'place' => $place,
             ]);
         }
     }

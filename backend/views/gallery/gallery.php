@@ -15,11 +15,12 @@ use unclead\widgets\MultipleInputColumn;
 use kartik\widgets\Select2;
 use kartik\widgets\DatePicker;
 
-$this->title = 'Gallery';
+$this->title = 'Gallery - ' . $place->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Galleries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="background-white p20 mb50">
+<div class="background-white p30">
+    <h3><?= Html::encode($this->title) ?></h3>
     <div class="row">
         <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_INLINE, 'method' => 'get']) ?>
         <div class="form-group">
