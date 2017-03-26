@@ -113,12 +113,20 @@ class DataHelpers
 
     public static function getPlacesInArray()
     {
-        return ArrayHelper::map(Place::find()->where(['status' => Yii::$app->params['pending']])->orderBy(new Expression('updated_at ASC'))->limit(30)->all(), 'id', 'name');
+        return ArrayHelper::map(Place::find()
+            ->where(['status' => Yii::$app->params['pending']])
+            ->orderBy(new Expression('updated_at ASC'))
+            ->limit(30)
+            ->all(), 'id', 'name');
     }
 
     public static function getPlacesInArray1()
     {
-        return ArrayHelper::map(Place::find()->where(['main' => 0])->orderBy('id')->limit(10)->all(), 'id', 'name');
+        return ArrayHelper::map(Place::find()
+            ->where(['main' => 0])
+            ->orderBy('id')
+            ->limit(10)
+            ->all(), 'id', 'name');
     }
 
     public static function getPlaceById($id)

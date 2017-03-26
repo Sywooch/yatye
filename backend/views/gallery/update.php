@@ -6,6 +6,8 @@ use yii\helpers\Html;
 /* @var $model backend\models\Gallery */
 
 $this->title = $model->getPlaceName() . ' - ' . $model->getServiceName();
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Galleries'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="background-white p20">

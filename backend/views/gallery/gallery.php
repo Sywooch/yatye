@@ -12,9 +12,12 @@ use yii\helpers\Url;
 use yii\web\View;
 use unclead\widgets\TabularInput;
 use unclead\widgets\MultipleInputColumn;
-use yii\grid\GridView;
-use kartik\widgets\DepDrop;
+use kartik\widgets\Select2;
+use kartik\widgets\DatePicker;
+
 $this->title = 'Gallery';
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Galleries'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="background-white p20 mb50">
     <div class="row">
@@ -28,14 +31,7 @@ $this->title = 'Gallery';
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <?php $form = ActiveForm::begin([
                 'action' => Url::to(['gallery/gallery', 'place_id' => $place_id]),
-            ]);
-//            $services_data = $this->context->accessDataByIds($model->category_id);
-//            $services = $services_data['get_services'];
-//
-//            $service_data_in_array = $this->context->accessDataByIds($services);
-//            $services_in_array = $service_data_in_array['get_data_in_array'];
-
-            ?>
+            ]); ?>
             <?= TabularInput::widget([
                 'models' => $galleries,
                 'attributeOptions' => [
@@ -47,6 +43,7 @@ $this->title = 'Gallery';
                 ],
                 'addButtonOptions' => [
                     'class' => 'btn btn-secondary',
+                    'style' => 'margin-top:30px',
                 ],
                 'columns' => [
                     [
@@ -56,49 +53,40 @@ $this->title = 'Gallery';
                         'value' => function ($data) {
                             return Html::img(Yii::$app->params['galleries'] . $data->name, [
                                 'class' => 'img-responsive',
-                                'style' => 'width: 80px;height:40px;',
+                                'style' => 'width: 80px;height:50px;',
                             ]);
                         },
                     ],
                     [
                         'name' => 'service_id',
                         'title' => 'Service',
-                        'type' => 'dropDownList',
-                        'items' => $services,
-                    ],
+                        'type' => Select2::className(),
+                        'options' => [
+                            'data' => $services,
+                            'options' => [
+                                'placeholder' => Yii::t('app', 'Service'),
+                                'style' => 'margin-top:60px',
+                            ],
+                            'pluginOptions' => [
 
-//                    [
-//                        'name' => 'category_id',
-//                        'title' => 'Category',
-//                        'type' => 'dropDownList',
-//                        'items' => $categories,
-//                        'options' => [
-//                            'id' => 'category_id',
-//                        ],
-//                    ],
-//                    [
-//                        'name' => 'service_id',
-//                        'title' => 'Service',
-//                        'type' => DepDrop::className(),
-//                        'options' => [
-//                            'pluginOptions' => [
-//                                'depends' => ['category_id'],
-//                                'placeholder' => Yii::t('app', 'Select a service ...'),
-//                                'url' => Url::to(['/gallery/services']),
-//                            ],
-//                            'id' => 'service_id',
-//                            'data' => $services_in_array,
-//                        ],
-//                        'headerOptions' => [
-//                            'style' => 'width: 250px;',
-//                        ]
-//                    ],
+                            ],
+                        ],
+                    ],
                     [
-                        'name' => 'caption',
-                        'title' => 'Caption',
-                        'type' => MultipleInputColumn::TYPE_TEXT_INPUT,
+                        'name' => 'expire_at',
+                        'title' => 'Expire',
+                        'type' => DatePicker::classname(),
+                        'options' => [
+                            'options' => [
+                                'placeholder' => Yii::t('app', 'Expire'),
+                                'value' => date('Y-d-m'),
+                            ],
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'format' => 'yyyy-mm-dd'
+                            ],
+                        ],
                     ],
-
                 ],
             ]) ?>
             <?php echo Html::submitButton('Save Galleries', ['class' => 'btn btn-primary pull-right']) ?>
