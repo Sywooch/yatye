@@ -11,9 +11,7 @@ use kartik\form\ActiveForm;
 use yii\helpers\Url;
 use yii\web\View;
 use unclead\widgets\TabularInput;
-use unclead\widgets\MultipleInputColumn;
 use kartik\widgets\Select2;
-use kartik\widgets\DatePicker;
 
 $this->title = 'Gallery - ' . $place->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Galleries'), 'url' => ['index']];
@@ -23,9 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <h3><?= Html::encode($this->title) ?></h3>
     <div class="row">
         <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_INLINE, 'method' => 'get']) ?>
-        <div class="form-group">
-            <?= $form->field($model, 'name')->dropDownList($places, ['id' => 'place-id', 'prompt' => 'Select Place'])->label(false); ?>
-        </div>
+        <?= $form->field($model, 'name')
+            ->dropDownList($places, ['id' => 'place-id', 'prompt' => 'Select Place'])
+            ->label(false); ?>
+        <small>: <?php echo count($count) ?></small>
         <?php ActiveForm::end(); ?>
     </div>
     <div class="row">
