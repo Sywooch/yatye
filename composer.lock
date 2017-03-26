@@ -4,8 +4,68 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4a5a4650243175478306ed29f206824",
+    "content-hash": "0ec8eaa8cdd9fc53519c558a5a786525",
     "packages": [
+        {
+            "name": "2amigos/yii2-ckeditor-widget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-ckeditor-widget.git",
+                "reference": "60e4d2dbb138706c8c2195a1b29c420bda044b19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-ckeditor-widget/zipball/60e4d2dbb138706c8c2195a1b29c420bda044b19",
+                "reference": "60e4d2dbb138706c8c2195a1b29c420bda044b19",
+                "shasum": ""
+            },
+            "require": {
+                "ckeditor/ckeditor": "dev-full/stable",
+                "yiisoft/yii2": "^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\ckeditor\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "2amigOS! Consulting Group",
+                    "email": "hola@2amigos.us",
+                    "homepage": "http://2amigos.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CKEditor widget for Yii2.",
+            "homepage": "http://yiiwheels.com/extension/ckeditor-widget",
+            "keywords": [
+                "2amigos",
+                "CKEditor",
+                "extension",
+                "widget",
+                "yii",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2016-12-01 21:22:21"
+        },
         {
             "name": "2amigos/yii2-file-upload-widget",
             "version": "dev-master",
@@ -133,6 +193,117 @@
                 "yii2"
             ],
             "time": "2016-09-10T19:18:19+00:00"
+        },
+        {
+            "name": "2amigos/yii2-tinymce-widget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-tinymce-widget.git",
+                "reference": "2e14193d6aff0ed0bdb1ff32fca971587443dc64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-tinymce-widget/zipball/2e14193d6aff0ed0bdb1ff32fca971587443dc64",
+                "reference": "2e14193d6aff0ed0bdb1ff32fca971587443dc64",
+                "shasum": ""
+            },
+            "require": {
+                "tinymce/tinymce": ">=4",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\tinymce\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "2amigOS! Consulting Group",
+                    "email": "hola@2amigos.us",
+                    "homepage": "http://2amigos.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TinyMCE widget for Yii2.",
+            "homepage": "http://yiiwheels.com/extension/tinymce-widget",
+            "keywords": [
+                "2amigos",
+                "extension",
+                "tinymce",
+                "widget",
+                "yii",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2017-02-08 09:08:32"
+        },
+        {
+            "name": "asofter/yii2-imperavi-redactor",
+            "version": "dev-master",
+            "target-dir": "yii/imperavi",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asofter/yii2-imperavi-redactor.git",
+                "reference": "5e2f7cfd8ebdb6bc30d495d51bb246321b0484a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asofter/yii2-imperavi-redactor/zipball/5e2f7cfd8ebdb6bc30d495d51bb246321b0484a2",
+                "reference": "5e2f7cfd8ebdb6bc30d495d51bb246321b0484a2",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "yii\\imperavi\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Yaremchuk",
+                    "email": "alwex10@gmail.com"
+                },
+                {
+                    "name": "Veaceslav Medvedev",
+                    "email": "slavcopost@gmail.com"
+                },
+                {
+                    "name": "Alexander Makarov",
+                    "email": "sam@rmcreative.ru",
+                    "homepage": "http://rmcreative.ru/"
+                }
+            ],
+            "description": "Imperavi Redactor WYSIWYG widget (OEM-licensed for Yii 2)",
+            "keywords": [
+                "imperavi",
+                "imperavi redactor",
+                "yii"
+            ],
+            "time": "2017-02-28 16:15:10"
         },
         {
             "name": "bower-asset/blueimp-canvas-to-blob",
@@ -593,6 +764,101 @@
                 "markdown-extra"
             ],
             "time": "2016-09-14T20:40:20+00:00"
+        },
+        {
+            "name": "cinghie/yii2-articles",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cinghie/yii2-articles.git",
+                "reference": "fcc268bb0c018091211a9fafb6e96d009166a1bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cinghie/yii2-articles/zipball/fcc268bb0c018091211a9fafb6e96d009166a1bb",
+                "reference": "fcc268bb0c018091211a9fafb6e96d009166a1bb",
+                "shasum": ""
+            },
+            "require": {
+                "2amigos/yii2-ckeditor-widget": "*",
+                "2amigos/yii2-tinymce-widget": "*",
+                "asofter/yii2-imperavi-redactor": "*",
+                "kartik-v/yii2-grid": "*",
+                "kartik-v/yii2-markdown": "*",
+                "kartik-v/yii2-mpdf": "*",
+                "kartik-v/yii2-widgets": "*",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-imagine": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "cinghie\\articles\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Gogodigital.it",
+                    "email": "info@gogodigital.it",
+                    "homepage": "http://www.gogodigital.it/"
+                }
+            ],
+            "description": "Yii2 Articles to create, manage, and delete articles in a Yii2 site.",
+            "homepage": "https://github.com/cinghie/yii2-articles",
+            "keywords": [
+                "articles",
+                "category",
+                "contents",
+                "module",
+                "seo",
+                "yii2"
+            ],
+            "time": "2017-03-23 14:37:48"
+        },
+        {
+            "name": "ckeditor/ckeditor",
+            "version": "dev-full/stable",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ckeditor/ckeditor-releases.git",
+                "reference": "2fb9111efe70608ba74dc4892371f785661eac3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ckeditor/ckeditor-releases/zipball/2fb9111efe70608ba74dc4892371f785661eac3f",
+                "reference": "2fb9111efe70608ba74dc4892371f785661eac3f",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+",
+                "LGPL-2.1+",
+                "MPL-1.1+"
+            ],
+            "authors": [
+                {
+                    "name": "CKSource",
+                    "homepage": "http://cksource.com"
+                }
+            ],
+            "description": "JavaScript WYSIWYG web text editor.",
+            "homepage": "http://ckeditor.com",
+            "keywords": [
+                "CKEditor",
+                "editor",
+                "fckeditor",
+                "html",
+                "javascript",
+                "richtext",
+                "text",
+                "wysiwyg"
+            ],
+            "time": "2017-01-12 18:09:18"
         },
         {
             "name": "dektrium/yii2-rbac",
@@ -1210,6 +1476,58 @@
                 "yii2"
             ],
             "time": "2017-02-22T05:58:53+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-markdown",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-markdown.git",
+                "reference": "cf172939cddf83c7136112b1647b2e3fd7518e18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-markdown/zipball/cf172939cddf83c7136112b1647b2e3fd7518e18",
+                "reference": "cf172939cddf83c7136112b1647b2e3fd7518e18",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*",
+                "michelf/php-markdown": "*",
+                "michelf/php-smartypants": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\markdown\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Advanced Markdown editing and conversion utilities for Yii Framework 2.0",
+            "homepage": "https://github.com/kartik-v/yii2-markdown",
+            "keywords": [
+                "bootstrap",
+                "converter",
+                "editor",
+                "extension",
+                "form",
+                "input",
+                "jquery",
+                "markdown",
+                "yii",
+                "yii2"
+            ],
+            "time": "2016-12-19 21:37:42"
         },
         {
             "name": "kartik-v/yii2-mpdf",
@@ -2242,6 +2560,107 @@
                 "yii2"
             ],
             "time": "2014-11-09T19:54:17+00:00"
+        },
+        {
+            "name": "michelf/php-markdown",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-markdown.git",
+                "reference": "1f51cc520948f66cd2af8cbc45a5ee175e774220"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/1f51cc520948f66cd2af8cbc45a5ee175e774220",
+                "reference": "1f51cc520948f66cd2af8cbc45a5ee175e774220",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-lib": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
+                }
+            ],
+            "description": "PHP Markdown",
+            "homepage": "https://michelf.ca/projects/php-markdown/",
+            "keywords": [
+                "markdown"
+            ],
+            "time": "2016-10-29T18:58:20+00:00"
+        },
+        {
+            "name": "michelf/php-smartypants",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-smartypants.git",
+                "reference": "47d17c90a4dfd0ccf1f87e25c65e6c8012415aad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-smartypants/zipball/47d17c90a4dfd0ccf1f87e25c65e6c8012415aad",
+                "reference": "47d17c90a4dfd0ccf1f87e25c65e6c8012415aad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
+                }
+            ],
+            "description": "PHP SmartyPants",
+            "homepage": "https://michelf.ca/projects/php-smartypants/",
+            "keywords": [
+                "dashes",
+                "quotes",
+                "spaces",
+                "typographer",
+                "typography"
+            ],
+            "time": "2016-12-13T01:01:17+00:00"
         },
         {
             "name": "mpdf/mpdf",

@@ -28,7 +28,8 @@
         "unclead/yii2-multiple-input": "~1.0",
         "mpdf/mpdf": "^6.1",
         "pendalf89/yii2-filemanager": "*",
-        "kartik-v/yii2-field-range": "dev-master"
+        "kartik-v/yii2-field-range": "dev-master",
+        "cinghie/yii2-articles": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
