@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php ActiveForm::end(); ?>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
             <?php $form = ActiveForm::begin([
                 'action' => Url::to(['gallery/gallery', 'place_id' => $place_id]),
             ]); ?>
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function ($data) {
                             return Html::img(Yii::$app->params['galleries'] . $data->name, [
                                 'class' => 'img-responsive',
-                                'style' => 'width: 80px;height:50px;',
+                                'style' => 'width: 100px;height:70px;',
                             ]);
                         },
                     ],
@@ -66,28 +66,27 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data' => $services,
                             'options' => [
                                 'placeholder' => Yii::t('app', 'Service'),
-                                'style' => 'margin-top:60px',
                             ],
                             'pluginOptions' => [
 
                             ],
                         ],
                     ],
-                    [
-                        'name' => 'expire_at',
-                        'title' => 'Expire',
-                        'type' => DatePicker::classname(),
-                        'options' => [
-                            'options' => [
-                                'placeholder' => Yii::t('app', 'Expire'),
-                                'value' => date('Y-d-m'),
-                            ],
-                            'pluginOptions' => [
-                                'autoclose' => true,
-                                'format' => 'yyyy-mm-dd'
-                            ],
-                        ],
-                    ],
+//                    [
+//                        'name' => 'expire_at',
+//                        'title' => 'Expire',
+//                        'type' => DatePicker::classname(),
+//                        'options' => [
+//                            'options' => [
+//                                'placeholder' => Yii::t('app', 'Expire'),
+//                                'value' => date('Y-d-m'),
+//                            ],
+//                            'pluginOptions' => [
+//                                'autoclose' => true,
+//                                'format' => 'yyyy-mm-dd'
+//                            ],
+//                        ],
+//                    ],
                 ],
             ]) ?>
             <?php echo Html::submitButton('Save Galleries', ['class' => 'btn btn-primary pull-right']) ?>
