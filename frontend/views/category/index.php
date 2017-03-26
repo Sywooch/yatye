@@ -18,12 +18,12 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
         endif; ?>
 
         <!--Advertisement Banners 840x120-->
-        <?php if (!empty($ads['840x120'])) :
-            echo $this->render('ads/ads_840_x_120', [
-                'model' => $model,
-                'ads' => $ads,
-            ]);
-        endif; ?>
+<!--        --><?php //if (!empty($ads['840x120'])) :
+//            echo $this->render('ads/ads_840_x_120', [
+//                'model' => $model,
+//                'ads' => $ads,
+//            ]);
+//        endif; ?>
 
 
         <!--Basic List-->
@@ -33,9 +33,9 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
         ]); ?>
 
         <!--Advertisement Banners 250x250-->
-        <?php echo $this->render('ads/ads_250_x_250', [
-            'model' => $model,
-        ]); ?>
+<!--        --><?php //echo $this->render('ads/ads_250_x_250', [
+//            'model' => $model,
+//        ]); ?>
 
         <!--Articles-->
         <?php echo $this->render('_articles', [
@@ -45,9 +45,9 @@ $this->title = Yii::$app->name . ' - ' . $model->name;
         ]); ?>
 
         <!--Advertisement Banners 180x150-->
-        <?php echo $this->render('ads/ads_180_x_150', [
-            'model' => $model,
-        ]); ?>
+<!--        --><?php //echo $this->render('ads/ads_180_x_150', [
+//            'model' => $model,
+//        ]); ?>
 
         <!--Free List-->
         <?php if (!empty($free_places)):
