@@ -124,7 +124,7 @@ class DataHelpers
     {
         return ArrayHelper::map(Place::find()
             ->where(['main' => 0])
-            ->where(['status' => Yii::$app->params['active']])
+            ->andWhere(['status' => Yii::$app->params['active']])
             ->orderBy('id')
             ->limit(10)
             ->all(), 'id', 'name');
