@@ -32,10 +32,10 @@ $this->title = Yii::t('app', 'Events');
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
                             'name',
-                            'start_date',
-                            'start_time',
-                            'end_date',
-                            'end_time',
+//                            'start_date',
+//                            'start_time',
+//                            'end_date',
+//                            'end_time',
                             [
                                 'class' => 'yii\grid\ActionColumn',
                                 'template' => '{view} {update} {delete}',
