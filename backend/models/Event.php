@@ -11,6 +11,7 @@ namespace backend\models;
 use backend\helpers\Helpers;
 use common\helpers\RecordHelpers;
 use common\helpers\ValueHelpers;
+use dektrium\user\helpers\Timezone;
 use frontend\models\UserProfile;
 use Yii;
 use common\models\Event as BaseEvent;
@@ -22,6 +23,8 @@ use yii\data\ArrayDataProvider;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\db\Query;
+use \DateTimeZone;
+use \DateTime;
 
 class Event extends BaseEvent
 {
@@ -259,6 +262,20 @@ class Event extends BaseEvent
     {
         $user_ids = $this->getUserIds();
         return User::find()->where(['in', 'id', $user_ids]);
+    }
+
+    public function checkDateTime()
+    {
+        $current_date_time = new DateTime('now', new DateTimeZone('Africa/Kigali'));
+        $end_date_time = new DateTime($this->end_date . ' ' . $this->end_time);
+
+        $current_time = $current_date_time->format('Y-m-d H:i');
+        $end_time = $end_date_time->format('Y-m-d H:i');
+
+        Yii::warning('current_time: ' . $current_time);
+        Yii::warning('end_time: ' . $end_time);
+
+        return ($end_time >= $current_time) ? true : false;
     }
 
 }
