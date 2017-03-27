@@ -51,46 +51,81 @@ AppAsset::register($this);
 
 <?php $this->beginBody() ?>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>(function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
+        js = d.createElement(s);
+        js.id = id;
         js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=1569960559930538";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="page-wrapper">
-    <div class="a">
-        <div class="page-wrapper">
-            <header class="header">
-                <div class="header-wrapper">
-                    <div class="container">
-                        <div class="header-inner">
-                            <div class="header-logo">
-                                <?php echo $this->render('@app/views/layouts/header/_header_logo') ?>
+    <header class="header">
+        <div class="header-wrapper">
+            <div class="container">
+                <div class="header-inner">
+                    <div class="header-logo">
+                        <?php echo $this->render('@app/views/layouts/header/_header_logo') ?>
+                    </div>
+                    <div class="header-content">
+                        <div class="header-top">
+                            <?php echo $this->render('@app/views/layouts/header/_header_top') ?>
+                        </div>
+                        <div class="header-bottom">
+                            <div class="header-action">
+                                <?php echo $this->render('@app/views/layouts/header/_header_filter') ?>
                             </div>
-                            <div class="header-content">
-                                <div class="header-top">
-                                    <?php echo $this->render('@app/views/layouts/header/_header_top') ?>
-                                </div>
-                                <div class="header-bottom">
-                                    <div class="header-action">
-                                        <?php echo $this->render('@app/views/layouts/header/_header_filter') ?>
-                                    </div>
-                                    <?php //echo $this->render('@app/views/layouts/header/_header_bottom') ?>
-                                </div>
-                            </div>
+                            <?php //echo $this->render('@app/views/layouts/header/_header_bottom') ?>
                         </div>
                     </div>
                 </div>
-            </header>
-            <?php echo $this->render('@app/views/layouts/_messages') ?>
-            <?= $content ?>
+            </div>
         </div>
-    </div>
-    <?php echo $this->render('@app/views/layouts/scripts/_twitter') ?>
-    <?php echo $this->render('@app/views/layouts/scripts/_other_scripts') ?>
-    <?php $this->endBody() ?>
+    </header>
+    <?php echo $this->render('@app/views/layouts/_messages') ?>
+    <?= $content ?>
+    <?php echo $this->render('@app/views/layouts/_footer') ?>
+</div>
+<?php echo $this->render('@app/views/layouts/scripts/_twitter') ?>
+<?php echo $this->render('@app/views/layouts/scripts/_other_scripts') ?>
+<?php $this->endBody() ?>
+
+<script>
+    // Instance the tour
+    var tour = new Tour({
+        steps: [
+            {
+                element: "#filter",
+                title: "Filter",
+                content: "When click on this button you go directly to the filter page. " +
+                "You may get the filtered list based on your choices",
+                placement: "left",
+            },
+            {
+                element: "#directory",
+                title: "Directory",
+                content: "Start browsing our directory by clicking each category.",
+                placement: "top",
+            },
+            {
+                element: "#events",
+                title: "Upcoming events",
+                content: "Check out upcoming events",
+                placement: "top",
+            }
+        ]});
+
+    // Initialize the tour
+    tour.init();
+
+    // Start the tour
+//    tour.start();
+
+    tour.restart();
+
+</script>
+
 </body>
 </html>
 <?php $this->endPage() ?>

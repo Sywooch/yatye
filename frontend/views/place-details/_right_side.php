@@ -13,7 +13,6 @@ use yii\helpers\Url;
 <?php echo $this->render('_top', [
     'model' => $model,
     'views' => $views,
-    'place_id' => $place_id,
     'ratings' => $ratings,
 ]); ?>
 
@@ -30,8 +29,8 @@ use yii\helpers\Url;
         <div class="detail-vcard">
             <div class="detail-logo">
                 <img alt="<?php echo $model->name ?>"
-                     src="<?php echo ($model->logo != null) ? Yii::$app->params['thumbnails'] . $model->logo : Yii::$app->params['pragmaticmates-logo-jpg'] ?>"
-                     style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 12px;'>
+                     src="<?php echo $model->getPhoto() ?>"
+                     class="img-responsive img-alt">
             </div>
             <div class="detail-contact">
                 <?php if ($model->neighborhood != null): ?>
@@ -155,6 +154,8 @@ use yii\helpers\Url;
         <?php endif; ?>
     </div>
 <?php endif; ?>
+
+<!--Working Hours-->
 <?php if (!empty($working_hours)): ?>
     <div class="widget">
         <h2 class="widgettitle">Working Hours</h2>
@@ -179,18 +180,22 @@ use yii\helpers\Url;
         </div>
     </div>
 <?php endif; ?>
+
+<!-- Services & Amenities-->
 <?php if (!empty($amenities)): ?>
     <h2>Services & Amenities</h2>
     <div class="background-white p20 div">
         <ul class="detail-amenities">
             <?php foreach ($amenities as $amenity): ?>
-                <li class="yes"><a
-                            href="<?php echo Url::to(['/service/' . $amenity['slug']]) ?>"><?php echo $amenity['name'] ?></a>
+                <li class="yes">
+                    <a href="<?php echo Url::to(['/service/' . $amenity['slug']]) ?>"><?php echo $amenity['name'] ?></a>
                 </li>
             <?php endforeach; ?>
         </ul>
     </div>
 <?php endif; ?>
+
+<!-- Enquiry form-->
 <?php if ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']) : ?>
     <?php echo $this->render('_enquiry_form', [
         'model' => $model,

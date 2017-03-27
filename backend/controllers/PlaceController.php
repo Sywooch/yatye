@@ -3,13 +3,17 @@
 namespace backend\controllers;
 
 use backend\helpers\Helpers;
+use backend\models\Category;
+use backend\models\SearchPlace;
 use backend\models\UploadForm;
 use common\helpers\RecordHelpers;
+use common\models\Province;
 use Yii;
 use backend\models\Place;
 use yii\data\ActiveDataProvider;
 use backend\components\AdminController as BackendAdminController;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
@@ -19,23 +23,29 @@ class PlaceController extends BackendAdminController
     public function actionIndex()
     {
         //Values from search form
-        $POST_VARIABLE = Yii::$app->request->post('Place');
-        $places = Place::searchPlaces($POST_VARIABLE);
+        $post = Yii::$app->request->post('Place');
+        $searchModel = new SearchPlace();
+        if ($post) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Place::searchPlaces($post),
+            ]);
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }
 
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $places,
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-//            'sort' => ['attributes' => ['']],
-        ]);
+        $status = Helpers::getStatus();
+        $profile_types = Helpers::getProfileType();
+        $provinces = ArrayHelper::map(Province::find()->all(), 'id', 'name');
+        $categories = ArrayHelper::map(Category::find()->where(['status' => Yii::$app->params['active']])->all(), 'id', 'name');
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-            'actions' => $this->getAllControllerActions(),
+            'searchModel' => $searchModel,
+            'provinces' => $provinces,
+            'categories' => $categories,
+            'profile_types' => $profile_types,
+            'status' => $status,
         ]);
-
 
     }
 

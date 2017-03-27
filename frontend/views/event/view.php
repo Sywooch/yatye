@@ -22,6 +22,10 @@ $this->title = $model->name;
         <?php $data = $this->context->accessData(); echo $this->render('@app/views/layouts/_side_bar', ['data' => $data]); ?>
         <div class="col-sm-8 col-lg-9">
             <div class="background-white p20 mb50">
+                <h3 class="page-title">
+                    <?php echo Html::encode($this->title); ?>
+                    <?= Html::a('Add', ['create'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
+                </h3>
                 <div class="panel-body">
                     <div class="row">
                         <div class="div">

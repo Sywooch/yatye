@@ -10,7 +10,7 @@ $this->title = Yii::$app->name;
     <div class="main-inner" style="padding: 1px">
         <div class="content">
             <div class="container">
-                <div class="block background-white p30 mt30 mb30 row div">
+                <div id="directory" class="block background-white p30 mt30 mb30 row div">
                     <div class="cards-wrapper ">
                         <div class="row grid">
                             <div class="col-xs-12 col-sm-4 item">
@@ -30,7 +30,7 @@ $this->title = Yii::$app->name;
                             </div>
                             <?php if (!empty($service_categories)):foreach ($service_categories as $category): ?>
                                 <div class="col-xs-12 col-sm-4 item">
-                                    <div class="card" data-background-image="<?php echo $category->getPictures() ?>">
+                                    <div class="card" data-background-image="<?php echo $category->getGalleries() ?>">
                                         <div class="card-content">
                                             <h2>
                                                 <a href="<?php echo Url::to(['/category/' . $category->slug]) ?>"><?php echo $category->name ?></a>
@@ -61,17 +61,16 @@ $this->title = Yii::$app->name;
             <!--            </div>-->
 
             <!--Up coming events-->
-            <?php if (!empty($up_coming_events) && count($up_coming_events) >= 6) : //&& count($up_coming_events) >= 6
+            <?php $data = $this->context->accessData();$upcoming_events = $data['get_upcoming_events'];
+            if (!empty($upcoming_events) && count($upcoming_events) >= 5) : //&& count($up_coming_events) >= 6
                 echo $this->render('_events', [
-                    'up_coming_events' => $up_coming_events,
+                    'up_coming_events' => $upcoming_events,
                 ]);
             endif; ?>
 
         </div>
     </div>
 </div>
-<?php echo $this->render('@app/views/layouts/_footer') ?>
-
 <?php $this->registerJs("
         $(function(){
             var m = new Masonry($('.grid').get()[0], {

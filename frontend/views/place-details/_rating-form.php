@@ -9,15 +9,11 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\rating\StarRating;
+
 ?>
 <div class="faq-rating-form">
 
-    <?php $form = ActiveForm::begin([
-        'method' => 'post',
-        'action' => ['/ratings/rate'],
-    ]); ?>
-
-    <?= Html::activeHiddenInput($ratings, 'place_id', ['value' => $model->id]) ?>
+    <?php $form = ActiveForm::begin(['method' => 'post', 'action' => ['/ratings/rate', 'place_id' => $model->id],]); ?>
 
     <?= $form->field($ratings, 'ratings')->label(false)->widget(StarRating::classname(), [
         'pluginOptions' => [
@@ -26,16 +22,13 @@ use kartik\rating\StarRating;
             'min' => 0,
             'max' => 5,
             'step' => 0.5,
-            //'symbol' => html_entity_decode('&#xe005;', ENT_QUOTES, "utf-8"),
-            // 'defaultCaption' => '{rating} hearts',
-            'starCaptions'=>[]
+            'starCaptions' => []
         ]
-    ])?>
+    ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' =>'btn btn-primary btn-xs']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-primary btn-xs']) ?>
     </div>
-
 
 
     <?php ActiveForm::end(); ?>

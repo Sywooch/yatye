@@ -78,12 +78,17 @@ class DataHelpers
 
     public static function getProvinces()
     {
-        return Province::find()->orderBy(new Expression('RAND()'))->all();
+        return Province::find()
+            ->orderBy(new Expression('RAND()'))
+            ->all();
     }
 
     public static function getAllCategories()
     {
-        return Category::find()->where(['status' => Yii::$app->params['active']])->orderBy(new Expression('RAND()'))->all();
+        return Category::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->orderBy(new Expression('RAND()'))
+            ->all();
     }
 
     public static function getAllPostCategories()
@@ -108,12 +113,21 @@ class DataHelpers
 
     public static function getPlacesInArray()
     {
-        return ArrayHelper::map(Place::find()->where(['status' => Yii::$app->params['pending']])->orderBy(new Expression('updated_at ASC'))->limit(30)->all(), 'id', 'name');
+        return ArrayHelper::map(Place::find()
+            ->where(['status' => Yii::$app->params['pending']])
+            ->orderBy(new Expression('updated_at ASC'))
+            ->limit(30)
+            ->all(), 'id', 'name');
     }
 
     public static function getPlacesInArray1()
     {
-        return ArrayHelper::map(Place::find()->where(['main' => 0])->orderBy('id')->limit(10)->all(), 'id', 'name');
+        return ArrayHelper::map(Place::find()
+            ->where(['main' => 0])
+            ->andWhere(['status' => Yii::$app->params['active']])
+            ->orderBy('id')
+            ->limit(10)
+            ->all(), 'id', 'name');
     }
 
     public static function getPlaceById($id)
@@ -149,9 +163,10 @@ class DataHelpers
     public static function getUpcomingEvents()
     {
         return Event::find()
-            ->where(new Expression('`start_at` >= CURRENT_TIME'))
+            ->where(new Expression('`end_date` >= CURRENT_DATE'))
             ->andWhere(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('`start_at`'))
+            ->orderBy(new Expression('`start_date`'))
+            ->limit(8)
             ->all();
     }
 
@@ -168,7 +183,7 @@ class DataHelpers
         $keywords = array();
 
         foreach ($places as $place) {
-            $keywords[] = $place->name;
+//            $keywords[] = $place->name;
         }
 
         foreach ($categories as $category) {
@@ -180,19 +195,19 @@ class DataHelpers
         }
 
         foreach ($posts as $post) {
-            $keywords[] = $post->title;
+//            $keywords[] = $post->title;
         }
 
         foreach ($post_categories as $post_category) {
-            $keywords[] = 'Rwanda Guide - Posts - ' . $post_category->name;
+//            $keywords[] = 'Rwanda Guide - Posts - ' . $post_category->name;
         }
 
         foreach ($events as $event) {
-            $keywords[] = 'Rwanda Guide - Events - ' . $event->name;
+//            $keywords[] = 'Rwanda Guide - Events - ' . $event->name;
         }
 
         foreach ($event_tags as $event_tag) {
-            $keywords[] = 'Rwanda - Events - ' . $event_tag->name;
+//            $keywords[] = 'Rwanda - Events - ' . $event_tag->name;
         }
 
         $keywords[] = implode(",", Yii::$app->params['meta_classification']);

@@ -10,14 +10,39 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
+use yii\behaviors\TimestampBehavior;
 use yii\data\ActiveDataProvider;
 use backend\models\PlaceService;
 use backend\models\Service;
 use common\models\Filter as BaseFilter;
+use yii\db\ActiveRecord;
 use yii\db\Expression;
 
 class Filter extends BaseFilter
 {
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+                ],
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
+    public function rules()
+    {
+        return [
+            [['province_id', 'district_id', 'category_id', 'service_id', 'results', 'user_id'], 'integer'],
+            [['created_at'], 'safe'],
+            [['results', 'user_id'], 'required'],
+            [['key_word', 'ip_address'], 'string', 'max' => 255],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -72,7 +97,7 @@ class Filter extends BaseFilter
             $this->ip_address = Yii::$app->request->getUserIP();
             $this->results = $results;
             //$this->user_id = Yii::$app->user->identity->id;
-            $this->save();
+            $this->save(0);
         }
 
         return $dataProvider;

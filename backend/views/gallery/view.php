@@ -8,6 +8,8 @@ use pendalf89\filemanager\widgets\FileInput;
 /* @var $model backend\models\Gallery */
 
 $this->title = $model->getPlaceName() . ' - ' . $model->getServiceName();
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Galleries'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="background-white p20 mb50">

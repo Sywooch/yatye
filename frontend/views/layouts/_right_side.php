@@ -23,28 +23,24 @@ use yii\helpers\Url;
                     <div class="cards-small">
                         <div class="card-small">
                             <div class="card-small-image">
-                                <a href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
-                                    <?php if ($upcoming_event->banner != null): ?>
-                                        <img src="<?php echo Yii::$app->params['event_images'] . $upcoming_event->banner; ?>"
-                                             alt="<?php echo $upcoming_event->name; ?>"
-                                             style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 24px;'>
-                                    <?php else: ?>
-                                        <img src="<?php echo Yii::$app->params['tmp']; ?>product-3.jpg"
-                                             alt="<?php echo $upcoming_event->name; ?>"
-                                             style='"Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 24px;'>
-                                    <?php endif; ?>
+                                <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
+                                    <img class="img-responsive img-alt-thumbnail_tn"
+                                         src="<?php echo $upcoming_event->getBanner(); ?>"
+                                         alt="<?php echo $upcoming_event->name; ?>">
                                 </a>
 
                             </div>
 
                             <div class="card-small-content">
                                 <h3>
-                                    <a href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>"><?php echo $upcoming_event->name; ?></a>
+                                    <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
+                                        <?php echo $upcoming_event->name; ?></a>
                                 </h3>
                                 <h4>
-                                    <a href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>"><?php echo $upcoming_event->address; ?></a>
+                                    <a target="_blank" href="<?php echo Url::to(['/upcoming-event/' . $upcoming_event->slug]) ?>">
+                                        <?php echo $upcoming_event->address; ?></a>
                                 </h4>
-                                <div class="card-small-price"><?php echo date('D d M, Y',strtotime($upcoming_event->start_at));?></div>
+                                <div class="card-small-price"><?php echo $upcoming_event->getDate($upcoming_event->start_date);?></div>
                             </div>
                         </div>
                     </div>

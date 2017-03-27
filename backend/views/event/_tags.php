@@ -12,12 +12,14 @@ use yii\helpers\Url;
 use kartik\select2\Select2;
 use yii\grid\GridView;
 
+$session = Yii::$app->session;
+$session->set('APP_ID', Yii::$app->id);
 ?>
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <?php $form = ActiveForm::begin([
-            'action' => Url::to(['event/add-tags', 'event_id' => $model->id]),
+            'action' => Url::to(['event/add-tags', 'event_id' => $model->id, 'app_id' => $session->get('APP_ID')]),
         ]); ?>
 
         <div class="form-group">
@@ -61,8 +63,10 @@ use yii\grid\GridView;
                         'template' => '{delete}',
                         'buttons' => [
                             'delete' => function ($url, $model) {
+                                $session = Yii::$app->session;
+                                $event_id = $session->get('event_id');
                                 return Html::a(Html::tag('i', '',
-                                    ['class' => 'fa fa-trash']), Yii::$app->request->baseUrl . '/event/delete-item/?event_tag_id=' . $model['id'] . '&event_id=' . $model['event_id'],
+                                    ['class' => 'fa fa-trash']), Yii::$app->request->baseUrl . '/event/delete-item/?event_tag_id=' . $model->id . '&event_id=' . $event_id,
                                     [
                                         'class' => 'btn btn-danger btn-xs',
                                         'data' => [

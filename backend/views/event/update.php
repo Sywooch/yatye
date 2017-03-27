@@ -12,9 +12,9 @@ use kartik\widgets\Select2;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Event */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Event',
-]) . $model->name;
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Events'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $model->name;
 ?>
 <div class="row">
     <div class="col-sm-12">

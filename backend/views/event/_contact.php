@@ -12,12 +12,15 @@ use yii\helpers\Url;
 use unclead\widgets\TabularInput;
 use unclead\widgets\MultipleInputColumn;
 use yii\grid\GridView;
+
+$session = Yii::$app->session;
+$session->set('APP_ID', Yii::$app->id);
 ?>
 <div class="background-white p20 mb50">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <?php $form = ActiveForm::begin([
-                'action' => Url::to(['event/add-contacts', 'event_id' => $model->id]),
+                'action' => Url::to(['event/add-contacts', 'event_id' => $model->id, 'app_id' => $session->get('APP_ID')]),
                 'id' => 'add-contact',
             ]); ?>
             <?= TabularInput::widget([

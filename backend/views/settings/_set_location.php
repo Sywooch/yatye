@@ -17,21 +17,7 @@ use kartik\widgets\DepDrop;
 ?>
 
 
-<?php
-
-$sector_data = $this->context->accessDataByIds($model->district_id);
-$sectors = $sector_data['get_sectors'];
-
-$cell_data = $this->context->accessDataByIds($model->sector_id);
-$cells = $cell_data['get_cells'];
-
-$sector_data_in_array = $this->context->accessDataByIds($sectors);
-$sectors_in_array = $sector_data_in_array['get_data_in_array'];
-
-$cell_data_in_array = $this->context->accessDataByIds($cells);
-$cells_in_array = $cell_data_in_array['get_data_in_array'];
-
-$form = ActiveForm::begin(['action'=>Yii::$app->request->baseUrl . '/settings/set-location/?id=' . $model->id]); ?>
+<?php $form = ActiveForm::begin(['action'=>Yii::$app->request->baseUrl . '/settings/set-location/?id=' . $model->id]); ?>
 <div class="background-white p30 mb50">
     <div class="row">
         <div class="col-md-5 col-lg-5">
@@ -39,17 +25,17 @@ $form = ActiveForm::begin(['action'=>Yii::$app->request->baseUrl . '/settings/se
             <div class="form-group">
                 <?php echo $form->field($model, 'district_id')->dropDownList($districts, [
                     'id' => 'district_id',
-                    'prompt' => Yii::t('app', 'Select a district ...'),
+                    'prompt' => Yii::t('app', 'District'),
                 ]); ?>
             </div>
 
             <div class="form-group">
                 <?php echo $form->field($model, 'sector_id')->widget(DepDrop::className(), [
                     'options' => ['id' => 'sector_id'],
-                    'data' => $sectors_in_array,
+                    'data' => $this->context->accessSectors($model),
                     'pluginOptions' => [
                         'depends' => ['district_id'],
-                        'placeholder' => Yii::t('app', 'Select a sector ...'),
+                        'placeholder' => Yii::t('app', 'Sector'),
                         'url' => Url::to(['/settings/sectors'])
                     ]
                 ]); ?>
@@ -58,14 +44,13 @@ $form = ActiveForm::begin(['action'=>Yii::$app->request->baseUrl . '/settings/se
             <div class="form-group">
                 <?php echo $form->field($model, 'cell_id')->widget(DepDrop::classname(), [
                     'options' => ['id' => 'cell_id'],
-                    'data' => $cells_in_array,
+                    'data' => $this->context->accessCells($model),
                     'pluginOptions' => [
                         'depends' => ['sector_id'],
-                        'placeholder' => 'Select a cell',
+                        'placeholder' => 'Cell',
                         'url' => Url::to(['/settings/cells'])
                     ]
-                ]);
-                ?>
+                ]); ?>
             </div>
             <div class="form-group">
                 <?= $form->field($model, 'neighborhood')->textInput(['maxlength' => true, 'id'=>'neighborhood']) ?>

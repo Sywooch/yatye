@@ -12,22 +12,7 @@ use vova07\imperavi\Widget as Redactor;
 
 ?>
 
-<?php
-
-$sector_data = $this->context->accessDataByIds($model->district_id);
-$sectors = $sector_data['get_sectors'];
-
-
-$cell_data = $this->context->accessDataByIds($model->sector_id);
-$cells = $cell_data['get_cells'];
-
-$sector_data_in_array = $this->context->accessDataByIds($sectors);
-$sectors_in_array = $sector_data_in_array['get_data_in_array'];
-
-$cell_data_in_array = $this->context->accessDataByIds($cells);
-$cells_in_array = $cell_data_in_array['get_data_in_array'];
-
-$form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(); ?>
 <div class="row">
     <div class="col-sm-12">
 
@@ -65,16 +50,6 @@ $form = ActiveForm::begin(); ?>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="form-group">
                 <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => 6]) ?>
-<!--                --><?php //echo $form->field($model, 'description')->widget(Redactor::className(), [
-//                    'settings' => [
-//                        'minHeight' => 200,
-//                        'plugins' => [
-//                            'clips',
-//                            'fullscreen'
-//                        ],
-//                    ]
-//                ]);
-//                ?>
             </div>
         </div>
     </div>
@@ -101,7 +76,7 @@ $form = ActiveForm::begin(); ?>
                 <label><?php echo Yii::t('app', 'District'); ?></label>
                 <?php echo $form->field($model, 'district_id', ['template' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-compass"></i></span>{input}</div>',])->dropDownList($districts, [
                     'id' => 'district_id',
-                    'prompt' => Yii::t('app', 'Select a district'),
+                    'prompt' => Yii::t('app', 'District'),
                 ]);
                 ?>
             </div>
@@ -110,10 +85,10 @@ $form = ActiveForm::begin(); ?>
                 <label><?php echo Yii::t('app', 'Sector'); ?></label>
                 <?php echo $form->field($model, 'sector_id', ['template' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-compass"></i></span>{input}</div>',])->widget(DepDrop::className(), [
                     'options' => ['id' => 'sector_id'],
-                    'data' => $sectors_in_array,
+                    'data' => $this->context->accessSectors($model),
                     'pluginOptions' => [
                         'depends' => ['district_id'],
-                        'placeholder' => Yii::t('app', 'Select a sector'),
+                        'placeholder' => Yii::t('app', 'Sector'),
                         'url' => Url::to(['/place/sectors'])
                     ]
                 ]);
@@ -123,10 +98,10 @@ $form = ActiveForm::begin(); ?>
                 <label><?php echo Yii::t('app', 'Cell'); ?></label>
                 <?php echo $form->field($model, 'cell_id', ['template' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-compass"></i></span>{input}</div>',])->widget(DepDrop::classname(), [
                     'options' => ['id' => 'cell_id'],
-                    'data' => $cells_in_array,
+                    'data' =>$this->context->accessCells($model),
                     'pluginOptions' => [
                         'depends' => ['sector_id'],
-                        'placeholder' => 'Select a cell',
+                        'placeholder' => 'Cell',
                         'url' => Url::to(['/place/cells'])
                     ]
                 ]);

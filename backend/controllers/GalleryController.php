@@ -101,19 +101,24 @@ class GalleryController extends BackendAdminController
 
         $galleries = Gallery::find()->where(['place_id' => $place_id])->orderBy('id')->indexBy('id')->all();
         $categories = ArrayHelper::map(Category::find()->orderBy('name')->all(), 'id', 'name');
-        $services = ArrayHelper::map(Service::find()->where(['status' => Yii::$app->params['active']])->orderBy('name')->all(), 'id', 'name');
+//        $services = ArrayHelper::map(Service::find()->where(['status' => Yii::$app->params['active']])->orderBy('name')->all(), 'id', 'name');
+        $services = ArrayHelper::map(Service::find()->where(['status' => Yii::$app->params['active']])->all(), 'id', 'name');
 
         $places = DataHelpers::getPlacesInArray1();
+        $count = Place::findAll(['status' => Yii::$app->params['active'], 'main' => 0]);
 
         if (Model::loadMultiple($galleries, Yii::$app->request->post())) {
             foreach ($galleries as $gallery) {
                 $gallery->place_id = $place_id;
+                $gallery->title = $place->name;
+                $gallery->caption = $place->name;
                 $gallery->status = Yii::$app->params['active'];
                 $gallery->save(0);
 
             }
             $place->main = 1;
             $place->save(0);
+
             Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Contacts successfully added.'));
             return $this->redirect(Url::to(['gallery/gallery', 'place_id' => $place_id]));
 
@@ -125,6 +130,8 @@ class GalleryController extends BackendAdminController
                 'categories' => $categories,
                 'place_id' => $place_id,
                 'places' => $places,
+                'place' => $place,
+                'count' => $count,
             ]);
         }
     }

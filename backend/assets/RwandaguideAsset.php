@@ -17,10 +17,12 @@ class RwandaguideAsset extends AssetBundle{
     public $css = [
 //        'css/rwandaguide.css',
         'css/rwandaguide.min.css',
+        'css/bootstrap-tour.min.css',
     ];
     public $js = [
         'js/rwandaguide.js',
         'js/jquery.duplicate.min.js',
+        'js/bootstrap-tour.min.js',
     ];
     public $depends = [
         'yii\bootstrap\BootstrapAsset',

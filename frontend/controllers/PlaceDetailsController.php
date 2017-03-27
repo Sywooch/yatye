@@ -29,7 +29,7 @@ class PlaceDetailsController extends AdminController
         if ($model) {
             $title = $model->name;
             $description = $model->description;
-            $image = Yii::$app->params['galleries'] . $model->logo;
+            $image = $model->getPhoto();
             $url = 'http://rwandaguide.info/place-details//' . $model->slug;
             MetaTagHelpers::registerMetaTag($title, $description, $image, $url);
 

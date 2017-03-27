@@ -8,8 +8,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\widgets\DateTimePicker;
-use vova07\imperavi\Widget as Redactor;
+use kartik\widgets\DatePicker;
+use kartik\widgets\TimePicker;
+use kartik\widgets\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Event */
@@ -20,52 +21,55 @@ use vova07\imperavi\Widget as Redactor;
 <div class="background-white p30 mb50">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="form-group">
-                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            </div>
-
-            <div class="form-group">
-                <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => 5]) ?>
-            </div>
+            <?php echo $form->field($model, 'name')
+                ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Name')])
+                ->label(false); ?>
+            <?php echo $form->field($model, 'description')
+                ->textarea(['maxlength' => true, 'rows' => 5, 'placeholder' => Yii::t('app', 'Description')])
+                ->label(false); ?>
         </div>
         <div class="col-md-5 col-lg-5">
-
-            <div class="form-group">
-                <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-            </div>
-            <div class="form-group">
-                <?php echo $form->field($model, 'start_at')->widget(DateTimePicker::classname(), [
-                    'options' => ['placeholder' => Yii::t('app', ''), 'class' => 'form-control'],
-                    'pluginOptions' => [
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd hh:ii'
-                    ]
-                ]); ?>
-            </div>
-            <div class="form-group">
-                <?php echo $form->field($model, 'end_at')->widget(DateTimePicker::classname(), [
-                    'options' => ['placeholder' => Yii::t('app', ''), 'class' => 'form-control'],
-                    'pluginOptions' => [
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd hh:ii'
-                    ]
-                ]); ?>
-            </div>
-            <div class="form-group">
-                <?= $form->field($model, 'banner')->textInput(['maxlength' => true]) ?>
-            </div>
-            <div class="form-group">
-                <?php echo $form->field($model, 'profile_type')->dropDownList($profile_types, [
-                    'prompt' => Yii::t('app', 'Select a profile type'),
-                ])->label(false);
-                ?>
-            </div>
-            <div class="form-group">
-                <?php echo $form->field($model, 'status')->dropDownList($status, [
-                    'prompt' => Yii::t('app', 'Select a status'),
-                ])->label(false);
-                ?>
-            </div>
+            <?php echo $form->field($model, 'start_date')->widget(DatePicker::classname(), [
+                'attribute' => 'start_date',
+                'attribute2' => 'end_date',
+                'options' => ['placeholder' => Yii::t('app', 'Start Date')],
+                'options2' => ['placeholder' => Yii::t('app', 'End Date')],
+                'type' => DatePicker::TYPE_RANGE,
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd'
+                ]
+            ])->label(false); ?>
+            <?php echo $form->field($model, 'start_time')->widget(TimePicker::classname(), [
+                'options' => ['placeholder' => Yii::t('app', 'Start Time'), 'class' => 'form-control'],
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'showMeridian' => false,
+                    'defaultTime' => false,
+                    'format' => ':ii'
+                ]
+            ])->label(false); ?>
+            <?php echo $form->field($model, 'end_time')->widget(TimePicker::classname(), [
+                'options' => ['placeholder' => Yii::t('app', 'End Time'), 'class' => 'form-control'],
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'showMeridian' => false,
+                    'defaultTime' => false,
+                    'format' => 'hh:ii'
+                ]
+            ])->label(false); ?>
+            <?php echo $form->field($model, 'image_file')
+                ->widget(FileInput::classname(), ['options' => ['accept' => 'image/*', 'placeholder' => Yii::t('app', 'Image')]])
+                ->label(false); ?>
+            <?php echo $form->field($model, 'address')
+                ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Address')])
+                ->label(false); ?>
+            <?php echo $form->field($model, 'profile_type')->dropDownList($profile_types, [
+                'prompt' => Yii::t('app', 'Profile type'),
+            ])->label(false); ?>
+            <?php echo $form->field($model, 'status')->dropDownList($status, [
+                'prompt' => Yii::t('app', 'Status'),
+            ])->label(false); ?>
         </div>
         <div class="col-md-7 col-lg-7">
             <input id="pac-input" class="controls form-control mb30" type="text" placeholder="Enter a location">
@@ -73,21 +77,23 @@ use vova07\imperavi\Widget as Redactor;
             <div id="map-canvas"></div>
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="form-group">
-                        <?= $form->field($model, 'latitude')->textInput(['id' => 'input-latitude']) ?>
-                    </div>
+                    <?php echo $form->field($model, 'latitude')
+                        ->textInput(['id' => 'input-latitude', 'placeholder' => Yii::t('app', 'Latitude')])
+                        ->label(false); ?>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="form-group">
-                        <?= $form->field($model, 'longitude')->textInput(['id' => 'input-longitude']) ?>
-                    </div>
+                    <?php echo $form->field($model, 'longitude')
+                        ->textInput(['id' => 'input-longitude', 'placeholder' => Yii::t('app', 'Longitude')])
+                        ->label(false); ?>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="form-group" style="margin-top: 40px;">
-            <?= Html::submitButton('Update', ['class' => 'btn btn-primary pull-right']) ?>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group" style="margin-top: 40px;">
+                <?php echo Html::submitButton('Update', ['class' => 'btn btn-primary pull-right']) ?>
+            </div>
         </div>
     </div>
 </div>

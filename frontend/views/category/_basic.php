@@ -12,7 +12,7 @@ use yii\helpers\Url;
 ?>
 
 <?php if (!empty($basic_places)): ?>
-    <div class="block background-white mt50 p30 row div">
+    <div class="block background-white mt30 p30 row div">
         <div class="page-header">
             <h1><?php echo Yii::t('app', 'Hand Picked by Rwanda Guide') ?></h1>
 

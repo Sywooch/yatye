@@ -19,18 +19,12 @@ use kartik\widgets\Select2;
     <?php $form = ActiveForm::begin([
         'action' => Yii::$app->getUrlManager()->createUrl(['settings/set-settings', 'place_id' => $model->id]),
         'type' => ActiveForm::TYPE_INLINE]); ?>
-    <div class="form-group">
-        <?php echo $form->field($model, 'profile_type')->dropDownList($profile_types, [
-            'prompt' => Yii::t('app', 'Select a profile type'),
-        ])->label(false);
-        ?>
-    </div>
-    <div class="form-group">
-        <?php echo $form->field($model, 'status')->dropDownList($status, [
-            'prompt' => Yii::t('app', 'Select a status'),
-        ])->label(false);
-        ?>
-    </div>
+    <?php echo $form->field($model, 'profile_type')->dropDownList($profile_types, [
+        'prompt' => Yii::t('app', 'Profile type'),
+    ])->label(false); ?>
+    <?php echo $form->field($model, 'status')->dropDownList($status, [
+        'prompt' => Yii::t('app', 'Status'),
+    ])->label(false); ?>
     <div class="form-group">
         <?= Html::submitButton('Save Settings', ['class' => 'btn btn-primary']) ?>
     </div>
