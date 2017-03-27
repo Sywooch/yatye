@@ -59,11 +59,13 @@ AppAsset::register($this);
     <?php echo $this->render('@app/views/layouts/_messages') ?>
     <div class="main">
         <div class="main-inner">
-            <div class="content">
-                <div class="row">
-                    <?= Breadcrumbs::widget([
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ]) ?>
+            <div class="content mt-70">
+                <div class="container">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <?= Breadcrumbs::widget([
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ]) ?>
+                    </div>
                     <?= $content ?>
                 </div>
             </div>

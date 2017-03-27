@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 $this->title = $model->title;
 ?>
-<div class="container">
     <div class="col-sm-8 col-lg-9">
         <div class="content">
             <div class="page-title">
@@ -46,5 +45,4 @@ $this->title = $model->title;
 
         </div>
     </div>
-    <?php echo $this->render('@app/views/layouts/_right_side') ?>
-</div>
+<?php echo $this->render('@app/views/layouts/_right_side') ?>
