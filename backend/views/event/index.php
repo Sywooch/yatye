@@ -20,7 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'name',
+                    [
+                        'label' => 'Name',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['target' => '_blank']);
+                        },
+                    ],
 //            'address',
 //                    'start_date',
 //                    'start_time',
