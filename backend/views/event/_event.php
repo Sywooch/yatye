@@ -64,6 +64,12 @@ use kartik\widgets\FileInput;
             <?php echo $form->field($model, 'address')
                 ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Address')])
                 ->label(false); ?>
+            <?php echo $form->field($model, 'profile_type')->dropDownList($profile_types, [
+                'prompt' => Yii::t('app', 'Profile type'),
+            ])->label(false); ?>
+            <?php echo $form->field($model, 'status')->dropDownList($status, [
+                'prompt' => Yii::t('app', 'Status'),
+            ])->label(false); ?>
         </div>
         <div class="col-md-7 col-lg-7">
             <input id="pac-input" class="controls form-control mb30" type="text" placeholder="Enter a location">
