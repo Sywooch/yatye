@@ -5,6 +5,7 @@
 
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
+use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 ?>
@@ -58,8 +59,11 @@ AppAsset::register($this);
     <?php echo $this->render('@app/views/layouts/_messages') ?>
     <div class="main">
         <div class="main-inner">
-            <div class="container">
+            <div class="content">
                 <div class="row">
+                    <?= Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]) ?>
                     <?= $content ?>
                 </div>
             </div>

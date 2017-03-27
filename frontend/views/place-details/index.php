@@ -4,8 +4,7 @@ use yii\helpers\Url;
 
 $this->title = Yii::$app->name . ' - ' . $model->name;
 ?>
-<div class="content">
-
+<div class="container">
     <!--Banner-->
     <?php if ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']): ?>
         <?php echo $this->render('_banner', [

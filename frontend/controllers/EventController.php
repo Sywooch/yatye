@@ -27,7 +27,7 @@ class EventController extends BaseEventController
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Event::find()
-                ->where(new Expression('`start_date` >= CURRENT_TIMESTAMP'))
+                ->where(new Expression('`end_date` >= CURRENT_DATE'))
                 ->orderBy(new Expression('`start_date` ASC')),
         ]);
 

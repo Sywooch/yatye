@@ -4,18 +4,15 @@ use yii\helpers\Url;
 use yii\widgets\ListView;
 
 $this->title = Yii::$app->name . ' - ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['/category/' . $model->slug]];
+$this->params['breadcrumbs'][] = $model->name;
+
 $dataProvider->pagination = [
     'pageSize' => 12,
 ];
 ?>
 
 <div class="container">
-    <div class="row">
-        <ol class="breadcrumb bread-primary" style="background: none;">
-            <li><a href="<?php echo Yii::$app->request->baseUrl ?>"><?php echo Yii::$app->name; ?></a></li>
-            <li class="active"><a href="<?php echo Url::to(['/category/' . $model->slug]) ?>"><?php echo $model->name ?></a></li>
-        </ol>
-    </div>
     <div class="row">
         <div class="col-sm-8 col-lg-9">
             <div class="content">

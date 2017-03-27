@@ -11,7 +11,7 @@ use yii\helpers\Url;
 
 ?>
 
-<div class="block background-white mt30 row p30 div">
+<div class="block background-white mt30 mb50 row p30 div">
     <div class="col-md-7 col-lg-7">
         <div class="hero-slider">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

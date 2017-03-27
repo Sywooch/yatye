@@ -10,7 +10,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 ?>
-<footer class="footer mt-70 p30 row div">
+<footer class="footer  p30 row div">
     <?php echo $this->render('@app/views/layouts/_footer_top') ?>
     <div class="footer-bottom">
         <div class="container">

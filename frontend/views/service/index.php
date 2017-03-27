@@ -3,13 +3,14 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ListView;
+
 $this->title = Yii::$app->name . ' - ' . $model->name;
 $dataProvider->pagination = [
     'pageSize' => 12,
 ];
 ?>
-<div class="col-sm-8 col-lg-9">
-    <div class="content">
+<div class="container">
+    <div class="col-sm-8 col-lg-9">
         <div class="cards-row">
             <?= ListView::widget([
                 'options' => [

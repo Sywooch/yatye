@@ -5,7 +5,6 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 ?>

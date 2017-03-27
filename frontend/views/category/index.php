@@ -4,8 +4,8 @@
 $this->title = Yii::$app->name . ' - ' . $model->name;
 ?>
 
-<div class="content">
-    <div class="mt-80">
+<div class="container">
+    <div class="mt-70">
         <!--Premium List-->
         <?php if (!empty($premium_places)):
             echo $this->render('_premium', [
