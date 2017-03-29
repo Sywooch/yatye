@@ -72,7 +72,7 @@ class EventController extends BaseEventController
                 //Save thumbnails
                 GalleryHelper::resizeBeforeUpload($model->image_file->tempName, $thumbnail_path, 180, 150, 120);
                 $model->banner = $file_name;
-                $model->save(0);
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
             else{
