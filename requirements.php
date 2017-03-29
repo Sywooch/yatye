@@ -1,11 +1,11 @@
 <?php
 /**
- * Application requirement checker scripts.
+ * Application requirement checker script.
  *
- * In order to run this scripts use the following console command:
+ * In order to run this script use the following console command:
  * php requirements.php
  *
- * In order to run this scripts from the web, you should copy it to the web root.
+ * In order to run this script from the web, you should copy it to the web root.
  * If you are using Linux you can create a hard link instead, using the following command:
  * ln ../requirements.php requirements.php
  */

@@ -13,6 +13,7 @@ $keywords = $data['get_keywords'];
 <meta charset="<?= Yii::$app->charset ?>">
 <meta name="language" content="english">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Marius Ngaboyamahina"/>
 <meta name="publisher" content="Marius Ngaboyamahina">
 <meta name="no-email-collection" content="http://www.unspam.com/noemailcollection/">
