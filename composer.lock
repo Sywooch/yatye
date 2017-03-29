@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d695a3f4abce158ddd0911c55877246c",
+    "content-hash": "b4941aaa8c35765e81f267df40a6f9f5",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -2582,6 +2582,48 @@
                 "yii2"
             ],
             "time": "2015-12-10T21:16:23+00:00"
+        },
+        {
+            "name": "yii2mod/yii2-ftp",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-ftp.git",
+                "reference": "3bc4be07707f2e6eb9c9a42e5fc629c9604ec96f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-ftp/zipball/3bc4be07707f2e6eb9c9a42e5fc629c9604ec96f",
+                "reference": "3bc4be07707f2e6eb9c9a42e5fc629c9604ec96f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\ftp\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A flexible FTP and SSL-FTP client for PHP. This lib provides helpers easy to use to manage the remote files.",
+            "keywords": [
+                "extension",
+                "file",
+                "ftp",
+                "helper",
+                "lib",
+                "server",
+                "sftp",
+                "ssl",
+                "ssl-ftp",
+                "yii2"
+            ],
+            "time": "2014-12-22T09:04:48+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -5297,7 +5339,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "ext-ftp": "*"
     },
     "platform-dev": []
 }
