@@ -13,12 +13,48 @@ return [
     'controllerNamespace' => 'console\controllers',
     'modules' => [
         'rbac' => 'dektrium\rbac\RbacConsoleModule',
+        'backup' => [
+            'class' => 'console\modules\backup\Module',
+            'backup' => [
+                'db' => [
+                    'enable' => true,
+                    'data' => [ //TODO List of database which need to be backed up
+                        'db',
+                    ],
+                ],
+                'folder' => [
+                    'enable' => false,
+                    'data' => [ //TODO List of directories which need to be backed up
+                        '@backend/web/uploads',
+                    ],
+                ],
+            ],
+            'transport' => [
+                'mail' => [
+                    'class' => '\console\modules\backup\transports\Mail',
+                    'enable' => true, //TODO default true
+                    'fromEmail' => 'support@gmail.com',
+                    'toEmail' => 'rwandaguide.info@gmail.com',
+                ],
+                'ftp' => [
+                    'class' => '\console\modules\backup\transports\Ftp',
+                    'enable' => false, //TODO default false
+                    'host' => 'ftp.example.com',
+                    'user' => 'login',
+                    'pass' => 'password',
+                    'dir' => '/home/example/public_html/backup',
+                ],
+            ],
+        ],
     ],
     'controllerMap' => [
         'fixture' => [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
-          ],
+        ],
+        'backup' => [
+            'class' => 'console\controllers\BackupController',
+        ],
     ],
     'components' => [
         'log' => [
@@ -36,6 +72,25 @@ return [
         ],
         'session' => [ // for use session in console application
             'class' => 'yii\web\Session'
+        ],
+
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@common/mail',
+//            'textLayout' => 'my/layout',  // custome layout
+            'htmlLayout' => 'layouts/html', // disable layout
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'rwandaguide.info@gmail.com',
+                'password' => 'jwcbbofqadxsggnl',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
         ],
     ],
     'params' => $params,

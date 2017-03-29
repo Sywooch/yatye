@@ -30,7 +30,9 @@
         "kartik-v/yii2-field-range": "dev-master",
         "facebook/graph-sdk" : "~5.0",
         "guzzlehttp/guzzle": "^6.2",
-        "paragonie/random_compat": "^2.0"
+        "paragonie/random_compat": "^2.0",
+        "yii2mod/yii2-ftp": "^1.0",
+        "ext-ftp": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

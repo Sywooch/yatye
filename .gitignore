@@ -36,3 +36,5 @@ phpunit.phar
 
 common/components
 common/models
+console/migrations
+console/config
