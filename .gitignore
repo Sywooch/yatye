@@ -34,7 +34,6 @@ phpunit.phar
 # vagrant runtime
 /.vagrant
 
-common/components
-common/models
-console/migrations
-console/config
+#common/components
+#common/models
+#console/config
