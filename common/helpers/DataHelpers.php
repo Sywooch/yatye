@@ -8,10 +8,6 @@
 
 namespace common\helpers;
 
-use backend\models\Category;
-use backend\models\Event;
-use backend\models\EventTags;
-use common\models\Province;
 use Yii;
 use backend\models\Place;
 use backend\models\Post;
@@ -22,6 +18,12 @@ use common\models\District;
 use common\models\Sector;
 use yii\db\Expression;
 use yii\helpers\ArrayHelper;
+use backend\models\Category;
+use backend\models\Event;
+use backend\models\EventTags;
+use common\models\Province;
+use \DateTimeZone;
+use \DateTime;
 
 class DataHelpers
 {
@@ -163,7 +165,7 @@ class DataHelpers
     public static function getUpcomingEvents()
     {
         return Event::find()
-            ->where(new Expression('`end_date` >= CURRENT_DATE'))
+            ->where(new Expression('TIMESTAMP(`end_date`,`end_time`) >= CURRENT_TIMESTAMP'))
             ->andWhere(['status' => Yii::$app->params['active']])
             ->orderBy(new Expression('`start_date`'))
             ->limit(8)
