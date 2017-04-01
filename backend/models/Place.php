@@ -8,26 +8,18 @@
 
 namespace backend\models;
 
-use common\helpers\RecordHelpers;
-use common\helpers\ValueHelpers;
-use common\models\Cell;
-use common\models\District;
-use common\models\Place as BasePlace;
-use common\models\Province;
-use common\models\Sector;
-use frontend\models\Ratings;
-use frontend\models\UserProfile;
-use frontend\models\Views;
+
+
+use Yii;
+use backend\helpers\PlaceData;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\db\Query;
-use Yii;
-use yii\helpers\ArrayHelper;
 
-class Place extends BasePlace
+class Place extends PlaceData
 {
 
     public $distance;
@@ -75,16 +67,6 @@ class Place extends BasePlace
         ];
     }
 
-    public function getLogo()
-    {
-        return Yii::$app->params['galleries'] . $this->logo;
-    }
-
-    public function getThumbnailLogo()
-    {
-        return ($this->logo != null) ? Yii::$app->params['thumbnails'] . $this->logo : Yii::$app->params['pragmaticmates-logo-jpg'];
-    }
-
     public function getCurrentCategory($category_id)
     {
         return Category::findOne($category_id);
@@ -116,28 +98,6 @@ class Place extends BasePlace
         return Service::findOne($this->getServiceId($category_id))->name;
     }
 
-    public function getViews()
-    {
-        return Views::findOne(['place_id' => $this->id, 'status' => Yii::$app->params['active']])->views;
-    }
-
-    public function getStatus()
-    {
-        return ValueHelpers::getStatus($this);
-    }
-
-    public function getUser()
-    {
-        return ValueHelpers::getUser($this);
-    }
-
-    public function getRatings()
-    {
-        $ratings = Ratings::findOne(['place_id' => $this->id]);
-
-        return (!empty($ratings)) ? $ratings->average : 0;
-    }
-
     public function getRatingStars()
     {
         $stars = '';
@@ -150,101 +110,6 @@ class Place extends BasePlace
             }
         }
         return $stars;
-    }
-
-    public function getProvinceName()
-    {
-        $province_name = NULL;
-        if ($this->province_id) {
-            $obj = Province::findOne($this->province_id);
-            if ($obj) {
-                $province_name = $obj->name;
-            }
-        }
-
-        return $province_name;
-    }
-
-    public function getDistrictName()
-    {
-        $district_name = NULL;
-        if ($this->district_id) {
-            $obj = District::findOne($this->district_id);
-            if ($obj) {
-                $district_name = $obj->name;
-            }
-        }
-
-        return $district_name;
-    }
-
-    public function getSectorName()
-    {
-        $sector_name = NULL;
-        if ($this->sector_id) {
-            $obj = Sector::findOne($this->sector_id);
-            if ($obj) {
-                $sector_name = $obj->name;
-            }
-        }
-
-        return $sector_name;
-    }
-
-    public function getCellName()
-    {
-        $cell_name = NULL;
-        if ($this->cell_id) {
-            $obj = Cell::findOne($this->cell_id);
-            if ($obj) {
-                $cell_name = $obj->name;
-            }
-        }
-
-        return $cell_name;
-    }
-
-    public function getContactNames($type)
-    {
-        $contacts = Contact::findAll(['place_id' => $this->id, 'type' => $type, 'status' => Yii::$app->params['active']]);
-
-        $contact_name = array();
-        foreach ($contacts as $contact) :
-
-            $contact_name[] = $contact->name;
-
-        endforeach;
-
-        return implode('; ', $contact_name);
-    }
-
-    public function getProfileTypeName()
-    {
-        if ($this->profile_type == Yii::$app->params['PREMIUM']):
-            $profile_type = Yii::t('app', 'Premium');
-        elseif ($this->profile_type == Yii::$app->params['BASIC']):
-            $profile_type = Yii::t('app', 'Basic');
-        elseif ($this->profile_type == Yii::$app->params['FREE']):
-            $profile_type = Yii::t('app', 'Free');
-        else:
-            $profile_type = Yii::t('app', 'Not Set');
-        endif;
-
-        return $profile_type;
-    }
-
-    public static function searchPlaces($post)
-    {
-        return Place::find()->filterWhere(['like', 'name', $post['name']]);;
-    }
-
-    public function getGalleries()
-    {
-        return Gallery::find()
-            ->where(['place_id' => $this->id])
-            ->orderBy(new Expression('RAND()'))
-            ->limit(1)
-            ->all();
     }
 
     public function getPhoto()

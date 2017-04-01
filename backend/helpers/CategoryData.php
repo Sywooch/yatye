@@ -8,12 +8,11 @@
 
 namespace backend\helpers;
 
-use common\helpers\ValueHelpers;
-use frontend\models\Views;
 use Yii;
 use yii\db\Query;
 use backend\models\Service;
-use common\helpers\DataHelpers;
+use common\helpers\ValueHelpers;
+use frontend\models\Views;
 use common\models\Category as BaseCategory;
 
 class CategoryData extends BaseCategory
