@@ -82,7 +82,7 @@ class Event extends BaseEvent
 
     public function getThumbnailPath()
     {
-        return Yii::$app->params['frontend_alias'] . Yii::$app->params['event_thumbnail'];
+        return Yii::$app->params['frontend_alias'] . Yii::$app->params['thumbnails'];
     }
 
     public function getParameters()
