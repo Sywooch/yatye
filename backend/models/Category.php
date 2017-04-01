@@ -8,17 +8,15 @@
 
 namespace backend\models;
 
+
 use Yii;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
-use frontend\models\Views;
-use common\helpers\ValueHelpers;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
-use common\models\Category as BaseCategory;
-use yii\db\Query;
+use backend\helpers\CategoryData;
 
-class Category extends BaseCategory
+class Category extends CategoryData
 {
     public function rules()
     {
@@ -62,11 +60,6 @@ class Category extends BaseCategory
         ];
     }
 
-    public function getServices()
-    {
-        return Service::findAll(['category_id' => $this->id, 'status' => Yii::$app->params['active']]);
-    }
-
     public function getServiceIds()
     {
         $services = $this->getServices();
@@ -75,18 +68,6 @@ class Category extends BaseCategory
             $service_ids[] = $service->id;
         }
         return $service_ids;
-    }
-
-    public function getPlaceServices()
-    {
-        return (new Query())
-            ->select('DISTINCT `place_service`.`place_id`')
-            ->from('`service`, `place_service`')
-            ->where('`service`.`id` = `place_service`.`service_id`')
-            ->andWhere('`service`.`category_id` = ' . $this->id)
-            ->andWhere("`service`.`status` = " . Yii::$app->params['active'])
-            ->andWhere('`service`.`type` != ' . Yii::$app->params['E_TYPE'])
-            ->all();
     }
 
     public function getPlaceIds()
@@ -146,11 +127,6 @@ class Category extends BaseCategory
             ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['BASIC'] . ', RAND()'));
     }
 
-    public function getViews()
-    {
-        return Views::findAll(['status' => Yii::$app->params['active']]);
-    }
-
     public function getMostViewed()
     {
         $views = $this->getViews();
@@ -164,21 +140,6 @@ class Category extends BaseCategory
             ->orderBy(new Expression('views DESC'))
             ->limit(5)
             ->all();
-    }
-
-    public static function getAllCategories()
-    {
-        return self::find()->orderBy('name')->all();
-    }
-
-    public function getStatus()
-    {
-        return ValueHelpers::getStatus($this);
-    }
-
-    public function getUser()
-    {
-        return ValueHelpers::getUser($this);
     }
 
     public function getOneRandomGallery()
