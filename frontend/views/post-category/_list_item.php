@@ -25,8 +25,7 @@ use yii\helpers\Url;
     </div>
 
     <div class="post-meta clearfix">
-        <div class="post-meta-date"><i class="fa fa-clock-o"></i>
-            : <?php echo $model->getLastUpdatedDate(); ?></div>
+        <div class="post-meta-date"><i class="fa fa-clock-o"></i> <?php echo $model->getLastUpdatedDate(); ?></div>
         <div class="post-meta-more">
             <a href="<?php echo $model->getPostUrl(); ?>" target="_blank">
                 Read More <i class="fa fa-chevron-right"></i>
