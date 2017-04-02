@@ -124,12 +124,12 @@ class Post extends BasePost
 
     public function getPostCategoryUrl()
     {
-        return Yii::$app->request->baseUrl . '/post-details/' . $this->slug;
+        return Yii::$app->request->baseUrl . '/post-category/' . $this->getPostCategory()->slug;
     }
 
     public function getPostUrl()
     {
-        return Yii::$app->request->baseUrl . '/post-category/' . $this->getPostCategory()->slug;
+        return Yii::$app->request->baseUrl . '/post-details/' . $this->slug;
     }
 
     public function getPostType()

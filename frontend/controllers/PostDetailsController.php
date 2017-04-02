@@ -19,9 +19,6 @@ class PostDetailsController extends BaseController
         $model = Post::findOne(['slug' => $slug]); //, 'status' => Yii::$app->params['publish']
 
         if (!is_null($model)) {
-
-            $post_category = $model->getPostCategory();
-
             $title = $model->title;
             $description = $model->introduction;
             $image = Yii::$app->params['post_images'] . $model->image;
@@ -30,7 +27,6 @@ class PostDetailsController extends BaseController
 
             return $this->render('index', [
                 'model' => $model,
-                'post_category' => $post_category,
             ]);
 
         } else {

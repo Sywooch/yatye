@@ -6,6 +6,8 @@ use yii\helpers\Url;
 $this->title = $model->title;
 ?>
 <div class="mt50 p30">
-    <?php echo $this->render('_details') ?>
+    <?php echo $this->render('_details', [
+        'model' => $model,
+    ]) ?>
     <?= $this->render('@app/views/layouts/right-side/_right_side', []) ?>
 </div>
