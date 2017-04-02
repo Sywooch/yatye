@@ -8,13 +8,10 @@
 
 namespace common\components;
 
-
 use Yii;
-use backend\models\Place;
-
 use yii\helpers\Json;
-
 use common\helpers\DataHelpers;
+use backend\models\place\Place;
 
 
 class BaseController extends SuperController

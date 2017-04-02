@@ -6,18 +6,15 @@
  * Time: 21:21
  */
 
-namespace backend\models;
-
-
+namespace backend\models\place;
 
 use Yii;
-use backend\helpers\PlaceData;
+use yii\db\Query;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\db\Query;
 
 class Place extends PlaceData
 {

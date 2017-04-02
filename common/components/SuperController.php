@@ -8,14 +8,13 @@
 
 namespace common\components;
 
-
 use Yii;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\filters\VerbFilter;
 use common\helpers\Helpers;
-use common\helpers\RecordHelpers;
+use yii\filters\AccessControl;
 use common\helpers\DataHelpers;
+use common\helpers\RecordHelpers;
 
 class SuperController extends Controller
 {
@@ -76,6 +75,7 @@ class SuperController extends Controller
             'all_services' => DataHelpers::getAllServices(),
             'all_categories' => DataHelpers::getAllCategories(),
             'profile_picture' => RecordHelpers::profilePicture(),
+            'get_post_archives' => DataHelpers::getPostArchives(),
             'get_upcoming_events' => DataHelpers::getUpcomingEvents(),
             'get_profile_picture' => RecordHelpers::getProfilePicture(),
             'all_post_categories' => DataHelpers::getAllPostCategories(),

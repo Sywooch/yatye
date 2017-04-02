@@ -6,23 +6,18 @@
  * Time: 10:08 PM
  */
 
-namespace backend\helpers;
+namespace backend\models\place;
 
-
-
-use backend\models\Contact;
-use backend\models\Gallery;
-use backend\models\Place;
 use Yii;
+use yii\db\Expression;
 use common\models\Cell;
+use common\models\Sector;
+use frontend\models\Views;
 use common\models\District;
 use common\models\Province;
-use common\models\Sector;
-use common\helpers\ValueHelpers;
 use frontend\models\Ratings;
-use frontend\models\Views;
+use common\helpers\ValueHelpers;
 use common\models\Place as BasePlace;
-use yii\db\Expression;
 
 class PlaceData extends BasePlace
 {

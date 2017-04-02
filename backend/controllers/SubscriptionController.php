@@ -2,12 +2,12 @@
 
 namespace backend\controllers;
 
-use backend\models\Place;
 use Yii;
-use backend\models\Subscription;
-use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
+use backend\models\place\Place;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use backend\models\place\Subscription;
 use backend\components\AdminController as BackendAdminController;
 
 /**

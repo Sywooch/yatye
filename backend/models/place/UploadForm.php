@@ -6,12 +6,12 @@
  * Time: 0:30
  */
 
-namespace backend\models;
+namespace backend\models\place;
 
 use Yii;
+use Exception;
 use yii\base\Model;
 use yii\web\UploadedFile;
-use Exception;
 
 class UploadForm extends Model
 {

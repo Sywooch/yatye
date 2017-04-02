@@ -1,18 +1,17 @@
 <?php
 
-namespace backend\models;
+namespace backend\models\place;
 
-use common\helpers\ValueHelpers;
 use Yii;
-use common\models\Service as BaseService;
+use yii\db\Query;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\helpers\ValueHelpers;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\db\Query;
 
-class Service extends BaseService
+class Service extends ServiceData
 {
     public function behaviors()
     {
@@ -90,26 +89,12 @@ class Service extends BaseService
 
     public function getCategoryName()
     {
-        $category_name = NULL;
-        if ($this->category_id) {
-            $obj = Category::findOne($this->category_id);
-            if ($obj) {
-                $category_name = $obj->name;
-            }
-        }
-        return $category_name;
+        return Category::findOne($this->category_id)->name;
     }
 
     public function getCategorySlug()
     {
-        $category_slug = NULL;
-        if ($this->category_id) {
-            $obj = Category::findOne($this->category_id);
-            if ($obj) {
-                $category_slug = $obj->slug;
-            }
-        }
-        return $category_slug;
+        return Category::findOne($this->category_id)->slug;
     }
 
     public function getServicesByCategoryId($category_id)

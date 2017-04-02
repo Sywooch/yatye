@@ -1,16 +1,14 @@
 <?php
 namespace frontend\controllers;
 
-
-use backend\models\Event;
-use backend\models\Subscription;
-use frontend\models\Enquiry;
 use Yii;
-use frontend\models\ContactForm;
-use backend\models\Category;
-use common\components\BaseController;
 use common\models\Place;
-use yii\db\Expression;
+use frontend\models\Enquiry;
+use frontend\models\ContactForm;
+use backend\models\place\Category;
+use common\components\BaseController;
+use backend\models\place\Subscription;
+
 
 /**
  * Site controller

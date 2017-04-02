@@ -6,16 +6,15 @@
  * Time: 12:18
  */
 
-namespace backend\models;
+namespace backend\models\place;
 
-use common\helpers\ValueHelpers;
 use Yii;
-use common\models\Contact as BaseContact;
-use yii\behaviors\BlameableBehavior;
-use yii\behaviors\SluggableBehavior;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\helpers\ValueHelpers;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use common\models\Contact as BaseContact;
 
 class Contact extends BaseContact
 {

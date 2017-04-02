@@ -8,8 +8,8 @@
 
 namespace common\helpers;
 
-use common\components\SimpleImage;
 use Yii;
+use common\components\SimpleImage;
 
 class GalleryHelper
 {

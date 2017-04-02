@@ -5,7 +5,7 @@
  * Date: 27/12/2016
  * Time: 22:34
  */
-
+/* @var $event backend\models\Event */
 use yii\helpers\Url;
 
 ?>
@@ -24,7 +24,7 @@ use yii\helpers\Url;
                                         <div class="card-label">
                                             <a target="_blank"
                                                href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
-                                                <?php echo $event->getDate($event->start_date) ?>
+                                                <?php echo $event->getDate() ?>
                                             </a>
                                         </div>
                                         <div class="card-content">

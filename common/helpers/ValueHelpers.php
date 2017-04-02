@@ -8,16 +8,16 @@
 
 namespace common\helpers;
 
+use yii;
 use backend\models\User;
 use frontend\models\UserProfile;
-use yii;
 
 class ValueHelpers
 {
     public static function getUser($model)
     {
-        if ($already_exists = RecordHelpers::userHas('user_profile')) {
-            $user_profile = UserProfile::findOne(['user_id' => $model->created_by]);
+        $user_profile = UserProfile::findOne(['user_id' => $model->created_by]);
+        if (!empty($user_profile)) {
             return $user_profile->first_name . ' ' . $user_profile->last_name;
         }
         else{

@@ -6,16 +6,16 @@
  * Time: 21:47
  */
 
-namespace backend\models;
+namespace backend\models\place;
 
-use common\models\PlaceService as BasePlaceService;
-use yii\behaviors\BlameableBehavior;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
 use Yii;
 use yii\db\Query;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use common\models\PlaceService as BasePlaceService;
 
 class PlaceService extends BasePlaceService
 {

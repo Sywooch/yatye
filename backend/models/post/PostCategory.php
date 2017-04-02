@@ -6,15 +6,15 @@
  * Time: 15:19
  */
 
-namespace backend\models;
-use common\helpers\ValueHelpers;
+namespace backend\models\post;
+
 use Yii;
-use common\models\PostCategory as BasePostCategory;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\helpers\ValueHelpers;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Exception;
-use yii\db\Expression;
+use common\models\PostCategory as BasePostCategory;
 
 class PostCategory extends BasePostCategory
 {
@@ -82,9 +82,25 @@ class PostCategory extends BasePostCategory
     public function getPosts()
     {
         return Post::find()
-            ->where(['post_category_id' => $this->id, 'status'=>Yii::$app->params['active']])
+            ->where(['post_category_id' => $this->id, 'status' => Yii::$app->params['active']])
             ->orderBy(new Expression('updated_at DESC'));
     }
+
+    public function getPostType()
+    {
+        return PostType::findOne($this->post_type_id);
+    }
+
+    public function getPostTypeName()
+    {
+        return $this->getPostType()->name;
+    }
+
+    public function getPostTypeUrl()
+    {
+        return Yii::$app->request->baseUrl . '/articles/' . $this->getPostType()->slug;
+    }
+
     public function getStatus()
     {
         return ValueHelpers::getStatus($this);

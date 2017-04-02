@@ -2,17 +2,17 @@
 
 namespace frontend\controllers;
 
-use backend\models\Subscription;
-use common\components\BaseController;
-use frontend\models\Enquiry;
 use Yii;
-use frontend\models\ContactForm;
 use common\models\Place;
+use frontend\models\Enquiry;
+use frontend\models\ContactForm;
+use common\components\BaseController;
+use backend\models\place\Subscription;
+
 class ContactUsController extends BaseController
 {
     public function actionIndex()
     {
-
         $model = new ContactForm();
         $place = Place::findOne(['id' => 30, 'code' => 'GUIDE00030']);
         $ip_address = Yii::$app->request->getUserIP();

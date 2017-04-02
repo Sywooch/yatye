@@ -6,14 +6,14 @@
  * Time: 15:27
  */
 
-namespace backend\models;
+namespace backend\models\place;
 
-use common\helpers\ValueHelpers;
 use Yii;
-use common\models\Subscription as BaseSubscription;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\helpers\ValueHelpers;
+use yii\behaviors\TimestampBehavior;
+use common\models\Subscription as BaseSubscription;
 
 class Subscription extends BaseSubscription
 {

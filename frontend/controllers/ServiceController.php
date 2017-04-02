@@ -1,14 +1,11 @@
 <?php
 
 namespace frontend\controllers;
-use common\components\BaseController;
+
 use Yii;
-use backend\controllers\user\AdminController;
-use backend\models\Service;
 use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
-use yii\data\Pagination;
-use yii\web\NotFoundHttpException;
+use backend\models\place\Service;
+use common\components\BaseController;
 
 class ServiceController extends BaseController
 {

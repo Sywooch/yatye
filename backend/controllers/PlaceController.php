@@ -2,21 +2,17 @@
 
 namespace backend\controllers;
 
-use backend\helpers\Helpers;
-use backend\models\Category;
-use backend\models\SearchPlace;
-use backend\models\UploadForm;
-use common\helpers\RecordHelpers;
-use common\models\Province;
 use Yii;
-use backend\models\Place;
-use yii\data\ActiveDataProvider;
-use backend\components\AdminController as BackendAdminController;
 use yii\db\Expression;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
-use yii\helpers\Url;
-use yii\web\UploadedFile;
+use common\models\Province;
+use backend\helpers\Helpers;
+use yii\helpers\ArrayHelper;
+use backend\models\place\Place;
+use yii\data\ActiveDataProvider;
+use backend\models\place\Category;
+use backend\models\place\SearchPlace;
+use backend\components\AdminController as BackendAdminController;
 
 class PlaceController extends BackendAdminController
 {

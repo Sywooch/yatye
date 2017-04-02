@@ -36,8 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-body">
                 <?php echo GridView::widget([
                     'dataProvider' => $dataProvider,
-                    'showFooter' => true,
-                    'showHeader' => true,
+                    'showFooter' => false,
+                    'showHeader' => false,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         [

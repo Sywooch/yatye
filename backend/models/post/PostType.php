@@ -6,7 +6,7 @@
  * Time: 15:24
  */
 
-namespace backend\models;
+namespace backend\models\post;
 use common\helpers\ValueHelpers;
 use Yii;
 use common\models\PostType as BasePostType;

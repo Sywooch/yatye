@@ -6,15 +6,13 @@
  * Time: 20:06
  */
 
-namespace backend\models;
-
+namespace backend\models\place;
 
 use Yii;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
-use backend\helpers\CategoryData;
 
 class Category extends CategoryData
 {

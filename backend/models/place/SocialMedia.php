@@ -6,15 +6,15 @@
  * Time: 22:55
  */
 
-namespace backend\models;
+namespace backend\models\place;
 
-use common\helpers\ValueHelpers;
 use Yii;
-use common\models\SocialMedia as BaseSocialMedia;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\helpers\ValueHelpers;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
+use common\models\SocialMedia as BaseSocialMedia;
 
 class SocialMedia extends  BaseSocialMedia
 {

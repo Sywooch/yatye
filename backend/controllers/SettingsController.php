@@ -2,26 +2,22 @@
 
 namespace backend\controllers;
 
-use backend\models\PlaceHasAnother;
-use backend\models\PlaceService;
-use backend\models\WorkingHours;
-use common\helpers\DataHelpers;
 use Yii;
-use backend\models\Place;
-use yii\base\Model;
-use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
-use yii\helpers\ArrayHelper;
-use yii\web\NotFoundHttpException;
-use backend\models\Category;
-use backend\models\Contact;
-use backend\models\Gallery;
-use backend\models\SocialMedia;
-use backend\models\UserPlace;
-use common\models\District;
 use common\helpers\Helpers;
-use common\models\User;
-
+use common\models\District;
+use yii\helpers\ArrayHelper;
+use backend\models\place\Place;
+use common\helpers\DataHelpers;
+use yii\data\ArrayDataProvider;
+use yii\data\ActiveDataProvider;
+use backend\models\place\Contact;
+use backend\models\place\Gallery;
+use backend\models\place\Category;
+use backend\models\place\UserPlace;
+use backend\models\place\SocialMedia;
+use backend\models\place\PlaceService;
+use backend\models\place\WorkingHours;
+use backend\models\place\PlaceHasAnother;
 use backend\components\AdminController as BackendAdminController;
 
 class SettingsController extends BackendAdminController

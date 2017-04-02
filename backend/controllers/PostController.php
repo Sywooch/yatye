@@ -2,17 +2,18 @@
 
 namespace backend\controllers;
 
-
+use backend\helpers\Helpers;
 use Yii;
-use backend\models\Gallery;
-use backend\models\PostType;
-use backend\models\Post;
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
 use yii\db\Expression;
-use yii\helpers\ArrayHelper;
-use yii\web\NotFoundHttpException;
+use yii\data\Pagination;
 use yii\web\UploadedFile;
+use yii\helpers\ArrayHelper;
+use backend\models\post\Post;
+use yii\data\ActiveDataProvider;
+use backend\models\place\Gallery;
+use backend\models\post\PostType;
+use yii\web\NotFoundHttpException;
+use backend\models\post\SearchPost;
 use backend\components\AdminController as BackendAdminController;
 
 /**
@@ -27,28 +28,16 @@ class PostController extends BackendAdminController
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Post::find(),
-        ]);
-
-        $select = Post::find()->orderBy(new Expression('created_at DESC'));
-        $count = $select->count();
-
-        $pagination = new Pagination([
-            'defaultPageSize' => 20,
-            'totalCount' => $count,
-        ]);
-
-        $posts = $select
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
+        $searchModel = new SearchPost();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $status = Helpers::getStatus();
+        $post_types =  ArrayHelper::map(PostType::find()->all(), 'id', 'name');
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-            'posts' => $posts,
-            'pagination' => $pagination,
-
+            'searchModel' => $searchModel,
+            'status' => $status,
+            'post_types' => $post_types,
         ]);
     }
 

@@ -25,6 +25,7 @@ use yii\db\Expression;
 use yii\db\Query;
 use \DateTimeZone;
 use \DateTime;
+use yii\helpers\Url;
 
 class Event extends BaseEvent
 {
@@ -162,10 +163,10 @@ class Event extends BaseEvent
         ];
     }
 
-    public function getDate($_date)
+    public function getDate()
     {
         $today = strtotime(date("Y-m-d"));
-        $_date = strtotime($_date);
+        $_date = strtotime($this->start_date);
 
         $date_diff = $_date - $today;
         $difference = floor($date_diff / (60 * 60 * 24));
@@ -276,6 +277,11 @@ class Event extends BaseEvent
         Yii::warning('end_time: ' . $end_time);
 
         return ($end_time >= $current_time) ? true : false;
+    }
+
+    public function getEventUrl()
+    {
+        return Url::to(['/upcoming-event/' . $this->slug]);
     }
 
 }

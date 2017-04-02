@@ -2,12 +2,12 @@
 
 namespace frontend\controllers;
 
-use common\components\BaseController;
 use Yii;
-use yii\helpers\ArrayHelper;
 use frontend\models\Filter;
 use common\models\Province;
-use backend\models\Category;
+use yii\helpers\ArrayHelper;
+use backend\models\place\Category;
+use common\components\BaseController;
 
 class FilterController extends BaseController
 {

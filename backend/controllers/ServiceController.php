@@ -2,27 +2,23 @@
 
 namespace backend\controllers;
 
-use backend\models\Category;
-use backend\models\PlaceService;
-use backend\components\AdminController as BackendAdminController;
-use common\helpers\Helpers;
-use common\helpers\RecordHelpers;
 use Yii;
-use backend\models\Service;
-use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
-use yii\web\Controller;
+use common\helpers\Helpers;
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
+use common\helpers\RecordHelpers;
+use backend\models\place\Service;
+use backend\models\place\Category;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use backend\models\place\PlaceService;
+use backend\components\AdminController as BackendAdminController;
 
 /**
  * ServiceController implements the CRUD actions for Service model.
  */
 class ServiceController extends BackendAdminController
 {
-
     /**
      * Lists all Service models.
      * @return mixed

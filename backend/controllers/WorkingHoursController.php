@@ -3,9 +3,9 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\WorkingHours;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use backend\models\place\WorkingHours;
 use backend\components\AdminController as BackendAdminController;
 
 /**

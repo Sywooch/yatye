@@ -6,15 +6,15 @@
  * Time: 15:11
  */
 
-namespace backend\models;
+namespace backend\models\post;
 
-use common\helpers\ValueHelpers;
 use Yii;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\helpers\ValueHelpers;
 use common\models\Post as BasePost;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
 
 class Post extends BasePost
 {
@@ -102,44 +102,55 @@ class Post extends BasePost
         ];
     }
 
-    public function getPostTypeName()
+    public function getPostPicture()
     {
-        $post_type_name = NULL;
-        if ($this->post_type_id) {
-            $obj = PostType::findOne($this->post_type_id);
-            if ($obj) {
-                $post_type_name = $obj->name;
-            }
-        }
+        return Yii::$app->params['post_images'] . $this->image;
+    }
 
-        return $post_type_name;
+    public function getPostThumbnails()
+    {
+        return Yii::$app->params['post_thumbnails'] . $this->image;
+    }
+
+    public function getPostCategory()
+    {
+        return PostCategory::findOne($this->post_category_id);
     }
 
     public function getPostCategoryName()
     {
-        $post_category_name = NULL;
-        if ($this->post_category_id) {
-            $obj = PostCategory::findOne($this->post_category_id);
-            if ($obj) {
-                $post_category_name = $obj->name;
-            }
-        }
-
-        return $post_category_name;
+        return $this->getPostCategory()->name;
     }
-    public function getUpdatedAt(){
 
-        $post = Post::findOne(['id'=>$this->id]);
-
-        $d = date('d', strtotime($post->updated_at));
-        $m = date('m', strtotime($post->updated_at));
-        $y = date('Y', strtotime($post->updated_at));
-
-        return $m . '/' . $d . '/' . $y;
-    }
-    public function getPostCategory()
+    public function getPostCategoryUrl()
     {
-        return PostCategory::findOne(['id' => $this->post_category_id]);
+        return Yii::$app->request->baseUrl . '/post-details/' . $this->slug;
+    }
+
+    public function getPostUrl()
+    {
+        return Yii::$app->request->baseUrl . '/post-category/' . $this->getPostCategory()->slug;
+    }
+
+    public function getPostType()
+    {
+        return $this->getPostCategory()->getPostType();
+    }
+
+    public function getPostTypeName()
+    {
+        return $this->getPostCategory()->getPostTypeName();
+    }
+
+    public function getPostTypeUrl()
+    {
+        return $this->getPostCategory()->getPostTypeUrl();
+    }
+
+    public function getLastUpdatedDate()
+    {
+        $post = Post::findOne(['id' => $this->id]);
+        return date('D d M, Y', strtotime($post->updated_at));
     }
 
     public function getAboutUsPosts()
@@ -147,7 +158,8 @@ class Post extends BasePost
         return Post::findAll(['post_category_id' => $this->post_category_id]);
     }
 
-    public static function getPostsByType($post_type_id){
+    public static function getPostsByType($post_type_id)
+    {
 
         return Post::find()
             ->where(['status' => Yii::$app->params['active'], 'post_type_id' => $post_type_id])

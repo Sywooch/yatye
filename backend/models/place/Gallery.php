@@ -6,18 +6,17 @@
  * Time: 18:25
  */
 
-namespace backend\models;
+namespace backend\models\place;
 
-
-use common\components\SimpleImage;
-use common\helpers\GalleryHelper;
-use common\helpers\ValueHelpers;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
+use Yii;
 use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\helpers\ValueHelpers;
+use common\helpers\GalleryHelper;
+use common\components\SimpleImage;
+use yii\behaviors\TimestampBehavior;
 use common\models\Gallery as BaseGallery;
 use yii\behaviors\BlameableBehavior;
-use Yii;
 
 class Gallery extends BaseGallery
 {

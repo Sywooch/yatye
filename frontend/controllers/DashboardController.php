@@ -2,17 +2,14 @@
 
 namespace frontend\controllers;
 
-
-
-use backend\components\AdminController;
 use Yii;
 use frontend\models\Place;
+use backend\components\AdminController;
 
 class DashboardController extends AdminController
 {
     public function actionIndex()
     {
-
         $places = Place::getMyPlaces();
 
         if(!empty($places)) :

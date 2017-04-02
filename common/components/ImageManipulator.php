@@ -8,8 +8,6 @@
 
 namespace common\components;
 
-
-
 class ImageManipulator
 {
     /**

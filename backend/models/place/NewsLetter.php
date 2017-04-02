@@ -6,15 +6,15 @@
  * Time: 22:56
  */
 
-namespace backend\models;
+namespace backend\models\place;
 
+use Yii;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
 use common\helpers\EmailHelper;
 use common\helpers\ValueHelpers;
-use Yii;
-use common\models\NewsLetter as BaseNewsLetter;
 use yii\behaviors\BlameableBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
+use common\models\NewsLetter as BaseNewsLetter;
 
 class NewsLetter extends BaseNewsLetter
 {

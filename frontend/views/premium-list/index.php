@@ -64,6 +64,5 @@ $dataProvider->pagination = [
         </div>
     </div>
 </div>
-<?php echo $this->render('@app/views/layouts/_right_side') ?>
-
+<?= $this->render('@app/views/layouts/right-side/_right_side', []) ?>
 

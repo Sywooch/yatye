@@ -9,25 +9,22 @@
 namespace common\helpers;
 
 use Yii;
-use backend\models\Place;
-use backend\models\Post;
-use backend\models\PostCategory;
-use backend\models\Service;
-use common\models\Cell;
-use common\models\District;
-use common\models\Sector;
 use yii\db\Expression;
-use yii\helpers\ArrayHelper;
-use backend\models\Category;
+use common\models\Cell;
 use backend\models\Event;
-use backend\models\EventTags;
+use common\models\Sector;
+use common\models\District;
 use common\models\Province;
-use \DateTimeZone;
-use \DateTime;
+use yii\helpers\ArrayHelper;
+use backend\models\post\Post;
+use backend\models\EventTags;
+use backend\models\place\Place;
+use backend\models\place\Service;
+use backend\models\place\Category;
+use backend\models\post\PostCategory;
 
 class DataHelpers
 {
-
     public static function getServices($category_id)
     {
         return Service::find()
@@ -215,6 +212,16 @@ class DataHelpers
         $keywords[] = implode(",", Yii::$app->params['meta_classification']);
 
         return implode(",", $keywords);
+    }
+
+    public static function getPostArchives()
+    {
+        return Post::find()
+            ->select(new Expression('COUNT(`id`) AS number, Month(`updated_at`) AS month, Year(`updated_at`) AS year'))
+            ->groupBy(new Expression('Month(`updated_at`), Year(`updated_at`)'))
+            ->orderBy(new Expression("STR_TO_DATE(CONCAT(month, '/', year), '%m/%Y') DESC"))
+            ->asArray()
+            ->all();
     }
 
 }

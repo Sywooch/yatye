@@ -8,10 +8,9 @@
 
 namespace backend\helpers;
 
-use backend\models\Place;
+use backend\models\place\Place;
 use Yii;
 use common\helpers\Helpers as BaseHelpers;
-use yii\data\Pagination;
 
 class Helpers extends BaseHelpers
 {

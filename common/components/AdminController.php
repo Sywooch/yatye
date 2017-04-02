@@ -8,24 +8,9 @@
 
 namespace common\components;
 
-use backend\models\Contact;
-use backend\models\Gallery;
-use backend\models\PlaceService;
-use backend\models\Post;
-use backend\models\Place;
-use backend\models\SocialMedia;
-use common\helpers\GalleryHelper;
-use common\helpers\Helpers;
-use common\helpers\RecordHelpers;
-use frontend\models\Views;
 use Yii;
-
-use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-
-use yii\helpers\Json;
-use yii\helpers\Url;
-use yii\web\UploadedFile;
+use yii\filters\AccessControl;
 
 class AdminController extends BaseController
 {

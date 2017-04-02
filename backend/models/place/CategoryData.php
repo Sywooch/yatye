@@ -6,13 +6,12 @@
  * Time: 10:09 PM
  */
 
-namespace backend\helpers;
+namespace backend\models\place;
 
 use Yii;
 use yii\db\Query;
-use backend\models\Service;
-use common\helpers\ValueHelpers;
 use frontend\models\Views;
+use common\helpers\ValueHelpers;
 use common\models\Category as BaseCategory;
 
 class CategoryData extends BaseCategory

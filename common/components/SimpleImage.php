@@ -7,6 +7,7 @@
  */
 
 namespace common\components;
+
 use Exception;
 
 class SimpleImage

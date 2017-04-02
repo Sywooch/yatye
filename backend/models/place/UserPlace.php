@@ -6,16 +6,17 @@
  * Time: 20:24
  */
 
-namespace backend\models;
+namespace backend\models\place;
+
 
 use Yii;
-use common\models\UserPlace as BaseUserPlace;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use backend\models\User;
+use yii\helpers\ArrayHelper;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\db\Query;
-use yii\helpers\ArrayHelper;
+use common\models\UserPlace as BaseUserPlace;
 
 class UserPlace extends BaseUserPlace
 {

@@ -8,9 +8,9 @@
 
 namespace common\helpers;
 
-use backend\models\Gallery;
-use frontend\models\UserProfile;
 use Yii;
+use frontend\models\UserProfile;
+use backend\models\place\Gallery;
 
 class RecordHelpers
 {

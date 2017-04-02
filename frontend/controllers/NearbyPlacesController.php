@@ -2,10 +2,8 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Place;
 use Yii;
-use backend\models\Category;
-
+use backend\models\place\Category;
 use backend\components\AdminController;
 
 class NearbyPlacesController extends AdminController

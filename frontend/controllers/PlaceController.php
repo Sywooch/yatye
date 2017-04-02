@@ -2,23 +2,23 @@
 
 namespace frontend\controllers;
 
-
-use backend\models\PlaceService;
-use backend\models\WorkingHours;
 use Yii;
-use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
-use yii\db\Expression;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
-use yii\web\NotFoundHttpException;
-use backend\models\Contact;
-use backend\models\Gallery;
-use backend\models\SocialMedia;
+use yii\db\Expression;
+use frontend\models\Place;
 use common\helpers\Helpers;
 use common\models\District;
-use frontend\models\Place;
+use yii\helpers\ArrayHelper;
+use yii\data\ArrayDataProvider;
+use yii\data\ActiveDataProvider;
+use backend\models\place\Gallery;
+use backend\models\place\Contact;
+use yii\web\NotFoundHttpException;
+use backend\models\place\SocialMedia;
+use backend\models\place\PlaceService;
+use backend\models\place\WorkingHours;
 use backend\components\AdminController;
+
 /**
  * PlaceController implements the CRUD actions for Place model.
  */

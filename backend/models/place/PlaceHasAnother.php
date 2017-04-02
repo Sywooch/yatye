@@ -6,15 +6,15 @@
  * Time: 11:31
  */
 
-namespace backend\models;
+namespace backend\models\place;
 
 use Yii;
-use common\models\PlaceHasAnother as BasePlaceHasAnother;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
 use yii\db\Query;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\behaviors\TimestampBehavior;
+use common\models\PlaceHasAnother as BasePlaceHasAnother;
 
 class PlaceHasAnother extends BasePlaceHasAnother
 {

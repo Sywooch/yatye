@@ -9,9 +9,10 @@
 namespace frontend\models;
 
 use Yii;
-use common\models\ViewsList as BaseViewsList;
-use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\models\ViewsList as BaseViewsList;
+
 
 class ViewsList extends BaseViewsList
 {

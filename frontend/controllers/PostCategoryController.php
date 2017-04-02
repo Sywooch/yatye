@@ -1,10 +1,11 @@
 <?php
 
 namespace frontend\controllers;
-use backend\models\PostCategory;
-use common\components\BaseController;
+
 use Yii;
 use yii\data\ActiveDataProvider;
+use backend\models\post\PostCategory;
+use common\components\BaseController;
 
 class PostCategoryController extends BaseController
 {

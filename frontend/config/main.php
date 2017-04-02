@@ -139,6 +139,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'place-details/<slug>' => 'place-details/slug',
+                'post-preview/<slug>' => 'post-preview/slug',
                 'category/<slug>' => 'category/slug',
                 'premium-list/<slug>' => 'premium-list/slug/',
                 'basic-list/<slug>' => 'basic-list/slug/',

@@ -8,10 +8,10 @@
 
 namespace frontend\controllers;
 
-use backend\models\Subscription;
-use Yii;
 
+use Yii;
 use common\components\BaseController;
+use backend\models\place\Subscription;
 
 class UnsubscribeController extends BaseController
 {

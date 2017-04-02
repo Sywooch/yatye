@@ -6,15 +6,15 @@
  * Time: 18:03
  */
 
-namespace backend\models;
+namespace backend\models\place;
 
-use common\helpers\ValueHelpers;
 use Yii;
-use common\models\WorkingHours as BaseWorkingHours;
-use yii\behaviors\BlameableBehavior;
-use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
+use common\helpers\ValueHelpers;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use common\models\WorkingHours as BaseWorkingHours;
 
 class WorkingHours extends BaseWorkingHours
 {

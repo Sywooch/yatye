@@ -3,10 +3,8 @@
 namespace frontend\controllers;
 
 use Yii;
-use backend\models\Category;
+use backend\models\place\Category;
 use common\components\BaseController;
-use common\models\Ads;
-use yii\web\NotFoundHttpException;
 
 class ListController extends BaseController
 {
@@ -18,8 +16,6 @@ class ListController extends BaseController
     public function actionSlug($slug)
     {
         $model = Category::find()->where(['slug' => $slug])->one();
-
-
         if (!is_null($model)) {
             return $this->render('index', [
                 'model' => $model,

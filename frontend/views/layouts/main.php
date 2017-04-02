@@ -61,11 +61,9 @@ AppAsset::register($this);
         <div class="main-inner">
             <div class="content mt-70">
                 <div class="container">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <?= Breadcrumbs::widget([
-                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                        ]) ?>
-                    </div>
+                    <?= Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]) ?>
                     <?= $content ?>
                 </div>
             </div>
