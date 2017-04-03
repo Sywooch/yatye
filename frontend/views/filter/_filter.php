@@ -18,7 +18,7 @@ use yii\helpers\Url;
 <?php $form = ActiveForm::begin(['action' => ['index'], 'method' => 'get', 'options' => ['class' => 'filter div']]); ?>
     <div class="row">
         <div class="col-sm-12 col-md-6">
-            <?= $form->field($model, 'key_word')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Type a name of the place')])->label(false); ?>
+            <?= $form->field($model, 'key_word')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Place ??')])->label(false); ?>
         </div>
     </div>
     <div class="row">

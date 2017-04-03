@@ -25,7 +25,7 @@ use backend\models\place\Category;
     <div class="background-white p20 div">
         <?php $form = ActiveForm::begin(['action' => ['/filter'], 'method' => 'get']); ?>
         <?= $form->field($model, 'key_word')
-            ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Type a name of the place')])
+            ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Place ??')])
             ->label(false); ?>
         <?php echo $form->field($model, 'province_id')->dropDownList($provinces, [
             'id' => 'province_id',

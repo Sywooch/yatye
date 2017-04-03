@@ -12,7 +12,7 @@ $dataProvider->pagination = [
 ?>
 <div class="col-sm-8 col-lg-9">
     <div class="content">
-        <div class="cards-row p30">
+        <div class="cards-row p20">
             <div class="row">
                 <?= ListView::widget([
                     'options' => [
