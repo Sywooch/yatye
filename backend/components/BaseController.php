@@ -8,6 +8,9 @@
 
 namespace backend\components;
 
+use backend\models\EventTags;
+use backend\models\post\Post;
+use backend\models\post\PostCategory;
 use Yii;
 use yii\base\Model;
 use backend\models\Blog;
@@ -62,6 +65,9 @@ class BaseController extends AdminController
         if (Yii::$app->controller->id == 'blog') :
             $model = Blog::findOne(Yii::$app->request->get('id'));
         endif;
+        if (Yii::$app->controller->id == 'post-category') :
+            $model = PostCategory::findOne(Yii::$app->request->get('id'));
+        endif;
 
         if (Yii::$app->controller->id == 'category') :
             $model = Category::findOne(Yii::$app->request->get('id'));
@@ -74,6 +80,12 @@ class BaseController extends AdminController
         if (Yii::$app->controller->id == 'event') :
             $model = Event::findOne(Yii::$app->request->get('id'));
         endif;
+
+        if (Yii::$app->controller->id == 'event-tags') :
+            $model = EventTags::findOne(Yii::$app->request->get('id'));
+        endif;
+
+
 
         if (!is_null ($model)) :
             RecordHelpers::status($model);

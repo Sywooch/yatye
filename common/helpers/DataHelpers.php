@@ -69,6 +69,7 @@ class DataHelpers
     {
         return PostCategory::find()
             ->where(['post_type_id' => $post_type_id])
+            ->andWhere(['status' => Yii::$app->params['active']])
             ->select(['id', 'name'])
             ->orderBy('name')
             ->asArray()

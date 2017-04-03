@@ -59,15 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'class' => 'btn btn-primary btn-xs',
                                 ]);
                             },
-//                    'delete' => function ($url, $model) {
-//                        return Html::a(Html::tag('i', '', ['class' => 'fa fa-trash']), $url, [
-//                            'class' => 'btn btn-danger btn-xs',
-//                            'data' => [
-//                                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-//                                'method' => 'post',
-//                            ],
-//                        ]);
-//                    },
                         ],
                     ],
                 ],

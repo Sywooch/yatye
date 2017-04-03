@@ -8,31 +8,57 @@
 <div class="sidebar-admin">
     <ul>
         <li class="<?php echo preg_match('/site/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/site/" title="Dashboard" ><i class="fa fa-tachometer"></i></a>
-        </li>
-        <li class="<?php echo preg_match('/gallery/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/gallery/" title="Gallery"><i class="fa fa-photo"></i></a>
+            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/site/" title="Dashboard" >
+                <i class="fa fa-tachometer"></i>
+            </a>
         </li>
         <li class="<?php echo preg_match('/service/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/service/" title="Services"><i class="fa fa-list"></i></a>
+            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/service/" title="Services">
+                <i class="fa fa-list"></i>
+            </a>
         </li>
         <li class="<?php echo preg_match('/event-tags/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/event-tags/" title="Event Tags"><i class="fa fa-tags"></i></a>
+            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/event-tags/" title="Event Tags">
+                <i class="fa fa-tags"></i>
+            </a>
+        </li>
+        <li class="<?php echo preg_match('/post-category/', $this->context->route, $matched) ? 'active' : '' ?>">
+            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/post-category/" title="Post Category">
+                <i class="fa fa-adjust"></i>
+            </a>
         </li>
         <li class="<?php echo preg_match('/subscription/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/subscription/" title="Subscriptions"><i class="fa fa-rss"></i></a>
+            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/subscription/" title="Subscriptions">
+                <i class="fa fa-rss"></i>
+            </a>
         </li>
         <li class="<?php echo preg_match('/news-letter/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/news-letter/" title="News Letter"><i class="fa fa-bullhorn"></i></a>
+            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/news-letter/" title="News Letter">
+                <i class="fa fa-bullhorn"></i>
+            </a>
         </li>
         <li class="<?php echo preg_match('/pricing/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/pricing/" title="Pricing"><i class="fa fa-money"></i></a>
+            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/pricing/" title="Pricing">
+                <i class="fa fa-money"></i>
+            </a>
+        </li>
+        <li class="<?php echo preg_match('/gallery/', $this->context->route, $matched) ? 'active' : '' ?>">
+            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/gallery/" title="Gallery">
+                <i class="fa fa-photo"></i>
+            </a>
         </li>
     </ul>
 </div>
 <div class="sidebar-secondary-admin">
     <ul>
-
+        <li class="<?php echo preg_match('/site/', $this->context->route, $matched) ? 'active' : '' ?>">
+            <a href="<?php echo Yii::$app->request->baseUrl; ?>/site/">
+                <span class="icon"><i class="fa fa-industry"></i></span>
+                <span class="title">Dashboard
+                </span>
+                <span class="subtitle">Dashboard</span>
+            </a>
+        </li>
         <li class="<?php echo preg_match('/place/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/place/">
                 <span class="icon"><i class="fa fa-industry"></i></span>

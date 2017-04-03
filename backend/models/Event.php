@@ -212,7 +212,9 @@ class Event extends BaseEvent
     public function getEventTags()
     {
         $event_tag_ids = $this->getEventTagIds();
-        return EventTags::find()->where(['in', 'id', $event_tag_ids]);
+        return EventTags::find()
+            ->where(['in', 'id', $event_tag_ids])
+            ->andWhere(['status' => Yii::$app->params['active']]);
     }
 
     public function getContacts()
