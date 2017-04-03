@@ -98,7 +98,7 @@ AppAsset::register($this);
             {
                 element: "#filter",
                 title: "Filter",
-                content: "When click on this button you go directly to the filter page. " +
+                content: "When clicking on this button you go directly to the filter page. " +
                 "You may get the filtered list based on your choices",
                 placement: "left",
             },

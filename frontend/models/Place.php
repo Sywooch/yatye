@@ -2,19 +2,16 @@
 
 namespace frontend\models;
 
-use backend\models\Address;
-use backend\models\Contact;
-use backend\models\Gallery;
-use backend\models\PlaceService;
-use backend\models\SocialMedia;
-use backend\models\UserPlace;
+use Yii;
+use yii\db\Query;
+use yii\db\Expression;
 use common\models\Service;
 use common\models\WorkingHours;
-use Yii;
-use backend\models\Place as BasePlace;
-use yii\db\Expression;
-use yii\db\Query;
-use yii\helpers\ArrayHelper;
+use backend\models\place\Gallery;
+use backend\models\place\UserPlace;
+use backend\models\place\PlaceService;
+use backend\models\place\SocialMedia;
+use backend\models\place\Place as BasePlace;
 
 class Place extends BasePlace
 {

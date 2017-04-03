@@ -2,10 +2,10 @@
 
 namespace frontend\controllers;
 
-use backend\models\Post;
-use common\components\BaseController;
-use common\helpers\MetaTagHelpers;
 use Yii;
+use backend\models\post\Post;
+use common\helpers\MetaTagHelpers;
+use common\components\BaseController;
 
 class PostDetailsController extends BaseController
 {
@@ -16,12 +16,9 @@ class PostDetailsController extends BaseController
 
     public function actionSlug($slug)
     {
-        $model = Post::findOne(['slug' => $slug]);
+        $model = Post::findOne(['slug' => $slug]); //, 'status' => Yii::$app->params['publish']
 
         if (!is_null($model)) {
-
-            $post_category= $model->getPostCategory();
-
             $title = $model->title;
             $description = $model->introduction;
             $image = Yii::$app->params['post_images'] . $model->image;
@@ -30,7 +27,6 @@ class PostDetailsController extends BaseController
 
             return $this->render('index', [
                 'model' => $model,
-                'post_category' => $post_category,
             ]);
 
         } else {

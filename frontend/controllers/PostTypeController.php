@@ -3,9 +3,9 @@
 namespace frontend\controllers;
 
 use Yii;
-use backend\models\PostType;
-use common\components\BaseController;
 use yii\data\ActiveDataProvider;
+use backend\models\post\PostType;
+use common\components\BaseController;
 
 class PostTypeController extends BaseController
 {

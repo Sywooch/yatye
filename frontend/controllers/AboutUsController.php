@@ -2,9 +2,9 @@
 
 namespace frontend\controllers;
 
-use common\components\BaseController;
 use Yii;
-use backend\models\Post;
+use backend\models\post\Post;
+use common\components\BaseController;
 
 class AboutUsController extends BaseController
 {

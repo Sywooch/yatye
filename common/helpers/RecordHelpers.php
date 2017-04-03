@@ -8,9 +8,9 @@
 
 namespace common\helpers;
 
-use backend\models\Gallery;
-use frontend\models\UserProfile;
 use Yii;
+use frontend\models\UserProfile;
+use backend\models\place\Gallery;
 
 class RecordHelpers
 {
@@ -105,15 +105,13 @@ class RecordHelpers
 
     public static function status($model)
     {
-
         if ($model->status == Yii::$app->params['inactive']) :
             $model->status = Yii::$app->params['active'];
-            $model->save(0);
+            $model->save();
         else:
             $model->status = Yii::$app->params['inactive'];
-            $model->save(0);
+            $model->save();
         endif;
-
     }
 
     public static function logo($model, $place)

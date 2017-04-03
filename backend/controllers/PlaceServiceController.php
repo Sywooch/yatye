@@ -2,10 +2,9 @@
 
 namespace backend\controllers;
 
-
-use common\helpers\RecordHelpers;
 use Yii;
-use backend\models\PlaceService;
+use common\helpers\RecordHelpers;
+use backend\models\place\PlaceService;
 use backend\components\AdminController as BackendAdminController;
 
 class PlaceServiceController extends BackendAdminController

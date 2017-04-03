@@ -9,10 +9,10 @@
 namespace frontend\models;
 
 use Yii;
-use common\models\Views as BaseViews;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
 use yii\db\Query;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\models\Views as BaseViews;
 
 class Views extends BaseViews
 {

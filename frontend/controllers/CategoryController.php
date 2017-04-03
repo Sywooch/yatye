@@ -2,11 +2,11 @@
 
 namespace frontend\controllers;
 
-use backend\models\Ads;
-use backend\models\Place;
-use backend\models\Post;
 use Yii;
-use backend\models\Category;
+use backend\models\Ads;
+use backend\models\post\Post;
+use backend\models\place\Place;
+use backend\models\place\Category;
 use common\components\BaseController;
 
 class CategoryController extends BaseController

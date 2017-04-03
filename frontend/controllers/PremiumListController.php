@@ -3,9 +3,8 @@
 namespace frontend\controllers;
 
 use Yii;
-use backend\models\Category;
 use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
+use backend\models\place\Category;
 use common\components\BaseController;
 
 class PremiumListController extends BaseController

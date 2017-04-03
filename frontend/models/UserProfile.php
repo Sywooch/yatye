@@ -8,12 +8,12 @@
 
 namespace frontend\models;
 
-use common\models\User;
 use Yii;
-use common\models\UserProfile as BaseUserProfile;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 use yii\db\Expression;
+use common\models\User;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
+use common\models\UserProfile as BaseUserProfile;
 
 class UserProfile extends BaseUserProfile
 {

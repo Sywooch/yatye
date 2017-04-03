@@ -9,9 +9,9 @@
 namespace frontend\models;
 
 use Yii;
-use common\models\Review as BaseReview;
-use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\models\Review as BaseReview;
 
 class Review extends BaseReview
 {

@@ -2,14 +2,14 @@
 
 namespace backend\controllers;
 
-use common\helpers\GalleryHelper;
-use common\helpers\Helpers;
 use Yii;
 use backend\models\Ads;
+use yii\web\UploadedFile;
+use common\helpers\Helpers;
 use yii\data\ActiveDataProvider;
+use common\helpers\GalleryHelper;
 use yii\web\NotFoundHttpException;
 use backend\components\AdminController as BackendAdminController;
-use yii\web\UploadedFile;
 
 /**
  * AdsController implements the CRUD actions for Ads model.

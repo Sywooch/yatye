@@ -2,10 +2,10 @@
 
 namespace backend\controllers;
 
-use backend\helpers\Helpers;
 use Yii;
-use backend\models\Category;
+use backend\helpers\Helpers;
 use yii\data\ActiveDataProvider;
+use backend\models\place\Category;
 use yii\web\NotFoundHttpException;
 use backend\components\AdminController as BackendAdminController;
 
@@ -14,7 +14,6 @@ use backend\components\AdminController as BackendAdminController;
  */
 class CategoryController extends BackendAdminController
 {
-
 
     /**
      * Lists all Category models.

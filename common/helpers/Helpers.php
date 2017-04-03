@@ -8,7 +8,7 @@
 
 namespace common\helpers;
 
-use backend\models\Gallery;
+
 use Yii;
 use yii\helpers\FileHelper;
 

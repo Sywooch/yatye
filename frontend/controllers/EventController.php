@@ -2,16 +2,14 @@
 
 namespace frontend\controllers;
 
-
-use backend\models\Gallery;
 use Yii;
-use backend\models\Event;
-use yii\data\ActiveDataProvider;
 use yii\db\Expression;
+use backend\models\Event;
+use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
+use common\helpers\GalleryHelper;
 use yii\web\NotFoundHttpException;
 use backend\components\BaseEventController;
-use yii\web\UploadedFile;
-use common\helpers\GalleryHelper;
 
 /**
  * EventController implements the CRUD actions for Event model.
@@ -72,7 +70,7 @@ class EventController extends BaseEventController
                 //Save thumbnails
                 GalleryHelper::resizeBeforeUpload($model->image_file->tempName, $thumbnail_path, 180, 150, 120);
                 $model->banner = $file_name;
-                $model->save();
+                $model->save(0);
                 return $this->redirect(['view', 'id' => $model->id]);
             }
             else{

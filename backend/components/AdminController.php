@@ -9,17 +9,14 @@
 namespace backend\components;
 
 use Yii;
-use yii\helpers\Json;
-use common\helpers\DataHelpers;
 use yii\helpers\Url;
-use yii\web\NotFoundHttpException;
-use backend\models\Place;
-use backend\models\PlaceHasAnother;
-use backend\models\Subscription;
-use backend\models\UserPlace;
-use common\helpers\EmailHelper;
-use common\helpers\RecordHelpers;
 use common\models\District;
+use backend\models\place\Place;
+use common\helpers\RecordHelpers;
+use yii\web\NotFoundHttpException;
+use backend\models\place\UserPlace;
+use backend\models\place\Subscription;
+use backend\models\place\PlaceHasAnother;
 
 class AdminController extends BaseController
 {

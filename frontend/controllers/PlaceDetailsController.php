@@ -2,17 +2,17 @@
 
 namespace frontend\controllers;
 
-use backend\models\Subscription;
-use common\helpers\EmailHelper;
-use common\helpers\MetaTagHelpers;
-use frontend\models\Enquiry;
 use Yii;
-use frontend\models\ContactForm;
-use frontend\models\Ratings;
-use frontend\models\Place;
-use frontend\models\Review;
-use frontend\models\Views;
 use yii\data\Pagination;
+use frontend\models\Place;
+use frontend\models\Views;
+use frontend\models\Review;
+use frontend\models\Enquiry;
+use frontend\models\Ratings;
+use common\helpers\EmailHelper;
+use frontend\models\ContactForm;
+use common\helpers\MetaTagHelpers;
+use backend\models\place\Subscription;
 use backend\components\AdminController;
 
 class PlaceDetailsController extends AdminController

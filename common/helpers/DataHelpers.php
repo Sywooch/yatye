@@ -8,24 +8,23 @@
 
 namespace common\helpers;
 
-use backend\models\Category;
-use backend\models\Event;
-use backend\models\EventTags;
-use common\models\Province;
 use Yii;
-use backend\models\Place;
-use backend\models\Post;
-use backend\models\PostCategory;
-use backend\models\Service;
-use common\models\Cell;
-use common\models\District;
-use common\models\Sector;
 use yii\db\Expression;
+use common\models\Cell;
+use backend\models\Event;
+use common\models\Sector;
+use common\models\District;
+use common\models\Province;
 use yii\helpers\ArrayHelper;
+use backend\models\post\Post;
+use backend\models\EventTags;
+use backend\models\place\Place;
+use backend\models\place\Service;
+use backend\models\place\Category;
+use backend\models\post\PostCategory;
 
 class DataHelpers
 {
-
     public static function getServices($category_id)
     {
         return Service::find()
@@ -70,6 +69,7 @@ class DataHelpers
     {
         return PostCategory::find()
             ->where(['post_type_id' => $post_type_id])
+            ->andWhere(['status' => Yii::$app->params['active']])
             ->select(['id', 'name'])
             ->orderBy('name')
             ->asArray()
@@ -163,7 +163,7 @@ class DataHelpers
     public static function getUpcomingEvents()
     {
         return Event::find()
-            ->where(new Expression('`end_date` >= CURRENT_DATE'))
+            ->where(new Expression('TIMESTAMP(`end_date`,`end_time`) >= CURRENT_TIMESTAMP'))
             ->andWhere(['status' => Yii::$app->params['active']])
             ->orderBy(new Expression('`start_date`'))
             ->limit(8)
@@ -213,6 +213,16 @@ class DataHelpers
         $keywords[] = implode(",", Yii::$app->params['meta_classification']);
 
         return implode(",", $keywords);
+    }
+
+    public static function getPostArchives()
+    {
+        return Post::find()
+            ->select(new Expression('COUNT(`id`) AS number, Month(`updated_at`) AS month, Year(`updated_at`) AS year'))
+            ->groupBy(new Expression('Month(`updated_at`), Year(`updated_at`)'))
+            ->orderBy(new Expression("STR_TO_DATE(CONCAT(month, '/', year), '%m/%Y') DESC"))
+            ->asArray()
+            ->all();
     }
 
 }

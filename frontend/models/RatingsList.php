@@ -9,9 +9,9 @@
 namespace frontend\models;
 
 use Yii;
-use common\models\RatingsList as BaseRatingsList;
-use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\models\RatingsList as BaseRatingsList;
 
 class RatingsList extends BaseRatingsList
 {

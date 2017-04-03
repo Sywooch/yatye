@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-
 use Yii;
 use kartik\mpdf\Pdf;
 use backend\models\Invoice;

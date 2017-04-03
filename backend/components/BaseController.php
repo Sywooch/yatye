@@ -8,31 +8,27 @@
 
 namespace backend\components;
 
-
-use backend\helpers\Helpers;
+use backend\models\EventTags;
+use backend\models\post\Post;
+use backend\models\post\PostCategory;
+use Yii;
+use yii\base\Model;
 use backend\models\Blog;
-use backend\models\Category;
-use backend\models\Contact;
 use backend\models\Event;
-use backend\models\EventContact;
-use backend\models\Gallery;
-use backend\models\PlaceService;
-use backend\models\Post;
-use backend\models\Service;
-use backend\models\SocialMedia;
-use backend\models\UserPlace;
-use backend\models\WorkingHours;
+use yii\web\UploadedFile;
+use frontend\models\Views;
+use backend\models\place\Place;
+use backend\models\place\Gallery;
+use backend\models\place\Contact;
+use backend\models\place\Service;
 use common\helpers\GalleryHelper;
 use common\helpers\RecordHelpers;
-use frontend\models\Views;
-use Yii;
-use backend\models\Place;
+use backend\models\place\Category;
+use backend\models\place\UserPlace;
+use backend\models\place\SocialMedia;
+use backend\models\place\WorkingHours;
+use backend\models\place\PlaceService;
 use common\components\AdminController;
-use yii\base\Model;
-use yii\bootstrap\ActiveForm;
-use yii\helpers\Url;
-use yii\web\Response;
-use yii\web\UploadedFile;
 
 class BaseController extends AdminController
 {
@@ -69,6 +65,9 @@ class BaseController extends AdminController
         if (Yii::$app->controller->id == 'blog') :
             $model = Blog::findOne(Yii::$app->request->get('id'));
         endif;
+        if (Yii::$app->controller->id == 'post-category') :
+            $model = PostCategory::findOne(Yii::$app->request->get('id'));
+        endif;
 
         if (Yii::$app->controller->id == 'category') :
             $model = Category::findOne(Yii::$app->request->get('id'));
@@ -81,6 +80,12 @@ class BaseController extends AdminController
         if (Yii::$app->controller->id == 'event') :
             $model = Event::findOne(Yii::$app->request->get('id'));
         endif;
+
+        if (Yii::$app->controller->id == 'event-tags') :
+            $model = EventTags::findOne(Yii::$app->request->get('id'));
+        endif;
+
+
 
         if (!is_null ($model)) :
             RecordHelpers::status($model);

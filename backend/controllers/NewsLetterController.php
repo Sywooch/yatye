@@ -3,10 +3,10 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\NewsLetter;
-use yii\data\ActiveDataProvider;
 use yii\db\Expression;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use backend\models\place\NewsLetter;
 use backend\components\AdminController as BackendAdminController;
 
 /**

@@ -7,7 +7,7 @@ use yii\helpers\Url;
 use vova07\imperavi\Widget as Redactor;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Place */
+/* @var $model backend\models\place\Place */
 /* @var $form yii\widgets\ActiveForm */
 
 ?>

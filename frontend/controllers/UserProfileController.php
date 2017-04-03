@@ -2,14 +2,12 @@
 
 namespace frontend\controllers;
 
-
 use Yii;
-use frontend\models\UserProfile;
-use yii\helpers\Url;
-use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
-use backend\components\AdminController;
+use frontend\models\UserProfile;
 use common\helpers\RecordHelpers;
+use yii\web\NotFoundHttpException;
+use backend\components\AdminController;
 
 /**
  * UserProfileController implements the CRUD actions for UserProfile model.

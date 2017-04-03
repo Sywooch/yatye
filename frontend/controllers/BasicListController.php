@@ -1,11 +1,12 @@
 <?php
 
 namespace frontend\controllers;
+
 use Yii;
-use backend\models\Category;
-use common\components\BaseController;
 use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
+use backend\models\place\Category;
+use common\components\BaseController;
+
 
 class BasicListController extends BaseController
 {

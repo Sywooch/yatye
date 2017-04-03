@@ -3,9 +3,9 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\UploadForm;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
+use backend\models\place\UploadForm;
 use backend\components\AdminController as BackendAdminController;
 
 class ImportPlacesController extends BackendAdminController

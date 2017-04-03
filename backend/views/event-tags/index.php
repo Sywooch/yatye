@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'updated_by',
                 [
                     'class' => 'yii\grid\ActionColumn',
-                    'template' => '{send} {view} {update} {delete}',
+                    'template' => '{view} {update} {status}',
                     'buttons' => [
 
                         'view' => function ($url, $model) {
@@ -40,13 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a(Html::tag('i', '', ['class' => 'fa fa-edit']), $url,
                                 ['class' => 'btn btn-secondary btn-xs']);
                         },
-                        'delete' => function ($url, $model) {
-                            return Html::a(Html::tag('i', '', ['class' => 'fa fa-trash']), $url, [
-                                'class' => 'btn btn-danger btn-xs',
-                                'data' => [
-                                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                                    'method' => 'post',
-                                ],
+                        'status' => function ($url, $model) {
+                            return Html::a(Html::tag('i', '', ['class' => ($model->status == Yii::$app->params['inactive']) ? 'fa fa-check' : 'fa fa-times']), Yii::$app->request->baseUrl . '/event-tags/status/?id=' . $model->id, [
+                                'class' => 'btn btn-primary btn-xs',
                             ]);
                         },
                     ],

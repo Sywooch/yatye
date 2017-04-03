@@ -2,14 +2,11 @@
 
 namespace frontend\controllers;
 
-use backend\components\AdminController;
 use Yii;
 use backend\models\Blog;
 use yii\data\ActiveDataProvider;
-use yii\db\Query;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use backend\components\AdminController;
 
 /**
  * MyBlogController implements the CRUD actions for Blog model.

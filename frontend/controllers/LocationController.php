@@ -2,13 +2,12 @@
 
 namespace frontend\controllers;
 
-use backend\models\Category;
-use backend\models\Service;
+
 use Yii;
-use common\components\BaseController;
 use frontend\models\District;
 use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
+use backend\models\place\Category;
+use common\components\BaseController;
 
 class LocationController extends BaseController
 {

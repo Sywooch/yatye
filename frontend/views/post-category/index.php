@@ -5,6 +5,9 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 
 $this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => $model->getPostTypeName(), 'url' => $model->getPostTypeUrl()];
+$this->params['breadcrumbs'][] = $model->name;
+
 $dataProvider->pagination = [
     'pageSize' => 6,
 ];
@@ -42,8 +45,8 @@ $dataProvider->pagination = [
                     'layout' => '{items}{pager}',
 
                     'pager' => [
-                        'prevPageLabel' => 'Prev',
-                        'nextPageLabel' => 'Next',
+                        'prevPageLabel' => false,
+                        'nextPageLabel' => false,
                         'maxButtonCount' => 12,
                         'options' => [
                             'class' => 'pager col-xs-12'
@@ -55,6 +58,6 @@ $dataProvider->pagination = [
             </div>
         </div>
     </div>
-    <?php echo $this->render('@app/views/layouts/_right_side') ?>
+    <?= $this->render('@app/views/layouts/right-side/_right_side', []) ?>
 </div>
 

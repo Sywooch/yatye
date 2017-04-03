@@ -8,11 +8,12 @@
 
 namespace frontend\controllers;
 
-use frontend\models\BlogReview;
 use Yii;
-use backend\models\Blog;
-use common\components\BaseController;
 use yii\data\Pagination;
+use backend\models\Blog;
+use frontend\models\BlogReview;
+use common\components\BaseController;
+
 
 class BlogController extends BaseController
 {

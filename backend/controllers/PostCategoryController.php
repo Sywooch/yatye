@@ -2,13 +2,12 @@
 
 namespace backend\controllers;
 
-
 use Yii;
-use backend\models\PostCategory;
-use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
+use backend\models\post\PostType;
 use yii\web\NotFoundHttpException;
-use backend\models\PostType;
+use backend\models\post\PostCategory;
 use backend\components\AdminController as BackendAdminController;
 
 /**

@@ -2,17 +2,17 @@
 
 namespace backend\controllers;
 
-use backend\helpers\Helpers;
-use backend\models\Category;
-use backend\models\Place;
-use backend\models\Service;
-use common\helpers\DataHelpers;
 use Yii;
-use backend\models\Gallery;
 use yii\base\Model;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use backend\helpers\Helpers;
+use yii\helpers\ArrayHelper;
+use common\helpers\DataHelpers;
+use backend\models\place\Place;
+use yii\data\ActiveDataProvider;
+use backend\models\place\Gallery;
+use backend\models\place\Service;
+use backend\models\place\Category;
 use yii\web\NotFoundHttpException;
 use backend\components\AdminController as BackendAdminController;
 
@@ -21,7 +21,6 @@ use backend\components\AdminController as BackendAdminController;
  */
 class GalleryController extends BackendAdminController
 {
-
     /**
      * Lists all Gallery models.
      * @return mixed

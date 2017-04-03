@@ -2,18 +2,14 @@
 
 namespace frontend\controllers;
 
-use backend\controllers\user\AdminController;
-use common\components\BaseController;
-use frontend\models\Ratings;
-use frontend\models\RatingsList;
 use Yii;
 use frontend\models\Place;
-use yii\rest\Controller;
-use yii\web\NotFoundHttpException;
+use frontend\models\Ratings;
+use frontend\models\RatingsList;
+use common\components\BaseController;
 
 class RatingsController extends BaseController
 {
-
     public function actionRate()
     {
         $post = Yii::$app->request->post('Ratings');

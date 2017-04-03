@@ -2,11 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\Pjax;
-use yii\widgets\LinkPager;
-use yii\bootstrap\Modal;
-use kartik\form\ActiveForm;
-use kartik\widgets\Typeahead;
 use yii\helpers\Url;
 
 
@@ -16,109 +11,80 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Posts');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="page-title">
             <h1><?= Html::encode($this->title) ?></h1>
-        </div><!-- /.page-title -->
+        </div>
+        <div class="panel">
+            <div class="panel-body">
+                <?= $this->render('_search', [
+                    'model' => $searchModel,
+                    'status' => $status,
+                    'post_types' => $post_types,
 
-        <div class="background-white p20 mb50">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="hero-widget well well-sm">
-                        <div class="icon">
-                            <i class="glyphicon glyphicon-list"></i>
-                        </div>
-                        <div class="text">
-                            <var></var>
-                            <label class="text-muted">Post Categories</label>
-                        </div>
-                        <div class="options">
-                            <?= Html::a(Html::tag('i', ' Add New Category', ['class' => 'fa fa-plus']), ['/post-category/create'], ['class' => 'btn btn-primary btn-xs']) ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="hero-widget well well-sm">
-                        <div class="icon">
-                            <i class="glyphicon glyphicon-list"></i>
-                        </div>
-                        <div class="text">
-                            <var></var>
-                            <label class="text-muted">Post</label>
-                        </div>
-                        <div class="options">
-                            <?= Html::a(Html::tag('i', ' Add New Post', ['class' => 'fa fa-plus']), ['create'], ['class' => 'btn btn-sm btn-primary']) ?>
-                        </div>
-                    </div>
-                </div>
+                ]) ?>
             </div>
         </div>
-        <?php if (!empty($posts)): ?>
-            <div class="background-white p20 mb50">
+
+        <div class="panel panel">
+            <div class="panel-body">
                 <div class="row">
-
-                    <div class="table-responsive">
-
-                        <table id="mytable" class="table table-bordred table-striped">
-                            <thead>
-                            <th>Title</th>
-                            <th>Type</th>
-                            <th>Category</th>
-                            <th>Created By</th>
-                            <th>Created At</th>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($posts as $post): ?>
-                                <?php if ($post->status == Yii::$app->params['pending']): ?>
-                                    <?php $status = 'fa fa-spinner'; ?>
-                                <?php elseif ($post->status == Yii::$app->params['rejected']): ?>
-                                    <?php $status = 'fa fa-fa-trash-o'; ?>
-
-                                <?php elseif ($post->status == Yii::$app->params['active']): ?>
-                                    <?php $status = 'fa fa-times'; ?>
-                                <?php else : ?>
-                                    <?php $status = 'fa fa-check'; ?>
-                                <?php endif; ?>
-                                <tr>
-                                    <td><?= $post->title ?></td>
-                                    <td><?= $post->post_type_id ?></td>
-                                    <td><?= $post->post_category_id ?></td>
-                                    <td><?= $post->created_by ?></td>
-                                    <td><?= $post->created_at ?></td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-eye']), Yii::$app->request->baseUrl . '/post/view?id=' . $post->id, ['class' => 'btn btn-primary btn-circle']) ?>
-                                                </td>
-                                                <td>
-                                                    <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-edit']), Yii::$app->request->baseUrl . '/post/update?id=' . $post->id, ['class' => 'btn btn-primary btn-circle']) ?>
-                                                </td>
-                                                <td>
-                                                    <?= Html::a(Html::tag('span', '', ['class' => $status]), Yii::$app->request->baseUrl . '/post/status/?id=' . $post->id, ['class' => 'btn btn-primary btn-circle']) ?>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-
-                            </tbody>
-
-                        </table>
-
-                        <div class="clearfix"></div>
-                        <ul class="pagination pull-right">
-                            <?= LinkPager::widget(['pagination' => $pagination]) ?>
-                        </ul>
-
-                    </div>
-
+                    <p>
+                        <?= Html::a(Yii::t('app', 'Create Post'), ['create'], ['class' => 'btn btn-primary pull-right']) ?>
+                    </p>
                 </div>
+                <div class="row">
+                    <?php echo GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'columns' => [
+                            [
+                                'label' => 'Title',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return Html::a(substr($model->title, 0, 50), ['/post/view', 'id' => $model->id], ['target' => '_blank']);
+                                },
+                                'contentOptions' => ['style' => ['max-width' => '400px']],
+
+                            ],
+                            [
+                                'attribute' => 'post_type_id',
+                                'label' => Yii::t('app', 'Post type'),
+                                'value' => function ($model) {
+                                    return $model->getPostTypeName();
+                                },
+                            ],
+                            [
+                                'attribute' => 'post_category_id',
+                                'label' => Yii::t('app', 'Post category'),
+                                'value' => function ($model) {
+                                    return $model->getPostCategoryName();
+                                },
+                            ],
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'template' => '{view} {update} {status}',
+                                'buttons' => [
+                                    'view' => function ($url, $model) {
+                                        return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $url, ['class' => 'btn btn-primary btn-xs']);
+                                    },
+                                    'update' => function ($url, $model) {
+                                        return Html::a(Html::tag('i', '', ['class' => 'fa fa-edit']), $url, ['class' => 'btn btn-secondary btn-xs']);
+                                    },
+                                    'status' => function ($url, $model) {
+                                        return Html::a(Html::tag('i', '', ['class' => ($model['status'] == Yii::$app->params['inactive']) ? 'fa fa-check' : 'fa fa-times']), $url, [
+                                            'class' => 'btn btn-danger btn-xs',
+                                        ]);
+                                    },
+                                ],
+                            ],
+                        ],
+                        'tableOptions' => ['class' => 'table mb0'],
+                    ]); ?>
+                </div>
+
             </div>
-        <?php endif; ?>
+        </div>
     </div>
 </div>
 

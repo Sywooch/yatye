@@ -10,13 +10,13 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
-use yii\behaviors\TimestampBehavior;
-use yii\data\ActiveDataProvider;
-use backend\models\PlaceService;
-use backend\models\Service;
-use common\models\Filter as BaseFilter;
-use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\db\ActiveRecord;
+use yii\data\ActiveDataProvider;
+use backend\models\place\Service;
+use yii\behaviors\TimestampBehavior;
+use backend\models\place\PlaceService;
+use common\models\Filter as BaseFilter;
 
 class Filter extends BaseFilter
 {

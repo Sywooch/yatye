@@ -2,11 +2,10 @@
 
 namespace frontend\controllers;
 
-use backend\models\Event;
-use common\components\BaseController;
-
-use common\helpers\MetaTagHelpers;
 use Yii;
+use backend\models\Event;
+use common\helpers\MetaTagHelpers;
+use common\components\BaseController;
 
 class UpcomingEventController extends BaseController
 {
@@ -18,7 +17,6 @@ class UpcomingEventController extends BaseController
     public function actionSlug($slug)
     {
         $model = Event::findOne(['slug' => $slug]);
-
 
         if (!is_null($model)) {
 

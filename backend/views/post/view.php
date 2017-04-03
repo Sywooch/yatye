@@ -4,22 +4,21 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
-/* @var $model backend\models\Post */
+/* @var $model backend\models\post\Post */
 
 $this->title = $model->title;
-//$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $model->title;
 ?>
 <div class="row">
     <div class="col-sm-12">
         <div class="page-title">
-            <h1><?= Html::encode($this->title) ?></h1><small><a href="<?php echo 'http://rwandaguide.info/post-details/' . $model->slug ?>" target="_blank"><i class="fa fa-eye"></i></a></small>
+            <h1><?= Html::encode($this->title) ?></h1><small><a href="<?php echo 'http://localhost/rwandaguide/post-preview/' . $model->slug ?>" target="_blank"><i class="fa fa-eye"></i></a></small>
         </div><!-- /.page-title -->
 
         <div class="background-white p20 mb50">
             <div class="panel-body">
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-
                     <?php if($model->image != ''): ?>
                         <img class="img-responsive thumbnail" alt=""
                              src="<?php echo Yii::$app->params['post_images'] . $model->image ?>"/>
