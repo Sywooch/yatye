@@ -11,7 +11,7 @@
 
 <div class="block background-white mt50 p30 row div">
     <div class="page-header">
-        <h1><?php echo Yii::t('app', 'Most recent News & Articles') ?></h1>
+        <h1><?php echo Yii::t('app', 'Most recent News & Blog') ?></h1>
         <p>Check what's going on in the country</p>
     </div>
     <div class="row">
