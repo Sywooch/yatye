@@ -82,7 +82,7 @@ class PostType extends BasePostType
     {
         return Post::find()
             ->where(['post_type_id' => $this->id, 'status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('updated_at DESC'));
+            ->orderBy(new Expression('created_at DESC'));
     }
     public function getStatus()
     {
