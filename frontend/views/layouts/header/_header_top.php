@@ -11,11 +11,10 @@ use yii\helpers\Html;
 
 ?>
 <ul class="header-nav-secondary nav nav-pills">
-<!--    <li>--><?php //echo Html::a('About Rwanda', Url::to(['/about-rwanda/about-rwanda'])) ?><!--</li>-->
-<!--    <li>--><?php //echo Html::a('Rwanda for the first time', Url::to(['/blog/before-you-make-the-move'])) ?><!--</li>-->
-<!--    <li>--><?php //echo Html::a('News', Url::to(['/post-type/news'])) ?><!--</li>-->
+    <li><?php echo Html::a('About Rwanda', Url::to(['/post-type/about-rwanda'])) ?></li>
+    <li><?php echo Html::a('Blog', Url::to(['/post-type/blog'])) ?></li>
+    <li><?php echo Html::a('News', Url::to(['/post-type/news'])) ?></li>
     <li><a href="https://www.eyeem.com/u/rwandaguide" target="_blank" title="Gallery">Gallery</a></li>
-    <li><?php echo Html::a('Blog', Url::to(['/blog/'])) ?></li>
     <?php if (Yii::$app->user->isGuest) { ?>
         <li><?php echo Html::a(Yii::t('app', 'Login'), ['/user/security/login']) ?></li>
     <?php } else { ?>
