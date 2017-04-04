@@ -32,7 +32,8 @@
         "guzzlehttp/guzzle": "^6.2",
         "paragonie/random_compat": "^2.0",
         "yii2mod/yii2-ftp": "^1.0",
-        "ext-ftp": "*"
+        "ext-ftp": "*",
+        "alexander-suter/yii2-tag-cloud": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
