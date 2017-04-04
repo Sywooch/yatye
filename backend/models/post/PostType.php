@@ -7,6 +7,7 @@
  */
 
 namespace backend\models\post;
+
 use common\helpers\ValueHelpers;
 use Yii;
 use common\models\PostType as BasePostType;
@@ -80,9 +81,10 @@ class PostType extends BasePostType
     public function getPosts()
     {
         return Post::find()
-            ->where(['post_type_id' => $this->id, 'status'=>Yii::$app->params['active']])
+            ->where(['post_type_id' => $this->id, 'status' => Yii::$app->params['publish']])
             ->orderBy(new Expression('updated_at DESC'));
     }
+
     public function getStatus()
     {
         return ValueHelpers::getStatus($this);
