@@ -30,6 +30,10 @@ use yii\helpers\Url;
             <i class="fa fa-clock-o"></i>
             <?php echo $model->getLastUpdatedDate(); ?>
         </div>
+        <div class="post-meta-categories">
+            <i class="fa fa-tags"></i>
+            <a href="<?php echo $model->getPostCategoryUrl(); ?>"><?php echo $model->getPostCategoryName(); ?></a>
+        </div>
         <div class="post-meta-more">
             <a href="<?php echo $model->getPostUrl(); ?>" target="_blank">Read More <i class="fa fa-chevron-right"></i></a>
         </div>
