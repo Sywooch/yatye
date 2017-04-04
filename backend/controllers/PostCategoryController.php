@@ -55,7 +55,7 @@ class PostCategoryController extends BackendAdminController
         $post_types = ArrayHelper::map(PostType::find()->orderBy('name')->all(), 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['/post']);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -76,7 +76,7 @@ class PostCategoryController extends BackendAdminController
         $post_types = ArrayHelper::map(PostType::find()->orderBy('name')->all(), 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
