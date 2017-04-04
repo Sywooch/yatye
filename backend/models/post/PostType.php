@@ -97,6 +97,6 @@ class PostType extends BasePostType
 
     public function getPostCategories()
     {
-        return PostCategory::findAll(['status' => Yii::$app->params['active']]);
+        return PostCategory::findAll(['post_type_id' => $this->id, 'status' => Yii::$app->params['active']]);
     }
 }
