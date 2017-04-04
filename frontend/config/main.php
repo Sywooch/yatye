@@ -148,10 +148,14 @@ return [
                 'service/<slug>' => 'service/slug',
                 'post-details/<slug>' => 'post-details/slug',
                 'post-category/<slug>' => 'post-category/slug',
-                'articles/<slug>' => 'post-category/slug',
+
+                'blog/<slug>' => 'post-category/slug',
+                'about-us/<slug>' => 'post-category/slug',
+                'about-rwanda/<slug>' => 'post-category/slug',
                 'news/<slug>' => 'post-category/slug',
                 'post-type/<slug>' => 'post-type/slug',
-                'blog/<slug>' => 'blog/slug',
+
+//                'blog/<slug>' => 'blog/slug',
                 'location/<slug>' => 'location/slug',
                 'upcoming-event/<slug>' => 'upcoming-event/slug',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
