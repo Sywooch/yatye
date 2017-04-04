@@ -24,8 +24,11 @@ class PostTypeController extends BaseController
 
             ]);
 
+            $post_categories = $model->getPostCategories();
+
             return $this->render('index', [
                 'model' => $model,
+                'post_categories' => $post_categories,
                 'dataProvider' => $dataProvider,
             ]);
 

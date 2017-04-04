@@ -84,6 +84,7 @@ class PostType extends BasePostType
             ->where(['post_type_id' => $this->id, 'status' => Yii::$app->params['active']])
             ->orderBy(new Expression('created_at DESC'));
     }
+
     public function getStatus()
     {
         return ValueHelpers::getStatus($this);
@@ -92,5 +93,10 @@ class PostType extends BasePostType
     public function getUser()
     {
         return ValueHelpers::getUser($this);
+    }
+
+    public function getPostCategories()
+    {
+        return PostCategory::findAll(['status' => Yii::$app->params['active']]);
     }
 }

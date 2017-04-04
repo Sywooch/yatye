@@ -78,6 +78,10 @@ class PostCategory extends BasePostCategory
             'created_by' => 'Created By',
         ];
     }
+    public function getUrl()
+    {
+        return Yii::$app->request->baseUrl . '/post-category/' . $this->slug;
+    }
 
     public function getPosts()
     {
@@ -98,7 +102,7 @@ class PostCategory extends BasePostCategory
 
     public function getPostTypeUrl()
     {
-        return Yii::$app->request->baseUrl . '/articles/' . $this->getPostType()->slug;
+        return Yii::$app->request->baseUrl . '/post-type/' . $this->getPostType()->slug;
     }
 
     public function getStatus()
