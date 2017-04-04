@@ -17,7 +17,6 @@ $dataProvider->pagination = [
             <h1><?php echo $model->name; ?></h1>
         </div>
         <?php if (!empty($post_categories)) : ?>
-            <div class="row background-white p30 div">
                 <ul class="list-inline">
                     <?php foreach ($post_categories as $post_category) : ?>
                         <li><a href="<?php echo $post_category->getUrl(); ?>">
@@ -30,8 +29,6 @@ $dataProvider->pagination = [
                         </li>
                     <?php endforeach; ?>
                 </ul>
-            </div>
-            <br>
         <?php endif; ?>
 
         <div class="row">
