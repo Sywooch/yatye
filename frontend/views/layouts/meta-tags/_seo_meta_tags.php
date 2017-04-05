@@ -13,7 +13,7 @@ $keywords = $data['get_keywords'];
 
 <title><?= Html::encode($this->title) ?></title>
 <meta name="description" content="<?php echo Yii::$app->params['meta_description']; ?>">
-<meta name="keywords" content="<?php echo $keywords; ?>">
+<!--<meta name="keywords" content="--><?php //echo $keywords; ?><!--">-->
 <meta name="robots" content="all, index, follow"/>
 <meta name="revisit-after" content="2 days">
 <meta name="revisit" content="2 days"/>
