@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ListView;
 
-$this->title = Yii::$app->name . ' - ' . $model->name;
+$this->title = $model->name . ' in Rwanda';
 $this->params['breadcrumbs'][] = ['label' => $model->getCategoryName(), 'url' => ['/category/' . $model->getCategorySlug()]];
 $this->params['breadcrumbs'][] = $model->name;
 

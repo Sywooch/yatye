@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 use yii\widgets\ListView;
 
-$this->title = Yii::$app->name . ' - ' . $model->name;
+$this->title = $model->name . ' in Rwanda';
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['/category/' . $model->slug]];
 
 $dataProvider->pagination = [
