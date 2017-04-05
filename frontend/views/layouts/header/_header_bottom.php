@@ -15,6 +15,7 @@ use yii\helpers\Html;
     foreach ($categories as $category): ?>
         <li><a href="<?php echo Url::to(['/category/' . $category->slug]) ?>"><?php echo $category->name ?></a></li>
     <?php endforeach; ?>
+    <?php //echo $this->render('@app/views/layouts/header/mega_menu') ?>
 </ul>
 <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".header-nav-primary">
     <span class="sr-only">Toggle navigation</span>
