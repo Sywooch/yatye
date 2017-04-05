@@ -22,7 +22,7 @@ use yii\helpers\Url;
             <?= $form->field($model, 'key_word')
                 ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Keyword')])
                 ->label(false)
-                ->hint(Yii::t('app', 'This will help you out if you the name.'), ['class' => 'hint']); ?>
+                ->hint(Yii::t('app', 'This will help you out if you know the name.'), ['class' => 'hint']); ?>
         </div>
     </div>
     <div class="row">
