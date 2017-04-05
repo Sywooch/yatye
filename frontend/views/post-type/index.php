@@ -17,18 +17,35 @@ $dataProvider->pagination = [
             <h1><?php echo $model->name; ?></h1>
         </div>
         <?php if (!empty($post_categories)) : ?>
-                <ul class="list-inline">
-                    <?php foreach ($post_categories as $post_category) : ?>
-                        <li><a href="<?php echo $post_category->getUrl(); ?>">
+           <!-- <ul class="list-inline">
+                <?php /*foreach ($post_categories as $post_category) : */?>
+                    <li><a href="<?php /*echo $post_category->getUrl(); */?>">
                                 <span class="badge" style="background-color: #c6af5c; font-size: 16px;">
-                                    <?php echo $post_category->name; ?>
+                                    <?php /*echo $post_category->name; */?>
                                 </span>
-                            </a>
-                            <br>
-                            <br>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+                        </a>
+                        <br>
+                        <br>
+                    </li>
+                <?php /*endforeach; */?>
+            </ul>-->
+
+            <div class="row">
+                <div class="posts post-detail">
+                    <div class="post-meta-tags clearfix div">
+                        <ul>
+                            <?php foreach ($post_categories as $post_category) : ?>
+                                <li class="tag">
+                                    <a href="<?php echo $post_category->getUrl(); ?>"><?php echo $post_category->name; ?></a>
+                                </li>
+                            <?php endforeach; ?>
+
+                        </ul>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
         <?php endif; ?>
 
         <div class="row">

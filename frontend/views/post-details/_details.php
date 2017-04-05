@@ -53,8 +53,6 @@
 
             </div>
 
-
-
 <!--            <div class="post-meta-tags clearfix">-->
 <!--                Tags:-->
 <!--                <ul>-->
