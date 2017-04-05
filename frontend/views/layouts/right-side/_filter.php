@@ -27,7 +27,7 @@ use backend\models\place\Category;
         <?= $form->field($model, 'key_word')
             ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Keyword')])
             ->label(false)
-            ->hint(Yii::t('app', 'This will help you out if you know the name.'), ['class' => 'hint']);; ?>
+            ->hint(Yii::t('app', 'This will help you out if you already know the name of the place.'), ['class' => 'hint']);; ?>
         <?php echo $form->field($model, 'province_id')->dropDownList($provinces, [
             'id' => 'province_id',
             'prompt' => Yii::t('app', 'Province'),
