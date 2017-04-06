@@ -13,22 +13,10 @@ $dataProvider->pagination = [
 ?>
 <div class="col-sm-8 col-lg-9">
     <div class="content">
-        <div class="page-title">
+        <div class="page-title" style="margin: 0px;">
             <h1><?php echo $model->name; ?></h1>
         </div>
         <?php if (!empty($post_categories)) : ?>
-           <!-- <ul class="list-inline">
-                <?php /*foreach ($post_categories as $post_category) : */?>
-                    <li><a href="<?php /*echo $post_category->getUrl(); */?>">
-                                <span class="badge" style="background-color: #c6af5c; font-size: 16px;">
-                                    <?php /*echo $post_category->name; */?>
-                                </span>
-                        </a>
-                        <br>
-                        <br>
-                    </li>
-                <?php /*endforeach; */?>
-            </ul>-->
 
             <div class="row">
                 <div class="posts post-detail">
