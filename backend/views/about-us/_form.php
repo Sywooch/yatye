@@ -17,7 +17,6 @@ use vova07\imperavi\Widget as Redactor;
 
     <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 10]) ?>
     <?php echo $form->field($model, 'content')->widget(Redactor::className(), [
         'settings' => [
             'minHeight' => 200,
