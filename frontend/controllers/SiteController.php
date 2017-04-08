@@ -46,16 +46,6 @@ class SiteController extends BaseController
         ]);
     }
 
-    public function actionTermsConditions()
-    {
-        return $this->render('terms-conditions');
-    }
-
-    public function actionPrivacyPolicy()
-    {
-        return $this->render('privacy-policy');
-    }
-
     public function actionRobots()
     {
         header('Content-Type: text/plain');

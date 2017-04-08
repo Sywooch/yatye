@@ -23,14 +23,14 @@ use yii\helpers\Url;
                                     <div class="card" data-background-image="<?php echo $event->getBanner(); ?>">
                                         <div class="card-label">
                                             <a target="_blank"
-                                               href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
+                                               href="<?php echo $event->getEventUrl() ?>">
                                                 <?php echo $event->getDate() ?>
                                             </a>
                                         </div>
                                         <div class="card-content">
                                             <h2 style="font-size: 18px;">
                                                 <a target="_blank"
-                                                   href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>">
+                                                   href="<?php echo $event->getEventUrl() ?>">
                                                     <?php echo $event->name ?>
                                                 </a>
                                             </h2>
@@ -41,7 +41,7 @@ use yii\helpers\Url;
                                             <?php endif; ?>
                                             <div class="card-actions">
                                                 <a target="_blank"
-                                                   href="<?php echo Url::to(['/upcoming-event/' . $event->slug]) ?>"
+                                                   href="<?php echo $event->getEventUrl() ?>"
                                                    class="fa fa-eye"></a>
                                             </div>
                                         </div>
