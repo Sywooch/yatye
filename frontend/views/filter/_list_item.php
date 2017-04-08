@@ -16,7 +16,7 @@ use yii\helpers\Url;
             <img class="img-alt-thumbnail_tn" style="width: 262px; height: 207px;" src="<?php echo $model->getThumbnailLogo() ?>">
         </a>
         <div class="card-row-body" style="padding: 5px;">
-            <div class="card-row-properties" style="width: 360px;padding: 5px;">
+            <div class="card-row-properties" style="padding: 5px;">
                 <h2 class="card-row-title" >
                     <a target="_blank" href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model['slug'] ?>">
                         <?php echo $model['name'] ?>
