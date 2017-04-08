@@ -11,7 +11,12 @@ use yii\helpers\Html;
 ?>
 
 <li class="has-mega-menu">
-    <a href="#"><?php echo Yii::t('app', 'Useful links') ?> <i class="fa fa-chevron-down"></i></a>
+    <a href="#">
+        <span class="badge" style="background-color: #c6af5c;">
+            <?php echo Yii::t('app', 'Useful links') ?>
+        </span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
 
     <ul class="mega-menu">
         <li>
