@@ -15,29 +15,29 @@ use yii\helpers\Url;
 <!--            <div class="card-row-image" data-background-image="--><?php //echo $model->getThumbnailLogo() ?><!--"></div>-->
             <img class="img-alt-thumbnail_tn" style="width: 262px; height: 207px;" src="<?php echo $model->getThumbnailLogo() ?>">
         </a>
-        <div class="card-row-body">
-            <h2 class="card-row-title">
-                <a target="_blank" href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model['slug'] ?>">
-                    <?php echo $model['name'] ?>
-                </a>
-            </h2>
-            <div class="card-row-content"></div>
+        <div class="card-row-body" style="padding: 5px;">
+            <div class="card-row-properties" style="width: 360px;padding: 5px;">
+                <h2 class="card-row-title" >
+                    <a target="_blank" href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model['slug'] ?>">
+                        <?php echo $model['name'] ?>
+                    </a>
+                </h2>
+                <dl>
+                    <dd><?php echo Yii::t('app', 'Views') ?></dd>
+                    <dt><?php echo $model->getViews() ?></dt>
+                    <dd><?php echo Yii::t('app', 'Street') ?></dd>
+                    <dt><?php echo $model->street ?></dt>
+                    <dd><?php echo Yii::t('app', 'Neighborhood') ?></dd>
+                    <dt><?php echo $model->neighborhood ?></dt>
+                    <dd><?php echo Yii::t('app', 'Rating') ?></dd>
+                    <dt>
+                    <div class="card-row-rating">
+                        <?php echo $model->getRatingStars() ?>
+                    </div>
+                    </dt>
+                </dl>
+            </div>
         </div>
-        <div class="card-row-properties" style="width: 360px;">
-            <dl>
-                <dd><?php echo Yii::t('app', 'Views') ?></dd>
-                <dt><?php echo $model->getViews() ?></dt>
-                <dd><?php echo Yii::t('app', 'Street') ?></dd>
-                <dt><?php echo $model->street ?></dt>
-                <dd><?php echo Yii::t('app', 'Neighborhood') ?></dd>
-                <dt><?php echo $model->neighborhood ?></dt>
-                <dd><?php echo Yii::t('app', 'Rating') ?></dd>
-                <dt>
-                <div class="card-row-rating">
-                    <?php echo $model->getRatingStars() ?>
-                </div>
-                </dt>
-            </dl>
-        </div>
+
     </div>
 </div>
