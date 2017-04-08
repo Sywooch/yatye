@@ -60,7 +60,7 @@
                             <?php endif; ?>
 
                             <div class="post-content">
-                                <!--<div class="post-label">--><?php //echo $post_category->name ?><!--</div>-->
+                                <div class="post-label"><?php echo $new->getPostCategoryName() ?></div>
                                 <div class="post-date"><?php echo $new->getLastUpdatedDate(); ?></div>
                                 <h2>
                                     <a href="<?php echo $new->getPostUrl(); ?>" target="_blank"><?php echo $new->title ?> </a>
