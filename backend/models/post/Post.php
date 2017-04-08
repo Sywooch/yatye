@@ -153,11 +153,6 @@ class Post extends BasePost
         return date('D d M, Y', strtotime($post->created_at));
     }
 
-    public function getAboutUsPosts()
-    {
-        return Post::findAll(['post_category_id' => $this->post_category_id]);
-    }
-
     public static function getPostsByType($post_type_id)
     {
         return Post::find()

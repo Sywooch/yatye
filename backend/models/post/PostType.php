@@ -8,13 +8,13 @@
 
 namespace backend\models\post;
 
-use common\helpers\ValueHelpers;
 use Yii;
-use common\models\PostType as BasePostType;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\helpers\ValueHelpers;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
+use common\models\PostType as BasePostType;
 
 class PostType extends BasePostType
 {

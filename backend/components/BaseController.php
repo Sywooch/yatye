@@ -8,6 +8,7 @@
 
 namespace backend\components;
 
+use backend\models\AboutUs;
 use backend\models\EventTags;
 use backend\models\post\Post;
 use backend\models\post\PostCategory;
@@ -83,6 +84,10 @@ class BaseController extends AdminController
 
         if (Yii::$app->controller->id == 'event-tags') :
             $model = EventTags::findOne(Yii::$app->request->get('id'));
+        endif;
+
+        if (Yii::$app->controller->id == 'about-us') :
+            $model = AboutUs::findOne(Yii::$app->request->get('id'));
         endif;
 
 

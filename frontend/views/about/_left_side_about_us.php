@@ -16,7 +16,9 @@ use yii\helpers\Url;
                 <ul class="menu">
                     <?php foreach ($about_us_posts as $about_us_post): ?>
                         <li>
-                            <a href="<?php echo Url::to(['/site/' . $about_us_post->slug]) ?>"><?php echo $about_us_post->title ?></a>
+                            <a href="<?php echo $about_us_post->getPostUrl(); ?>">
+                                <?php echo $about_us_post->title ?>
+                            </a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
