@@ -152,7 +152,6 @@ return [
 
                 'upcoming-event/<slug>' => 'upcoming-event/slug',
                 'about-us/<slug>' => 'about-us/slug',
-                'about/<slug>' => 'about/slug',
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
