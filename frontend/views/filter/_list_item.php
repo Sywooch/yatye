@@ -12,8 +12,8 @@ use yii\helpers\Url;
 <div class="card-row div item" data-key="<?php echo $model['id'] ?>">
     <div class="card-row-inner">
         <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model['slug'] ?>">
-<!--            <div class="card-row-image" data-background-image="--><?php //echo $model->getThumbnailLogo() ?><!--"></div>-->
-            <img class="img-alt-thumbnail_tn" style="width: 262px; height: 207px;" src="<?php echo $model->getThumbnailLogo() ?>">
+            <div class="card-row-image" data-background-image="<?php echo $model->getThumbnailLogo() ?>"></div>
+<!--            <img class="img-alt-thumbnail_tn" style="width: 262px; height: 207px;" src="--><?php //echo $model->getThumbnailLogo() ?><!--">-->
         </a>
         <div class="card-row-body" style="padding: 5px;">
             <div class="card-row-properties" style="padding: 5px;">
