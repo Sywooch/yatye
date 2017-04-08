@@ -20,7 +20,7 @@
                      class="img-alt img-responsive">
             <?php endif; ?>
             <div class="post-content background-white p30 div">
-                <p class='drop-cap'><?= nl2br($model->content) ?></p>
+                <p><?= nl2br($model->content) ?></p>
             </div>
         </div>
         <div class="post-meta clearfix div">
