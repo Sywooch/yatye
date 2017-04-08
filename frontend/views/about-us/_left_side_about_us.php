@@ -10,7 +10,7 @@ use yii\helpers\Url;
 ?>
 
 <div class="col-sm-4 col-lg-3">
-    <div class="sidebar mt50" style="margin-top: -3px;">
+    <div class="sidebar mt50" style="margin-top: -2px;">
         <div class="widget">
             <h2 class="widgettitle"><?php echo Yii::t('app', 'About us') ?></h2>
             <?php if (!empty($about_us_posts)):?>
