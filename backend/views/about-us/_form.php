@@ -1,7 +1,8 @@
 <?php
-
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use vova07\imperavi\Widget as Redactor;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\AboutUs */
@@ -17,6 +18,16 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'content')->textarea(['rows' => 10]) ?>
+    <?php echo $form->field($model, 'content')->widget(Redactor::className(), [
+        'settings' => [
+            'minHeight' => 200,
+            'plugins' => [
+                'clips',
+                'fullscreen'
+            ],
+            'imageUpload' => Url::to(['/post/image-upload'])
+        ]
+    ]); ?>
 
 
     <div class="form-group">
