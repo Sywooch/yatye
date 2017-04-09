@@ -10,6 +10,7 @@ namespace backend\components;
 
 use backend\models\AboutUs;
 use backend\models\EventTags;
+use backend\models\FacebookEvents;
 use backend\models\post\Post;
 use backend\models\post\PostCategory;
 use Yii;
@@ -88,6 +89,10 @@ class BaseController extends AdminController
 
         if (Yii::$app->controller->id == 'about-us') :
             $model = AboutUs::findOne(Yii::$app->request->get('id'));
+        endif;
+
+        if (Yii::$app->controller->id == 'facebook') :
+            $model = FacebookEvents::findOne(Yii::$app->request->get('id'));
         endif;
 
 

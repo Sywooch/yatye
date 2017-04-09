@@ -2,21 +2,15 @@
 
 namespace backend\controllers;
 
-
-use common\helpers\GalleryHelper;
 use Yii;
-use backend\models\Event;
-use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
 use yii\db\Expression;
-use yii\web\NotFoundHttpException;
-use backend\models\EventContact;
-use backend\models\EventHasTags;
-use backend\models\EventSocialMedia;
-use backend\models\UserEvent;
-use common\helpers\Helpers;
-use backend\components\BaseEventController;
+use backend\models\Event;
 use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
+use common\helpers\GalleryHelper;
+use yii\web\NotFoundHttpException;
+use backend\components\BaseEventController;
+
 
 /**
  * EventController implements the CRUD actions for Event model.
