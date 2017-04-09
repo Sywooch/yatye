@@ -11,11 +11,14 @@ use kartik\select2\Select2;
 
 $this->title = Yii::t('app', 'Google Places');
 $this->params['breadcrumbs'][] = $this->title;
+
+$session = Yii::$app->session;
+$next_page_token = $session->get('next_page_token');
+
 ?>
 <div class="google-places-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
     <div class="panel">
         <div class="panel-heading">
             <a class="btn btn-primary btn btn-primary btn-xs pull-right" data-toggle="modal" href="#modal-id"><i
@@ -38,7 +41,13 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    'reference',
                      'lat',
                      'lng',
-                     'vicinity',
+                    [
+                        'label' => 'Vicinity',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return substr($model->vicinity, 0, 25);
+                        },
+                    ],
                     // 'types',
                     // 'created_at',
                     // 'updated_at',
@@ -88,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h4 class="modal-title"><?php echo Yii::t('app', 'Google API set up')?></h4>
             </div>
             <div class="modal-body">
-                <?= $form->field($model, 'location')->textInput(['maxlength' => true, 'value' => '-1.9547974,30.0345055']) ?>
+                <?= $form->field($model, 'location')->textInput(['maxlength' => true, 'value' => '-1.9706,30.1044']) ?>
                 <?= $form->field($model, 'radius')->textInput(['maxlength' => true, 'value' => '50000']) ?>
                 <?php echo $form->field($model, 'type')->widget(Select2::classname(), [
                     'data' => $types,
@@ -101,6 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'multiple' => false,
                     ],
                 ])->label(false); ?>
+                <?= $form->field($model, 'next_page_token')->textInput(['maxlength' => true, 'value' => $next_page_token]) ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

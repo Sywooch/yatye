@@ -120,21 +120,26 @@ class GoogleController extends BaseEventController
     public function actionImport()
     {
         $post = Yii::$app->request->post('GooglePlaces');
-        if (Yii::$app->request->isPost){
-            $search_url = Yii::$app->params['google']['url']
-                . '?location=' . $post['location']
-                . '&radius=' . $post['radius']
-                . '&type=' . $post['type']
-                . '&key=' . Yii::$app->params['google']['key'];
+        if (Yii::$app->request->isPost) {
+
+            if ($post['next_page_token'] != '') {
+                $search_url = Yii::$app->params['google']['url']
+                    . '?location=' . $post['location']
+                    . '&radius=' . $post['radius']
+                    . '&type=' . $post['type']
+                    . '&key=' . Yii::$app->params['google']['key']
+                    . '&pagetoken=' . $post['next_page_token'];
+            } else {
+                $search_url = Yii::$app->params['google']['url']
+                    . '?location=' . $post['location']
+                    . '&radius=' . $post['radius']
+                    . '&type=' . $post['type']
+                    . '&key=' . Yii::$app->params['google']['key'];
+            }
 
             $json = file_get_contents($search_url);
-
             $places = json_decode($json, true);
-
-            Yii::warning('Google Places: ' . print_r($places['results'], true));
-
-            GooglePlaces::importEvents($places['results']);
-
+            GooglePlaces::importEvents($places);
             Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Google Places successfully saved!'));
         }
 
@@ -145,7 +150,7 @@ class GoogleController extends BaseEventController
     {
         $model = $this->findModel($id);
 
-        if($model->saveGooglePlaces()){
+        if ($model->saveGooglePlaces()) {
             $model->status = Yii::$app->params['accepted'];
             $model->save();
             Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Google Places successfully imported!'));

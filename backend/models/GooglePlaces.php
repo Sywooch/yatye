@@ -21,6 +21,7 @@ class GooglePlaces extends BaseGooglePlaces
     public $location;
     public $radius;
     public $type;
+    public $next_page_token;
 
     public function behaviors()
     {
@@ -57,8 +58,14 @@ class GooglePlaces extends BaseGooglePlaces
 
     public static function importEvents($places)
     {
+        $session = Yii::$app->session;
+        if (isset($places['next_page_token'])){
+            $session->set('next_page_token', $places['next_page_token']);
+        }else{
+            $session->remove('next_page_token');
+        }
 
-        foreach ($places as $place) {
+        foreach ($places['results'] as $place) {
             $name = (isset($place['name'])) ? $place['name'] : '-';
             $google_id = (isset($place['id'])) ? $place['id'] : '-';
             $place_id = (isset($place['place_id'])) ? $place['place_id'] : '-';
