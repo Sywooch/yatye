@@ -2,8 +2,10 @@
 
 namespace backend\controllers;
 
+
+use common\helpers\GoogleHelpers;
 use Yii;
-use backend\models\FacebookEvents;
+use backend\models\GooglePlaces;
 use yii\data\ActiveDataProvider;
 use yii\db\Expression;
 use yii\helpers\Url;
@@ -11,33 +13,34 @@ use yii\web\NotFoundHttpException;
 use backend\components\BaseEventController;
 
 /**
- * FacebookController implements the CRUD actions for FacebookEvents model.
+ * GoogleController implements the CRUD actions for GooglePlaces model.
  */
-class FacebookController extends BaseEventController
+class GoogleController extends BaseEventController
 {
 
     /**
-     * Lists all FacebookEvents models.
+     * Lists all GooglePlaces models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => FacebookEvents::find()
+            'query' => GooglePlaces::find()
                 ->where(['status' => Yii::$app->params['inactive']])
                 ->orderBy(new Expression('created_at DESC')),
         ]);
-
-        $model = new FacebookEvents();
+        $model = new GooglePlaces();
+        $types = GoogleHelpers::getPlaceTypes();
 
         return $this->render('index', [
             'model' => $model,
+            'types' => $types,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single FacebookEvents model.
+     * Displays a single GooglePlaces model.
      * @param integer $id
      * @return mixed
      */
@@ -49,7 +52,25 @@ class FacebookController extends BaseEventController
     }
 
     /**
-     * Updates an existing FacebookEvents model.
+     * Creates a new GooglePlaces model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new GooglePlaces();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Updates an existing GooglePlaces model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -68,7 +89,7 @@ class FacebookController extends BaseEventController
     }
 
     /**
-     * Deletes an existing FacebookEvents model.
+     * Deletes an existing GooglePlaces model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -81,15 +102,15 @@ class FacebookController extends BaseEventController
     }
 
     /**
-     * Finds the FacebookEvents model based on its primary key value.
+     * Finds the GooglePlaces model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return FacebookEvents the loaded model
+     * @return GooglePlaces the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = FacebookEvents::findOne($id)) !== null) {
+        if (($model = GooglePlaces::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -98,13 +119,23 @@ class FacebookController extends BaseEventController
 
     public function actionImport()
     {
-        $post = Yii::$app->request->post('FacebookEvents');
+        $post = Yii::$app->request->post('GooglePlaces');
         if (Yii::$app->request->isPost){
-            $search_url = Yii::$app->params['facebook']['url'] . $post['endpoints'] . '&access_token=' . $post['access_token'];
+            $search_url = Yii::$app->params['google']['url']
+                . '?location=' . $post['location']
+                . '&radius=' . $post['radius']
+                . '&type=' . $post['type']
+                . '&key=' . Yii::$app->params['google']['key'];
+
             $json = file_get_contents($search_url);
-            $events = json_decode($json, true);
-            FacebookEvents::importEvents($events['data']);
-            Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Facebook Events successfully saved!'));
+
+            $places = json_decode($json, true);
+
+            Yii::warning('Google Places: ' . print_r($places['results'], true));
+
+            GooglePlaces::importEvents($places['results']);
+
+            Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Google Places successfully saved!'));
         }
 
         return $this->redirect(Url::to(['index']));
@@ -114,11 +145,12 @@ class FacebookController extends BaseEventController
     {
         $model = $this->findModel($id);
 
-        if($model->saveFacebookEvents()){
+        if($model->saveGooglePlaces()){
             $model->status = Yii::$app->params['accepted'];
             $model->save();
-            Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Facebook Events successfully imported!'));
+            Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Google Places successfully imported!'));
         }
         return $this->redirect(Url::to(['index']));
     }
+
 }
