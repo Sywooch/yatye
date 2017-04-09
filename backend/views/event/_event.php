@@ -17,7 +17,7 @@ use kartik\widgets\FileInput;
 /* @var $form yii\widgets\ActiveForm */
 
 ?>
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 <div class="background-white p30 mb50">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

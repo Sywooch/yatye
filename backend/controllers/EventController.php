@@ -61,23 +61,33 @@ class EventController extends BaseEventController
         $session = Yii::$app->session;
         $session->set('event_id', $model->id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
             $model->image_file = UploadedFile::getInstance($model, 'image_file');
             $old_image = $model->getPath() . $model->banner;
 
-            if ($model->image_file) {
+            if ($model->image_file){
                 $file_name = rand() . rand() . date("Ymdhis") . '.' . $model->image_file->extension;
+                $thumbnail_file_name = 'tn_' . $file_name;
+
                 $path = $model->getPath() . $file_name;
+                $thumbnail_path = $model->getThumbnailPath() . $thumbnail_file_name;
+
                 $file_name = preg_replace('/\s+/', '', $file_name);
 
                 if (GalleryHelper::uploadEvents($model->image_file->tempName, $path)) {
+
+                    //Save thumbnails
+                    GalleryHelper::resizeBeforeUpload($model->image_file->tempName, $thumbnail_path, 180, 150, 120);
                     $model->banner = $file_name;
+
+                    //Delete Existing Image
                     GalleryHelper::deleteGallery($old_image);
-                } else {
+                }
+                else{
                     return $this->render('update', $params);
                 }
             }
-
             $model->save(0);
             return $this->redirect(['update', 'id' => $model->id]);
         } else {

@@ -91,12 +91,12 @@ class FacebookEvents extends BaseFacebookEvents
         $event->name = $this->name;
         $event->description = $this->description;
         $event->address = $this->city . ', ' . $this->country;
-        $event->start_date = date('Y-m-d', strtotime($this->start_time));
-        $event->end_date = date('H:i:s', strtotime($this->end_time));
-        $event->start_time = date('H:i:s', strtotime($this->start_time));
-        $event->end_time = date('H:i:s', strtotime($this->end_time));
-        $event->latitude = ($this->latitude <= -1) ? $this->latitude : null;
-        $event->longitude = ($this->longitude >= 30) ? $this->longitude : null;
+        $event->start_date = substr($this->start_time, 0, 10);
+        $event->end_date = substr($this->end_time, 0, 10);
+        $event->start_time = substr($this->start_time, 11, 8);
+        $event->end_time = substr($this->end_time, 11, 8);
+        $event->latitude = ($this->latitude != 0) ? $this->latitude : null;
+        $event->longitude = ($this->longitude != 0) ? $this->longitude : null;
         $event->status = Yii::$app->params['active'];
         if ($event->save()) {
             return true;
