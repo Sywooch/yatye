@@ -45,24 +45,7 @@ $this->title = $model->name;
                                                 <?php if($model->banner != null): ?>
                                                     <img class="img-responsive thumbnail" alt=""
                                                          src="<?php echo Yii::$app->params['event_images'] . $model->banner ?>"/>
-                                                    <a class="btn btn-xs btn-danger" href="<?php echo Yii::$app->request->baseUrl . '/event/delete-banner/?id=' . $model->id; ?>">Delete</a>
                                                 <?php endif; ?>
-
-                                                <?php $form = ActiveForm::begin([
-                                                    'options' => ['enctype' => 'multipart/form-data'],
-                                                    'action' => Yii::$app->request->baseUrl . '/event/banner/?id=' . $model->id,
-                                                    'id' => 'upload-post-picture-form',
-                                                ]); ?>
-                                                <span class="btn btn-default btn-xs btn-file">
-                                                    <?php echo $form->field($model, 'image_file')->fileInput([
-                                                        'multiple' => false,
-                                                        'onchange' => 'this.form.submit()',
-                                                        'id' => 'postPictureUpload',
-                                                        'class' => 'btn btn-primary btn-xs',
-                                                        'accept' => 'image/*',
-                                                    ])->label('Upload Post Picture'); ?>
-                                                </span>
-                                                <?php ActiveForm::end(); ?>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                                                 <div class="table-responsive">

@@ -67,8 +67,6 @@ class EventController extends BaseEventController
             $thumbnail_path = $model->getThumbnailPath() . $thumbnail_file_name;
             $file_name = preg_replace('/\s+/', '', $file_name);
             if (GalleryHelper::uploadEvents($model->image_file->tempName, $path)) {
-                //Save thumbnails
-                GalleryHelper::resizeBeforeUpload($model->image_file->tempName, $thumbnail_path, 180, 150, 120);
                 $model->banner = $file_name;
                 $model->save(0);
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -101,19 +99,11 @@ class EventController extends BaseEventController
 
             if ($model->image_file){
                 $file_name = rand() . rand() . date("Ymdhis") . '.' . $model->image_file->extension;
-                $thumbnail_file_name = 'tn_' . $file_name;
-
                 $path = $model->getPath() . $file_name;
-                $thumbnail_path = $model->getThumbnailPath() . $thumbnail_file_name;
-
                 $file_name = preg_replace('/\s+/', '', $file_name);
 
                 if (GalleryHelper::uploadEvents($model->image_file->tempName, $path)) {
-
-                    //Save thumbnails
-                    GalleryHelper::resizeBeforeUpload($model->image_file->tempName, $thumbnail_path, 180, 150, 120);
                     $model->banner = $file_name;
-
                     //Delete Existing Image
                     GalleryHelper::deleteGallery($old_image);
                 }
