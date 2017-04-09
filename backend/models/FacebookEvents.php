@@ -47,7 +47,7 @@ class FacebookEvents extends BaseFacebookEvents
             [['latitude', 'longitude'], 'number'],
             [['start_time', 'end_time', 'created_at', 'updated_at'], 'safe'],
             [['description'], 'string'],
-            [['name', 'city', 'country'], 'string', 'max' => 255],
+            [['name', 'location', 'city', 'country'], 'string', 'max' => 255],
             [['status'], 'default', 'value' => Yii::$app->params['inactive']],
             [['event_id'], 'unique'],
         ];
@@ -66,6 +66,7 @@ class FacebookEvents extends BaseFacebookEvents
             $longitude = (isset($event['place']['location']['longitude'])) ? $event['place']['location']['longitude'] : '-';
             $city = (isset($event['place']['location']['city'])) ? $event['place']['location']['city'] : '-';
             $country = (isset($event['place']['location']['country'])) ? $event['place']['location']['country'] : '-';
+            $location = (isset($event['place']['name'])) ? $event['place']['name'] : '-';
             $check = FacebookEvents::findOne(['event_id' => $event_id]);
 
             if (empty($check)) {
@@ -77,6 +78,7 @@ class FacebookEvents extends BaseFacebookEvents
                 $facebook_event->description = $description;
                 $facebook_event->latitude = $latitude;
                 $facebook_event->longitude = $longitude;
+                $facebook_event->location = $location;
                 $facebook_event->city = $city;
                 $facebook_event->country = $country;
                 $facebook_event->status = Yii::$app->params['inactive'];

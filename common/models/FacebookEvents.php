@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property integer $event_id
  * @property string $name
+ * @property string $location
  * @property string $city
  * @property string $country
  * @property double $latitude
@@ -44,7 +45,7 @@ class FacebookEvents extends \yii\db\ActiveRecord
             [['latitude', 'longitude'], 'number'],
             [['start_time', 'end_time', 'created_at', 'updated_at'], 'safe'],
             [['description'], 'string'],
-            [['name', 'city', 'country'], 'string', 'max' => 255],
+            [['name', 'location', 'city', 'country'], 'string', 'max' => 255],
             [['event_id'], 'unique'],
         ];
     }
@@ -58,6 +59,7 @@ class FacebookEvents extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'event_id' => Yii::t('app', 'Event ID'),
             'name' => Yii::t('app', 'Name'),
+            'location' => Yii::t('app', 'Location'),
             'city' => Yii::t('app', 'City'),
             'country' => Yii::t('app', 'Country'),
             'latitude' => Yii::t('app', 'Latitude'),
