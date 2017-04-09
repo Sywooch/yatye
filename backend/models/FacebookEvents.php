@@ -92,7 +92,7 @@ class FacebookEvents extends BaseFacebookEvents
         $event = new Event();
         $event->name = $this->name;
         $event->description = $this->description;
-        $event->address = $this->city . ', ' . $this->country;
+        $event->address = $this->location . ', ' . $this->city . ', ' . $this->country;
         $event->start_date = substr($this->start_time, 0, 10);
         $event->end_date = substr($this->end_time, 0, 10);
         $event->start_time = substr($this->start_time, 11, 8);
