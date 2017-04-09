@@ -13,7 +13,7 @@ $this->title = 'Upcoming events in Rwanda';
 $this->params['breadcrumbs'][] = 'Upcoming events';
 
 $dataProvider->pagination = [
-    'pageSize' => 8,
+    'pageSize' => 15,
 ];
 ?>
 <div class="col-sm-8 col-lg-9">
