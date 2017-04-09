@@ -6,6 +6,7 @@ use backend\models\Event;
 use Yii;
 use backend\models\FacebookEvents;
 use yii\data\ActiveDataProvider;
+use yii\db\Expression;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use backend\components\BaseEventController;
@@ -25,7 +26,7 @@ class FacebookController extends BaseEventController
         $dataProvider = new ActiveDataProvider([
             'query' => FacebookEvents::find()
                 ->where(['status' => Yii::$app->params['inactive']])
-                ->orderBy('created_at'),
+                ->orderBy(new Expression('created_at DESC')),
         ]);
 
         $model = new FacebookEvents();
