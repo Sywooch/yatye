@@ -33,7 +33,8 @@ phpunit.phar
 
 # vagrant runtime
 /.vagrant
+.htaccess
 
-common/components
-common/models
-console/config
+#common/components
+#common/models
+#console/config
