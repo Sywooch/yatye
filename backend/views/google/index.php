@@ -60,11 +60,11 @@ $next_page_token = $session->get('next_page_token');
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'template' => '{view} {update} {status} {save}',
+                        'template' => '{view} {status} {save}',
                         'buttons' => [
 
                             'view' => function ($url, $model) {
-                                return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $url, ['class' => 'btn btn-primary btn-xs']);
+                                return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $url, ['class' => 'btn btn-secondary btn-xs']);
                             },
                             'status' => function ($url, $model) {
                                 return Html::a(Html::tag('i', '', ['class' => ($model->status == Yii::$app->params['inactive']) ? 'fa fa-check' : 'fa fa-times']), Yii::$app->request->baseUrl . '/google/status/?id=' . $model->id, [
