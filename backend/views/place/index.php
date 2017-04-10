@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="panel">
             <div class="panel-heading">
+                <?= Html::a(Yii::t('app', 'Google Places'), ['/google'], ['class' => 'btn btn-primary btn-xs pull-right', 'style'=>'margin-left:5px;']) ?>
                 <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-upload']), ['/import-places'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
             </div>
             <div class="panel-body">

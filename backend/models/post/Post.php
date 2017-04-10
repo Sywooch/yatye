@@ -150,20 +150,14 @@ class Post extends BasePost
     public function getLastUpdatedDate()
     {
         $post = Post::findOne(['id' => $this->id]);
-        return date('D d M, Y', strtotime($post->updated_at));
-    }
-
-    public function getAboutUsPosts()
-    {
-        return Post::findAll(['post_category_id' => $this->post_category_id]);
+        return date('D d M, Y', strtotime($post->created_at));
     }
 
     public static function getPostsByType($post_type_id)
     {
-
         return Post::find()
             ->where(['status' => Yii::$app->params['active'], 'post_type_id' => $post_type_id])
-            ->orderBy(['updated_at' => SORT_DESC])
+            ->orderBy(['created_at' => SORT_DESC])
             ->limit(3)
             ->all();
     }

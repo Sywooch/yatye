@@ -18,14 +18,17 @@ class PostTypeController extends BaseController
     {
         $model = PostType::findOne(['slug' => $slug]);
 
-        if ($model) {
+        if (!empty($model)) {
             $dataProvider = new ActiveDataProvider([
                 'query' => $model->getPosts(),
 
             ]);
 
+            $post_categories = $model->getPostCategories();
+
             return $this->render('index', [
                 'model' => $model,
+                'post_categories' => $post_categories,
                 'dataProvider' => $dataProvider,
             ]);
 

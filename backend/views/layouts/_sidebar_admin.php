@@ -8,7 +8,7 @@
 <div class="sidebar-admin">
     <ul>
         <li class="<?php echo preg_match('/site/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/site/" title="Dashboard" >
+            <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/about-us/" title="About us" >
                 <i class="fa fa-tachometer"></i>
             </a>
         </li>

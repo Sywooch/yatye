@@ -218,8 +218,8 @@ class DataHelpers
     public static function getPostArchives()
     {
         return Post::find()
-            ->select(new Expression('COUNT(`id`) AS number, Month(`updated_at`) AS month, Year(`updated_at`) AS year'))
-            ->groupBy(new Expression('Month(`updated_at`), Year(`updated_at`)'))
+            ->select(new Expression('COUNT(`id`) AS number, Month(`created_at`) AS month, Year(`created_at`) AS year'))
+            ->groupBy(new Expression('Month(`created_at`), Year(`created_at`)'))
             ->orderBy(new Expression("STR_TO_DATE(CONCAT(month, '/', year), '%m/%Y') DESC"))
             ->asArray()
             ->all();

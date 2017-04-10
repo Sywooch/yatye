@@ -7,8 +7,8 @@ use yii\helpers\Html;
 /* @var $model backend\models\PostCategory */
 
 $this->title = Yii::t('app', 'New Post Category');
-//$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Post Categories'), 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Post Categories'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-sm-12">

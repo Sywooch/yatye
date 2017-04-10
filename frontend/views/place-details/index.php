@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 use yii\helpers\Url;
 
-$this->title = Yii::$app->name . ' - ' . $model->name;
+$this->title = $model->name;
 ?>
 <!--Banner-->
 <?php if ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']): ?>

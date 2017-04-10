@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 
-$this->title = Yii::$app->name . ' - ' . $model->name;
+$this->title = $model->name . ' in Rwanda';
 ?>
 
 <!--Premium List-->

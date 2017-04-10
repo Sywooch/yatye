@@ -7,13 +7,14 @@
  */
 
 namespace backend\models\post;
-use common\helpers\ValueHelpers;
+
 use Yii;
-use common\models\PostType as BasePostType;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use common\helpers\ValueHelpers;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
+use common\models\PostType as BasePostType;
 
 class PostType extends BasePostType
 {
@@ -80,9 +81,10 @@ class PostType extends BasePostType
     public function getPosts()
     {
         return Post::find()
-            ->where(['post_type_id' => $this->id, 'status'=>Yii::$app->params['active']])
-            ->orderBy(new Expression('updated_at DESC'));
+            ->where(['post_type_id' => $this->id, 'status' => Yii::$app->params['active']])
+            ->orderBy(new Expression('created_at DESC'));
     }
+
     public function getStatus()
     {
         return ValueHelpers::getStatus($this);
@@ -91,5 +93,10 @@ class PostType extends BasePostType
     public function getUser()
     {
         return ValueHelpers::getUser($this);
+    }
+
+    public function getPostCategories()
+    {
+        return PostCategory::findAll(['post_type_id' => $this->id, 'status' => Yii::$app->params['active']]);
     }
 }

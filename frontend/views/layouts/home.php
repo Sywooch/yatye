@@ -120,9 +120,8 @@ AppAsset::register($this);
     tour.init();
 
     // Start the tour
-//    tour.start();
-
-    tour.restart();
+    tour.start();
+//    tour.restart();
 
 </script>
 

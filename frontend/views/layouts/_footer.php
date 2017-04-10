@@ -21,11 +21,9 @@ use yii\helpers\Html;
             <div class="footer-bottom-right">
                 <ul class="nav nav-pills">
                     <li><a href="<?php echo Yii::$app->params['root'] ?>"><?php echo Yii::t('app', 'Home') ?></a></li>
-<!--                    <li>--><?php //echo Html::a(Yii::t('app', 'About us'), Url::to(['/about-us/whats-rwanda-guide'])) ?><!--</li>-->
-                    <li><?php echo Html::a(Yii::t('app', 'Contact'), Url::to(['/contact-us'])) ?></li>
+                    <li><?php echo Html::a(Yii::t('app', 'About us'), Url::to(['/about-us/whats-rwanda-guide'])) ?></li>
+                    <li><?php echo Html::a(Yii::t('app', 'Contact us'), Url::to(['/contact-us'])) ?></li>
                     <li><?php echo Html::a('Pricing', Url::to(['/pricing'])) ?></li>
-                    <li><?php echo Html::a(Yii::t('app', 'Terms &amp; Conditions'), Url::to(['/site/terms-conditions'])) ?></li>
-                    <li><?php echo Html::a(Yii::t('app', 'Privacy Policy'), Url::to(['/site/privacy-policy'])) ?></li>
                     <?php if (Yii::$app->user->isGuest) { ?>
                         <li><?php echo Html::a(Yii::t('app', 'Login'), ['/user/security/login']) ?></li>
                     <?php } else { ?>
