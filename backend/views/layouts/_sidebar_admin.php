@@ -53,7 +53,7 @@
     <ul>
         <li class="<?php echo preg_match('/site/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/site/">
-                <span class="icon"><i class="fa fa-industry"></i></span>
+                <span class="icon"><i class="fa fa-tachometer"></i></span>
                 <span class="title">Dashboard
                 </span>
                 <span class="subtitle">Dashboard</span>
@@ -61,7 +61,7 @@
         </li>
         <li class="<?php echo preg_match('/place/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/place/">
-                <span class="icon"><i class="fa fa-tachometer"></i></span>
+                <span class="icon"><i class="fa fa-industry"></i></span>
                 <span class="title">Places
                 </span>
                 <span class="subtitle">Place Management</span>
