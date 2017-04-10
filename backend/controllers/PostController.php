@@ -31,7 +31,9 @@ class PostController extends BackendAdminController
         $searchModel = new SearchPost();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $status = Helpers::getStatus();
-        $post_types =  ArrayHelper::map(PostType::find()->all(), 'id', 'name');
+        $post_types =  ArrayHelper::map(PostType::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->all(), 'id', 'name');
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
