@@ -46,12 +46,9 @@ $next_page_token = $session->get('next_page_token');
                         'label' => 'Name',
                         'format' => 'raw',
                         'value' => function ($model) {
-                            return Html::a(substr($model->name, 0, 50), ['update', 'id' => $model->id], ['target' => '_blank']);
+                            return substr($model->name, 0, 50);
                         },
                     ],
-//                    'google_id',
-//                    'place_id',
-//                    'reference',
                     'lat',
                     'lng',
                     [
@@ -61,13 +58,6 @@ $next_page_token = $session->get('next_page_token');
                             return substr($model->vicinity, 0, 25);
                         },
                     ],
-                    // 'types',
-                    // 'created_at',
-                    // 'updated_at',
-                    // 'created_by',
-                    // 'updated_by',
-                    // 'status',
-
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'template' => '{view} {update} {status} {save}',
@@ -76,16 +66,11 @@ $next_page_token = $session->get('next_page_token');
                             'view' => function ($url, $model) {
                                 return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $url, ['class' => 'btn btn-primary btn-xs']);
                             },
-                            'update' => function ($url, $model) {
-                                return Html::a(Html::tag('i', '', ['class' => 'fa fa-edit']), $url,
-                                    ['class' => 'btn btn-secondary btn-xs']);
-                            },
                             'status' => function ($url, $model) {
                                 return Html::a(Html::tag('i', '', ['class' => ($model->status == Yii::$app->params['inactive']) ? 'fa fa-check' : 'fa fa-times']), Yii::$app->request->baseUrl . '/google/status/?id=' . $model->id, [
                                     'class' => 'btn btn-danger btn-xs',
                                 ]);
                             },
-
                             'save' => function ($url, $model) {
                                 return Html::a(Html::tag('i', '', ['class' => 'fa fa-save']), Yii::$app->request->baseUrl . '/google/save/?id=' . $model->id, [
                                     'class' => 'btn btn-primary btn-xs',
