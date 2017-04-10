@@ -59,9 +59,9 @@ class GooglePlaces extends BaseGooglePlaces
     public static function importEvents($places)
     {
         $session = Yii::$app->session;
-        if (isset($places['next_page_token'])){
+        if (isset($places['next_page_token'])) {
             $session->set('next_page_token', $places['next_page_token']);
-        }else{
+        } else {
             $session->remove('next_page_token');
         }
 
@@ -108,6 +108,17 @@ class GooglePlaces extends BaseGooglePlaces
         $event->longitude = $this->lng;
         $event->status = Yii::$app->params['imported'];
         if ($event->save()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkExistingPlaces()
+    {
+        $place = Place::find()->andFilterWhere(['like', 'name', $this->name])->one();
+
+        if (!empty($place)) {
             return true;
         } else {
             return false;

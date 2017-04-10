@@ -21,12 +21,25 @@ $next_page_token = $session->get('next_page_token');
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="panel">
         <div class="panel-heading">
-            <a class="btn btn-primary btn btn-primary btn-xs pull-right" data-toggle="modal" href="#modal-id"><i
-                        class="fa fa-download"></i></a>
+            <a class="btn btn-primary btn-xs pull-right" style="margin-left:5px;" data-toggle="modal" href="#modal-id">
+                <i class="fa fa-download"></i>
+            </a>
+            <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-trash']), ['delete'], [
+                'class' => 'btn btn-danger btn-xs pull-right',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete all items?'),
+                    'method' => 'post'
+                ],
+            ]) ?>
         </div>
         <div class="panel-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+                'rowOptions' => function ($model) {
+                    if ($model->checkExistingPlaces()) {
+                        return ['class' => 'warning'];
+                    }
+                },
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
@@ -39,8 +52,8 @@ $next_page_token = $session->get('next_page_token');
 //                    'google_id',
 //                    'place_id',
 //                    'reference',
-                     'lat',
-                     'lng',
+                    'lat',
+                    'lng',
                     [
                         'label' => 'Vicinity',
                         'format' => 'raw',
@@ -94,7 +107,7 @@ $next_page_token = $session->get('next_page_token');
             <?php $form = ActiveForm::begin(['action' => Url::to(['import'])]); ?>
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><?php echo Yii::t('app', 'Google API set up')?></h4>
+                <h4 class="modal-title"><?php echo Yii::t('app', 'Google API set up') ?></h4>
             </div>
             <div class="modal-body">
                 <?= $form->field($model, 'location')->textInput(['maxlength' => true, 'value' => '-1.9706,30.1044']) ?>

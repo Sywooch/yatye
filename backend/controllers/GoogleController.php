@@ -88,15 +88,9 @@ class GoogleController extends BaseEventController
         }
     }
 
-    /**
-     * Deletes an existing GooglePlaces model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
+    public function actionDelete()
     {
-        $this->findModel($id)->delete();
+        GooglePlaces::deleteAll(['status' => Yii::$app->params['inactive']]);
 
         return $this->redirect(['index']);
     }
@@ -140,6 +134,7 @@ class GoogleController extends BaseEventController
             $json = file_get_contents($search_url);
             $places = json_decode($json, true);
             GooglePlaces::importEvents($places);
+
             Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Google Places successfully saved!'));
         }
 
