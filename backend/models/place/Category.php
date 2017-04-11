@@ -116,7 +116,9 @@ class Category extends CategoryData
     public function getBasicList()
     {
         return $this->getList()
-            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM'] . ', RAND()'));
+            ->orderBy(new Expression('`profile_type` <> '
+                . Yii::$app->params['PREMIUM'] . ', `profile_type` <> '
+                . Yii::$app->params['BASIC'] . ', RAND()'));
     }
 
     public function getFreeList()

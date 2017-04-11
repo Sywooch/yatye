@@ -13,7 +13,7 @@ use yii\helpers\Html;
     <div class="header-wrapper">
         <div class="container">
             <div class="header-inner">
-                <div class="header-logo">
+                <div class="header-logo" style="padding:0;">
                     <?php echo $this->render('@app/views/layouts/header/_header_logo') ?>
                 </div>
                 <div class="header-content">

@@ -28,7 +28,6 @@ class CategoryData extends BaseCategory
             ->where('`service`.`id` = `place_service`.`service_id`')
             ->andWhere('`service`.`category_id` = ' . $this->id)
             ->andWhere("`service`.`status` = " . Yii::$app->params['active'])
-            ->andWhere('`service`.`type` != ' . Yii::$app->params['E_TYPE'])
             ->all();
     }
 

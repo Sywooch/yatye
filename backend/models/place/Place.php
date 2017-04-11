@@ -117,8 +117,7 @@ class Place extends PlaceData
             $photo[] = $gallery->name;
         }
 
-        Yii::warning('galleries : ' . $photo[0]);
-        return ($photo[0] != '') ? Yii::$app->params['galleries'] . $photo[0] : Yii::$app->params['pragmaticmates-logo-jpg'];
+        return (!empty($photo)) ? Yii::$app->params['galleries'] . $photo[0] : Yii::$app->params['pragmaticmates-logo-jpg'];
     }
 
     /*###################################################################################*/
