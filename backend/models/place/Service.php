@@ -99,7 +99,10 @@ class Service extends ServiceData
 
     public function getServicesByCategoryId($category_id)
     {
-        return self::findAll(['category_id' => $category_id]);
+        return self::find()
+            ->where(['category_id' => $category_id])
+            ->orderBy(new Expression('`status` <> ' . Yii::$app->params['active'] . ', `name`'))
+            ->all();
     }
 
     public function getStatus()
