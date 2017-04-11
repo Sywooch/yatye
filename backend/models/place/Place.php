@@ -53,7 +53,8 @@ class Place extends PlaceData
     public function rules()
     {
         return [
-            [['name', 'slug'], 'required'],
+            [['name'], 'required', 'on' => ['create', 'update']],
+            [['slug'], 'required'],
             [['description'], 'string'],
             [['province_id', 'district_id', 'sector_id', 'cell_id', 'village_id', 'profile_type', 'views', 'status', 'created_by', 'category', 'main'], 'integer'],
             [['latitude', 'longitude'], 'number'],
