@@ -142,7 +142,6 @@ class ServiceController extends BackendAdminController
 
         $place_service = new PlaceService();
         $available_places = PlaceService::getNotServicePlaces($service_id);
-        $places = $model->getPlaces();
 
         if (Yii::$app->request->isPost) {
 

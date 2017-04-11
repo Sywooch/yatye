@@ -15,6 +15,8 @@ use kartik\select2\Select2;
 use yii\grid\GridView;
 
 $this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Services', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="background-white p30">
     <h1>Add Places to <b><?= Html::encode($this->title) ?></b></h1>
@@ -43,7 +45,7 @@ $this->title = $model->name;
                     </div>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Save ', ['class' => 'btn btn-primary btn-block']) ?>
+                        <?= Html::submitButton('Save ', ['class' => 'btn btn-primary pull-right']) ?>
                     </div>
                     <?php ActiveForm::end(); ?>
 
@@ -55,13 +57,10 @@ $this->title = $model->name;
     <div class="row">
         <?php echo GridView::widget([
             'dataProvider' => $dataProvider,
-//            'summary' => '',
-            'showFooter' => true,
-            'showHeader' => true,
-//                'layout'=>"{pager}",
+            'showFooter' => false,
+            'showHeader' => false,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-//                'name',
                 [
                     'label' => 'Name',
                     'format' => 'raw',

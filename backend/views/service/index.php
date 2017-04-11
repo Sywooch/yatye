@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\helpers\Url;
 use backend\assets\RwandaguideAsset;
 
 /* @var $this yii\web\View */
@@ -20,8 +20,8 @@ RwandaguideAsset::register($this);
 
         <div class="background-white p20 mb50">
             <h4 class="page-title">
-                <?= Html::a(Html::tag('span', ' New Service', ['class' => 'fa fa-plus']), ['create'], ['class' => 'btn btn-primary', 'title' => 'Add New Service']) ?>
-                <?= Html::a(Html::tag('span', ' Service Category', ['class' => 'fa fa-list']), ['/category'], ['class' => 'btn btn-primary', 'title' => 'Category']) ?>
+                <?= Html::a(Html::tag('span', ' New Service', ['class' => 'fa fa-plus']), ['create'], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Html::tag('span', ' Categories', ['class' => 'fa fa-list']), ['/category'], ['class' => 'btn btn-secondary']) ?>
             </h4>
 
             <div class="container bootstrap snippet">
@@ -55,31 +55,14 @@ RwandaguideAsset::register($this);
 
                                                         <tbody>
                                                         <?php foreach ($services as $service): ?>
-
-                                                            <?php if ($service->status == Yii::$app->params['inactive']): ?>
-                                                                <?php $status = 'fa fa-check'; ?>
-                                                            <?php else: ?>
-                                                                <?php $status = 'fa fa-times'; ?>
-                                                            <?php endif; ?>
                                                             <tr>
-                                                                <td><?= $service->name ?></td>
+                                                                <td><?= Html::a($service->name, Url::to(['/service/add-places', 'service_id'=>$service->id]), []) ?></td>
                                                                 <td>
-                                                                    <?= Html::a(Html::tag('span', '', ['class' => $status]), Yii::$app->request->baseUrl . '/service/status/?id=' . $service->id, ['class' => 'btn btn-primary btn-circle', 'title' => 'Activate/Deactivate ' . $service->name]) ?>
-                                                                </td>
-                                                                <td>
-                                                                    <table>
-                                                                        <tr>
-                                                                            <td>
-                                                                                <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-eye']), Yii::$app->request->baseUrl . '/service/view?id=' . $service->id, ['class' => 'btn btn-primary btn-xs', 'title' => 'View ' . $service->name]) ?>
-                                                                            </td>
-                                                                            <td>
-                                                                                <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-edit']), Yii::$app->request->baseUrl . '/service/update?id=' . $service->id, ['class' => 'btn btn-primary btn-xs', 'title' => 'Update ' . $service->name]) ?>
-                                                                            </td>
-                                                                            <td>
-                                                                                <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-plus']), Yii::$app->request->baseUrl . '/service/add-places?service_id=' . $service->id, ['class' => 'btn btn-primary btn-xs', 'title' => 'Add places ' . $service->name]) ?>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
+                                                                    <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-eye']), Url::to(['/service/view', 'id'=>$service->id]), ['class' => 'btn btn-primary btn-xs']) ?>
+                                                                    <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-edit']), Url::to(['/service/update', 'id'=>$service->id]), ['class' => 'btn btn-secondary btn-xs']) ?>
+                                                                    <?= Html::a(Html::tag('span', '', ['class' => 'fa fa-plus']), Url::to(['/service/add-places', 'service_id'=>$service->id]), ['class' => 'btn btn-primary btn-xs']) ?>
+                                                                    <?= Html::a(Html::tag('span', '', ['class' => ($service->status == Yii::$app->params['inactive'])? 'fa fa-check' : 'fa fa-times']),
+                                                                        Url::to(['/service/status', 'id'=>$service->id]), ['class' => 'btn btn-danger btn-xs']) ?>
                                                                 </td>
                                                             </tr>
                                                         <?php endforeach; ?>
