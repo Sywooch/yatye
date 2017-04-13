@@ -16,7 +16,7 @@ class PostCategoryController extends BaseController
 
     public function actionSlug($slug)
     {
-        $model = PostCategory::findOne(['slug' => $slug]);
+        $model = PostCategory::find()->where((['slug' => $slug, 'status' => Yii::$app->params['active']]))->one();
 
         if ($model) {
             $dataProvider = new ActiveDataProvider([
