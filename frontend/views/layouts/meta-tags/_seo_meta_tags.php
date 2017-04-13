@@ -23,6 +23,7 @@ $keywords = $data['get_keywords'];
 <meta http-equiv="expires" content="30"/>
 <meta name="google-site-verification" content="PSEIUTyoAIopuk7Q8t8B6M6WiF711Udi3dT1YE6LBFk"/>
 <meta name="msvalidate.01" content="C8A5F2BA2975673A43AB130C098FB357" />
+<meta name="yandex-verification" content="cce2a42742b85fc7" />
 
 <meta name="serp-rank" position="1"/>
 <meta name="serps" content="1, 2, 3, 10, 11, ATF"/>
