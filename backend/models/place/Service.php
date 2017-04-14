@@ -88,6 +88,13 @@ class Service extends ServiceData
                 . Yii::$app->params['FREE'] . ', RAND()'));
     }
 
+    public function getPlaces()
+    {
+        $place_ids = $this->getPlaceIds();
+        return Place::find()
+            ->where(['in', 'id', $place_ids]);
+    }
+
     public function getCategoryName()
     {
         return Category::findOne($this->category_id)->name;

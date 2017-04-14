@@ -157,7 +157,7 @@ class ServiceController extends BackendAdminController
         else{
 
             $dataProvider = new ActiveDataProvider([
-                'query' => $model->getList(),
+                'query' => $model->getPlaces(),
                 'pagination' => [
                     'pageSize' => 20,
                 ],
