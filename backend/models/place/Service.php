@@ -61,7 +61,7 @@ class Service extends ServiceData
             ->from('`service`, `place_service`')
             ->where('`service`.`id` = `place_service`.`service_id`')
             ->andWhere('`service`.`id` = ' . $this->id)
-//            ->andWhere("`service`.`status` = " . Yii::$app->params['active'])
+            ->andWhere("`service`.`status` = " . Yii::$app->params['active'])
             ->all();
     }
 
