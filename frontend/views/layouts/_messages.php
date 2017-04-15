@@ -72,6 +72,29 @@ if (Yii::$app->session->getFlash("rwanda_guide_message")):
     Yii::$app->getSession()->removeFlash('rwanda_guide_message');
 
 endif;
+
+
+
+echo Growl::widget([
+    'type' => Growl::TYPE_GROWL,
+    'title' => 'Ishyiga Live',
+    'icon' => 'glyphicon glyphicon-info-sign',
+    'body' => 'Search drug availability in Rwanda',
+    'showSeparator' => true,
+    'delay' => 1500,
+    'linkUrl' => 'http://ishyiga.net/umuti/',
+    'pluginOptions' => [
+        'showProgressbar' => true,
+        'placement' => [
+            'from' => 'top',
+            'align' => 'right',
+        ]
+    ]
+]);
+
+
+
+
 //echo Growl::widget([
 //    'type' => Growl::TYPE_GROWL,
 //    'title' => '<div class="text-center">Kwibuka 23 : The 23rd commemoration of the Genocide against the Tutsi</div>',
