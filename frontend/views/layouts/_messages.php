@@ -80,14 +80,15 @@ echo Growl::widget([
     'title' => 'Ishyiga Live',
     'icon' => 'glyphicon glyphicon-info-sign',
 //    'icon' => Yii::$app->params['ishyiga'],
-    'body' => 'Search drug availability in Rwanda',
+    'body' => 'Click here to find drug availability in Rwanda',
     'showSeparator' => true,
     'delay' => 1500,
     'linkUrl' => 'http://ishyiga.net/umuti/',
     'pluginOptions' => [
         'showProgressbar' => true,
+        'timer' => 10000,
         'placement' => [
-            'from' => 'top',
+            'from' => 'bottom',
             'align' => 'right',
         ]
     ]
