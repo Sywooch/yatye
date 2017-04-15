@@ -79,6 +79,7 @@ echo Growl::widget([
     'type' => Growl::TYPE_GROWL,
     'title' => 'Ishyiga Live',
     'icon' => 'glyphicon glyphicon-info-sign',
+//    'icon' => Yii::$app->params['ishyiga'],
     'body' => 'Search drug availability in Rwanda',
     'showSeparator' => true,
     'delay' => 1500,
