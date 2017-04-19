@@ -139,7 +139,7 @@ class Category extends CategoryData
         return Place::find()
             ->where(['in', 'id', $place_ids])
             ->andWhere(['status' => Yii::$app->params['active']])
-            ->limit(5)
+            ->orderBy(new Expression('FIELD(id, ' . implode(',' , $place_ids) . ')'))
             ->all();
     }
 

@@ -50,8 +50,9 @@ class CategoryData extends BaseCategory
     public function getViews()
     {
         return Views::find()
-//            ->where(['status' => Yii::$app->params['active']])
+            ->where(['status' => Yii::$app->params['active']])
             ->orderBy(new Expression('views DESC'))
+            ->limit(5)
             ->all();
     }
 
