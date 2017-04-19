@@ -51,7 +51,7 @@ class CategoryData extends BaseCategory
     {
         return Views::find()
             ->where(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('views'))
+            ->orderBy(new Expression('views DESC'))
             ->all();
     }
 
