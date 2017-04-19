@@ -16,7 +16,7 @@ $this->title = $model->name;
     <div class="row">
         <ol class="breadcrumb bread-primary" style="background: none;">
             <li><a href="<?php echo Yii::$app->request->baseUrl ?>"><?php echo Yii::$app->name; ?></a></li>
-            <li><a href="<?php echo Url::to(['/event']) ?>"><?php echo Yii::t('app', 'Places'); ?></a></li>
+            <li><a href="<?php echo Url::to(['/place']) ?>"><?php echo Yii::t('app', 'Places'); ?></a></li>
             <li class="active"><a href="#"><?php echo $model->name; ?></a></li>
         </ol>
     </div>
@@ -25,6 +25,10 @@ $this->title = $model->name;
         <div class="col-sm-8 col-lg-9">
             <div class="background-white p20 mb50">
                 <div class="panel-body">
+                    <h3 class="page-title">
+                        <?php echo $model->name; ?>
+                        <?= Html::a('Add', ['create'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
+                    </h3>
                     <div class="row">
                         <div class="div">
                             <div class="panel-group drop-accordion" id="accordion" role="tablist" aria-multiselectable="true">
