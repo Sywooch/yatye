@@ -134,12 +134,11 @@ class Category extends CategoryData
         $views = $this->getViews();
         $place_ids = array();
         foreach ($views as $view) {
-            $place_ids[] = $view->views;
+            $place_ids[] = $view->place_id;
         }
         return Place::find()
             ->where(['in', 'id', $place_ids])
             ->andWhere(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('views DESC'))
             ->limit(5)
             ->all();
     }
