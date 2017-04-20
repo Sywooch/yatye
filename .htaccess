@@ -1,7 +1,7 @@
 Options +FollowSymlinks
 RewriteEngine On
 
-# deal with admin first
+#backend
 RewriteCond %{REQUEST_URI} ^/rwandaguide/(admin)
 RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
 RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]
@@ -10,6 +10,7 @@ RewriteCond %{REQUEST_URI} !^/rwandaguide/backend/web/(assets|css)/
 RewriteCond %{REQUEST_URI} ^/rwandaguide/(admin)
 RewriteRule ^.*$ backend/web/index.php [L]
 
+#api
 RewriteCond %{REQUEST_URI} ^/rwandaguide/(api)
 RewriteRule ^api/assets/(.*)$ api/web/assets/$1 [L]
 RewriteRule ^api/css/(.*)$ api/web/css/$1 [L]
@@ -18,7 +19,7 @@ RewriteCond %{REQUEST_URI} !^/rwandaguide/api/web/(assets|css)/
 RewriteCond %{REQUEST_URI} ^/rwandaguide/(api)
 RewriteRule ^.*$ api/web/index.php [L]
 
-
+#frontend
 RewriteCond %{REQUEST_URI} ^/rwandaguide/(assets|css)
 RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
 RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
