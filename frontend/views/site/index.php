@@ -63,15 +63,15 @@ $this->title = Yii::$app->name;
 
             <!--Up coming events-->
 
-<!--            <div class="container">-->
-<!--                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
-<!--                    <!-- LightWidget WIDGET -->-->
-<!--                    <script src="//lightwidget.com/widgets/lightwidget.js"></script>-->
-<!--                    <iframe src="//lightwidget.com/widgets/6ed41707b813505fa22ced8199c71529.html" scrolling="no"-->
-<!--                            allowtransparency="true" class="lightwidget-widget"-->
-<!--                            style="width: 100%; border: 0; overflow: hidden;"></iframe>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="container">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <!-- LightWidget WIDGET -->
+                    <script src="//lightwidget.com/widgets/lightwidget.js"></script>
+                    <iframe src="//lightwidget.com/widgets/6ed41707b813505fa22ced8199c71529.html" scrolling="no"
+                            allowtransparency="true" class="lightwidget-widget"
+                            style="width: 100%; border: 0; overflow: hidden;"></iframe>
+                </div>
+            </div>
             <?php $data = $this->context->accessData();
             $upcoming_events = $data['get_upcoming_events'];
             $count = count($upcoming_events);
