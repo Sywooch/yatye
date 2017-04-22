@@ -20,15 +20,21 @@ class Place extends BasePlace
         // remove fields that contain sensitive information
         unset(
             $fields['code'],
+            $fields['logo'],
+            $fields['description'],
             $fields['province_id'],
             $fields['district_id'],
             $fields['sector_id'],
             $fields['cell_id'],
             $fields['village_id'],
+            $fields['latitude'],
+            $fields['longitude'],
             $fields['created_at'],
             $fields['updated_at'],
             $fields['created_by'],
-            $fields['main']
+            $fields['status'],
+            $fields['main'],
+            $fields['category']
         );
 
         return $fields;

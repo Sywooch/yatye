@@ -8,6 +8,7 @@
 
 return [
     'v1' => [
+        'basePath' => '@api/modules/v1',
         'class' => 'api\modules\v1\Module',
     ],
 ];
