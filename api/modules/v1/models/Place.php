@@ -21,6 +21,7 @@ class Place extends BasePlace
         unset(
             $fields['code'],
             $fields['logo'],
+            $fields['slug'],
             $fields['description'],
             $fields['province_id'],
             $fields['district_id'],
