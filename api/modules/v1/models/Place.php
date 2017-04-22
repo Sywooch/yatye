@@ -34,7 +34,8 @@ class Place extends BasePlace
             $fields['created_by'],
             $fields['status'],
             $fields['main'],
-            $fields['category']
+            $fields['category'],
+            $fields['views']
         );
 
         return $fields;
