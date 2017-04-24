@@ -8,6 +8,9 @@
 ?>
 
 <div class="detail-contact">
+    <div class="detail-contact-address">
+        <i class="fa fa-location-arrow"></i><?php echo $model->address ?>
+    </div>
     <?php foreach ($contacts as $contact): ?>
         <?php if ($contact->type === Yii::$app->params['PHYSICAL_ADDRESS']): ?>
             <div class="detail-contact-address">
