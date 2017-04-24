@@ -96,11 +96,11 @@ $this->title = $model->name;
         </div>
 
         <!--Location-->
-        <?php if ($model->latitude != null && $model->longitude != null) : ?>
+        <?php //if ($model->latitude != null && $model->longitude != null) : ?>
             <?php echo $this->render('_location', [
                 'model' => $model,
             ]); ?>
-        <?php endif; ?>
+        <?php //endif; ?>
     </div>
 </div>
 <?= $this->render('@app/views/layouts/right-side/_right_side', []) ?>
