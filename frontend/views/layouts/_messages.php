@@ -73,8 +73,7 @@ if (Yii::$app->session->getFlash("rwanda_guide_message")):
 
 endif;
 
-
-
+if (Yii::$app->session->getFlash("add")):
 echo Growl::widget([
     'type' => Growl::TYPE_GROWL,
     'title' => 'Ishyiga Live',
@@ -93,7 +92,7 @@ echo Growl::widget([
         ]
     ]
 ]);
-
+endif;
 
 
 
