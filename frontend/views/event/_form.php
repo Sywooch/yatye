@@ -67,7 +67,7 @@ use kartik\widgets\FileInput;
                 'pluginOptions' => [
                     'autoclose' => true,
                     'showMeridian' => false,
-                    'defaultTime' => '00:00',
+                    'defaultTime' => '23:59',
                     'format' => 'hh:ii'
                 ]
             ])->label(false); ?>

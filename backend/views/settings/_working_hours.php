@@ -47,8 +47,7 @@ use kartik\widgets\TimePicker;
                             'pluginOptions' => [
                                 'showSeconds' => false,
                                 'showMeridian' => false,
-                                'minuteStep' => 1,
-                                'secondStep' => 5,
+                                'minuteStep' => 15,
                             ]
                         ],
                     ],
@@ -60,8 +59,7 @@ use kartik\widgets\TimePicker;
                             'pluginOptions' => [
                                 'showSeconds' => false,
                                 'showMeridian' => false,
-                                'minuteStep' => 1,
-                                'secondStep' => 5,
+                                'minuteStep' => 15,
                             ]
                         ],
                     ],
