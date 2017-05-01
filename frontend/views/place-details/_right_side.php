@@ -155,33 +155,35 @@ use yii\helpers\Url;
     </div>
 <?php endif; ?>
 
-<!--Working Hours-->
+    <!--Working Hours-->
 <?php if (!empty($working_hours)): ?>
-    <div class="widget">
-        <h2 class="widgettitle">Working Hours</h2>
+    <?php if ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']) : ?>
+        <div class="widget">
+            <h2 class="widgettitle">Working Hours</h2>
 
-        <div class="p20 background-white div">
-            <div class="working-hours">
+            <div class="p20 background-white div">
+                <div class="working-hours">
 
-                <?php foreach ($working_hours as $working_hour): if ($working_hour->opening_time != null):
-                    if ($working_hour->closed == 'no') { ?>
-                        <div class="day clearfix">
-                            <span class="name"><?php echo $working_hour->day; ?></span><span
-                                    class="hours"><?php echo date('H:i', strtotime($working_hour->opening_time)); ?>
-                                - <?php echo date('H:i', strtotime($working_hour->closing_time)); ?></span>
-                        </div>
-                    <?php } else { ?>
-                        <div class="day clearfix">
-                            <span class="name"><?php echo $working_hour->day; ?></span><span
-                                    class="hours">Closed</span>
-                        </div>
-                    <?php } endif; endforeach; ?>
+                    <?php foreach ($working_hours as $working_hour): if ($working_hour->opening_time != null):
+                        if ($working_hour->closed == 'no') { ?>
+                            <div class="day clearfix">
+                                <span class="name"><?php echo $working_hour->day; ?></span><span
+                                        class="hours"><?php echo date('H:i', strtotime($working_hour->opening_time)); ?>
+                                    - <?php echo date('H:i', strtotime($working_hour->closing_time)); ?></span>
+                            </div>
+                        <?php } else { ?>
+                            <div class="day clearfix">
+                                <span class="name"><?php echo $working_hour->day; ?></span><span
+                                        class="hours">Closed</span>
+                            </div>
+                        <?php } endif; endforeach; ?>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 <?php endif; ?>
 
-<!-- Services & Amenities-->
+    <!-- Services & Amenities-->
 <?php if (!empty($amenities)): ?>
     <h2>Services & Amenities</h2>
     <div class="background-white p20 div">
@@ -195,7 +197,7 @@ use yii\helpers\Url;
     </div>
 <?php endif; ?>
 
-<!-- Enquiry form-->
+    <!-- Enquiry form-->
 <?php if ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']) : ?>
     <?php echo $this->render('_enquiry_form', [
         'model' => $model,
