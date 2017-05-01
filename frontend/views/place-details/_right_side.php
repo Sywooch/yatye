@@ -21,7 +21,7 @@ use yii\helpers\Url;
     <h2>About <span class="text-secondary"><?php echo $model->name ?></span></h2>
     <div class="background-white p20 div">
         <?php if ($model->description != null): ?>
-            <div class="detail-description"><?php echo $model->description ?></div>
+            <div class="detail-description"><?php echo nl2br($model->description) ?></div>
         <?php endif; ?>
     </div>
 <?php elseif ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']) : ?>
