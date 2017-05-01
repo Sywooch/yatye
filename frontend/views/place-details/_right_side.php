@@ -9,12 +9,13 @@
 use yii\helpers\Url;
 
 ?>
-
+<?php if ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']) : ?>
 <?php echo $this->render('_top', [
     'model' => $model,
     'views' => $views,
     'ratings' => $ratings,
 ]); ?>
+<?php endif; ?>
 
 <?php if ($model->profile_type == Yii::$app->params['FREE'] && $model->description != null) : ?>
     <h2>About <span class="text-secondary"><?php echo $model->name ?></span></h2>
