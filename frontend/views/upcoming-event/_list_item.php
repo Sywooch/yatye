@@ -9,7 +9,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
-<div class="col-sm-6 col-lg-4 item" data-key="<?= $model->id ?>">
+<div class="col-sm-6 col-lg-3 item" data-key="<?= $model->id ?>">
     <div class="card-simple" data-background-image="<?php echo $model->getBanner() ?>">
         <div class="card-simple-background">
             <div class="card-simple-content">
