@@ -19,27 +19,63 @@ class LoginAction extends Action
     {
         $response = Yii::$app->response;
         $response->format = Response::FORMAT_JSON;
+        $request = Yii::$app->request;
 
-        $post = Yii::$app->request->bodyParams;
-        $email = $post['email'];
-        $password = $post['password'];
+        $email = $request->getBodyParam('email');
+        $password = $request->getBodyParam('password');
+
+
+        if (!$email && !$password) {
+            $response->statusCode = 422;
+            $response->data = [
+                'success' => $response->isSuccessful,
+                'message' => Yii::t('app', 'Required values were not supplied!'),
+                'status' => $response->statusCode
+            ];
+            return $response;
+        }
 
         $model = User::findOne(["email" => $email]);
 
         if (empty($model)) {
             $response->statusCode = 404;
-            $response->data = ['message' => 'User not found!', 'code' => $response->statusCode];
+            $response->data = [
+                'success' => $response->isSuccessful,
+                'message' => Yii::t('app', 'User not found!'),
+                'status' => $response->statusCode
+            ];
             return $response;
-        }
-
-        if (!empty($model) && $model->validatePassword($password)) {
-            $model->save(false);
+        } elseif ($model->blocked_at != null) {
+            $response->statusCode = 403;
+            $response->data = [
+                'success' => $response->isSuccessful,
+                'message' => Yii::t('app', 'Your account has been blocked!'),
+                'status' => $response->statusCode
+            ];
+            return $response;
+        } elseif (!$model->validatePassword($password)) {
+            $response->statusCode = 401;
+            $response->data = [
+                'success' => $response->isSuccessful,
+                'message' => 'Wrong username or password!',
+                'status' => $response->statusCode
+            ];
+            return $response;
+        } elseif ($model->validatePassword($password)) {
             $response->statusCode = 201;
-            $response->data = ['message' => 'Successfully authenticated!', 'data' => $model, 'code' => $response->statusCode];
+            $response->data = [
+                'success' => $response->isSuccessful,
+                'message' => Yii::t('app', 'Successfully authenticated!'),
+                'status' => $response->statusCode,
+                'data' => $model,
+            ];
             return $response;
         } else {
-            $response->statusCode = 401;
-            $response->data = ['message' => 'Authentication failed!', 'code' => $response->statusCode];
+            $response->statusCode = 500;
+            $response->data = [
+                'message' => Yii::t('app', 'Internal server error.'),
+                'status' => $response->statusCode
+            ];
             return $response;
         }
     }

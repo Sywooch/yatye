@@ -150,6 +150,25 @@ class DataHelpers
         return Place::find()->where(['status' => $status])->count();
     }
 
+    public static function getPlacesWithEmptyFields()
+    {
+        $places = Place::getPlacesWithEmptyFields();
+        return [
+            'descriptions' => $places['descriptions']->count(),
+            'slugs' => $places['slugs']->count(),
+            'logos' => $places['logos']->count(),
+            'provinces' => $places['provinces']->count(),
+            'districts' => $places['districts']->count(),
+            'sectors' => $places['sectors']->count(),
+            'cells' => $places['cells']->count(),
+            'neighborhoods' => $places['neighborhoods']->count(),
+            'streets' => $places['streets']->count(),
+            'latitudes' => $places['latitudes']->count(),
+            'longitudes' => $places['longitudes']->count(),
+            'profile_types' => $places['profile_types']->count(),
+        ];
+    }
+
     public static function getPlace()
     {
         return new Place();

@@ -27,11 +27,43 @@ class Helpers extends BaseHelpers
             $get_places = $get_places->where(['status' => Yii::$app->params['rejected']]);
         } elseif ($status == 'pending') {
             $get_places = $get_places->where(['status' => Yii::$app->params['pending']]);
-        }
-        elseif ($status == 'imported') {
+        } elseif ($status == 'imported') {
             $get_places = $get_places->where(['status' => Yii::$app->params['imported']]);
         }
         return $get_places;
+    }
+
+    public static function getPlacesWithEmptyFields($attribute)
+    {
+        $places = Place::getPlacesWithEmptyFields();
+
+        if ($attribute == 'description') {
+            $places = $places['descriptions'];
+        } elseif ($attribute == 'slug') {
+            $places = $places['slugs'];
+        } elseif ($attribute == 'logo') {
+            $places = $places = $places['logos'];;
+        } elseif ($attribute == 'province_id') {
+            $places = $places['provinces'];
+        } elseif ($attribute == 'district') {
+            $places = $places['districts'];
+        } elseif ($attribute == 'sector') {
+            $places = $places['sectors'];
+        } elseif ($attribute == 'cell') {
+            $places = $places['cells'];
+        } elseif ($attribute == 'neighborhood') {
+            $places = $places['neighborhoods'];
+        } elseif ($attribute == 'street') {
+            $places = $places['streets'];
+        } elseif ($attribute == 'latitude') {
+            $places = $places['latitudes'];
+        } elseif ($attribute == 'longitude') {
+            $places = $places['longitudes'];
+        } elseif ($attribute == 'profile_type') {
+            $places = $places['profile_types'];
+        }
+
+        return $places;
     }
 
 }

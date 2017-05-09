@@ -121,6 +121,40 @@ class Place extends PlaceData
         return (!empty($photo)) ? Yii::$app->params['galleries'] . $photo[0] : Yii::$app->params['pragmaticmates-logo-jpg'];
     }
 
+    public static function getPlacesWithEmptyFields()
+    {
+        $condition = ['status' => Yii::$app->params['active']];
+
+        $descriptions = Place::find()->where($condition)->andWhere(new Expression('`description` IS NULL OR `description` =""'));
+        $slugs = Place::find()->where($condition)->andWhere(new Expression('`slug` IS NULL OR `slug` =""'));
+        $logos = Place::find()->where($condition)->andWhere(new Expression('`logo` IS NULL OR `logo` =""'));
+        $provinces = Place::find()->where($condition)->andWhere(new Expression('`province_id` IS NULL OR `province_id` = 0'));
+        $districts = Place::find()->where($condition)->andWhere(new Expression('`district_id` IS NULL OR `district_id` = 0'));
+        $sectors = Place::find()->where($condition)->andWhere(new Expression('`sector_id` IS NULL OR `sector_id` = 0'));
+        $cells = Place::find()->where($condition)->andWhere(new Expression('`cell_id` IS NULL OR `cell_id` = 0'));
+        $neighborhoods = Place::find()->where($condition)->andWhere(new Expression('`neighborhood` IS NULL OR `neighborhood` =""'));
+        $streets = Place::find()->where($condition)->andWhere(new Expression('`street` IS NULL OR `street` =""'));
+        $latitudes = Place::find()->where($condition)->andWhere(new Expression('`latitude` IS NULL'));
+        $longitudes = Place::find()->where($condition)->andWhere(new Expression('`longitude` IS NULL'));
+        $profile_types = Place::find()->where($condition)->andWhere(new Expression('`profile_type` IS NULL'));
+
+        return [
+            'descriptions' => $descriptions,
+            'slugs' => $slugs,
+            'logos' => $logos,
+            'provinces' => $provinces,
+            'districts' => $districts,
+            'sectors' => $sectors,
+            'cells' => $cells,
+            'neighborhoods' => $neighborhoods,
+            'streets' => $streets,
+            'latitudes' => $latitudes,
+            'longitudes' => $longitudes,
+            'profile_types' => $profile_types,
+        ];
+    }
+
+
     /*###################################################################################*/
 
 
