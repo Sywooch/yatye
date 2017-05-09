@@ -154,6 +154,36 @@ class Place extends PlaceData
         ];
     }
 
+    public static function getPlacesWithoutContacts()
+    {
+        return [
+            'physical_addresses' => Contact::getPlaceFromContactType(Yii::$app->params['PHYSICAL_ADDRESS']),
+            'po_boxes' => Contact::getPlaceFromContactType(Yii::$app->params['PO_BOX']),
+            'mob_phones' => Contact::getPlaceFromContactType(Yii::$app->params['MOB_PHONE']),
+            'land_lines' => Contact::getPlaceFromContactType(Yii::$app->params['LAND_LINE']),
+            'faxes' => Contact::getPlaceFromContactType(Yii::$app->params['FAX']),
+            'emails' => Contact::getPlaceFromContactType(Yii::$app->params['EMAIL']),
+            'websites' => Contact::getPlaceFromContactType(Yii::$app->params['WEBSITE']),
+            'skypes' => Contact::getPlaceFromContactType(Yii::$app->params['SKYPE']),
+        ];
+    }
+
+    public static function getPlacesWithoutSocialMedia()
+    {
+        return [
+            'facebook' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['FACEBOOK']),
+            'twitter' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['TWITTER']),
+            'instagram' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['INSTAGRAM']),
+            'linkedin' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['LINKEDIN']),
+            'pintrest' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['PINTREST']),
+            'tumblr' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['TUMBLR']),
+            'youtube' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['YOUTUBE']),
+            'google_plus' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['GOOGLE_PLUS']),
+            'flicklr' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['FLICKLR']),
+            'trip_advisor' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['TRIPADVISOR']),
+        ];
+    }
+
 
     /*###################################################################################*/
 

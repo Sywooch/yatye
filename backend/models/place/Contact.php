@@ -8,6 +8,7 @@
 
 namespace backend\models\place;
 
+use backend\helpers\Helpers;
 use Yii;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
@@ -68,8 +69,8 @@ class Contact extends BaseContact
             $contact_type = Yii::t('app', 'Email address');
         elseif ($this->type == Yii::$app->params['WEBSITE']):
             $contact_type = Yii::t('app', 'Website');
-        elseif ($this->type == Yii::$app->params['WEBSITE']):
-            $contact_type = Yii::t('app', 'Website');
+        elseif ($this->type == Yii::$app->params['SKYPE']):
+            $contact_type = Yii::t('app', 'Skype');
         else:
             $contact_type = Yii::t('app', 'Not set');
         endif;
@@ -85,5 +86,12 @@ class Contact extends BaseContact
     public function getUser()
     {
         return ValueHelpers::getUser($this);
+    }
+
+    public static function getPlaceFromContactType($type)
+    {
+        $model = new Contact();
+        $condition = ['not in', 'id',  Helpers::getPlaceIdsByTypes($type, $model)];
+        return Place::find()->where($condition)->andWhere(['status' => Yii::$app->params['active']]);
     }
 }

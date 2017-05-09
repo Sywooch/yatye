@@ -60,8 +60,6 @@ class PlaceController extends BackendAdminController
             $get_places = Helpers::getPlacesWithEmptyFields($attribute);
         }
 
-
-
         $dataProvider = new ActiveDataProvider([
             'query' => $get_places,
             'pagination' => [

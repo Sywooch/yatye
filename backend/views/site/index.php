@@ -6,5 +6,3 @@ $this->title = Yii::$app->name;
 ?>
 
 <?= $this->render('_status', []) ?>
-
-<?= $this->render('_empty_list', []) ?>

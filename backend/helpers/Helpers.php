@@ -8,6 +8,7 @@
 
 namespace backend\helpers;
 
+use backend\models\place\Contact;
 use backend\models\place\Place;
 use Yii;
 use common\helpers\Helpers as BaseHelpers;
@@ -64,6 +65,16 @@ class Helpers extends BaseHelpers
         }
 
         return $places;
+    }
+
+    public static function getPlaceIdsByTypes($type, $model)
+    {
+        $contacts = $model::findAll(['type' => $type]);
+        $place_ids = array();
+        foreach ($contacts as $contact) {
+            $place_ids[] = $contact->place_id;
+        }
+        return $place_ids;
     }
 
 }
