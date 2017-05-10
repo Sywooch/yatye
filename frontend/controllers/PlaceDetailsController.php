@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use frontend\models\Place;
 use frontend\models\Views;
@@ -61,10 +62,15 @@ class PlaceDetailsController extends AdminController
 
             $related_place_ids = $model->getRelatedPlaceIds();
             $related_places = $model->getRelatedPlaces();
-            $other_places = $model->getOtherPlaces();
+            $other_places = $model->getNearByPlaces()->all();
+
+            $dataProvider = new ActiveDataProvider([
+                'query' => $model->getNearByPlaces(),
+            ]);
 
             return $this->render('index', [
                 'model' => $model,
+                'dataProvider' => $dataProvider,
                 'photos' => $photos,
                 'working_hours' => $working_hours,
                 'socials' => $socials,
