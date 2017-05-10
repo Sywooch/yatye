@@ -39,8 +39,13 @@ class SiteController extends BaseController
         $service_categories = Category::find()
             ->where(['status' => Yii::$app->params['active']])
             ->andWhere(['!=', 'id', 5])
+            ->andWhere(['!=', 'id', 7])
+            ->andWhere(['!=', 'id', 8])
             ->orderBy('RAND()')
             ->all();
+
+        Yii::$app->session->setFlash('add');
+
         return $this->render('index', [
             'service_categories' => $service_categories,
         ]);

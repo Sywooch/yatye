@@ -26,7 +26,7 @@ class SiteController extends BackendAdminController
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'report'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -79,5 +79,10 @@ class SiteController extends BackendAdminController
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionReport()
+    {
+        return $this->render('report');
     }
 }

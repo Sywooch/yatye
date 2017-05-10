@@ -9,6 +9,7 @@
 namespace backend\models\place;
 
 use Yii;
+use yii\db\Expression;
 use yii\db\Query;
 use frontend\models\Views;
 use common\helpers\ValueHelpers;
@@ -28,7 +29,6 @@ class CategoryData extends BaseCategory
             ->where('`service`.`id` = `place_service`.`service_id`')
             ->andWhere('`service`.`category_id` = ' . $this->id)
             ->andWhere("`service`.`status` = " . Yii::$app->params['active'])
-            ->andWhere('`service`.`type` != ' . Yii::$app->params['E_TYPE'])
             ->all();
     }
 
@@ -49,7 +49,11 @@ class CategoryData extends BaseCategory
 
     public function getViews()
     {
-        return Views::findAll(['status' => Yii::$app->params['active']]);
+        return Views::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->orderBy(new Expression('views DESC'))
+            ->limit(5)
+            ->all();
     }
 
 }

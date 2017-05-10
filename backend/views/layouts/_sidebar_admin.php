@@ -9,7 +9,7 @@
     <ul>
         <li class="<?php echo preg_match('/site/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a data-toggle="tooltip" href="<?php echo Yii::$app->request->baseUrl; ?>/about-us/" title="About us" >
-                <i class="fa fa-tachometer"></i>
+                <i class="fa fa-comments"></i>
             </a>
         </li>
         <li class="<?php echo preg_match('/service/', $this->context->route, $matched) ? 'active' : '' ?>">
@@ -53,7 +53,7 @@
     <ul>
         <li class="<?php echo preg_match('/site/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/site/">
-                <span class="icon"><i class="fa fa-industry"></i></span>
+                <span class="icon"><i class="fa fa-tachometer"></i></span>
                 <span class="title">Dashboard
                 </span>
                 <span class="subtitle">Dashboard</span>
@@ -99,15 +99,6 @@
                 <span class="subtitle">Enquiry management</span>
             </a>
         </li>
-        <li class="<?php echo preg_match('/post/', $this->context->route, $matched) ? 'active' : '' ?>">
-            <a href="<?php echo Yii::$app->request->baseUrl; ?>/blog/">
-                <span class="icon"><i class="fa fa-commenting-o"></i></span>
-                <span class="title">Blogs
-                </span>
-                <span class="subtitle">Blog Management</span>
-            </a>
-        </li>
-
         <li class="<?php echo preg_match('/ads/', $this->context->route, $matched) ? 'active' : '' ?>">
             <a href="<?php echo Yii::$app->request->baseUrl; ?>/ads/">
                 <span class="icon"><i class="fa fa-magic"></i></span>

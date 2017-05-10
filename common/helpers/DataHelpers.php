@@ -150,6 +150,57 @@ class DataHelpers
         return Place::find()->where(['status' => $status])->count();
     }
 
+    public static function getPlacesWithEmptyFields()
+    {
+        $places = Place::getPlacesWithEmptyFields();
+        return [
+            'descriptions' => $places['descriptions']->count(),
+            'slugs' => $places['slugs']->count(),
+            'logos' => $places['logos']->count(),
+            'provinces' => $places['provinces']->count(),
+            'districts' => $places['districts']->count(),
+            'sectors' => $places['sectors']->count(),
+            'cells' => $places['cells']->count(),
+            'neighborhoods' => $places['neighborhoods']->count(),
+            'streets' => $places['streets']->count(),
+            'latitudes' => $places['latitudes']->count(),
+            'longitudes' => $places['longitudes']->count(),
+            'profile_types' => $places['profile_types']->count(),
+        ];
+    }
+
+    public static function getPlacesWithoutContacts()
+    {
+        $places = Place::getPlacesWithoutContacts();
+        return [
+            'physical_addresses' => $places['physical_addresses']->count(),
+            'po_boxes' => $places['po_boxes']->count(),
+            'mob_phones' => $places['mob_phones']->count(),
+            'land_lines' => $places['land_lines']->count(),
+            'faxes' => $places['faxes']->count(),
+            'emails' => $places['emails']->count(),
+            'websites' => $places['websites']->count(),
+            'skypes' => $places['skypes']->count(),
+        ];
+    }
+
+    public static function getPlacesWithoutSocialMedia()
+    {
+        $places = Place::getPlacesWithoutSocialMedia();
+        return [
+            'facebook' => $places['facebook']->count(),
+            'twitter' => $places['twitter']->count(),
+            'instagram' => $places['instagram']->count(),
+            'linkedin' => $places['linkedin']->count(),
+            'pintrest' => $places['pintrest']->count(),
+            'tumblr' => $places['tumblr']->count(),
+            'youtube' => $places['youtube']->count(),
+            'google_plus' => $places['google_plus']->count(),
+            'flicklr' => $places['flicklr']->count(),
+            'trip_advisor' => $places['trip_advisor']->count(),
+        ];
+    }
+
     public static function getPlace()
     {
         return new Place();

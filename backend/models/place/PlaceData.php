@@ -82,7 +82,6 @@ class PlaceData extends BasePlace
         return Gallery::find()
             ->where(['place_id' => $this->id])
             ->orderBy(new Expression('RAND()'))
-            ->limit(1)
             ->all();
     }
 

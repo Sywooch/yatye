@@ -48,8 +48,17 @@ class PlaceController extends BackendAdminController
     public function actionList()
     {
         $status = Yii::$app->request->get('status');
+        $attribute = Yii::$app->request->get('attribute');
 
-        $get_places = Helpers::getList($status)->orderBy(new Expression('created_at DESC'));
+        $get_places = array();
+
+        if ($status){
+            $get_places = Helpers::getList($status)->orderBy(new Expression('created_at DESC'));
+        }
+
+        if ($attribute){
+            $get_places = Helpers::getPlacesWithEmptyFields($attribute);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $get_places,

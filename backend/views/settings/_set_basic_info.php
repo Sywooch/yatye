@@ -24,7 +24,7 @@ use vova07\imperavi\Widget as Redactor;
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="form-group">
-                <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => 2]) ?>
+                <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => 8]) ?>
             </div>
             <div class="form-group" style="margin-top: 40px;">
                 <?= Html::submitButton('Save Basic Info', ['class' => 'btn btn-primary pull-right']) ?>

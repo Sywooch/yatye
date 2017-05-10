@@ -21,26 +21,36 @@ $next_page_token = $session->get('next_page_token');
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="panel">
         <div class="panel-heading">
-            <a class="btn btn-primary btn btn-primary btn-xs pull-right" data-toggle="modal" href="#modal-id"><i
-                        class="fa fa-download"></i></a>
+            <a class="btn btn-primary btn-xs pull-right" style="margin-left:5px;" data-toggle="modal" href="#modal-id">
+                <i class="fa fa-download"></i>
+            </a>
+            <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-trash']), ['delete'], [
+                'class' => 'btn btn-danger btn-xs pull-right',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete all items?'),
+                    'method' => 'post'
+                ],
+            ]) ?>
         </div>
         <div class="panel-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+                'rowOptions' => function ($model) {
+                    if ($model->checkExistingPlaces()) {
+                        return ['class' => 'warning'];
+                    }
+                },
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
                         'label' => 'Name',
                         'format' => 'raw',
                         'value' => function ($model) {
-                            return Html::a(substr($model->name, 0, 50), ['update', 'id' => $model->id], ['target' => '_blank']);
+                            return substr($model->name, 0, 50);
                         },
                     ],
-//                    'google_id',
-//                    'place_id',
-//                    'reference',
-                     'lat',
-                     'lng',
+                    'lat',
+                    'lng',
                     [
                         'label' => 'Vicinity',
                         'format' => 'raw',
@@ -48,31 +58,19 @@ $next_page_token = $session->get('next_page_token');
                             return substr($model->vicinity, 0, 25);
                         },
                     ],
-                    // 'types',
-                    // 'created_at',
-                    // 'updated_at',
-                    // 'created_by',
-                    // 'updated_by',
-                    // 'status',
-
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'template' => '{view} {update} {status} {save}',
+                        'template' => '{view} {status} {save}',
                         'buttons' => [
 
                             'view' => function ($url, $model) {
-                                return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $url, ['class' => 'btn btn-primary btn-xs']);
-                            },
-                            'update' => function ($url, $model) {
-                                return Html::a(Html::tag('i', '', ['class' => 'fa fa-edit']), $url,
-                                    ['class' => 'btn btn-secondary btn-xs']);
+                                return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $url, ['class' => 'btn btn-secondary btn-xs']);
                             },
                             'status' => function ($url, $model) {
                                 return Html::a(Html::tag('i', '', ['class' => ($model->status == Yii::$app->params['inactive']) ? 'fa fa-check' : 'fa fa-times']), Yii::$app->request->baseUrl . '/google/status/?id=' . $model->id, [
                                     'class' => 'btn btn-danger btn-xs',
                                 ]);
                             },
-
                             'save' => function ($url, $model) {
                                 return Html::a(Html::tag('i', '', ['class' => 'fa fa-save']), Yii::$app->request->baseUrl . '/google/save/?id=' . $model->id, [
                                     'class' => 'btn btn-primary btn-xs',
@@ -94,7 +92,7 @@ $next_page_token = $session->get('next_page_token');
             <?php $form = ActiveForm::begin(['action' => Url::to(['import'])]); ?>
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><?php echo Yii::t('app', 'Google API set up')?></h4>
+                <h4 class="modal-title"><?php echo Yii::t('app', 'Google API set up') ?></h4>
             </div>
             <div class="modal-body">
                 <?= $form->field($model, 'location')->textInput(['maxlength' => true, 'value' => '-1.9706,30.1044']) ?>

@@ -8,6 +8,7 @@
 
 namespace backend\models\place;
 
+use backend\helpers\Helpers;
 use Yii;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
@@ -87,5 +88,12 @@ class SocialMedia extends  BaseSocialMedia
     public function getUser()
     {
         return ValueHelpers::getUser($this);
+    }
+
+    public static function getPlaceFromSocialMediaType($type)
+    {
+        $model = new SocialMedia();
+        $condition = ['not in', 'id',  Helpers::getPlaceIdsByTypes($type, $model)];
+        return Place::find()->where($condition)->andWhere(['status' => Yii::$app->params['active']]);
     }
 }

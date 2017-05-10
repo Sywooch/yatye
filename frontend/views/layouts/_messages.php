@@ -72,23 +72,47 @@ if (Yii::$app->session->getFlash("rwanda_guide_message")):
     Yii::$app->getSession()->removeFlash('rwanda_guide_message');
 
 endif;
+
+if (Yii::$app->session->getFlash("add")):
 echo Growl::widget([
     'type' => Growl::TYPE_GROWL,
-    'title' => '<div class="text-center">Kwibuka 23 : The 23rd commemoration of the Genocide against the Tutsi</div>',
-    'icon' => Yii::$app->params['kwibuka'],
+    'title' => 'Ishyiga Live',
+    'icon' => 'glyphicon glyphicon-info-sign',
+//    'icon' => Yii::$app->params['ishyiga'],
+    'body' => 'Click here to find drug availability in Rwanda',
     'showSeparator' => true,
-    'delay' => 2000,
-    'linkUrl' => 'http://rwandaguide.info/post-details/kwibuka',
+    'delay' => 1500,
+    'linkUrl' => 'http://ishyiga.net/umuti/',
     'pluginOptions' => [
-        'showProgressbar' => false,
-        'icon_type' => 'image',
+        'showProgressbar' => true,
         'timer' => 10000,
         'placement' => [
-            'from' => 'top',
-            'align' => 'center',
-        ],
+            'from' => 'bottom',
+            'align' => 'right',
+        ]
     ]
 ]);
+endif;
+
+
+
+//echo Growl::widget([
+//    'type' => Growl::TYPE_GROWL,
+//    'title' => '<div class="text-center">Kwibuka 23 : The 23rd commemoration of the Genocide against the Tutsi</div>',
+//    'icon' => Yii::$app->params['kwibuka'],
+//    'showSeparator' => true,
+//    'delay' => 2000,
+//    'linkUrl' => 'http://rwandaguide.info/post-details/kwibuka',
+//    'pluginOptions' => [
+//        'showProgressbar' => false,
+//        'icon_type' => 'image',
+//        'timer' => 10000,
+//        'placement' => [
+//            'from' => 'top',
+//            'align' => 'center',
+//        ],
+//    ]
+//]);
 
 //echo Growl::widget([
 //    'type' => Growl::TYPE_GROWL,

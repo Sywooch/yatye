@@ -36,12 +36,17 @@ $this->title = $model->name;
             </div>
             <div class="col-md-6 col-lg-6 p30">
                 <div class="row">
-                    <?php if (!empty($contacts)): ?>
-                        <?php echo $this->render('_contact', [
-                            'model' => $model,
-                            'contacts' => $contacts,
-                        ]); ?>
-                    <?php endif; ?>
+                    <div class="detail-contact">
+                        <div class="detail-contact-address">
+                            <i class="fa fa-location-arrow"></i><?php echo $model->address ?>
+                        </div>
+                        <?php if (!empty($contacts)): ?>
+                            <?php echo $this->render('_contact', [
+                                'model' => $model,
+                                'contacts' => $contacts,
+                            ]); ?>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <br>
                 <hr>
@@ -96,11 +101,11 @@ $this->title = $model->name;
         </div>
 
         <!--Location-->
-        <?php if ($model->latitude != null && $model->longitude != null) : ?>
-            <?php echo $this->render('_location', [
-                'model' => $model,
-            ]); ?>
-        <?php endif; ?>
+<!--        --><?php //if ($model->latitude != null && $model->longitude != null) : ?>
+<!--            --><?php //echo $this->render('_location', [
+//                'model' => $model,
+//            ]); ?>
+<!--        --><?php //endif; ?>
     </div>
 </div>
 <?= $this->render('@app/views/layouts/right-side/_right_side', []) ?>

@@ -43,7 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
             <div class="background-white p15 mb30 text-justify div">
                 <h4>Login<small> to contribute</small></h4>
-                <p>Please read <a href="http://rwandaguide.info/site/terms-conditions">Terms & Conditions</a> and <a href="http://rwandaguide.info/site/privacy-policy">Privacy Policy</a> before creating account.</p>
+                <p>Please read <a href="http://rwandaguide.info/about-us/terms-conditions">Terms & Conditions</a> and
+                    <a href="http://rwandaguide.info/about-us/privacy-policy">Privacy Policy</a> before creating account.</p>
             </div>
             <div class="omb_login">
                 <div class="row omb_row-sm-offset-3 omb_socialButtons">

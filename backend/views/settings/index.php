@@ -91,12 +91,10 @@ $this->title = $model->name;
                                                          style="height: 0px;">
                                                         <div class="panel-body">
 
-                                                            <?=
-                                                            $this->render('_set_basic_info', [
+                                                            <?= $this->render('_set_basic_info', [
                                                                 'model' => $model,
                                                                 'status' => (!empty($status) ? $status : []),
-                                                            ])
-                                                            ?>
+                                                            ]) ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -116,12 +114,10 @@ $this->title = $model->name;
                                                          role="tabpanel"
                                                          aria-labelledby="headingOne" aria-expanded="true">
                                                         <div class="panel-body">
-                                                            <?=
-                                                            $this->render('_set_location', [
+                                                            <?= $this->render('_set_location', [
                                                                 'model' => $model,
                                                                 'districts' => $districts,
-                                                            ])
-                                                            ?>
+                                                            ]) ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -134,14 +130,12 @@ $this->title = $model->name;
 
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <?=
-                                            $this->render('_set_gallery', [
+                                            <?= $this->render('_set_gallery', [
                                                 'model' => $model,
                                                 'place_id' => $place_id,
                                                 'gallery' => $gallery,
                                                 'gallery_modal' => $gallery_modal,
-                                            ])
-                                            ?>
+                                            ]) ?>
                                         </div>
                                     </div>
 
@@ -151,47 +145,39 @@ $this->title = $model->name;
 
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <?=
-                                            $this->render('_set_social', [
+                                            <?= $this->render('_set_social', [
                                                 'model' => $model,
                                                 'socialDataProvider' => $socialDataProvider,
                                                 'social_types' => $social_types,
                                                 'socials' => $socials,
-                                            ])
-                                            ?>
+                                            ]) ?>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="tab-pane" id="services">
-                                    <?=
-                                    $this->render('_set_service', [
+                                    <?= $this->render('_set_service', [
                                         'model' => $model,
                                         'place_service' => $place_service,
                                         'available_services' => $available_services,
                                         'serviceDataProvider' => $serviceDataProvider,
-                                    ])
-                                    ?>
+                                    ]) ?>
                                 </div>
                                 <div class="tab-pane" id="contact">
-                                    <?=
-                                    $this->render('_set_address', [
+                                    <?= $this->render('_set_address', [
                                         'model' => $model,
                                         'contacts' => $contacts,
                                         'contact_types' => $contact_types,
                                         'contactDataProvider' => $contactDataProvider,
-                                    ])
-                                    ?>
+                                    ]) ?>
                                 </div>
 
                                 <div class="tab-pane" id="working-hours">
                                     <?php if (!empty($working_hours)) : ?>
-                                        <?=
-                                        $this->render('_working_hours', [
+                                        <?= $this->render('_working_hours', [
                                             'model' => $model,
                                             'working_hours' => $working_hours,
-                                        ])
-                                        ?>
+                                        ]) ?>
                                     <?php else:?>
                                         <div class="alert alert-info">
                                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -202,14 +188,12 @@ $this->title = $model->name;
                                 <div class="tab-pane" id="other-places">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <?=
-                                            $this->render('_other_places', [
+                                            <?= $this->render('_other_places', [
                                                 'model' => $model,
                                                 'place_has_another' => $place_has_another,
                                                 'available_other_places' => $available_other_places,
                                                 'users' => $users,
-                                            ])
-                                            ?>
+                                            ]) ?>
                                         </div>
                                     </div>
                                 </div>
@@ -217,27 +201,23 @@ $this->title = $model->name;
                                 <div class="tab-pane" id="users">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <?=
-                                            $this->render('_users', [
+                                            <?= $this->render('_users', [
                                                 'model' => $model,
                                                 'user_place' => $user_place,
                                                 'users' => $users,
                                                 'userDataProvider' => $userDataProvider,
-                                            ])
-                                            ?>
+                                            ]) ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="settings">
                                     <div class="row">
                                     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <?=
-                                            $this->render('_settings', [
+                                            <?= $this->render('_settings', [
                                                 'model' => $model,
                                                 'profile_types' => $profile_types,
                                                 'status' => $status,
-                                            ])
-                                            ?>
+                                            ]) ?>
                                     	</div>
                                     </div>
                                 </div>

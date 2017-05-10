@@ -53,7 +53,8 @@ class Place extends PlaceData
     public function rules()
     {
         return [
-            [['name', 'slug'], 'required'],
+            [['name'], 'required', 'on' => ['create', 'update']],
+            [['slug'], 'required'],
             [['description'], 'string'],
             [['province_id', 'district_id', 'sector_id', 'cell_id', 'village_id', 'profile_type', 'views', 'status', 'created_by', 'category', 'main'], 'integer'],
             [['latitude', 'longitude'], 'number'],
@@ -117,9 +118,72 @@ class Place extends PlaceData
             $photo[] = $gallery->name;
         }
 
-        Yii::warning('galleries : ' . $photo[0]);
-        return Yii::$app->params['galleries'] . $photo[0];
+        return (!empty($photo)) ? Yii::$app->params['galleries'] . $photo[0] : Yii::$app->params['pragmaticmates-logo-jpg'];
     }
+
+    public static function getPlacesWithEmptyFields()
+    {
+        $condition = ['status' => Yii::$app->params['active']];
+
+        $descriptions = Place::find()->where($condition)->andWhere(new Expression('`description` IS NULL OR `description` =""'));
+        $slugs = Place::find()->where($condition)->andWhere(new Expression('`slug` IS NULL OR `slug` =""'));
+        $logos = Place::find()->where($condition)->andWhere(new Expression('`logo` IS NULL OR `logo` =""'));
+        $provinces = Place::find()->where($condition)->andWhere(new Expression('`province_id` IS NULL OR `province_id` = 0'));
+        $districts = Place::find()->where($condition)->andWhere(new Expression('`district_id` IS NULL OR `district_id` = 0'));
+        $sectors = Place::find()->where($condition)->andWhere(new Expression('`sector_id` IS NULL OR `sector_id` = 0'));
+        $cells = Place::find()->where($condition)->andWhere(new Expression('`cell_id` IS NULL OR `cell_id` = 0'));
+        $neighborhoods = Place::find()->where($condition)->andWhere(new Expression('`neighborhood` IS NULL OR `neighborhood` =""'));
+        $streets = Place::find()->where($condition)->andWhere(new Expression('`street` IS NULL OR `street` =""'));
+        $latitudes = Place::find()->where($condition)->andWhere(new Expression('`latitude` IS NULL'));
+        $longitudes = Place::find()->where($condition)->andWhere(new Expression('`longitude` IS NULL'));
+        $profile_types = Place::find()->where($condition)->andWhere(new Expression('`profile_type` IS NULL'));
+
+        return [
+            'descriptions' => $descriptions,
+            'slugs' => $slugs,
+            'logos' => $logos,
+            'provinces' => $provinces,
+            'districts' => $districts,
+            'sectors' => $sectors,
+            'cells' => $cells,
+            'neighborhoods' => $neighborhoods,
+            'streets' => $streets,
+            'latitudes' => $latitudes,
+            'longitudes' => $longitudes,
+            'profile_types' => $profile_types,
+        ];
+    }
+
+    public static function getPlacesWithoutContacts()
+    {
+        return [
+            'physical_addresses' => Contact::getPlaceFromContactType(Yii::$app->params['PHYSICAL_ADDRESS']),
+            'po_boxes' => Contact::getPlaceFromContactType(Yii::$app->params['PO_BOX']),
+            'mob_phones' => Contact::getPlaceFromContactType(Yii::$app->params['MOB_PHONE']),
+            'land_lines' => Contact::getPlaceFromContactType(Yii::$app->params['LAND_LINE']),
+            'faxes' => Contact::getPlaceFromContactType(Yii::$app->params['FAX']),
+            'emails' => Contact::getPlaceFromContactType(Yii::$app->params['EMAIL']),
+            'websites' => Contact::getPlaceFromContactType(Yii::$app->params['WEBSITE']),
+            'skypes' => Contact::getPlaceFromContactType(Yii::$app->params['SKYPE']),
+        ];
+    }
+
+    public static function getPlacesWithoutSocialMedia()
+    {
+        return [
+            'facebook' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['FACEBOOK']),
+            'twitter' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['TWITTER']),
+            'instagram' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['INSTAGRAM']),
+            'linkedin' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['LINKEDIN']),
+            'pintrest' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['PINTREST']),
+            'tumblr' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['TUMBLR']),
+            'youtube' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['YOUTUBE']),
+            'google_plus' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['GOOGLE_PLUS']),
+            'flicklr' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['FLICKLR']),
+            'trip_advisor' => SocialMedia::getPlaceFromSocialMediaType(Yii::$app->params['TRIPADVISOR']),
+        ];
+    }
+
 
     /*###################################################################################*/
 
@@ -189,6 +253,50 @@ class Place extends PlaceData
             ->orderBy('`place`.`name`')->all();
 
         return $select;
+    }
+
+    /** The Haversine formula is used generally for
+     * computing great-circle distances between two pairs
+     * of coordinates on a sphere
+     * SELECT id, ( 3959 * acos( cos( radians(-1.95375538) ) * cos( radians( latitude ) ) * cos( radians( longitude )
+     * - radians(30.06206512) ) + sin( radians(-1.95375538) ) * sin( radians( latitude ) ) ) ) AS distance
+     * FROM place HAVING distance < 25 ORDER BY distance LIMIT 0 , 20;
+     */
+    public function getHaversineFormula()
+    {
+        $formula = '( 6371 * acos( cos( radians(' . $this->latitude . ') ) * cos( radians( latitude ) ) * cos( radians( longitude )';
+        $formula .= '- radians(' . $this->longitude . ') ) + sin( radians(' . $this->latitude . ') ) * sin( radians( latitude ) ) ) ) AS distance';
+        return $formula;
+    }
+
+    public function getPlaceIdsFromTheGreatCircleDistances()
+    {
+        $query = new Query();
+
+        $formula = $this->getHaversineFormula();
+        $places = $query
+            ->select('`id`')
+            ->addSelect($formula)
+            ->from('`place`')
+            ->where(['status' => Yii::$app->params['active']])
+            ->andWhere(['!=', 'id', $this->id])
+            ->having('distance < 0.5')
+            ->orderBy('RAND()')
+            ->limit(6)
+            ->all();
+
+        $ids = array();
+
+        foreach ($places as $place) {
+            $ids[] = $place['id'];
+        }
+        return $ids;
+    }
+
+    public function getNearByPlaces()
+    {
+        $ids = $this->getPlaceIdsFromTheGreatCircleDistances();
+        return Place::find()->where(['in', 'id', $ids]);
     }
 
     public static function getRecentAddedPlaces()

@@ -8,7 +8,7 @@
 
 ?>
 <a href="<?php echo Yii::$app->params['root'] ?>">
-    <img style='width: 192px; "Helvetica Neue", Helvetica, Arial, sans-serif; color: #5d4942; font-size: 24px;'
+    <img style="width: 128px;"
          src="<?php echo Yii::$app->params['logo_320'] ?>" alt="<?php echo Yii::$app->name ?>"
-         title="<?php echo Yii::$app->name ?>">
+         title="<?php echo Yii::$app->name ?>" class="img-alt">
 </a>

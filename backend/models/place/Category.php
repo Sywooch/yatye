@@ -116,13 +116,17 @@ class Category extends CategoryData
     public function getBasicList()
     {
         return $this->getList()
-            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM'] . ', RAND()'));
+            ->orderBy(new Expression('`profile_type` <> '
+                . Yii::$app->params['PREMIUM'] . ', `profile_type` <> '
+                . Yii::$app->params['BASIC'] . ', RAND()'));
     }
 
     public function getFreeList()
     {
         return $this->getList()
-            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['BASIC'] . ', RAND()'));
+            ->orderBy(new Expression('`profile_type` <> '
+                . Yii::$app->params['BASIC'] . ', `profile_type` <> '
+                . Yii::$app->params['FREE'] . ', RAND()'));
     }
 
     public function getMostViewed()
@@ -130,13 +134,12 @@ class Category extends CategoryData
         $views = $this->getViews();
         $place_ids = array();
         foreach ($views as $view) {
-            $place_ids[] = $view->views;
+            $place_ids[] = $view->place_id;
         }
         return Place::find()
             ->where(['in', 'id', $place_ids])
             ->andWhere(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('views DESC'))
-            ->limit(5)
+            ->orderBy(new Expression('FIELD(id, ' . implode(',' , $place_ids) . ')'))
             ->all();
     }
 

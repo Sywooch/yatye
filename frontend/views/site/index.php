@@ -36,7 +36,8 @@ $this->title = Yii::$app->name;
                                                 <a href="<?php echo Url::to(['/category/' . $category->slug]) ?>"><?php echo $category->name ?></a>
                                             </h2>
                                             <div class="card-actions">
-                                                <a href="<?php echo Url::to(['/category/' . $category->slug]) ?>" class="fa fa-eye"></a>
+                                                <a href="<?php echo Url::to(['/category/' . $category->slug]) ?>"
+                                                   class="fa fa-eye"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -61,7 +62,17 @@ $this->title = Yii::$app->name;
             <!--            </div>-->
 
             <!--Up coming events-->
-            <?php $data = $this->context->accessData();$upcoming_events = $data['get_upcoming_events'];
+
+            <!--<div class="container">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <script src="//lightwidget.com/widgets/lightwidget.js"></script>
+                    <iframe src="//lightwidget.com/widgets/6ed41707b813505fa22ced8199c71529.html" scrolling="no"
+                            allowtransparency="true" class="lightwidget-widget"
+                            style="width: 100%; border: 0; overflow: hidden;"></iframe>
+                </div>
+            </div>-->
+            <?php $data = $this->context->accessData();
+            $upcoming_events = $data['get_upcoming_events'];
             $count = count($upcoming_events);
             if (!empty($upcoming_events) && $count >= 4) :
                 echo $this->render('_events', [

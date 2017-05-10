@@ -142,7 +142,6 @@ class ServiceController extends BackendAdminController
 
         $place_service = new PlaceService();
         $available_places = PlaceService::getNotServicePlaces($service_id);
-        $places = $model->getPlaces();
 
         if (Yii::$app->request->isPost) {
 
@@ -158,7 +157,7 @@ class ServiceController extends BackendAdminController
         else{
 
             $dataProvider = new ActiveDataProvider([
-                'query' => $model->getList(),
+                'query' => $model->getPlaces(),
                 'pagination' => [
                     'pageSize' => 20,
                 ],

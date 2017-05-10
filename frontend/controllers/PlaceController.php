@@ -146,6 +146,7 @@ class PlaceController extends AdminController
     public function actionCreate()
     {
         $model = new Place();
+        $model->scenario = 'create';
         $POST_VARIABLE = Yii::$app->request->post('Place');
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $district = District::findOne($POST_VARIABLE['district_id']);
@@ -176,6 +177,7 @@ class PlaceController extends AdminController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = 'update';
 
         if ($model->status != Yii::$app->params['active'] || $model->hasUser()) {
 

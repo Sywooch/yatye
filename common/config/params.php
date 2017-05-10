@@ -145,7 +145,9 @@ return [
     'logo_320_festive' => 'http://rwandaguide.info/frontend/web/files/images/logo_320_festive.png',
     'logo_320' => 'http://rwandaguide.info/frontend/web/files/images/logo_320.png',
     'logo_192' => 'http://rwandaguide.info/frontend/web/files/images/logo_192.png',
+
     'kwibuka' => 'http://rwandaguide.info/frontend/web/files/images/kwibuka.jpg',
+    'ishyiga' => 'http://rwandaguide.info/frontend/web/files/images/ishyiga.jpeg',
 
     'facebook' => 'https://web.facebook.com/rwandaguide.info',
     'twitter' => 'https://twitter.com/rwandaguide_',

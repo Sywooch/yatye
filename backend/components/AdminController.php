@@ -23,7 +23,7 @@ class AdminController extends BaseController
     public function actionSetBasicInfo()
     {
         $model = $this->findModel(Yii::$app->request->get('id'));
-
+        $model->scenario = 'update';
         $url = Url::to(['settings/', 'id' => $model->id]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

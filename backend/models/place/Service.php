@@ -62,7 +62,6 @@ class Service extends ServiceData
             ->where('`service`.`id` = `place_service`.`service_id`')
             ->andWhere('`service`.`id` = ' . $this->id)
             ->andWhere("`service`.`status` = " . Yii::$app->params['active'])
-            ->andWhere('`service`.`type` != ' . Yii::$app->params['E_TYPE'])
             ->all();
     }
 
@@ -83,8 +82,17 @@ class Service extends ServiceData
         return Place::find()
             ->where(['in', 'id', $place_ids])
             ->andWhere(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM'] .
-                ', `profile_type` <> ' . Yii::$app->params['BASIC'] . ', RAND()'));
+            ->orderBy(new Expression('`profile_type` <> '
+                . Yii::$app->params['PREMIUM'] . ', `profile_type` <> '
+                . Yii::$app->params['BASIC'] . ', `profile_type` <> '
+                . Yii::$app->params['FREE'] . ', RAND()'));
+    }
+
+    public function getPlaces()
+    {
+        $place_ids = $this->getPlaceIds();
+        return Place::find()
+            ->where(['in', 'id', $place_ids]);
     }
 
     public function getCategoryName()
@@ -99,7 +107,10 @@ class Service extends ServiceData
 
     public function getServicesByCategoryId($category_id)
     {
-        return self::findAll(['category_id' => $category_id]);
+        return self::find()
+            ->where(['category_id' => $category_id])
+            ->orderBy(new Expression('`status` <> ' . Yii::$app->params['active'] . ', `name`'))
+            ->all();
     }
 
     public function getStatus()
