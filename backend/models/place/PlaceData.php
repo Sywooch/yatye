@@ -80,7 +80,8 @@ class PlaceData extends BasePlace
     public static function searchPlaces($post)
     {
         return self::find()->filterWhere(['like', 'name', $post['name']])
-            ->andWhere(['!=', 'status', Yii::$app->params['rejected']]);
+            ->andWhere(['!=', 'status', Yii::$app->params['rejected']])
+            ->orderBy(new Expression('updated_at'));
     }
 
     public function getGalleries()
