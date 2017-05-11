@@ -5,6 +5,7 @@
  * Date: 25/12/2016
  * Time: 21:05
  */
+/* @var $basic_place backend\models\place\Place */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -24,11 +25,11 @@ use yii\helpers\Url;
                     <div class="col-sm-4">
                         <div class="card" data-background-image="<?php echo $basic_place->getThumbnailLogo() ?>">
                             <div class="card-label">
-                                <small><?= Html::a($basic_place->getThisPlaceServiceName($model->id), Url::to(['/place-details/' . $basic_place->slug]), ['target' => '_blank']) ?></small>
+                                <small><?= Html::a($basic_place->getThisPlaceServiceName($model->id), $basic_place->getPlaceUrl(), ['target' => '_blank']) ?></small>
                             </div>
 
                             <div class="card-content">
-                                <h2><?= Html::a($basic_place->name, Url::to(['/place-details/' . $basic_place->name]), ['target' => '_blank']) ?></h2>
+                                <h2><?= Html::a($basic_place->name, $basic_place->getPlaceUrl(), ['target' => '_blank']) ?></h2>
 
                                 <div class="card-meta">
                                     <i class="fa fa-map-o"></i> <?php echo $basic_place->neighborhood ?>
@@ -39,7 +40,7 @@ use yii\helpers\Url;
                                     <?php echo $basic_place->getRatingStars() ?>
                                 </div>
                                 <div class="card-actions">
-                                    <?php echo Html::a('', Url::to(['/place-details/' . $basic_place->slug]), ['class' => 'fa fa-eye', 'target' => '_blank']) ?>
+                                    <?php echo Html::a('', $basic_place->getPlaceUrl(), ['class' => 'fa fa-eye', 'target' => '_blank']) ?>
                                 </div>
                             </div>
                         </div>

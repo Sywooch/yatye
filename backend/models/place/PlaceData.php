@@ -31,6 +31,11 @@ class PlaceData extends BasePlace
         return ($this->logo != null) ? Yii::$app->params['thumbnails'] . $this->logo : Yii::$app->params['pragmaticmates-logo-jpg'];
     }
 
+    public function getPlaceUrl()
+    {
+        return Yii::$app->request->baseUrl . '/place-details/' . $this->slug;
+    }
+
     public function getViews()
     {
         return Views::findOne(['place_id' => $this->id, 'status' => Yii::$app->params['active']])->views;

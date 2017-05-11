@@ -5,6 +5,7 @@
  * Date: 06/07/2016
  * Time: 22:33
  */
+/* @var $model backend\models\place\Place */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -29,7 +30,7 @@ $category_id = $session->get('category_id');
 
         <div class="card-row-body">
             <h2 class="card-row-title">
-                <a href="<?php echo Yii::$app->request->baseUrl . '/place-details/' . $model->slug ?>" target="_blank"><?php echo $model->name ?></a>
+                <a href="<?php echo $model->getPlaceUrl() ?>" target="_blank"><?php echo $model->name ?></a>
             </h2>
 
             <?php $data_by_ids = $this->context->accessDataByIds($model->id);$contacts = $data_by_ids['get_place_contacts']; ?>
@@ -124,36 +125,32 @@ $category_id = $session->get('category_id');
                          aria-labelledby="heading-<?php echo $model->id ?>"
                          aria-expanded="true">
                         <div class="panel-body">
-
-                            <?php $data_by_ids = $this->context->accessDataByIds($model->id);
-                            $place = $data_by_ids['get_place_by_id']; ?>
-
-                            <?php if ($place->street != null): ?>
+                            <?php if ($model->street != null): ?>
                                 <strong>Street</strong> :
-                                <?php echo $place->street ?><br>
+                                <?php echo $model->street ?><br>
 
                             <?php endif;
-                            if ($place->neighborhood != null): ?>
+                            if ($model->neighborhood != null): ?>
                                 <strong>Neighborhood</strong> :
-                                <?php echo $place->neighborhood ?><br>
+                                <?php echo $model->neighborhood ?><br>
 
                             <?php endif;
-                            if ($place->province_id != null): ?>
+                            if ($model->province_id != null): ?>
                                 <strong>Province</strong> :
-                                <?php echo $place->getProvinceName() ?><br>
+                                <?php echo $model->getProvinceName() ?><br>
 
                             <?php endif;
-                            if ($place->district_id != null): ?>
+                            if ($model->district_id != null): ?>
                                 <strong>District</strong> :
-                                <?php echo $place->getDistrictName() ?><br>
+                                <?php echo $model->getDistrictName() ?><br>
                             <?php endif;
-                            if ($place->sector_id != null): ?>
+                            if ($model->sector_id != null): ?>
                                 <strong>Sector</strong> :
-                                <?php echo $place->getSectorName() ?><br>
+                                <?php echo $model->getSectorName() ?><br>
                             <?php endif;
-                            if ($place->cell_id != null): ?>
+                            if ($model->cell_id != null): ?>
                                 <strong>Cell</strong> :
-                                <?php echo $place->getCellName() ?>
+                                <?php echo $model->getCellName() ?>
                             <?php endif; ?>
                         </div>
                     </div>

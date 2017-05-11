@@ -5,12 +5,13 @@
  * Date: 25/12/2016
  * Time: 21:17
  */
+/* @var $premium_place backend\models\place\Place */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 ?>
-
+<?php if (!empty($premium_places)): ?>
 <div class="block background-white mt30 mb50 row p30 div">
     <div class="col-md-7 col-lg-7">
         <div class="hero-slider">
@@ -32,7 +33,7 @@ use yii\helpers\Url;
 
                                 <div class="hero-slider-actions">
                                     <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']),
-                                        Url::to(['/place-details/' . $premium_place->slug]),
+                                        $premium_place->getPlaceUrl(),
                                         ['target' => '_blank']) ?>
                                 </div>
                             </div>
@@ -65,3 +66,4 @@ use yii\helpers\Url;
         ]); ?>
     </div>
 </div>
+<?php endif; ?>

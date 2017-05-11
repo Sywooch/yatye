@@ -12,7 +12,7 @@ use yii\helpers\Url;
     <div class="container">
         <div id="events" class="block background-white p30 mt30 mb30 row div">
             <div class="text-center" style="margin-top: -30px">
-                <h1><?php echo Yii::t('app', 'Upcoming events') ?></h1>
+                <h1><?php echo Yii::t('app', 'Upcoming Events') ?></h1>
             </div>
             <div class="cards-wrapper">
                 <div class="row">
@@ -40,14 +40,12 @@ use yii\helpers\Url;
                                                 </div>
                                             <?php endif; ?>
                                             <div class="card-actions">
-                                                <a target="_blank"
-                                                   href="<?php echo $event->getEventUrl() ?>"
+                                                <a target="_blank" href="<?php echo $event->getEventUrl() ?>"
                                                    class="fa fa-eye"></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             <?php endforeach;
                         endif; ?>
                     </div>
