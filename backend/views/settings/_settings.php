@@ -26,7 +26,7 @@ use kartik\widgets\Select2;
         'prompt' => Yii::t('app', 'Status'),
     ])->label(false); ?>
     <div class="form-group">
-        <?= Html::submitButton('Save Settings', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

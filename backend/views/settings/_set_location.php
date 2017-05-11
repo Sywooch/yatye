@@ -79,7 +79,7 @@ use kartik\widgets\DepDrop;
     </div>
     <div class="row">
         <div class="form-group" style="margin-top: 40px;">
-            <?= Html::submitButton('Save Location', ['class' => 'btn btn-primary pull-right']) ?>
+            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary pull-right']) ?>
         </div>
     </div>
 </div>

@@ -27,7 +27,7 @@ use vova07\imperavi\Widget as Redactor;
                 <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => 8]) ?>
             </div>
             <div class="form-group" style="margin-top: 40px;">
-                <?= Html::submitButton('Save Basic Info', ['class' => 'btn btn-primary pull-right']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary pull-right']) ?>
             </div>
         </div>
 

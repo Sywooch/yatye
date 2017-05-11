@@ -20,7 +20,7 @@ use yii\grid\GridView;
         <?php echo $form->field($user_place, 'user_id')->widget(Select2::classname(), [
             'data' => $users,
             'options' => [
-                'placeholder' => 'Select user email addresses ...',
+                'placeholder' => 'User',
 
             ],
             'pluginOptions' => [
@@ -32,7 +32,7 @@ use yii\grid\GridView;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Add User ', ['class' => 'btn btn-primary pull-right']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary pull-right']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
