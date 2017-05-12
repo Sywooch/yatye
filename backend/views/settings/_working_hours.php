@@ -76,7 +76,7 @@ use kartik\widgets\TimePicker;
                     ],
                 ],
             ]) ?>
-            <?php echo Html::submitButton('Save Working Hours', ['class' => 'btn btn-primary pull-right']) ?>
+            <?php echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary pull-right']) ?>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

@@ -21,10 +21,10 @@ use yii\grid\GridView;
         ]); ?>
 
         <div class="form-group">
-            <?php echo $form->field($place_service, 'service_id')->widget(Select2::classname(), [
+            <?php echo $form->field($place_has_service, 'service_id')->widget(Select2::classname(), [
                 'data' => $available_services,
                 'options' => [
-                    'placeholder' => 'Select services',
+                    'placeholder' => 'Services',
 
                 ],
                 'pluginOptions' => [
@@ -36,7 +36,7 @@ use yii\grid\GridView;
         </div>
 
         <div class="form-group">
-            <?= Html::submitButton('Add Service', ['class' => 'btn btn-primary pull-right']) ?>
+            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary pull-right']) ?>
         </div>
         <?php ActiveForm::end(); ?>
     </div>

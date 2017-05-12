@@ -21,12 +21,12 @@ class CategoryData extends BaseCategory
     {
         return Service::findAll(['category_id' => $this->id, 'status' => Yii::$app->params['active']]);
     }
-    public function getPlaceServices()
+    public function getPlaceHasServices()
     {
         return (new Query())
-            ->select('DISTINCT `place_service`.`place_id`')
-            ->from('`service`, `place_service`')
-            ->where('`service`.`id` = `place_service`.`service_id`')
+            ->select('DISTINCT `place_has_service`.`place_id`')
+            ->from('`service`, `place_has_service`')
+            ->where('`service`.`id` = `place_has_service`.`service_id`')
             ->andWhere('`service`.`category_id` = ' . $this->id)
             ->andWhere("`service`.`status` = " . Yii::$app->params['active'])
             ->all();

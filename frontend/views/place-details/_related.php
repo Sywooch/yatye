@@ -6,7 +6,7 @@
  * Time: 9:14 PM
  */
 ?>
-<h2>You may also like</h2>
+<h2><?php echo Yii::t('app', 'You may also like'); ?></h2>
 <div class="cards-simple-wrapper">
     <div class="row">
 

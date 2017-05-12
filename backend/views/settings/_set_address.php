@@ -49,7 +49,7 @@ use yii\grid\GridView;
                     ],
                 ],
             ]) ?>
-            <?php echo Html::submitButton('Add contact', ['class' => 'btn btn-primary pull-right']) ?>
+            <?php echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary pull-right']) ?>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

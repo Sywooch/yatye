@@ -5,6 +5,7 @@ namespace backend\models\place;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\db\Expression;
 
 /**
  * SearchPlace represents the model behind the search form about `backend\models\Place`.
@@ -41,7 +42,7 @@ class SearchPlace extends Place
      */
     public function search($params)
     {
-        $query = Place::find();
+        $query = Place::find()->where(['!=', 'status', Yii::$app->params['rejected']]);
 
         // add conditions that should always apply here
 
@@ -84,7 +85,8 @@ class SearchPlace extends Place
             ->andFilterWhere(['like', 'code', $this->code])
             ->andFilterWhere(['like', 'logo', $this->logo])
             ->andFilterWhere(['like', 'neighborhood', $this->neighborhood])
-            ->andFilterWhere(['like', 'street', $this->street])->orderBy('name');
+            ->andFilterWhere(['like', 'street', $this->street])
+            ->orderBy(new Expression('updated_at'));
 
         return $dataProvider;
     }

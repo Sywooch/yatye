@@ -5,8 +5,6 @@
  * Date: 04/01/2017
  * Time: 11:07
  */
-use yii\helpers\Html;
-use yii\helpers\Url;
 ?>
 
 <div class="col-sm-4 col-lg-3">

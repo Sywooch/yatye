@@ -5,15 +5,13 @@ $this->title = $model->name . ' in Rwanda';
 ?>
 
 <!--Premium List-->
-<?php if (!empty($premium_places)):
-    echo $this->render('_premium', [
+<?php echo $this->render('_premium', [
         'model' => $model,
         'premium_places' => $premium_places,
         'services' => $services,
         'recent_added_places' => $recent_added_places,
         'get_most_viewed' => $get_most_viewed,
-    ]);
-endif; ?>
+    ]); ?>
 
 <!--Advertisement Banners 840x120-->
 <!--        --><?php //if (!empty($ads['840x120'])) :
@@ -48,10 +46,8 @@ endif; ?>
 //        ]); ?>
 
 <!--Free List-->
-<?php if (!empty($free_places)):
-    echo $this->render('_free', [
+<?php echo $this->render('_free', [
         'model' => $model,
         'free_places' => $free_places,
-    ]);
-endif; ?>
+    ]); ?>
 

@@ -16,6 +16,8 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" type="image/png" href="<?= Yii::$app->params['favicon']; ?>"/>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo Yii::$app->params['GOOGLE_MAP_API_KEY'] ?>&libraries=weather,geometry,visualization,places,drawing"
+            type="text/javascript"></script>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -91,11 +93,6 @@ endif;
         </div>
     <?php endif ?>
 </div>
-<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKwKajb1ecp_R0VUE4dTF1ch9G6drihXg"></script>-->
-<script
-    src="http://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing&amp;sensor=false"
-    type="text/javascript"></script>
-
 <?php $this->registerJs("
 
 //    $('a[data-toggle=\"tab\"]').on('shown.bs.tab', function (e) {

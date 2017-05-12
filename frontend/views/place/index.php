@@ -7,15 +7,10 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Places';
+$this->title = Yii::t('app', 'Places');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
-    <div class="row">
-        <ol class="breadcrumb bread-primary" style="background: none;">
-            <li><a href="<?php echo Yii::$app->request->baseUrl ?>"><?php echo Yii::$app->name; ?></a></li>
-            <li class="active"><a href="<?php echo Url::to(['/place']) ?>"><?= Html::encode($this->title) ?></a></li>
-        </ol>
-    </div>
     <div class="row">
         <?php $data = $this->context->accessData();
         echo $this->render('@app/views/layouts/_side_bar', ['data' => $data]); ?>

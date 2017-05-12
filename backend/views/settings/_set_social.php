@@ -53,7 +53,7 @@ use yii\grid\GridView;
                     ],
                 ],
             ]) ?>
-            <?= Html::submitButton('Add Social Media', ['class' => 'btn btn-primary pull-right']) ?>
+            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary pull-right']) ?>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

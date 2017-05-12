@@ -7,7 +7,7 @@
  */
 ?>
 
-<h2>We Are Here</h2>
+<h2><?php echo Yii::t('app', 'We Are Here'); ?></h2>
 
 <div class="background-white row div">
     <!-- Tab panes -->

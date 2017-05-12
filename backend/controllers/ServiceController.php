@@ -11,7 +11,7 @@ use common\helpers\RecordHelpers;
 use backend\models\place\Service;
 use backend\models\place\Category;
 use yii\web\NotFoundHttpException;
-use backend\models\place\PlaceService;
+use backend\models\place\PlaceHasService;
 use backend\components\AdminController as BackendAdminController;
 
 /**
@@ -135,19 +135,19 @@ class ServiceController extends BackendAdminController
         $session = Yii::$app->session;
         $session->set('service_id', $service_id);
 
-        $POST_VARIABLE = Yii::$app->request->post('PlaceService');
+        $POST_VARIABLE = Yii::$app->request->post('PlaceHasService');
         $model = Service::findOne($service_id);
 
         $url = Url::to(['service/add-places', 'service_id' => $service_id]);
 
-        $place_service = new PlaceService();
-        $available_places = PlaceService::getNotServicePlaces($service_id);
+        $place_has_service = new PlaceHasService();
+        $available_places = PlaceHasService::getNotServicePlaces($service_id);
 
         if (Yii::$app->request->isPost) {
 
             foreach ($POST_VARIABLE['place_id'] as $key => $place_id) {
 
-                $model = new PlaceService();
+                $model = new PlaceHasService();
                 RecordHelpers::saveModelHasData($model, 'service_id', 'place_id', $service_id, $place_id);
             }
 
@@ -167,7 +167,7 @@ class ServiceController extends BackendAdminController
             return $this->render('add_places', [
                 'model' => $model,
                 'dataProvider' => $dataProvider,
-                'place_service' => $place_service,
+                'place_has_service' => $place_has_service,
                 'available_places' => $available_places,
 
             ]);

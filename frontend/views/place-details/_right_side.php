@@ -18,14 +18,14 @@ use yii\helpers\Url;
 <?php endif; ?>
 
 <?php if ($model->profile_type == Yii::$app->params['FREE'] && $model->description != null) : ?>
-    <h2>About <span class="text-secondary"><?php echo $model->name ?></span></h2>
+    <h2><?php echo Yii::t('app', 'About'); ?> <span class="text-secondary"><?php echo $model->name ?></span></h2>
     <div class="background-white p20 div">
         <?php if ($model->description != null): ?>
             <div class="detail-description"><?php echo nl2br($model->description) ?></div>
         <?php endif; ?>
     </div>
 <?php elseif ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']) : ?>
-    <h2>About <span class="text-secondary"><?php echo $model->name ?></span></h2>
+    <h2><?php echo Yii::t('app', 'About'); ?> <span class="text-secondary"><?php echo $model->name ?></span></h2>
     <div class="background-white p20 div">
         <div class="detail-vcard">
             <div class="detail-logo">
@@ -105,7 +105,7 @@ use yii\helpers\Url;
         <?php endif; ?>
         <?php if (!empty($socials)): ?>
             <div class="detail-follow">
-                <h5>Follow Us:</h5>
+                <h5><?php echo Yii::t('app', 'Follow Us'); ?>:</h5>
 
                 <div class="follow-wrapper">
                     <?php foreach ($socials as $social):
@@ -160,7 +160,7 @@ use yii\helpers\Url;
 <?php if (!empty($working_hours)): ?>
     <?php if ($model->profile_type == Yii::$app->params['PREMIUM'] || $model->profile_type == Yii::$app->params['BASIC']) : ?>
         <div class="widget">
-            <h2 class="widgettitle">Working Hours</h2>
+            <h2 class="widgettitle"><?php echo Yii::t('app', 'Working Hours'); ?></h2>
 
             <div class="p20 background-white div">
                 <div class="working-hours">
@@ -186,7 +186,7 @@ use yii\helpers\Url;
 
     <!-- Services & Amenities-->
 <?php if (!empty($amenities)): ?>
-    <h2>Services & Amenities</h2>
+    <h2><?php echo Yii::t('app', 'Services & Amenities'); ?></h2>
     <div class="background-white p20 div">
         <ul class="detail-amenities">
             <?php foreach ($amenities as $amenity): ?>

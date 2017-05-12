@@ -12,7 +12,7 @@
 <div class="block background-white mt50 p30 row div">
     <div class="page-header">
         <h1><?php echo Yii::t('app', 'Most recent News & Blog') ?></h1>
-        <p>Check what's going on in the country</p>
+        <p><?php echo Yii::t('app', 'Check what\'s going on in the country') ?></p>
     </div>
     <div class="row">
         <!--Articles-->
@@ -26,7 +26,8 @@
                                     <img src="<?php echo $article->getPostThumbnails() ?>"
                                          alt="<?php echo $article->title; ?>"
                                          class="img-alt img-responsive">
-                                    <a class="read-more" href="<?php echo $article->getPostCategoryUrl(); ?>" target="_blank">View</a>
+                                    <a class="read-more" href="<?php echo $article->getPostCategoryUrl(); ?>"
+                                       target="_blank"><?php echo Yii::t('app', 'View') ?></a>
                                 </div>
                             <?php endif; ?>
                             <div class="post-content">
@@ -35,7 +36,8 @@
                                 <h2><?php echo $article->title ?></h2>
                                 <p>
                                     <?= nl2br(substr($article->introduction, 0, 255)) ?>
-                                    <a href="<?php echo $article->getPostUrl(); ?>" target="_blank">Read more</a>
+                                    <a href="<?php echo $article->getPostUrl(); ?>"
+                                       target="_blank"><?php echo Yii::t('app', 'Read more') ?></a>
                                 </p>
                             </div>
                         </div>
@@ -55,7 +57,8 @@
                                     <img src="<?php echo $new->getPostThumbnails(); ?>"
                                          alt="<?php echo $new->title; ?>"
                                          class="img-alt img-responsive">
-                                    <a class="read-more" href="<?php echo $new->getPostUrl(); ?>" target="_blank">View</a>
+                                    <a class="read-more" href="<?php echo $new->getPostUrl(); ?>"
+                                       target="_blank"><?php echo Yii::t('app', 'View') ?></a>
                                 </div>
                             <?php endif; ?>
 
@@ -63,11 +66,12 @@
                                 <div class="post-label"><?php echo $new->getPostCategoryName() ?></div>
                                 <div class="post-date"><?php echo $new->getLastUpdatedDate(); ?></div>
                                 <h2>
-                                    <a href="<?php echo $new->getPostUrl(); ?>" target="_blank"><?php echo $new->title ?> </a>
+                                    <a href="<?php echo $new->getPostUrl(); ?>" target="_blank"><?php echo $new->title ?></a>
                                 </h2>
                                 <p>
                                     <?= nl2br(substr($new->introduction, 0, 255)) ?>
-                                    <a href="<?php echo $new->getPostUrl(); ?>" target="_blank">Read more</a>
+                                    <a href="<?php echo $new->getPostUrl(); ?>"
+                                       target="_blank"><?php echo Yii::t('app', 'Read more') ?></a>
                                 </p>
                             </div>
                         </div>

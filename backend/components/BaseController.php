@@ -30,7 +30,7 @@ use backend\models\place\Category;
 use backend\models\place\UserPlace;
 use backend\models\place\SocialMedia;
 use backend\models\place\WorkingHours;
-use backend\models\place\PlaceService;
+use backend\models\place\PlaceHasService;
 use common\components\AdminController;
 
 class BaseController extends AdminController
@@ -65,9 +65,6 @@ class BaseController extends AdminController
             $model = Post::findOne(Yii::$app->request->get('id'));
         endif;
 
-        if (Yii::$app->controller->id == 'blog') :
-            $model = Blog::findOne(Yii::$app->request->get('id'));
-        endif;
         if (Yii::$app->controller->id == 'post-category') :
             $model = PostCategory::findOne(Yii::$app->request->get('id'));
         endif;
@@ -192,12 +189,12 @@ class BaseController extends AdminController
     public function actionAddServices()
     {
         $place_id = Yii::$app->request->get('place_id');
-        $POST_VARIABLE = Yii::$app->request->post('PlaceService');
+        $POST_VARIABLE = Yii::$app->request->post('PlaceHasService');
         $url = $this->getUrl($place_id);
 
         if (Yii::$app->request->isPost) {
             foreach ($POST_VARIABLE['service_id'] as $key => $service_id) {
-                $model = new PlaceService();
+                $model = new PlaceHasService();
                 RecordHelpers::saveModelHasData($model, 'place_id', 'service_id', $place_id, $service_id);
             }
 
@@ -306,7 +303,7 @@ class BaseController extends AdminController
         $model = null;
 
         if ($service_id) :
-            $model = PlaceService::findOne(['place_id' => $place_id, 'service_id' => $service_id]);
+            $model = PlaceHasService::findOne(['place_id' => $place_id, 'service_id' => $service_id]);
         endif;
 
         if ($contact_id) :

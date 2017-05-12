@@ -10,7 +10,7 @@ use yii\helpers\Url;
 use yii\widgets\ListView;
 ?>
 
-<h2>Other Places Around</h2>
+<h2><?php echo Yii::t('app', 'Other Places Around'); ?></h2>
 <div class="background-white p20 div">
     <div class="widget">
         <div class="row">
