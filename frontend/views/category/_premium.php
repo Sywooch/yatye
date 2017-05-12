@@ -8,8 +8,6 @@
 /* @var $premium_place backend\models\place\Place */
 
 use yii\helpers\Html;
-use yii\helpers\Url;
-
 ?>
 <?php if (!empty($premium_places)): ?>
 <div class="block background-white mt30 mb50 row p30 div">
@@ -54,9 +52,8 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
-
+    <!--Right Side-->
     <div class="col-sm-5 col-lg-5">
-        <!--Right Side-->
         <?php echo $this->render('_right_side', [
             'model' => $model,
             'premium_places' => $premium_places,

@@ -71,10 +71,10 @@ class Category extends CategoryData
     public function getPlaceIds()
     {
         $place_ids = array();
-        $place_services = $this->getPlaceServices();
+        $place_has_services = $this->getPlaceHasServices();
 
-        foreach ($place_services as $place_service) {
-            $place_ids[] = $place_service['place_id'];
+        foreach ($place_has_services as $place_has_service) {
+            $place_ids[] = $place_has_service['place_id'];
         }
         return $place_ids;
     }

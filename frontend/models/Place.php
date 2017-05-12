@@ -9,7 +9,7 @@ use common\models\Service;
 use common\models\WorkingHours;
 use backend\models\place\Gallery;
 use backend\models\place\UserPlace;
-use backend\models\place\PlaceService;
+use backend\models\place\PlaceHasService;
 use backend\models\place\SocialMedia;
 use backend\models\place\Place as BasePlace;
 
@@ -37,9 +37,9 @@ class Place extends BasePlace
             ->select('`service`.`id`')
             ->addSelect('`service`.`name`')
             ->addSelect('`service`.`slug`')
-            ->from('`service`, `place_service`, `category`')
-            ->where('`place_service`.`service_id` = `service`.`id`')
-            ->andWhere('`place_service`.`place_id` = ' . $this->id)
+            ->from('`service`, `place_has_service`, `category`')
+            ->where('`place_has_service`.`service_id` = `service`.`id`')
+            ->andWhere('`place_has_service`.`place_id` = ' . $this->id)
             ->andWhere('`category`.`id` = `service`.`category_id`')
 //            ->andWhere('`category`.`id`= 5')
             ->orderBy(new Expression('RAND()'))
@@ -85,21 +85,21 @@ class Place extends BasePlace
     }
 
 
-    public function getThisPlaceServiceIds()
+    public function getThisPlaceHasServiceIds()
     {
-        return PlaceService::find()->where(['place_id' => $this->id])->all();
+        return PlaceHasService::find()->where(['place_id' => $this->id])->all();
     }
 
     public function getRelatedPlaceIds1()
     {
         $place_ids = array();
-        $service_ids = $this->getThisPlaceServiceIds();
+        $service_ids = $this->getThisPlaceHasServiceIds();
 
         if (!empty($service_ids)):
 
             foreach ($service_ids as $service_id):
 
-                $place_ids[] = PlaceService::find()->where(['service_id' => $service_id->service_id])->all();
+                $place_ids[] = PlaceHasService::find()->where(['service_id' => $service_id->service_id])->all();
 
             endforeach;
         endif;
@@ -112,13 +112,13 @@ class Place extends BasePlace
 
         $service_ids = (new Query())
             ->select('`service_id`')
-            ->from('`place_service`')
+            ->from('`place_has_service`')
             ->where(['place_id' => $this->id])
             ->all();
 
         $place_ids = (new Query())
             ->select(new Expression('DISTINCT `place_id`'))
-            ->from('`place_service`')
+            ->from('`place_has_service`')
             ->where(['in', 'service_id', $service_ids])
             ->andWhere(['!=', 'place_id', $this->id])
             ->all();

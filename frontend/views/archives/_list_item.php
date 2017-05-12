@@ -15,7 +15,7 @@ use yii\helpers\Url;
             <img src="<?php echo $model->getPostThumbnails(); ?>"
                  alt="<?php echo $model->title; ?>"
                  class="img-alt img-responsive">
-            <a class="read-more" href="<?php echo $model->getPostUrl(); ?>">View</a>
+            <a class="read-more" href="<?php echo $model->getPostUrl(); ?>"><?php echo Yii::t('app', 'View') ?></a>
         </div>
     <?php endif; ?>
     <div class="post-content">
@@ -35,7 +35,7 @@ use yii\helpers\Url;
             <a href="<?php echo $model->getPostCategoryUrl(); ?>"><?php echo $model->getPostCategoryName(); ?></a>
         </div>
         <div class="post-meta-more">
-            <a href="<?php echo $model->getPostUrl(); ?>" target="_blank">Read More <i class="fa fa-chevron-right"></i></a>
+            <a href="<?php echo $model->getPostUrl(); ?>" target="_blank"><?php echo Yii::t('app', 'Read More') ?> <i class="fa fa-chevron-right"></i></a>
         </div>
     </div>
 </div>

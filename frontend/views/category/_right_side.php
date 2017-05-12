@@ -13,13 +13,13 @@ use yii\helpers\Url;
 <div class="card-tab">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-            <a href="#viewed" aria-controls="viewed" role="tab" data-toggle="tab">Most Viewed</a>
+            <a href="#viewed" aria-controls="viewed" role="tab" data-toggle="tab"><?php echo Yii::t('app', 'Most Viewed') ?></a>
         </li>
         <li role="presentation">
-            <a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">New places</a>
+            <a href="#recent" aria-controls="recent" role="tab" data-toggle="tab"><?php echo Yii::t('app', 'New Places') ?></a>
         </li>
         <li role="presentation">
-            <a href="#categories" aria-controls="categories" role="tab" data-toggle="tab">Categories</a>
+            <a href="#categories" aria-controls="categories" role="tab" data-toggle="tab"><?php echo Yii::t('app', 'Categories') ?></a>
         </li>
 
     </ul>

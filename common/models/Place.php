@@ -35,7 +35,7 @@ use Yii;
  * @property Contact[] $contacts
  * @property Enquiry[] $enquiries
  * @property Gallery[] $galleries
- * @property PlaceService[] $placeServices
+ * @property PlaceHasService[] $placeServices
  * @property Service[] $services
  * @property Product $product
  * @property Ratings[] $ratings
@@ -134,9 +134,9 @@ class Place extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPlaceServices()
+    public function getPlaceHasServices()
     {
-        return $this->hasMany(PlaceService::className(), ['place_id' => 'id']);
+        return $this->hasMany(PlaceHasService::className(), ['place_id' => 'id']);
     }
 
     /**
@@ -144,7 +144,7 @@ class Place extends \yii\db\ActiveRecord
      */
     public function getServices()
     {
-        return $this->hasMany(Service::className(), ['id' => 'service_id'])->viaTable('place_service', ['place_id' => 'id']);
+        return $this->hasMany(Service::className(), ['id' => 'service_id'])->viaTable('place_has_service', ['place_id' => 'id']);
     }
 
     /**

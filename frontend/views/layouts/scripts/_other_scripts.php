@@ -11,9 +11,9 @@
         $('.pre-load').fadeIn(5000);
     });"); ?>
 
-<script
+<!--<script
     src="http://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing&amp;sensor=false"
-    type="text/javascript"></script>
+    type="text/javascript"></script>-->
 
 <script>
     window.___gcfg = {
@@ -23,11 +23,11 @@
 </script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
-<script>
+<!--<script>
     $(document).ready(function () {
         $(".pager li").removeClass("next");
     });
-</script>
+</script>-->
 
 <!--Start of Tawk.to Script-->
 <!--<script type="text/javascript">-->

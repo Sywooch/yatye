@@ -4,13 +4,14 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 
-$this->title = 'Archives';
+$this->title = Yii::t('app', 'Archives');
 $this->params['breadcrumbs'][] = $this->title;
 
 $dataProvider->pagination = [
     'pageSize' => 6,
 ];
 ?>
+
 <div class="col-sm-8 col-lg-9">
     <div class="content">
         <div class="page-title">

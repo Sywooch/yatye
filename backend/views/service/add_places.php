@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="form-group">
 
-                        <?php echo $form->field($place_service, 'place_id')->widget(Select2::classname(), [
+                        <?php echo $form->field($place_has_service, 'place_id')->widget(Select2::classname(), [
                             'data' => $available_places,
                             'options' => [
                                 'placeholder' => 'Select places',

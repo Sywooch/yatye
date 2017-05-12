@@ -21,7 +21,7 @@ use yii\grid\GridView;
         ]); ?>
 
         <div class="form-group">
-            <?php echo $form->field($place_service, 'service_id')->widget(Select2::classname(), [
+            <?php echo $form->field($place_has_service, 'service_id')->widget(Select2::classname(), [
                 'data' => $available_services,
                 'options' => [
                     'placeholder' => 'Services',

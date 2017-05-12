@@ -15,7 +15,7 @@ use yii\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
 use backend\models\place\Service;
 use yii\behaviors\TimestampBehavior;
-use backend\models\place\PlaceService;
+use backend\models\place\PlaceHasService;
 use common\models\Filter as BaseFilter;
 
 class Filter extends BaseFilter
@@ -105,13 +105,13 @@ class Filter extends BaseFilter
 
     public function filterByService()
     {
-        $place_services = PlaceService::find()
+        $place_has_services = PlaceHasService::find()
             ->distinct()
             ->filterWhere(['service_id' => $this->service_id])
             ->all();
         $place_ids = array();
-        foreach ($place_services as $place_service) {
-            $place_ids[] = $place_service->place_id;
+        foreach ($place_has_services as $place_has_service) {
+            $place_ids[] = $place_has_service->place_id;
         }
         return $place_ids;
     }
@@ -125,14 +125,14 @@ class Filter extends BaseFilter
             $service_ids[] = $service->id;
         }
 
-        $place_services = PlaceService::find()
+        $place_has_services = PlaceHasService::find()
             ->distinct()
             ->filterWhere(['in', 'service_id', $service_ids])
             ->all();
 
         $place_ids = array();
-        foreach ($place_services as $place_service) {
-            $place_ids[] = $place_service->place_id;
+        foreach ($place_has_services as $place_has_service) {
+            $place_ids[] = $place_has_service->place_id;
         }
 
         return $place_ids;

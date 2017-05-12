@@ -76,10 +76,10 @@ class Place extends PlaceData
         return $category->getServiceIds();
     }
 
-    public function getThisPlaceService($category_id)
+    public function getThisPlaceHasService($category_id)
     {
         $service_ids = $this->getServiceIds($category_id);
-        return PlaceService::find()
+        return PlaceHasService::find()
             ->where(['in', 'service_id', $service_ids])
             ->andWhere(['place_id' => $this->id])
             ->one();
@@ -87,11 +87,11 @@ class Place extends PlaceData
 
     public function getServiceId($category_id)
     {
-        $place_service = $this->getThisPlaceService($category_id);
-        return $place_service->service_id;
+        $place_has_service = $this->getThisPlaceHasService($category_id);
+        return $place_has_service->service_id;
     }
 
-    public function getThisPlaceServiceName($category_id)
+    public function getThisPlaceHasServiceName($category_id)
     {
         return Service::findOne($this->getServiceId($category_id))->name;
     }
@@ -215,10 +215,10 @@ class Place extends PlaceData
             ->addSelect('`service`.`category_id`')
             ->addSelect('`service`.`status`')
             ->addSelect('`category`.`name` as category_name')
-            ->addSelect('`place_service`.`place_id`')
-            ->from('`service`, `place`, `place_service`, `category`')
-            ->where('`place`.`id` = `place_service`.`place_id`')
-            ->andWhere('`service`.`id` = `place_service`.`service_id`')
+            ->addSelect('`place_has_service`.`place_id`')
+            ->from('`service`, `place`, `place_has_service`, `category`')
+            ->where('`place`.`id` = `place_has_service`.`place_id`')
+            ->andWhere('`service`.`id` = `place_has_service`.`service_id`')
             ->andWhere('`service`.`category_id` = `category`.`id`')
             ->andWhere('`place`.`id` = ' . $this->id)
             ->orderBy('category_name')

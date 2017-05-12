@@ -19,12 +19,11 @@ use yii\helpers\Url;
 
                         <p class="text-center"><?php echo Yii::t('app', 'Want to visit and don\'t know where to start?') ?>
                             <br> <?php echo Yii::t('app', 'Don\'t worry, we got your back.') ?></p>
-                        <p>Rwanda Guide is a new resource for visitors that are not familiar with Rwanda.
-                            It will help ease the stress of visiting a new country,
+                        <p><?php echo Yii::t('app', 'It will help ease the stress of visiting a new country,
                             and it will assist you in making use of your precious time here in our
-                            country. We hope you have a memorable time in our great country of Rwanda.</p>
+                            country. We hope you have a memorable time in our great country of Rwanda.') ?></p>
                         <p class="text-center" style="color: #000000;">
-                            <i><b>Enjoy the wonderful land of a thousand hills!</b></i>
+                            <i><b><?php echo Yii::t('app', 'Enjoy the wonderful land of a thousand hills!') ?></b></i>
                         </p>
                     </div>
                 </div>

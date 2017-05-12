@@ -7,9 +7,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
-
-$this->title = Yii::t('app', 'Contact');
+$this->title = Yii::t('app', 'Contact Us');
 ?>
 <div class="container">
     <div class="background-white p30 mb30 div">

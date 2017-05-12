@@ -17,7 +17,7 @@ $category_id = $session->get('category_id');
         <div class="card-row-image" data-background-image="<?php echo $model->getThumbnailLogo() ?>">
             <div class="card-row-label">
                 <a href="#">
-                    <small><?php echo $model->getThisPlaceServiceName($category_id) ?></small>
+                    <small><?php echo $model->getThisPlaceHasServiceName($category_id) ?></small>
                 </a>
             </div>
             <div class="card-row-price" style="background-color: transparent;">

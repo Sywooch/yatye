@@ -7,9 +7,6 @@
  */
 /* @var $model backend\models\place\Place */
 
-use yii\helpers\Html;
-use yii\helpers\Url;
-
 $session = Yii::$app->session;
 $category_id = $session->get('category_id');
 ?>
@@ -29,7 +26,7 @@ $category_id = $session->get('category_id');
                     <a href="<?php echo $model->getPlaceUrl() ?>" target="_blank" class="fa fa-eye"></a>
                 </div>
             </div>
-            <div class="card-simple-label"><?php echo $model->getThisPlaceServiceName($category_id) ?></div>
+            <div class="card-simple-label"><?php echo $model->getThisPlaceHasServiceName($category_id) ?></div>
             <div class="card-simple-price" style="opacity: 0.7"><small><?php echo $model->street ?></small></div>
         </div>
     </div>

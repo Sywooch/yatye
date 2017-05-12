@@ -88,7 +88,7 @@
     <div class="tab-pane" id="services">
         <?php echo $this->render('_set_service', [
             'model' => $model,
-            'place_service' => $place_service,
+            'place_has_service' => $place_has_service,
             'available_services' => $available_services,
             'serviceDataProvider' => $serviceDataProvider,
         ]) ?>

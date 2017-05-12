@@ -6,15 +6,13 @@
  * Time: 16:16
  */
 
-
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
-use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 ?>
 
 <?php if (!empty($comments)) : ?>
-    <h2 id="reviews">Reviews</h2>
+    <h2 id="reviews"><?php echo Yii::t('app', 'Reviews'); ?></h2>
     <?php foreach ($comments as $comment): ?>
         <div class="reviews background-white p20 mb30 div">
             <div class="review-title">
@@ -47,12 +45,12 @@ use yii\widgets\ActiveForm;
 
         <?php else : ?>
             <div class="form-group">
-                <label for="">Name <span class="required">*</span></label>
+                <label for=""><?php echo Yii::t('app', 'Name'); ?> <span class="required">*</span></label>
                 <?= $form->field($review, 'full_name')->textInput()->label(false) ?>
             </div>
 
             <div class="form-group">
-                <label for="">Email <span class="required">*</span></label>
+                <label for=""><?php echo Yii::t('app', 'Email'); ?> <span class="required">*</span></label>
                 <?= $form->field($review, 'email')->textInput()->label(false) ?>
             </div>
         <?php endif; ?>
@@ -61,12 +59,12 @@ use yii\widgets\ActiveForm;
 
     <div class="row">
         <div class="form-group">
-            <label for="">Review <span class="required">*</span></label>
+            <label for=""><?php echo Yii::t('app', 'Review'); ?> <span class="required">*</span></label>
             <?= $form->field($review, 'comment')->textArea(['rows' => 6])->label(false) ?>
         </div>
 
         <p>Required fields are marked <span class="required">*</span></p>
-        <?= Html::submitButton(Html::tag('i ', ' Submit Review', ['class' => 'fa fa-star']), ['class' => 'btn btn-primary btn-block']) ?>
+        <?= Html::submitButton(Html::tag('i ', Yii::t('app', 'Submit'), ['class' => 'fa fa-star']), ['class' => 'btn btn-primary btn-block']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

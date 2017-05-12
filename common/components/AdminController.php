@@ -14,7 +14,7 @@ use yii\filters\AccessControl;
 
 class AdminController extends BaseController
 {
-    public $enableCsrfValidation = false;
+
     public function behaviors()
     {
         return [

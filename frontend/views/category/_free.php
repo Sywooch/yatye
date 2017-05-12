@@ -13,9 +13,9 @@ use yii\helpers\Url;
 <?php if (!empty($free_places)): ?>
 <div class="block background-white mt30 p30 row div">
     <div class="page-header">
-        <h1>Most Recent Places</h1>
+        <h1><?php echo Yii::t('app', 'Most Recent Places') ?></h1>
 
-        <p>List of most recent interesting places in our directory.</p>
+        <p><?php echo Yii::t('app', 'List of most recent interesting places in our directory.') ?></p>
     </div>
     <div class="cards-simple-wrapper">
         <div id="basic-list" class="row">
@@ -33,7 +33,7 @@ use yii\helpers\Url;
                                 </div>
                             </div>
                             <div class="card-simple-label">
-                                <small><?php echo $free_place->getThisPlaceServiceName($model->id) ?></small>
+                                <small><?php echo $free_place->getThisPlaceHasServiceName($model->id) ?></small>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,8 @@ use yii\helpers\Url;
             <div class="row">
                 <div
                         class="col-xs-12 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5">
-                    <a href="<?php echo Url::to(['/basic-list/' . $model->slug]) ?>" class="btn btn-secondary btn-md btn-block">View all</a>
+                    <a href="<?php echo Url::to(['/basic-list/' . $model->slug]) ?>"
+                       class="btn btn-secondary btn-md btn-block"><?php echo Yii::t('app', 'View All') ?></a>
                 </div>
             </div>
         <?php endif; ?>

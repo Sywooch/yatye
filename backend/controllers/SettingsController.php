@@ -15,7 +15,7 @@ use backend\models\place\Gallery;
 use backend\models\place\Category;
 use backend\models\place\UserPlace;
 use backend\models\place\SocialMedia;
-use backend\models\place\PlaceService;
+use backend\models\place\PlaceHasService;
 use backend\models\place\WorkingHours;
 use backend\models\place\PlaceHasAnother;
 use backend\components\AdminController as BackendAdminController;
@@ -82,8 +82,8 @@ class SettingsController extends BackendAdminController
         ]);
 
         /*Services*/
-        $place_service = new PlaceService();
-        $available_services = PlaceService::getNotPlaceServices($place_id);
+        $place_has_service = new PlaceHasService();
+        $available_services = PlaceHasService::getNotPlaceHasServices($place_id);
         $serviceDataProvider = new ArrayDataProvider([
             'allModels' => $model->getServices(),
             'sort' => [
@@ -124,7 +124,7 @@ class SettingsController extends BackendAdminController
             'gallery' => $gallery,
 
             /*Services*/
-            'place_service' => $place_service,
+            'place_has_service' => $place_has_service,
             'available_services' => $available_services,
             'serviceDataProvider' => $serviceDataProvider,
 

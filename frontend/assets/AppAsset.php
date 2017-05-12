@@ -21,7 +21,6 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
-//        'https://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing&amp;sensor=false'
     ];
     public $depends = [
         'yii\web\YiiAsset',

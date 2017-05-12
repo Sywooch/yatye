@@ -48,3 +48,7 @@
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo Yii::$app->params['GOOGLE_MAP_API_KEY'] ?>&libraries=weather,geometry,visualization,places,drawing"
+        type="text/javascript"></script>

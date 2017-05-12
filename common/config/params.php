@@ -4,6 +4,8 @@ return [
     'supportEmail' => 'support@example.com',
     'user.passwordResetTokenExpire' => 3600,
 
+    //Google API Console
+    'GOOGLE_MAP_API_KEY'=>'AIzaSyBbPGik7q6wMLnQKWXwh5Q9MMCkbWFi3YY',
 
     'root' => 'http://rwandaguide.info/',
 

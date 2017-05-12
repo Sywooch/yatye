@@ -24,19 +24,19 @@ use yii\helpers\Url;
 
                 <dl>
                     <?php if ($model->street != null): ?>
-                        <dd><small>Street</small></dd>
+                        <dd><small><?php echo Yii::t('app', 'Street'); ?></small></dd>
                         <dt><small><?php echo $model->street ?></small></dt>
                     <?php endif;  if ($model->neighborhood != null): ?>
-                        <dd><small>Neighborhood</small></dd>
+                        <dd><small><?php echo Yii::t('app', 'Neighborhood'); ?></small></dd>
                         <dt><small><?php echo $model->neighborhood ?></small></dt>
                     <?php endif;  if ($model->district_id != null): ?>
-                        <dd><small>District</small></dd>
+                        <dd><small><?php echo Yii::t('app', 'District'); ?></small></dd>
                         <dt><small><?php echo $model->getDistrictName() ?></small></dt>
                     <?php endif;  if ($model->sector_id != null): ?>
-                        <dd><small>Sector</small></dd>
+                        <dd><small><?php echo Yii::t('app', 'Sector'); ?></small></dd>
                         <dt><small><?php echo $model->getSectorName() ?></small></dt>
                     <?php endif;  if ($model->cell_id != null): ?>
-                        <dd><small>Cell</small></dd>
+                        <dd><small><?php echo Yii::t('app', 'Cell'); ?></small></dd>
                         <dt><small><?php echo $model->getCellName() ?></small></dt>
                     <?php endif; ?>
                 </dl>

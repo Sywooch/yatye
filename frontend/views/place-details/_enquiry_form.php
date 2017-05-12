@@ -25,28 +25,28 @@ use yii\widgets\ActiveForm;
 
         <?php else : ?>
             <div class="form-group">
-                <label for="">Name <span class="required">*</span></label>
+                <label for=""><?php echo Yii::t('app', 'Name'); ?> <span class="required">*</span></label>
                 <?= $form->field($contact_form, 'name')->textInput(['id' => 'contact-form-name'])->label(false) ?>
             </div>
 
             <div class="form-group">
-                <label for="">Email <span class="required">*</span></label>
+                <label for=""><?php echo Yii::t('app', 'Email'); ?> <span class="required">*</span></label>
                 <?= $form->field($contact_form, 'email')->textInput(['id' => 'contact-form-email'])->label(false) ?>
             </div>
         <?php endif; ?>
 
         <div class="form-group">
-            <label for="">Subject <span class="required">*</span></label>
+            <label for=""><?php echo Yii::t('app', 'Subject'); ?> <span class="required">*</span></label>
             <?= $form->field($contact_form, 'subject')->textInput(['id' => 'contact-form-subject'])->label(false) ?>
         </div>
 
         <div class="form-group">
-            <label for="">Message <span class="required">*</span></label>
+            <label for=""><?php echo Yii::t('app', 'Message'); ?> <span class="required">*</span></label>
             <?= $form->field($contact_form, 'body')->textArea(['rows' => 6, 'id' => 'contact-form-message'])->label(false) ?>
         </div>
 
-        <p>Required fields are marked <span class="required">*</span></p>
-        <?= Html::submitButton(Html::tag('i ', ' Send Message', ['class' => 'fa fa-paper-plane']), ['class' => 'btn btn-primary btn-block', 'name' => 'contact-button']) ?>
+        <p><?php echo Yii::t('app', 'Required fields are marked'); ?> <span class="required">*</span></p>
+        <?= Html::submitButton(Html::tag('i ', Yii::t('app', 'Send'), ['class' => 'fa fa-paper-plane']), ['class' => 'btn btn-primary btn-block', 'name' => 'contact-button']) ?>
         <?php ActiveForm::end(); ?>
     </div>
 <?php endif; ?>

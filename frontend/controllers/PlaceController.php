@@ -15,7 +15,7 @@ use backend\models\place\Gallery;
 use backend\models\place\Contact;
 use yii\web\NotFoundHttpException;
 use backend\models\place\SocialMedia;
-use backend\models\place\PlaceService;
+use backend\models\place\PlaceHasService;
 use backend\models\place\WorkingHours;
 use backend\components\AdminController;
 
@@ -90,8 +90,8 @@ class PlaceController extends AdminController
             ]);
 
             /*Services*/
-            $place_service = new PlaceService();
-            $available_services = PlaceService::getNotPlaceServices($id);
+            $place_has_service = new PlaceHasService();
+            $available_services = PlaceHasService::getNotPlaceHasServices($id);
             $serviceDataProvider = new ArrayDataProvider([
                 'allModels' => $model->getServices(),
                 'sort' => [
@@ -127,7 +127,7 @@ class PlaceController extends AdminController
                 'gallery' => $gallery,
 
                 /*Services*/
-                'place_service' => $place_service,
+                'place_has_service' => $place_has_service,
                 'available_services' => $available_services,
                 'serviceDataProvider' => $serviceDataProvider,
 

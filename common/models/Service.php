@@ -20,7 +20,7 @@ use Yii;
  * @property integer $updated_by
  * @property integer $type
  *
- * @property PlaceService[] $placeServices
+ * @property PlaceHasService[] $placeServices
  * @property Place[] $places
  * @property Category $category
  */
@@ -76,9 +76,9 @@ class Service extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPlaceServices()
+    public function getPlaceHasServices()
     {
-        return $this->hasMany(PlaceService::className(), ['service_id' => 'id']);
+        return $this->hasMany(PlaceHasService::className(), ['service_id' => 'id']);
     }
 
     /**
@@ -86,7 +86,7 @@ class Service extends \yii\db\ActiveRecord
      */
     public function getPlaces()
     {
-        return $this->hasMany(Place::className(), ['id' => 'place_id'])->viaTable('place_service', ['service_id' => 'id']);
+        return $this->hasMany(Place::className(), ['id' => 'place_id'])->viaTable('place_has_service', ['service_id' => 'id']);
     }
 
     /**
