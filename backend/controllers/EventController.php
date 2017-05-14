@@ -27,7 +27,7 @@ class EventController extends BaseEventController
         $dataProvider = new ActiveDataProvider([
             'query' => Event::find()
 //                ->where(new Expression('`start_date` >= CURRENT_TIMESTAMP'))
-                ->orderBy(new Expression('`created_at` DESC')),
+                ->orderBy(new Expression('TIMESTAMP(`end_date`,`end_time`) DESC')),
         ]);
 
         return $this->render('index', [
