@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'template' => '{view} {update} {status}',
                                 'buttons' => [
                                     'view' => function ($url, $model) {
-                                        return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $url, ['class' => 'btn btn-primary btn-xs']);
+                                        return Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), Yii::$app->params['root'] . 'post-preview/?id=' . $model->id, ['class' => 'btn btn-primary btn-xs', 'target' => '_blank']);
                                     },
                                     'update' => function ($url, $model) {
                                         return Html::a(Html::tag('i', '', ['class' => 'fa fa-edit']), $url, ['class' => 'btn btn-secondary btn-xs']);

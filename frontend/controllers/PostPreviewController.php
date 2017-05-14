@@ -2,16 +2,23 @@
 
 namespace frontend\controllers;
 
+use backend\controllers\PostController;
 use Yii;
 use backend\models\post\Post;
 use common\helpers\MetaTagHelpers;
-use common\components\BaseController;
 
-class PostPreviewController extends BaseController
+class PostPreviewController extends PostController
 {
     public function actionIndex()
     {
-        return $this->redirect(Yii::$app->params['root']);
+        $id = Yii::$app->request->get('id');
+        $model = $this->findModel($id);
+        $post_category= $model->getPostCategory();
+
+        return $this->render('index', [
+            'model' => $model,
+            'post_category' => $post_category,
+        ]);
     }
 
     public function actionSlug($slug)
@@ -36,6 +43,17 @@ class PostPreviewController extends BaseController
         } else {
             return $this->redirect(Yii::$app->params['root']);
         }
+    }
+
+    public function actionView($id)
+    {
+        $model = $this->findModel($id);
+        $post_category= $model->getPostCategory();
+
+        return $this->render('index', [
+            'model' => $model,
+            'post_category' => $post_category,
+        ]);
     }
 
 }
