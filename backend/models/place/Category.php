@@ -79,21 +79,27 @@ class Category extends CategoryData
         return $place_ids;
     }
 
+    public function sql()
+    {
+        return "SELECT DISTINCT `place`.* 
+                FROM `place_has_service`, `place`, `service` 
+                WHERE `place_has_service`.`place_id`= `place`.`id` 
+                AND `place_has_service`.`service_id` = `service`.`id` 
+                AND `service`.`category_id` = " . $this->id . "
+                AND `place`.`status` = " . Yii::$app->params['active'];
+    }
+
     public function getList()
     {
-        $place_ids = $this->getPlaceIds();
-        return Place::find()
-            ->where(['in', 'id', $place_ids])
-            ->andWhere(['status' => Yii::$app->params['active']]);
+        $sql = $this->sql();
+        return Place::findBySql($sql);
     }
 
     public function getOneRandomPlace()
     {
-        $list = $this->getList();
-        return $list->andWhere(['!=', 'logo', ''])
-            ->orderBy(new Expression('RAND()'))
-            ->limit(1)
-            ->all();
+        $sql = $this->sql();
+        $sql .= " AND (`place`.`logo` != '' OR `place`.`logo` IS NOT NULL) ORDER BY RAND() LIMIT 1";
+        return Place::findBySql($sql);
     }
 
     public function getPictures()
@@ -108,25 +114,28 @@ class Category extends CategoryData
 
     public function getPremiumList()
     {
-        return $this->getList()
-            ->andWhere(['profile_type' => Yii::$app->params['PREMIUM']])
-            ->orderBy(new Expression('RAND()'));
+        $sql = $this->sql();
+        $sql .= ' AND `profile_type` = ' . Yii::$app->params['PREMIUM'] . '  ORDER BY RAND() LIMIT 10';
+        return Place::findBySql($sql);
+
     }
 
     public function getBasicList()
     {
-        return $this->getList()
-            ->orderBy(new Expression('`profile_type` <> '
-                . Yii::$app->params['PREMIUM'] . ', `profile_type` <> '
-                . Yii::$app->params['BASIC'] . ', RAND()'));
+        $sql = $this->sql();
+        $sql .= '  ORDER BY `profile_type` <> ' . Yii::$app->params['PREMIUM'] . ', 
+                 `profile_type` <> ' . Yii::$app->params['BASIC'] . ', 
+                  RAND() LIMIT 6';
+        return Place::findBySql($sql);
     }
 
     public function getFreeList()
     {
-        return $this->getList()
-            ->orderBy(new Expression('`profile_type` <> '
-                . Yii::$app->params['BASIC'] . ', `profile_type` <> '
-                . Yii::$app->params['FREE'] . ', RAND()'));
+        $sql = $this->sql();
+        $sql .= '  ORDER BY `profile_type` <> ' . Yii::$app->params['BASIC'] . ', 
+                 `profile_type` <> ' . Yii::$app->params['FREE'] . ', 
+                  RAND() LIMIT 16';
+        return Place::findBySql($sql);
     }
 
     public function getMostViewed()
@@ -139,19 +148,26 @@ class Category extends CategoryData
         return Place::find()
             ->where(['in', 'id', $place_ids])
             ->andWhere(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('FIELD(id, ' . implode(',' , $place_ids) . ')'))
+            ->orderBy(new Expression('FIELD(id, ' . implode(',', $place_ids) . ')'))
             ->all();
     }
 
     public function getOneRandomGallery()
     {
         $service_ids = $this->getServiceIds();
-        return Gallery::find()
+
+        /*return Gallery::find()
             ->where(['in', 'service_id', $service_ids])
             ->andWhere(['!=', 'name', ''])
             ->orderBy(new Expression('RAND()'))
             ->limit(1)
-            ->all();
+            ->all();*/
+        $sql = "SELECT `gallery`.*
+                FROM `gallery`, `service`
+                WHERE `gallery`.`service_id` = `service`.`id`
+                AND (`gallery`.`name` != '' OR `gallery`.`name` IS NOT NULL)
+                AND `service`.`category_id` = " . $this->id . ' ORDER BY RAND() LIMIT 1';
+        return Gallery::findBySql($sql)->all();
     }
 
     public function getGalleries()

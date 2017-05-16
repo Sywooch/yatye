@@ -8,9 +8,8 @@
 
 namespace frontend\controllers\user;
 
-use common\models\LoginForm;
 use Yii;
-use common\components\BaseController;
+use common\helpers\DataHelpers;
 use dektrium\user\controllers\SecurityController as BaseSecurityController;
 
 class SecurityController extends BaseSecurityController
@@ -18,13 +17,12 @@ class SecurityController extends BaseSecurityController
 
     public function accessData()
     {
-        return BaseController::accessData();
+        return [
+            'get_keywords' => DataHelpers::getKeywords(),
+            'all_categories' => DataHelpers::getAllCategories(),
+        ];
     }
 
-    public function accessDataByIds($id)
-    {
-        return BaseController::accessDataByIds($id);
-    }
 
 //    /**
 //     * Logs in a user.

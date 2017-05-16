@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use backend\models\Ads;
+use common\helpers\DataHelpers;
 use Yii;
 use common\models\Place;
 use frontend\models\Enquiry;
@@ -61,6 +62,15 @@ class SiteController extends BaseController
     {
         header('Content-Type: text/xml');
         return $this->renderPartial('/site/sitemap');
+    }
+
+    public static function accessData()
+    {
+        return [
+            'get_ads' => DataHelpers::getAds(),
+            'get_keywords' => DataHelpers::getKeywords(),
+            'get_upcoming_events' => DataHelpers::getUpcomingEvents(),
+        ];
     }
 
 }

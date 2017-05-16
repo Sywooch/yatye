@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use common\models\Place;
 use frontend\models\Enquiry;
@@ -35,6 +36,14 @@ class ContactUsController extends BaseController
 
             ]);
         }
+    }
+
+    public static function accessData()
+    {
+        return [
+            'get_keywords' => DataHelpers::getKeywords(),
+            'all_categories' => DataHelpers::getAllCategories(),
+        ];
     }
 
 }

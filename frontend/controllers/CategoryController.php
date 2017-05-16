@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
+use common\helpers\RecordHelpers;
 use Yii;
 use backend\models\Ads;
 use backend\models\post\Post;
@@ -22,9 +24,9 @@ class CategoryController extends BaseController
 
         if (!is_null($model)) {
 
-            $premium_places = $model->getPremiumList()->limit(10)->all();
-            $basic_places = $model->getBasicList()->limit(6)->all();
-            $free_places = $model->getFreeList()->limit(16)->all();
+            $premium_places = $model->getPremiumList()->all();
+            $basic_places = $model->getBasicList()->all();
+            $free_places = $model->getFreeList()->all();
             $services = $model->getServices();
             $get_most_viewed = $model->getMostViewed();
             $recent_added_places = Place::getRecentAddedPlaces();
@@ -46,6 +48,15 @@ class CategoryController extends BaseController
         } else {
             return $this->redirect(Yii::$app->params['root']);
         }
+    }
+
+    public static function accessData()
+    {
+        return [
+            'get_ads' => DataHelpers::getAds(),
+            'get_keywords' => DataHelpers::getKeywords(),
+            'all_categories' => DataHelpers::getAllCategories(),
+        ];
     }
 
 }

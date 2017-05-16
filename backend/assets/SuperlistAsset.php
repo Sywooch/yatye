@@ -22,6 +22,7 @@ class SuperlistAsset extends AssetBundle {
     public $basePath = '@vendor';
     public $css = [
 
+//        'css/superlist.css',
         'css/superlist.min.css',
         'libraries/owl.carousel/assets/owl.carousel.css',
         'libraries/colorbox/example1/colorbox.css',

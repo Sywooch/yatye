@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use backend\models\AboutUs;
 use yii\data\ActiveDataProvider;
@@ -35,6 +36,14 @@ class AboutUsController extends BaseController
         } else {
             return $this->redirect(Yii::$app->params['root']);
         }
+    }
+
+    public static function accessData()
+    {
+        return [
+            'get_keywords' => DataHelpers::getKeywords(),
+            'all_categories' => DataHelpers::getAllCategories(),
+        ];
     }
 
 }

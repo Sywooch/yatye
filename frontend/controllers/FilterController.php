@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use frontend\models\Filter;
 use common\models\Province;
@@ -32,4 +33,11 @@ class FilterController extends BaseController
         ]);
     }
 
+    public static function accessData()
+    {
+        return [
+            'get_keywords' => DataHelpers::getKeywords(),
+            'all_categories' => DataHelpers::getAllCategories(),
+        ];
+    }
 }

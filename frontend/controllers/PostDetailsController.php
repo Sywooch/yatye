@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use backend\models\post\Post;
 use common\helpers\MetaTagHelpers;
@@ -32,6 +33,17 @@ class PostDetailsController extends BaseController
         } else {
             return $this->redirect(Yii::$app->params['root']);
         }
+    }
+
+    public static function accessData()
+    {
+        return [
+            'get_ads' => DataHelpers::getAds(),
+            'get_keywords' => DataHelpers::getKeywords(),
+            'all_categories' => DataHelpers::getAllCategories(),
+            'get_post_archives' => DataHelpers::getPostArchives(),
+            'get_upcoming_events' => DataHelpers::getUpcomingEvents(),
+        ];
     }
 
 }
