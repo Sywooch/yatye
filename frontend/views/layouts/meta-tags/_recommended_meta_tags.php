@@ -40,6 +40,8 @@ $keywords = $data['get_keywords'];
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--http-equiv Tags-->
+<meta http-equiv="Cache-control" content="public">
+<meta http-equiv="expires" content="30"/>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 
