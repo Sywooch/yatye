@@ -7,7 +7,7 @@ $this->title = $model->name . ' in Rwanda';
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['/category/' . $model->slug]];
 
 $dataProvider->pagination = [
-    'pageSize' => 24,
+    'pageSize' => 21,
 ];
 ?>
 <div class="col-sm-8 col-lg-9">
@@ -22,23 +22,23 @@ $dataProvider->pagination = [
                     'itemView' => function ($model, $key, $index, $widget) {
 
 
-                        $itemContent = $this->render('_list_item',['model' => $model]);
+                        $itemContent = $this->render('_list_item', ['model' => $model]);
 
                         /* Display an Advertisement after the first list item */
-//                                if ($index == 0) {
-//                                    $adContent = $this->render('_ad');
-//                                    $itemContent .= $adContent;
-//                                }
+//                        if ($index == 0) {
+//                            $adContent = $this->render('_ad');
+//                            $itemContent .= $adContent;
+//                        }
 //
-//                                if ($index == 5) {
-//                                    $adContent = $this->render('_ad');
-//                                    $itemContent .= $adContent;
-//                                }
+//                        if ($index == 12) {
+//                            $adContent = $this->render('_ad');
+//                            $itemContent .= $adContent;
+//                        }
 //
-//                                if ($index == 10) {
-//                                    $adContent = $this->render('_ad');
-//                                    $itemContent .= $adContent;
-//                                }
+//                        if ($index == 18) {
+//                            $adContent = $this->render('_ad');
+//                            $itemContent .= $adContent;
+//                        }
 
                         return $itemContent;
 
@@ -47,11 +47,6 @@ $dataProvider->pagination = [
                         'tag' => false,
                         'class' => 'item'
                     ],
-//                            'pager' => [
-//                                'class' => ScrollPager::className(),
-//                                'delay' => 300,
-//                            ],
-//                            'summary' => '',
                     /* do not display {summary} */
                     'layout' => '{items}{pager}',
 

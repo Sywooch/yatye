@@ -65,7 +65,7 @@ class AdsController extends BackendAdminController
             $path = Yii::$app->params['frontend_alias'] . Yii::$app->params['ads'] . $file_name;
             $file_name = preg_replace('/\s+/', '', $file_name);
 
-            $image_size = $model->checkImageSizes($model);
+            $image_size = $model->checkImageSizes();
             if (GalleryHelper::uploadAds($model->image_file->tempName, $path, $image_size['width'], $image_size['height'])) {
                 $model->image = $file_name;
                 $model->save(0);

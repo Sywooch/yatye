@@ -130,12 +130,9 @@ return [
     'visitor' => 2,
     'user' => 3,
 
-    '468x60' => 1,
-    '840x120' => 2,
-    '250x250' => 3,
-    '260x400' => 4,
-    '180x150' => 5,
-    '240x200' => 6,
+    '300x300' => 1,
+    '730x300' => 2,
+    '350x630' => 3,
 
 
     'favicon' => 'http://rwandaguide.info/frontend/web/files/images/favicon-96x96.png',

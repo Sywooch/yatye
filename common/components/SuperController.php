@@ -70,6 +70,7 @@ class SuperController extends Controller
     public static function accessData()
     {
         return [
+            'get_ads' => DataHelpers::getAds(),
             'place_model' => DataHelpers::getPlace(),
             'get_keywords' => DataHelpers::getKeywords(),
             'has_profile' => RecordHelpers::hasProfile(),

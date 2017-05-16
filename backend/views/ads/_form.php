@@ -15,58 +15,29 @@ use kartik\widgets\DatePicker;
 
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-            </div>
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?= $form->field($model, 'caption')->textInput(['maxlength' => true]) ?>
-            </div>
+            <?= $form->field($model, 'image_file')->fileInput(['maxlength' => true]) ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?= $form->field($model, 'image_file')->fileInput(['maxlength' => true]) ?>
-            </div>
+            <?= $form->field($model, 'type')->textInput() ?>
         </div>
         <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?= $form->field($model, 'type')->textInput() ?>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?php echo $form->field($model, 'start_at')->widget(DatePicker::classname(), [
-                    'options' => [
-                        'placeholder' => '',
-                        'class' => 'form-control',
-                    ],
-                    'pluginOptions' => [
-                        'autoclose' => false,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ]); ?>
-            </div>
-
-        </div>
-        <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?php echo $form->field($model, 'end_at')->widget(DatePicker::classname(), [
-                    'options' => [
-                        'placeholder' => '',
-                        'class' => 'form-control',
-                    ],
-                    'pluginOptions' => [
-                        'autoclose' => false,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ]); ?>
-            </div>
+            <?php echo $form->field($model, 'period')->widget(DatePicker::classname(), [
+                'attribute' => 'start_at',
+                'attribute2' => 'end_at',
+                'options' => ['placeholder' => Yii::t('app', 'Start')],
+                'options2' => ['placeholder' => Yii::t('app', 'End')],
+                'type' => DatePicker::TYPE_RANGE,
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd'
+                ]
+            ]); ?>
         </div>
     </div>
 

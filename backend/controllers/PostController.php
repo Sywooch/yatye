@@ -189,13 +189,20 @@ class PostController extends BackendAdminController
     {
         $model = $this->findModel($id);
         $model->status = Yii::$app->params['active'];
+        Yii::warning('I am here');
+
+        if (Yii::$app->controller->id == 'post-preview') :
+            $url = ['post-preview', 'id' => $model->id];
+        else:
+            $url = ['view', 'id' => $model->id];
+        endif;
 
         if ($model->save(0)) {
             Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Article published successfully!'));
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect($url);
         } else {
             Yii::$app->getSession()->setFlash("fail", Yii::t('app', 'Article not published! Try again'));
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect($url);
         }
     }
 

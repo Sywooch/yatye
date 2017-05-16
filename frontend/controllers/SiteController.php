@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use backend\models\Ads;
 use Yii;
 use common\models\Place;
 use frontend\models\Enquiry;
@@ -43,7 +44,6 @@ class SiteController extends BaseController
             ->andWhere(['!=', 'id', 8])
             ->orderBy('RAND()')
             ->all();
-
         Yii::$app->session->setFlash('add');
 
         return $this->render('index', [

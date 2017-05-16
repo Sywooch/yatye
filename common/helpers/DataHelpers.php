@@ -8,6 +8,7 @@
 
 namespace common\helpers;
 
+use backend\models\Ads;
 use Yii;
 use yii\db\Expression;
 use common\models\Cell;
@@ -274,6 +275,19 @@ class DataHelpers
             ->orderBy(new Expression("STR_TO_DATE(CONCAT(month, '/', year), '%m/%Y') DESC"))
             ->asArray()
             ->all();
+    }
+
+    public static function getAds()
+    {
+        $query = Ads::find();
+        $ads_300x300 = $query->where(['size' => Yii::$app->params['300x300']])->orderBy(new Expression('RAND()'))->limit(2)->all();
+        $ads_730x300 = $query->where(['size' => Yii::$app->params['730x300']])->orderBy(new Expression('RAND()'))->all();
+        $ads_350x630 = $query->where(['size' => Yii::$app->params['350x630']])->orderBy(new Expression('RAND()'))->all();
+        return [
+            '300x300' => $ads_300x300,
+            '730x300' => $ads_730x300,
+            '350x630' => $ads_350x630,
+        ];
     }
 
 }

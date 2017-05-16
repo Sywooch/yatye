@@ -18,7 +18,6 @@ $keywords = $data['get_keywords'];
 <meta name="revisit-after" content="2 days">
 <meta name="revisit" content="2 days"/>
 <meta name="distribution" content="Global">
-<!--<meta http-equiv="refresh" content="30">-->
 <meta http-equiv="cache-control" content="no-cache"/>
 <meta http-equiv="expires" content="30"/>
 <meta name="google-site-verification" content="PSEIUTyoAIopuk7Q8t8B6M6WiF711Udi3dT1YE6LBFk"/>

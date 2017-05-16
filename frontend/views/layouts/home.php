@@ -38,11 +38,10 @@ AppAsset::register($this);
     <!--pre-load-->
     <?php $this->registerCss(".pre-load{display: none;} ") ?>
 
-    <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" type="image/png" href="<?= Yii::$app->params['icon_96']; ?>"/>
-    <link rel="alternate" href="http://rwandaguide.info/" hreflang="x-default"/>
-    <link rel="publisher" href="https://plus.google.com/u/0/110341479395654851118">
+    <!--Link-->
+    <?php echo $this->render('@app/views/layouts/meta-tags/_link_meta_tags') ?>
 
+    <!--Scripts-->
     <?php echo $this->render('@app/views/layouts/scripts/_facebook') ?>
     <?php echo $this->render('@app/views/layouts/scripts/_google') ?>
 
@@ -85,7 +84,7 @@ AppAsset::register($this);
     </header>
     <?php echo $this->render('@app/views/layouts/_messages') ?>
     <?= $content ?>
-    <?php echo $this->render('@app/views/layouts/_footer') ?>
+    <?php //echo $this->render('@app/views/layouts/_footer') ?>
 </div>
 <?php echo $this->render('@app/views/layouts/scripts/_twitter') ?>
 <?php echo $this->render('@app/views/layouts/scripts/_other_scripts') ?>

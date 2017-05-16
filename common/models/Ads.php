@@ -9,9 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $title
- * @property string $slug
  * @property string $image
- * @property string $caption
  * @property string $start_at
  * @property string $end_at
  * @property integer $type
@@ -41,12 +39,11 @@ class Ads extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'slug', 'image', 'type', 'created_at', 'status', 'created_by', 'updated_by', 'size'], 'required'],
+            [['title', 'image', 'type', 'created_at', 'status', 'created_by', 'updated_by', 'size'], 'required'],
             [['start_at', 'end_at', 'created_at', 'updated_at'], 'safe'],
             [['type', 'status', 'created_by', 'updated_by', 'size'], 'integer'],
-            [['title', 'slug'], 'string', 'max' => 75],
+            [['title'], 'string', 'max' => 75],
             [['image', 'url'], 'string', 'max' => 255],
-            [['caption'], 'string', 'max' => 125],
         ];
     }
 
@@ -58,9 +55,7 @@ class Ads extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
-            'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
-            'caption' => Yii::t('app', 'Caption'),
             'start_at' => Yii::t('app', 'Start At'),
             'end_at' => Yii::t('app', 'End At'),
             'type' => Yii::t('app', 'Type'),

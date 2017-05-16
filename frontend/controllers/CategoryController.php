@@ -30,8 +30,6 @@ class CategoryController extends BaseController
             $recent_added_places = Place::getRecentAddedPlaces();
             $articles = Post::getPostsByType(1);
             $news = Post::getPostsByType(3);
-            $ads = Ads::getAds();
-
             return $this->render('index', [
                 'model' => $model,
                 'premium_places' => $premium_places,
@@ -42,7 +40,6 @@ class CategoryController extends BaseController
                 'get_most_viewed' => $get_most_viewed,
                 'articles' => $articles,
                 'news' => $news,
-                'ads' => $ads,
 
             ]);
 

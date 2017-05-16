@@ -71,11 +71,11 @@ class GalleryHelper
         Yii::warning('width : ' . $width);
         Yii::warning('height : ' . $height);
 
-        if ($width == $min_width && $height == $min_height) {
+        if ($width > $min_width && $height > $min_height) {
             $simpleImage->save($path);
             return true;
         } else {
-            Yii::$app->getSession()->setFlash("fail", 'Please upload the exact dimensions');
+            Yii::$app->getSession()->setFlash("fail", 'The dimensions of this image are too small!');
             return false;
         }
     }

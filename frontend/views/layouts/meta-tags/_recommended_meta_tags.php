@@ -24,6 +24,7 @@ $keywords = $data['get_keywords'];
 <meta name="subject" content="<?php echo Yii::$app->params['meta_description']; ?>">
 <meta name="abstract" content="<?php echo Yii::$app->params['meta_description']; ?>">
 <meta name="web_author" content="Marius Ngaboyamahina">
+<meta name="author" content="Marius Ngaboyamahina">
 <meta name="rating" content="general">
 <meta name="classification" content="<?php echo $keywords; ?>">
 <meta name="copyright" content="Copyright <?php echo date('Y') ?> - <?php echo Yii::$app->name ?>">
@@ -31,6 +32,7 @@ $keywords = $data['get_keywords'];
 <meta name="city" content="Kigali">
 <meta name="country" content="Rwanda">
 <meta name="geography" content="Rwanda Kigali">
+<meta name="rating" content="general">
 
 <!--Meta Tags for HTML pages on Mobile-->
 <meta name="format-detection" content="telephone=yes"/>
