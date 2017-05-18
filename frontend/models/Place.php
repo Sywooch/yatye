@@ -32,19 +32,12 @@ class Place extends BasePlace
 
     public function getAmenities()
     {
-        $query = new Query();
-        $select = $query
-            ->select('`service`.`id`')
-            ->addSelect('`service`.`name`')
-            ->addSelect('`service`.`slug`')
-            ->from('`service`, `place_has_service`, `category`')
-            ->where('`place_has_service`.`service_id` = `service`.`id`')
-            ->andWhere('`place_has_service`.`place_id` = ' . $this->id)
-            ->andWhere('`category`.`id` = `service`.`category_id`')
-//            ->andWhere('`category`.`id`= 5')
-            ->orderBy(new Expression('RAND()'))
-            ->all();
-        return $select;
+        $sql = "SELECT `service`.* 
+                FROM `service`, `place_has_service` 
+                WHERE `place_has_service`.`service_id` = `service`.`id` 
+                AND `place_has_service`.`place_id` = 326 
+                ORDER BY RAND()";
+        return self::findBySql($sql)->all();
     }
 
     public function getAllAmenities()
@@ -52,59 +45,10 @@ class Place extends BasePlace
         return Service::find()->where(['category_id' => 5])->all();
     }
 
-
     public function getViews()
     {
         $view = Views::findOne(['place_id' => $this->id, 'status' => Yii::$app->params['active']]);
         return (!empty($view)) ? $view->views : 0;
-    }
-
-    public function getCategoryName()
-    {
-        $model = new Service();
-        return $model->getCategoryName();
-    }
-
-    public function getCategorySlug()
-    {
-
-        $model = new Service();
-        return $model->getCategorySlug();
-    }
-
-    public function getServiceName()
-    {
-        $model = new Service();
-        return $model->getServiceName();
-    }
-
-    public function getServiceSlug()
-    {
-        $model = new Service();
-        return $model->getServiceSlug();
-    }
-
-
-    public function getThisPlaceHasServiceIds()
-    {
-        return PlaceHasService::find()->where(['place_id' => $this->id])->all();
-    }
-
-    public function getRelatedPlaceIds1()
-    {
-        $place_ids = array();
-        $service_ids = $this->getThisPlaceHasServiceIds();
-
-        if (!empty($service_ids)):
-
-            foreach ($service_ids as $service_id):
-
-                $place_ids[] = PlaceHasService::find()->where(['service_id' => $service_id->service_id])->all();
-
-            endforeach;
-        endif;
-
-        return $place_ids;
     }
 
     public function getRelatedPlaceIds()

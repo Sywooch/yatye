@@ -58,26 +58,26 @@ class Category extends CategoryData
         ];
     }
 
-    public function getServiceIds()
-    {
-        $services = $this->getServices();
-        $service_ids = array();
-        foreach ($services as $service) {
-            $service_ids[] = $service->id;
-        }
-        return $service_ids;
-    }
-
-    public function getPlaceIds()
-    {
-        $place_ids = array();
-        $place_has_services = $this->getPlaceHasServices();
-
-        foreach ($place_has_services as $place_has_service) {
-            $place_ids[] = $place_has_service['place_id'];
-        }
-        return $place_ids;
-    }
+//    public function getServiceIds()
+//    {
+//        $services = $this->getServices();
+//        $service_ids = array();
+//        foreach ($services as $service) {
+//            $service_ids[] = $service->id;
+//        }
+//        return $service_ids;
+//    }
+//
+//    public function getPlaceIds()
+//    {
+//        $place_ids = array();
+//        $place_has_services = $this->getPlaceHasServices();
+//
+//        foreach ($place_has_services as $place_has_service) {
+//            $place_ids[] = $place_has_service['place_id'];
+//        }
+//        return $place_ids;
+//    }
 
     public function sql()
     {
@@ -86,6 +86,7 @@ class Category extends CategoryData
                 WHERE `place_has_service`.`place_id`= `place`.`id` 
                 AND `place_has_service`.`service_id` = `service`.`id` 
                 AND `service`.`category_id` = " . $this->id . "
+                AND `service`.`status` = " . Yii::$app->params['active'] . " 
                 AND `place`.`status` = " . Yii::$app->params['active'];
     }
 
@@ -154,7 +155,7 @@ class Category extends CategoryData
 
     public function getOneRandomGallery()
     {
-        $service_ids = $this->getServiceIds();
+//        $service_ids = $this->getServiceIds();
 
         /*return Gallery::find()
             ->where(['in', 'service_id', $service_ids])

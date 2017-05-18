@@ -5,6 +5,7 @@
  * Date: 14/02/2016
  * Time: 01:26
  */
+/* @var $upcoming_event backend\models\Event */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -14,8 +15,7 @@ use yii\helpers\Url;
     <div class="sidebar" style="margin-top: -30px;">
 
         <?php
-        $data = $this->context->accessData();
-        $upcoming_events = $data['get_upcoming_events'];
+        $upcoming_events = $this->context->getUpcomingEvents();
         if (!empty($upcoming_events)): ?>
             <div class="widget">
                 <h2 class="widgettitle"><?php echo Yii::t('app', 'Upcoming Events') ?></h2>

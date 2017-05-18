@@ -7,8 +7,7 @@
  */
 use yii\helpers\Html;
 
-$data = $this->context->accessData();
-$keywords = $data['get_keywords'];
+$keywords = $this->context->getKeywords();
 ?>
 <meta charset="<?= Yii::$app->charset ?>">
 <meta name="language" content="english">

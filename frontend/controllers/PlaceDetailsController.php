@@ -2,8 +2,6 @@
 
 namespace frontend\controllers;
 
-use common\helpers\DataHelpers;
-use common\helpers\RecordHelpers;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
@@ -154,13 +152,5 @@ class PlaceDetailsController extends AdminController
 
             return $this->redirect(Yii::$app->request->baseUrl . '/place-details/' . $place->slug);
         }
-    }
-
-    public static function accessData()
-    {
-        return [
-            'get_keywords' => DataHelpers::getKeywords(),
-            'all_categories' => DataHelpers::getAllCategories(),
-        ];
     }
 }

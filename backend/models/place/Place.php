@@ -65,35 +65,16 @@ class Place extends PlaceData
         ];
     }
 
-    public function getCurrentCategory($category_id)
-    {
-        return Category::findOne($category_id);
-    }
-
-    public function getServiceIds($category_id)
-    {
-        $category = $this->getCurrentCategory($category_id);
-        return $category->getServiceIds();
-    }
-
     public function getThisPlaceHasService($category_id)
     {
-        $service_ids = $this->getServiceIds($category_id);
-        return PlaceHasService::find()
-            ->where(['in', 'service_id', $service_ids])
-            ->andWhere(['place_id' => $this->id])
-            ->one();
-    }
-
-    public function getServiceId($category_id)
-    {
-        $place_has_service = $this->getThisPlaceHasService($category_id);
-        return $place_has_service->service_id;
-    }
-
-    public function getThisPlaceHasServiceName($category_id)
-    {
-        return Service::findOne($this->getServiceId($category_id))->name;
+        $sql = "SELECT `service`.* 
+                FROM `place_has_service`, `service` 
+                WHERE `place_has_service`.`service_id` = `service`.`id` 
+                AND `service`.`category_id` = " . $category_id ." 
+                AND `place_has_service`.`place_id` = " . $this->id ." 
+                AND `service`.`status` = " . Yii::$app->params['active'] . " 
+                ORDER BY RAND() LIMIT 1";
+        return Service::findBySql($sql)->one();
     }
 
     public function getRatingStars()

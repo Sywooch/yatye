@@ -11,8 +11,7 @@ use yii\helpers\Url;
 
 ?>
 
-<?php $data = $this->context->accessData();
-$upcoming_events = $data['get_upcoming_events'];
+<?php $upcoming_events = $this->context->getUpcomingEvents();
 if (!empty($upcoming_events)): ?>
     <div class="widget">
         <h2 class="widgettitle"><?php echo Yii::t('app', 'Upcoming Events') ?></h2>

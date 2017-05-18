@@ -66,11 +66,6 @@ class SiteController extends BaseController
 
     public static function accessData()
     {
-        return [
-            'get_ads' => DataHelpers::getAds(),
-            'get_keywords' => DataHelpers::getKeywords(),
-            'get_upcoming_events' => DataHelpers::getUpcomingEvents(),
-        ];
+        return nu;
     }
-
 }

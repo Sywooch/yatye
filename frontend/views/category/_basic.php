@@ -6,10 +6,11 @@
  * Time: 21:05
  */
 /* @var $basic_place backend\models\place\Place */
+/* @var $service backend\models\place\Service */
+/* @var $model backend\models\place\Category */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-
 ?>
 
 <?php if (!empty($basic_places)): ?>
@@ -21,11 +22,11 @@ use yii\helpers\Url;
         </div>
         <div class="cards-wrapper">
             <div class="row">
-                <?php foreach ($basic_places as $basic_place): ?>
+                <?php foreach ($basic_places as $basic_place): $service = $basic_place->getThisPlaceHasService($model->id) ?>
                     <div class="col-sm-4">
                         <div class="card" data-background-image="<?php echo $basic_place->getThumbnailLogo() ?>">
                             <div class="card-label">
-                                <small><?= Html::a($basic_place->getThisPlaceHasServiceName($model->id), $basic_place->getPlaceUrl(), ['target' => '_blank']) ?></small>
+                                <small><?= Html::a($service->name, $service->getUrl(), ['target' => '_blank']) ?></small>
                             </div>
 
                             <div class="card-content">

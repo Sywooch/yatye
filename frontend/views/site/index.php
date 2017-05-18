@@ -9,18 +9,17 @@ $this->title = Yii::$app->name;
         <div class="content">
             <!--Home -->
             <?php echo $this->render('_home', [
-                    'service_categories' => $service_categories,
-                ]); ?>
+                'service_categories' => $service_categories,
+            ]); ?>
 
             <!--Advertisement Banners-->
-<!--            --><?php //$data = $this->context->accessData(); $ads = $data['get_ads'];
-//            if (!empty($ads)) : echo $this->render('_ads', [
-//                'ads' => $ads,
-//            ]); endif; ?>
+            <?php $ads = $this->context->getAds();
+            if (!empty($ads)) : echo $this->render('_ads', [
+                'ads' => $ads,
+            ]); endif; ?>
 
             <!--Up coming events-->
-            <?php $data = $this->context->accessData();
-            $upcoming_events = $data['get_upcoming_events'];
+            <?php $upcoming_events = $this->context->getUpcomingEvents();
             $count = count($upcoming_events);
             if (!empty($upcoming_events) && $count >= 4) :
                 echo $this->render('_events', [

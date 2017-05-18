@@ -22,7 +22,7 @@ class CategoryController extends BaseController
     {
         $model = Category::findOne(['slug' => $slug]);
 
-        if (!is_null($model)) {
+        if (!empty($model)) {
 
             $premium_places = $model->getPremiumList()->all();
             $basic_places = $model->getBasicList()->all();
@@ -32,6 +32,7 @@ class CategoryController extends BaseController
             $recent_added_places = Place::getRecentAddedPlaces();
             $articles = Post::getPostsByType(1);
             $news = Post::getPostsByType(3);
+
             return $this->render('index', [
                 'model' => $model,
                 'premium_places' => $premium_places,
@@ -49,14 +50,4 @@ class CategoryController extends BaseController
             return $this->redirect(Yii::$app->params['root']);
         }
     }
-
-    public static function accessData()
-    {
-        return [
-            'get_ads' => DataHelpers::getAds(),
-            'get_keywords' => DataHelpers::getKeywords(),
-            'all_categories' => DataHelpers::getAllCategories(),
-        ];
-    }
-
 }

@@ -56,16 +56,4 @@ class PostPreviewController extends PostController
             'post_category' => $post_category,
         ]);
     }
-
-    public static function accessData()
-    {
-        return [
-            'get_ads' => DataHelpers::getAds(),
-            'get_keywords' => DataHelpers::getKeywords(),
-            'all_categories' => DataHelpers::getAllCategories(),
-            'get_post_archives' => DataHelpers::getPostArchives(),
-            'get_upcoming_events' => DataHelpers::getUpcomingEvents(),
-        ];
-    }
-
 }

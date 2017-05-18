@@ -37,13 +37,4 @@ class AboutUsController extends BaseController
             return $this->redirect(Yii::$app->params['root']);
         }
     }
-
-    public static function accessData()
-    {
-        return [
-            'get_keywords' => DataHelpers::getKeywords(),
-            'all_categories' => DataHelpers::getAllCategories(),
-        ];
-    }
-
 }

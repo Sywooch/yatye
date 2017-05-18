@@ -6,18 +6,19 @@
  * Time: 22:33
  */
 /* @var $model backend\models\place\Place */
-
+/* @var $service backend\models\place\Service */
 use yii\helpers\Html;
 use yii\helpers\Url;
 $session = Yii::$app->session;
 $category_id = $session->get('category_id');
+$service = $model->getThisPlaceHasService($category_id)
 ?>
 <div class="card-row item div" data-key="<?= $model->id ?>">
     <div class="card-row-inner">
         <div class="card-row-image" data-background-image="<?php echo $model->getThumbnailLogo() ?>">
             <div class="card-row-label">
-                <a href="#">
-                    <small><?php echo $model->getThisPlaceHasServiceName($category_id) ?></small>
+                <a href="<?php echo $service->getUrl() ?>">
+                    <small><?php echo $service->name ?></small>
                 </a>
             </div>
             <div class="card-row-price" style="background-color: transparent;">
@@ -33,7 +34,7 @@ $category_id = $session->get('category_id');
                 <a href="<?php echo $model->getPlaceUrl() ?>" target="_blank"><?php echo $model->name ?></a>
             </h2>
 
-            <?php $data_by_ids = $this->context->accessDataByIds($model->id);$contacts = $data_by_ids['get_place_contacts']; ?>
+            <?php $contacts = $this->context->getPlaceContacts($model->id); ?>
 
             <div class="panel-group drop-accordion" id="accordion" role="tablist"
                  aria-multiselectable="true">

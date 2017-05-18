@@ -6,6 +6,8 @@
  * Time: 21:04
  */
 /* @var $free_place backend\models\place\Place */
+/* @var $service backend\models\place\Service */
+/* @var $model backend\models\place\Category */
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -19,7 +21,7 @@ use yii\helpers\Url;
     </div>
     <div class="cards-simple-wrapper">
         <div id="basic-list" class="row">
-            <?php foreach ($free_places as $free_place):?>
+            <?php foreach ($free_places as $free_place): $service = $free_place->getThisPlaceHasService($model->id) ?>
                 <div class="col-sm-6 col-lg-3">
                     <div class="card-simple" data-background-image="<?php echo $free_place->getThumbnailLogo() ?>">
                         <div class="card-simple-background">
@@ -33,7 +35,7 @@ use yii\helpers\Url;
                                 </div>
                             </div>
                             <div class="card-simple-label">
-                                <small><?php echo $free_place->getThisPlaceHasServiceName($model->id) ?></small>
+                                <small><?php echo $service->name ?></small>
                             </div>
                         </div>
                     </div>

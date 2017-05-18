@@ -37,13 +37,4 @@ class ContactUsController extends BaseController
             ]);
         }
     }
-
-    public static function accessData()
-    {
-        return [
-            'get_keywords' => DataHelpers::getKeywords(),
-            'all_categories' => DataHelpers::getAllCategories(),
-        ];
-    }
-
 }

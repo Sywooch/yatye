@@ -68,12 +68,4 @@ class RatingsController extends BaseController
             return $this->redirect(Yii::$app->request->baseUrl . '/place-details/' . $place->slug);
         }
     }
-
-    public static function accessData()
-    {
-        return [
-            'get_keywords' => DataHelpers::getKeywords(),
-            'all_categories' => DataHelpers::getAllCategories(),
-        ];
-    }
 }

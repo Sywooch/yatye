@@ -27,5 +27,4 @@ class ArchivesController extends BaseController
             'dataProvider' => $dataProvider,
         ]);
     }
-
 }

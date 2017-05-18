@@ -32,12 +32,4 @@ class FilterController extends BaseController
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    public static function accessData()
-    {
-        return [
-            'get_keywords' => DataHelpers::getKeywords(),
-            'all_categories' => DataHelpers::getAllCategories(),
-        ];
-    }
 }

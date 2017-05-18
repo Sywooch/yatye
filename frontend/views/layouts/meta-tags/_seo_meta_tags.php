@@ -7,8 +7,7 @@
  */
 use yii\helpers\Html;
 
-$data = $this->context->accessData();
-$keywords = $data['get_keywords'];
+$keywords = $this->context->getKeywords();
 $date = strtotime("+7 day");
 ?>
 

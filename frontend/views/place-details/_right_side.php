@@ -191,7 +191,7 @@ use yii\helpers\Url;
         <ul class="detail-amenities">
             <?php foreach ($amenities as $amenity): ?>
                 <li class="yes">
-                    <a href="<?php echo Url::to(['/service/' . $amenity['slug']]) ?>"><?php echo $amenity['name'] ?></a>
+                    <a href="<?php echo Url::to(['/service/' . $amenity->slug]) ?>"><?php echo $amenity->name ?></a>
                 </li>
             <?php endforeach; ?>
         </ul>
