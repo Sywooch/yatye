@@ -11,7 +11,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 $session = Yii::$app->session;
 $category_id = $session->get('category_id');
-$service = $model->getThisPlaceHasService($category_id)
+$service = $model->getThisPlaceHasServiceByCategory($category_id)
 ?>
 <div class="card-row item div" data-key="<?= $model->id ?>">
     <div class="card-row-inner">

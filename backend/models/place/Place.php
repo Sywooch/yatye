@@ -65,12 +65,23 @@ class Place extends PlaceData
         ];
     }
 
-    public function getThisPlaceHasService($category_id)
+    public function getThisPlaceHasServiceByCategory($category_id)
     {
         $sql = "SELECT `service`.* 
                 FROM `place_has_service`, `service` 
                 WHERE `place_has_service`.`service_id` = `service`.`id` 
                 AND `service`.`category_id` = " . $category_id ." 
+                AND `place_has_service`.`place_id` = " . $this->id . " 
+                AND `service`.`status` = " . Yii::$app->params['active'] . " 
+                ORDER BY RAND() LIMIT 1";
+        return Service::findBySql($sql)->one();
+    }
+
+    public function getThisPlaceHasService()
+    {
+        $sql = "SELECT `service`.* 
+                FROM `place_has_service`, `service` 
+                WHERE `place_has_service`.`service_id` = `service`.`id` 
                 AND `place_has_service`.`place_id` = " . $this->id . " 
                 AND `service`.`status` = " . Yii::$app->params['active'] . " 
                 ORDER BY RAND() LIMIT 1";
@@ -101,6 +112,38 @@ class Place extends PlaceData
 
         return (!empty($photo)) ? Yii::$app->params['galleries'] . $photo[0] : Yii::$app->params['pragmaticmates-logo-jpg'];
     }
+
+    /** The Haversine formula is used generally for
+     * computing great-circle distances between two pairs
+     * of coordinates on a sphere
+     * SELECT id, ( 3959 * acos( cos( radians(-1.95375538) ) * cos( radians( latitude ) ) * cos( radians( longitude )
+     * - radians(30.06206512) ) + sin( radians(-1.95375538) ) * sin( radians( latitude ) ) ) ) AS distance
+     * FROM place HAVING distance < 25 ORDER BY distance LIMIT 0 , 20;
+     */
+    public function getHaversineFormula()
+    {
+        $formula = '( 6371 * acos( cos( radians(' . $this->latitude . ') ) * cos( radians( latitude ) ) * cos( radians( longitude )';
+        $formula .= '- radians(' . $this->longitude . ') ) + sin( radians(' . $this->latitude . ') ) * sin( radians( latitude ) ) ) ) AS distance';
+        return $formula;
+    }
+
+    public function getPlaceIdsFromTheGreatCircleDistances()
+    {
+        return "SELECT `place`.*, " . $this->getHaversineFormula() . " 
+                FROM `place` 
+                WHERE `status`= " . Yii::$app->params['active'] . "
+                AND `id` != " . $this->id . " 
+                HAVING distance < 0.5 
+                ORDER BY RAND() LIMIT 6 ";
+    }
+
+    public function getNearByPlaces()
+    {
+        $sql = $this->getPlaceIdsFromTheGreatCircleDistances();
+        return Place::findBySql($sql);
+    }
+
+
 
     public static function getPlacesWithEmptyFields()
     {
@@ -236,49 +279,6 @@ class Place extends PlaceData
         return $select;
     }
 
-    /** The Haversine formula is used generally for
-     * computing great-circle distances between two pairs
-     * of coordinates on a sphere
-     * SELECT id, ( 3959 * acos( cos( radians(-1.95375538) ) * cos( radians( latitude ) ) * cos( radians( longitude )
-     * - radians(30.06206512) ) + sin( radians(-1.95375538) ) * sin( radians( latitude ) ) ) ) AS distance
-     * FROM place HAVING distance < 25 ORDER BY distance LIMIT 0 , 20;
-     */
-    public function getHaversineFormula()
-    {
-        $formula = '( 6371 * acos( cos( radians(' . $this->latitude . ') ) * cos( radians( latitude ) ) * cos( radians( longitude )';
-        $formula .= '- radians(' . $this->longitude . ') ) + sin( radians(' . $this->latitude . ') ) * sin( radians( latitude ) ) ) ) AS distance';
-        return $formula;
-    }
-
-    public function getPlaceIdsFromTheGreatCircleDistances()
-    {
-        $query = new Query();
-
-        $formula = $this->getHaversineFormula();
-        $places = $query
-            ->select('`id`')
-            ->addSelect($formula)
-            ->from('`place`')
-            ->where(['status' => Yii::$app->params['active']])
-            ->andWhere(['!=', 'id', $this->id])
-            ->having('distance < 0.5')
-            ->orderBy('RAND()')
-            ->limit(6)
-            ->all();
-
-        $ids = array();
-
-        foreach ($places as $place) {
-            $ids[] = $place['id'];
-        }
-        return $ids;
-    }
-
-    public function getNearByPlaces()
-    {
-        $ids = $this->getPlaceIdsFromTheGreatCircleDistances();
-        return Place::find()->where(['in', 'id', $ids]);
-    }
 
     public static function getRecentAddedPlaces()
     {

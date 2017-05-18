@@ -22,7 +22,7 @@ use yii\helpers\Url;
         </div>
         <div class="cards-wrapper">
             <div class="row">
-                <?php foreach ($basic_places as $basic_place): $service = $basic_place->getThisPlaceHasService($model->id) ?>
+                <?php foreach ($basic_places as $basic_place): $service = $basic_place->getThisPlaceHasServiceByCategory($model->id) ?>
                     <div class="col-sm-4">
                         <div class="card" data-background-image="<?php echo $basic_place->getThumbnailLogo() ?>">
                             <div class="card-label">

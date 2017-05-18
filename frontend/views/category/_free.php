@@ -21,7 +21,7 @@ use yii\helpers\Url;
     </div>
     <div class="cards-simple-wrapper">
         <div id="basic-list" class="row">
-            <?php foreach ($free_places as $free_place): $service = $free_place->getThisPlaceHasService($model->id) ?>
+            <?php foreach ($free_places as $free_place): $service = $free_place->getThisPlaceHasServiceByCategory($model->id) ?>
                 <div class="col-sm-6 col-lg-3">
                     <div class="card-simple" data-background-image="<?php echo $free_place->getThumbnailLogo() ?>">
                         <div class="card-simple-background">

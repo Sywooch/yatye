@@ -79,7 +79,7 @@ class Place extends BasePlace
     {
         $place_ids = $this->getRelatedPlaceIds();
 
-        Yii::warning('place_ids' . print_r($place_ids, true));
+//        Yii::warning('place_ids' . print_r($place_ids, true));
 
         return self::find()
             ->where(['in', 'id', $place_ids])

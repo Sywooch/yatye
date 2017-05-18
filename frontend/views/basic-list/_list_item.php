@@ -11,7 +11,7 @@ use yii\helpers\Html;
 
 $session = Yii::$app->session;
 $category_id = $session->get('category_id');
-$service = $model->getThisPlaceHasService($category_id)
+$service = $model->getThisPlaceHasServiceByCategory($category_id)
 ?>
 <div class="col-sm-6 col-lg-4 item" data-key="<?= $model->id ?>">
     <div class="card-simple" data-background-image="<?php echo $model->getThumbnailLogo() ?>">
