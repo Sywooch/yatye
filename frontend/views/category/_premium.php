@@ -8,6 +8,7 @@
 /* @var $premium_place backend\models\place\Place */
 
 use yii\helpers\Html;
+use yii\widgets\ListView;
 ?>
 <?php if (!empty($premium_places)): ?>
 <div class="block background-white mt30 mb50 row p30 div">

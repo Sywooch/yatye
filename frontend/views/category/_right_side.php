@@ -5,6 +5,9 @@
  * Date: 25/12/2016
  * Time: 21:20
  */
+/* @var $most_viewed backend\models\place\Place */
+/* @var $recent_added_place backend\models\place\Place */
+/* @var $service backend\models\place\Service */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -33,7 +36,7 @@ use yii\helpers\Url;
                         <ul class="menu">
                             <?php foreach ($get_most_viewed as $most_viewed): ?>
                                 <li>
-                                    <a href="<?php echo Url::to(['/place-details/' . $most_viewed->slug]) ?>"
+                                    <a href="<?php echo $most_viewed->getPlaceUrl() ?>"
                                        target="_blank"><?php echo $most_viewed->name ?>
                                         <strong><?php echo $most_viewed->getViews() ?></strong>
                                     </a>
@@ -51,7 +54,7 @@ use yii\helpers\Url;
                         <?php foreach ($services as $service): ?>
 
                             <li>
-                                <a href="<?php echo Url::to(['/service/' . $service->slug]) ?>"><?php echo $service->name ?></a>
+                                <a href="<?php echo $service->getUrl() ?>"><?php echo $service->name ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -65,7 +68,7 @@ use yii\helpers\Url;
                         <?php foreach ($recent_added_places as $recent_added_place): ?>
 
                             <li>
-                                <a href="<?php echo Url::to(['/place-details/' . $recent_added_place->slug]) ?>"
+                                <a href="<?php echo $recent_added_place->getPlaceUrl() ?>"
                                    target="_blank"><?php echo $recent_added_place->name ?>
                                 </a>
                             </li>

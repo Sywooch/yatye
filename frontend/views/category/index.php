@@ -6,32 +6,35 @@ $this->title = $model->name . ' in Rwanda';
 
 <!--Premium List-->
 <?php echo $this->render('_premium', [
-        'model' => $model,
-        'premium_places' => $premium_places,
-        'services' => $services,
-        'recent_added_places' => $recent_added_places,
-        'get_most_viewed' => $get_most_viewed,
-    ]); ?>
+    'model' => $model,
+    'premium_places' => $premium_places,
+    'services' => $services,
+    'recent_added_places' => $recent_added_places,
+    'get_most_viewed' => $get_most_viewed,
+    'dataProvider' => $premiumListDataProvider,
+]); ?>
 
-<!--Advertisement Banners 840x120-->
-<!--        --><?php //if (!empty($ads['840x120'])) :
-//            echo $this->render('ads/ads_840_x_120', [
-//                'model' => $model,
-//                'ads' => $ads,
-//            ]);
-//        endif; ?>
+<!--Advertisement Banners-->
+
+<div class="block background-white mt30 p30 row div">
+    <div class="page-header">
+        <h1><?php echo Yii::t('app', 'Advertisement') ?></h1>
+    </div>
+    <?php $ads = $this->context->getAds();
+    if (!empty($ads)) : echo $this->render('@app/views/site/_ads', [
+        'ads' => $ads,
+    ]); endif; ?>
+</div>
+
+
 
 
 <!--Basic List-->
 <?php echo $this->render('_basic', [
     'model' => $model,
     'basic_places' => $basic_places,
+    'dataProvider' => $basicListDataProvider,
 ]); ?>
-
-<!--Advertisement Banners 250x250-->
-<!--        --><?php //echo $this->render('ads/ads_250_x_250', [
-//            'model' => $model,
-//        ]); ?>
 
 <!--Articles-->
 <?php echo $this->render('_articles', [
@@ -40,14 +43,10 @@ $this->title = $model->name . ' in Rwanda';
     'news' => $news,
 ]); ?>
 
-<!--Advertisement Banners 180x150-->
-<!--        --><?php //echo $this->render('ads/ads_180_x_150', [
-//            'model' => $model,
-//        ]); ?>
-
 <!--Free List-->
 <?php echo $this->render('_free', [
-        'model' => $model,
-        'free_places' => $free_places,
-    ]); ?>
+    'model' => $model,
+    'free_places' => $free_places,
+    'dataProvider' => $freeListDataProvider,
+]); ?>
 

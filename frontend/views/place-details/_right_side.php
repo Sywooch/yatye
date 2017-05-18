@@ -86,13 +86,13 @@ use yii\helpers\Url;
                         <?php if ($contact->type === Yii::$app->params['SKYPE']): ?>
                             <div class="detail-contact-skype">
                                 <i class="fa fa-skype"></i> <a
-                                        href="<?php echo $contact->name ?>"><?php echo $contact->name ?></a>
+                                        href="#"><?php echo $contact->name ?></a>
                             </div>
                         <?php endif; ?>
                         <?php if ($contact->type === Yii::$app->params['WEBSITE']): ?>
                             <div class="detail-contact-website">
                                 <i class="fa fa-globe"></i> <a
-                                        href="<?php echo $contact->name ?>">Visit website</a>
+                                        href="<?php echo $contact->name ?>" target="_blank">Visit website</a>
                             </div>
                         <?php endif; ?>
 

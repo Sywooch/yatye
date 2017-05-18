@@ -79,14 +79,17 @@ class Place extends BasePlace
     {
         $place_ids = $this->getRelatedPlaceIds();
 
-//        Yii::warning('place_ids' . print_r($place_ids, true));
+        $sql = "SELECT `place`.*
+                FROM `place` 
+                WHERE `id` IN (" . implode(',', $this->getRelatedPlaceIds()) . ")
+                AND `status`= " . Yii::$app->params['active'] . "
+                ORDER BY RAND() LIMIT 4 ";
 
-        return self::find()
+        return self::findBySql($sql);
+        /*return self::find()
             ->where(['in', 'id', $place_ids])
             ->andWhere(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('RAND()'))
-            ->limit(4)
-            ->all();
+            ->orderBy(new Expression('RAND()'));*/
     }
 
     public static function getMyPlaces()

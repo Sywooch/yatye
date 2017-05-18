@@ -10,6 +10,7 @@ use backend\models\post\Post;
 use backend\models\place\Place;
 use backend\models\place\Category;
 use common\components\BaseController;
+use yii\data\ActiveDataProvider;
 
 class CategoryController extends BaseController
 {
@@ -23,6 +24,8 @@ class CategoryController extends BaseController
         $model = Category::findOne(['slug' => $slug]);
 
         if (!empty($model)) {
+            $session = Yii::$app->session;
+            $session->set('category_id', $model->id);
 
             $premium_places = $model->getPremiumList()->all();
             $basic_places = $model->getBasicList()->all();
@@ -33,8 +36,24 @@ class CategoryController extends BaseController
             $articles = Post::getPostsByType(1);
             $news = Post::getPostsByType(3);
 
+
+            $premiumListDataProvider = new ActiveDataProvider([
+                'query' => $model->getPremiumList(),
+            ]);
+
+            $basicListDataProvider = new ActiveDataProvider([
+                'query' => $model->getBasicList(),
+            ]);
+
+            $freeListDataProvider = new ActiveDataProvider([
+                'query' => $model->getFreeList(),
+            ]);
+
             return $this->render('index', [
                 'model' => $model,
+                'premiumListDataProvider' => $premiumListDataProvider,
+                'basicListDataProvider' => $basicListDataProvider,
+                'freeListDataProvider' => $freeListDataProvider,
                 'premium_places' => $premium_places,
                 'basic_places' => $basic_places,
                 'free_places' => $free_places,
