@@ -15,18 +15,16 @@ $this->title = $model->name . ' in Rwanda';
 ]); ?>
 
 <!--Advertisement Banners-->
-
+<?php $ads = $this->context->getAds(); if (!empty($ads)) :?>
 <div class="block background-white mt30 p30 row div">
     <div class="page-header">
         <h1><?php echo Yii::t('app', 'Advertisement') ?></h1>
     </div>
-    <?php $ads = $this->context->getAds();
-    if (!empty($ads)) : echo $this->render('@app/views/site/_ads', [
+    <?php echo $this->render('@app/views/site/_ads', [
         'ads' => $ads,
-    ]); endif; ?>
+    ]);?>
 </div>
-
-
+<?php endif; ?>
 
 
 <!--Basic List-->
