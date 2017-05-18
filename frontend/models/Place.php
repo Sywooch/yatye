@@ -35,7 +35,7 @@ class Place extends BasePlace
         $sql = "SELECT `service`.* 
                 FROM `service`, `place_has_service` 
                 WHERE `place_has_service`.`service_id` = `service`.`id` 
-                AND `place_has_service`.`place_id` = 326 
+                AND `place_has_service`.`place_id` = " . $this->id . "  
                 ORDER BY RAND()";
         return self::findBySql($sql)->all();
     }

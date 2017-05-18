@@ -71,7 +71,7 @@ class Place extends PlaceData
                 FROM `place_has_service`, `service` 
                 WHERE `place_has_service`.`service_id` = `service`.`id` 
                 AND `service`.`category_id` = " . $category_id ." 
-                AND `place_has_service`.`place_id` = " . $this->id ." 
+                AND `place_has_service`.`place_id` = " . $this->id . " 
                 AND `service`.`status` = " . Yii::$app->params['active'] . " 
                 ORDER BY RAND() LIMIT 1";
         return Service::findBySql($sql)->one();
