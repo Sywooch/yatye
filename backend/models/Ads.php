@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use backend\helpers\Helpers;
 use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Ads as BaseAds;
@@ -28,12 +29,13 @@ class Ads extends BaseAds
             ['image_file', 'file', 'extensions' => ['png', 'jpg', 'gif']],
             [['image_file'], 'required', 'on' => 'create'],
 
-            [['title', 'image', 'type', 'size'], 'required'],
+            [['title', 'image', 'size'], 'required'],
             [['start_at', 'end_at', 'created_at', 'updated_at'], 'safe'],
             [['type', 'status', 'created_by', 'updated_by', 'size'], 'integer'],
             [['title'], 'string', 'max' => 75],
             [['image', 'url'], 'string', 'max' => 255],
             [['status'], 'default', 'value' => Yii::$app->params['pending']],
+            [['type'], 'default', 'value' => Yii::$app->params['FREE']],
         ];
     }
 
@@ -95,5 +97,17 @@ class Ads extends BaseAds
     public function getUser()
     {
         return ValueHelpers::getUser($this);
+    }
+
+    public function getParams()
+    {
+        $sizes = Helpers::getSizes();
+        $types = Helpers::getProfileType();
+
+        return [
+            'model' => $this,
+            'sizes' => $sizes,
+            'types' => $types,
+        ];
     }
 }

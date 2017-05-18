@@ -24,7 +24,9 @@ use kartik\widgets\DatePicker;
 
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <?= $form->field($model, 'type')->textInput() ?>
+            <?php echo $form->field($model, 'type')->dropDownList($types, [
+                'prompt' => Yii::t('app', 'Profile type'),
+            ])->label(false); ?>
         </div>
         <div class="col-md-6 col-lg-6">
             <?php echo $form->field($model, 'period')->widget(DatePicker::classname(), [
@@ -58,7 +60,7 @@ use kartik\widgets\DatePicker;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
