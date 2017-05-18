@@ -13,10 +13,10 @@ $this->title = Yii::$app->name;
             ]); ?>
 
             <!--Advertisement Banners-->
-            <?php $ads = $this->context->getAds();
+            <?php /*$ads = $this->context->getAds();
             if (!empty($ads)) : echo $this->render('_ads', [
                 'ads' => $ads,
-            ]); endif; ?>
+            ]); endif; */?>
 
             <!--Up coming events-->
             <?php $upcoming_events = $this->context->getUpcomingEvents();
