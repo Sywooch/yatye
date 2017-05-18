@@ -113,30 +113,40 @@ class Category extends CategoryData
         return Yii::$app->params['thumbnails'] . $logos[0];
     }
 
+    public function getPlaceIds()
+    {
+        $placeIds = array();
+        foreach ($this->getList()->all() as $place){
+            $placeIds[] = $place->id;
+        }
+
+        return $placeIds;
+    }
+
     public function getPremiumList()
     {
-        $sql = $this->sql();
-        $sql .= ' AND `profile_type` = ' . Yii::$app->params['PREMIUM'] . '  ORDER BY RAND() LIMIT 10';
-        return Place::findBySql($sql);
-
+        return Place::find()
+            ->where(['in', 'id', $this->getPlaceIds()])
+            ->andWhere(['profile_type'=>Yii::$app->params['PREMIUM']])
+            ->orderBy(new Expression('RAND()'));
     }
 
     public function getBasicList()
     {
-        $sql = $this->sql();
-        $sql .= '  ORDER BY `profile_type` <> ' . Yii::$app->params['PREMIUM'] . ', 
+        return Place::find()
+            ->where(['in', 'id', $this->getPlaceIds()])
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM'] . ', 
                  `profile_type` <> ' . Yii::$app->params['BASIC'] . ', 
-                  RAND() LIMIT 6';
-        return Place::findBySql($sql);
+                  RAND()'));
     }
 
     public function getFreeList()
     {
-        $sql = $this->sql();
-        $sql .= '  ORDER BY `profile_type` <> ' . Yii::$app->params['BASIC'] . ', 
+        return Place::find()
+            ->where(['in', 'id', $this->getPlaceIds()])
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['BASIC'] . ', 
                  `profile_type` <> ' . Yii::$app->params['FREE'] . ', 
-                  RAND() LIMIT 16';
-        return Place::findBySql($sql);
+                  RAND() '));
     }
 
     public function getMostViewed()

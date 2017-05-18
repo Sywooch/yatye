@@ -38,15 +38,18 @@ class CategoryController extends BaseController
 
 
             $premiumListDataProvider = new ActiveDataProvider([
-                'query' => $model->getPremiumList(),
+                'query' => $model->getPremiumList()->limit(10),
             ]);
 
             $basicListDataProvider = new ActiveDataProvider([
                 'query' => $model->getBasicList(),
+                'pagination' => [
+                    'pageSize' => 6,
+                ],
             ]);
 
             $freeListDataProvider = new ActiveDataProvider([
-                'query' => $model->getFreeList(),
+                'query' => $model->getFreeList()->limit(16),
             ]);
 
             return $this->render('index', [

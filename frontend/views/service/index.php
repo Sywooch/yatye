@@ -8,9 +8,6 @@ $this->title = $model->name . ' in Rwanda';
 $this->params['breadcrumbs'][] = ['label' => $model->getCategoryName(), 'url' => ['/category/' . $model->getCategorySlug()]];
 $this->params['breadcrumbs'][] = $model->name;
 
-$dataProvider->pagination = [
-    'pageSize' => 12,
-];
 ?>
 <div class="col-sm-8 col-lg-9">
     <div class="cards-row">

@@ -26,6 +26,9 @@ class BasicListController extends BaseController
         if (!is_null($model)) {
             $dataProvider = new ActiveDataProvider([
                 'query' => $model->getFreeList(),
+                'pagination' => [
+                    'pageSize' => 24,
+                ],
             ]);
 
             return $this->render('index', [

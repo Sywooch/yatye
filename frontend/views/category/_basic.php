@@ -45,18 +45,7 @@ use yii\widgets\ListView;
                     'tag' => false,
                     'class' => 'item'
                 ],
-                /* do not display {summary} */
-                'layout' => '{items}{pager}',
-
-                'pager' => [
-                    'prevPageLabel' => false,
-                    'nextPageLabel' => false,
-                    'maxButtonCount' => 10,
-                    'options' => [
-                        'class' => 'pager col-xs-12'
-                    ]
-                ],
-
+                'layout' => '{items}',
             ]); ?>
         </div>
         <?php if (count($basic_places) >= 6) : ?>

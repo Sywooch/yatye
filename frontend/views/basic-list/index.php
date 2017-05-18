@@ -5,10 +5,6 @@ use yii\widgets\ListView;
 
 $this->title = $model->name . ' in Rwanda';
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['/category/' . $model->slug]];
-
-$dataProvider->pagination = [
-    'pageSize' => 21,
-];
 ?>
 <div class="col-sm-8 col-lg-9">
     <div class="content">
