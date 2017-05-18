@@ -13,14 +13,15 @@ $this->title = Yii::$app->name;
             ]); ?>
 
             <!--Advertisement Banners-->
-            <?php $ads = $this->context->getAds(); if (!empty($ads)) : ?>
-            <div class="container">
-                <div class="row block background-white p30 mt30 div">
-                    <?php echo $this->render('_ads', [
-                        'ads' => $ads,
-                    ]); ?>
+            <?php $ads = $this->context->getAds();
+            if (!empty($ads['300x300']) || !empty($ads['730x300']) || !empty($ads['350x630'])) : ?>
+                <div class="container">
+                    <div class="row block background-white p30 mt30 div">
+                        <?php echo $this->render('_ads', [
+                            'ads' => $ads,
+                        ]); ?>
+                    </div>
                 </div>
-            </div>
             <?php endif; ?>
 
             <!--Up coming events-->

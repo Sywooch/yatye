@@ -277,14 +277,25 @@ class DataHelpers
 
     public static function getAds()
     {
-        $query = Ads::find()
-            ->where(['status' => Yii::$app->params['active']]);
-        $ads_300x300 = $query->where(['size' => Yii::$app->params['300x300']])
-            ->orderBy(new Expression('RAND()'))->limit(2)->all();
-        $ads_730x300 = $query->where(['size' => Yii::$app->params['730x300']])
-            ->orderBy(new Expression('RAND()'))->all();
-        $ads_350x630 = $query->where(['size' => Yii::$app->params['350x630']])
-            ->orderBy(new Expression('RAND()'))->all();
+        $ads_300x300 = Ads::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->andWhere(['size' => Yii::$app->params['300x300']])
+            ->orderBy(new Expression('RAND()'))
+            ->limit(2)
+            ->all();
+
+        $ads_730x300 = Ads::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->andWhere(['size' => Yii::$app->params['730x300']])
+            ->orderBy(new Expression('RAND()'))
+            ->all();
+
+        $ads_350x630 = Ads::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->andWhere(['size' => Yii::$app->params['350x630']])
+            ->orderBy(new Expression('RAND()'))
+            ->all();
+
         return [
             '300x300' => $ads_300x300,
             '730x300' => $ads_730x300,
