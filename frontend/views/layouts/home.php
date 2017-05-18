@@ -84,7 +84,7 @@ AppAsset::register($this);
     </header>
     <?php echo $this->render('@app/views/layouts/_messages') ?>
     <?= $content ?>
-    <?php echo $this->render('@app/views/layouts/_footer') ?>
+    <?php //echo $this->render('@app/views/layouts/_footer') ?>
 </div>
 <?php echo $this->render('@app/views/layouts/scripts/_twitter') ?>
 <?php echo $this->render('@app/views/layouts/scripts/_other_scripts') ?>
