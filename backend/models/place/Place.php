@@ -70,7 +70,7 @@ class Place extends PlaceData
         $sql = "SELECT `service`.* 
                 FROM `place_has_service`, `service` 
                 WHERE `place_has_service`.`service_id` = `service`.`id` 
-                AND `service`.`category_id` = " . $category_id ." 
+                AND `service`.`category_id` = " . $category_id . " 
                 AND `place_has_service`.`place_id` = " . $this->id . " 
                 AND `service`.`status` = " . Yii::$app->params['active'] . " 
                 ORDER BY RAND() LIMIT 1";
@@ -122,27 +122,36 @@ class Place extends PlaceData
      */
     public function getHaversineFormula()
     {
-        $formula = '( 6371 * acos( cos( radians(' . $this->latitude . ') ) * cos( radians( latitude ) ) * cos( radians( longitude )';
-        $formula .= '- radians(' . $this->longitude . ') ) + sin( radians(' . $this->latitude . ') ) * sin( radians( latitude ) ) ) ) AS distance';
-        return $formula;
+        if ($this->latitude != null && $this->longitude != null) {
+            $formula = '( 6371 * acos( cos( radians(' . $this->latitude . ') ) * cos( radians( latitude ) ) * cos( radians( longitude )';
+            $formula .= '- radians(' . $this->longitude . ') ) + sin( radians(' . $this->latitude . ') ) * sin( radians( latitude ) ) ) ) AS distance';
+            return $formula;
+        }
+
+
     }
 
     public function getPlaceIdsFromTheGreatCircleDistances()
     {
-        return "SELECT `place`.*, " . $this->getHaversineFormula() . " 
+        $formula = $this->getHaversineFormula();
+        if ($formula){
+            return "SELECT `place`.*, " . $formula . " 
                 FROM `place` 
                 WHERE `status`= " . Yii::$app->params['active'] . "
                 AND `id` != " . $this->id . " 
                 HAVING distance < 0.5 
                 ORDER BY RAND() LIMIT 6 ";
+        }
     }
 
     public function getNearByPlaces()
     {
         $sql = $this->getPlaceIdsFromTheGreatCircleDistances();
-        return Place::findBySql($sql);
-    }
+        if($sql){
+            return Place::findBySql($sql);
+        }
 
+    }
 
 
     public static function getPlacesWithEmptyFields()
