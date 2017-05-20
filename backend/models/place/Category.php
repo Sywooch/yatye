@@ -116,7 +116,7 @@ class Category extends CategoryData
     public function getPlaceIds()
     {
         $placeIds = array();
-        foreach ($this->getList()->all() as $place){
+        foreach ($this->getList()->all() as $place) {
             $placeIds[] = $place->id;
         }
 
@@ -127,7 +127,7 @@ class Category extends CategoryData
     {
         return Place::find()
             ->where(['in', 'id', $this->getPlaceIds()])
-            ->andWhere(['profile_type'=>Yii::$app->params['PREMIUM']])
+            ->andWhere(['profile_type' => Yii::$app->params['PREMIUM']])
             ->orderBy(new Expression('RAND()'));
     }
 
