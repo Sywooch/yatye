@@ -75,8 +75,11 @@ use yii\grid\GridView;
                             },
                         ],
                         [
-                            'attribute' => 'name',
-                            'label' => Yii::t('app', 'Social Media'),
+                            'label' => 'Name',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                return substr($model->name, 0, 50);
+                            },
                         ],
                         [
                             'class' => 'yii\grid\ActionColumn',
