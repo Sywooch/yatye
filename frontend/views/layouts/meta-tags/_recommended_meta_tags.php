@@ -13,7 +13,6 @@ $keywords = $this->context->getKeywords();
 <meta name="language" content="english">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="author" content="Marius Ngaboyamahina"/>
 <meta name="publisher" content="Marius Ngaboyamahina">
 <!--<meta name="no-email-collection" content="http://www.unspam.com/noemailcollection/">-->
 
@@ -39,7 +38,7 @@ $keywords = $this->context->getKeywords();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--http-equiv Tags-->
-<!--<meta http-equiv="Cache-control" content="private">-->
+<meta http-equiv="Cache-control" content="public">
 <meta http-equiv="expires" content="30"/>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
