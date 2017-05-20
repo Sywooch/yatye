@@ -11,7 +11,7 @@ use yii\helpers\Html;
 
 ?>
 <footer class="footer  p30 row div">
-    <?php echo $this->render('@app/views/layouts/_footer_top') ?>
+    <?php //echo $this->render('@app/views/layouts/_footer_top') ?>
     <div class="footer-bottom">
         <div class="container">
             <div class="footer-bottom-left">
