@@ -78,7 +78,7 @@ use yii\grid\GridView;
                             'label' => 'Name',
                             'format' => 'raw',
                             'value' => function ($model) {
-                                return substr($model->name, 0, 60);
+                                return substr($model->name, 0, 80);
                             },
                         ],
                         [
