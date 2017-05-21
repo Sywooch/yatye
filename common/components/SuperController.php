@@ -82,9 +82,9 @@ class SuperController extends Controller
             'get_upcoming_events' => DataHelpers::getUpcomingEvents(),
             'get_profile_picture' => RecordHelpers::getProfilePicture(),
             'all_post_categories' => DataHelpers::getAllPostCategories(),
-            'get_places_without_contacts' => DataHelpers::getPlacesWithoutContacts(),
-            'get_places_with_empty_fields' => DataHelpers::getPlacesWithEmptyFields(),
-            'get_places_without_social_media' => DataHelpers::getPlacesWithoutSocialMedia(),
+//            'get_places_without_contacts' => DataHelpers::getPlacesWithoutContacts(),
+//            'get_places_with_empty_fields' => DataHelpers::getPlacesWithEmptyFields(),
+//            'get_places_without_social_media' => DataHelpers::getPlacesWithoutSocialMedia(),
         ];
     }
 
