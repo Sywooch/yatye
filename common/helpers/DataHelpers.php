@@ -117,7 +117,7 @@ class DataHelpers
         return ArrayHelper::map(Place::find()
             ->where(['status' => Yii::$app->params['pending']])
             ->orderBy(new Expression('updated_at ASC'))
-            ->limit(30)
+            ->limit(10)
             ->all(), 'id', 'name');
     }
 
