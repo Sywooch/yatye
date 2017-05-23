@@ -37,3 +37,5 @@ phpunit.phar
 # Server deployment
 /recipe
 deploy.php
+
+.htaccess
