@@ -36,3 +36,7 @@ phpunit.phar
 .htaccess
 
 #common/models
+
+# Server deployment
+/recipe
+deploy.php
