@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use frontend\models\Place;
 use frontend\models\Ratings;

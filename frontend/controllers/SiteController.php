@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use backend\models\Ads;
+use common\helpers\DataHelpers;
 use Yii;
 use common\models\Place;
 use frontend\models\Enquiry;
@@ -43,7 +45,6 @@ class SiteController extends BaseController
             ->andWhere(['!=', 'id', 8])
             ->orderBy('RAND()')
             ->all();
-
         Yii::$app->session->setFlash('add');
 
         return $this->render('index', [
@@ -63,4 +64,8 @@ class SiteController extends BaseController
         return $this->renderPartial('/site/sitemap');
     }
 
+    public static function accessData()
+    {
+        return nu;
+    }
 }

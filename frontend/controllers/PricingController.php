@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use backend\models\Pricing;
 use yii\data\ActiveDataProvider;

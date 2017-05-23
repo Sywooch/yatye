@@ -229,20 +229,14 @@ class Helpers
     {
         return array_combine(
             [
-                Yii::$app->params['468x60'],
-                Yii::$app->params['840x120'],
-                Yii::$app->params['250x250'],
-                Yii::$app->params['260x400'],
-                Yii::$app->params['180x150'],
-                Yii::$app->params['240x200'],
+                Yii::$app->params['300x300'],
+                Yii::$app->params['730x300'],
+                Yii::$app->params['350x630'],
             ],
             [
-                '468x60',
-                '840x120',
-                '250x250',
-                '260x400',
-                '180x150',
-                '240x200',
+                '300x300',
+                '730x300',
+                '350x630',
             ]
         );
     }

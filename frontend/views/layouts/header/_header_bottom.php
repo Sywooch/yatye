@@ -10,8 +10,7 @@ use yii\helpers\Html;
 
 ?>
 <ul class="header-nav-primary nav nav-pills collapse navbar-collapse">
-    <?php $data = $this->context->accessData();
-    $categories = $data['all_categories'];
+    <?php $categories = $this->context->getAllCategories();
     foreach ($categories as $category): ?>
         <li><a href="<?php echo Url::to(['/category/' . $category->slug]) ?>"><?php echo $category->name ?></a></li>
     <?php endforeach; ?>

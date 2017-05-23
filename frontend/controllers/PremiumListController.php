@@ -23,6 +23,9 @@ class PremiumListController extends BaseController
         if (!is_null($model)) {
             $dataProvider = new ActiveDataProvider([
                 'query' => $model->getBasicList(),
+                'pagination' => [
+                    'pageSize' => 16,
+                ],
 
             ]);
 

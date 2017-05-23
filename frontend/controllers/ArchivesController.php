@@ -16,8 +16,8 @@ class ArchivesController extends BaseController
         $year = Yii::$app->request->get('year');
 
         $query = Post::find()
-            ->where(new Expression('Month(`updated_at`) = ' . $month . ' AND Year(`updated_at`) = ' . $year))
-            ->orderBy(['updated_at' => SORT_DESC]);
+            ->where(new Expression('Month(`created_at`) = ' . $month . ' AND Year(`created_at`) = ' . $year))
+            ->orderBy(['created_at' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
 
@@ -27,5 +27,4 @@ class ArchivesController extends BaseController
             'dataProvider' => $dataProvider,
         ]);
     }
-
 }

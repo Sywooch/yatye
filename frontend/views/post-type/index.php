@@ -23,7 +23,7 @@ $dataProvider->pagination = [
                     <div class="post-meta-tags clearfix div">
                         <ul>
                             <?php foreach ($post_categories as $post_category) : ?>
-                                <li class="tag">
+                                <li class="tag" style="margin-top: 10px;">
                                     <a href="<?php echo $post_category->getUrl(); ?>"><?php echo $post_category->name; ?></a>
                                 </li>
                             <?php endforeach; ?>

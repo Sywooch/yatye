@@ -24,10 +24,10 @@ class EventController extends BaseEventController
      */
     public function actionIndex()
     {
+        $sort = new Expression('`status` <> ' . Yii::$app->params['inactive'] . ', TIMESTAMP(`end_date`,`end_time`) DESC');
         $dataProvider = new ActiveDataProvider([
             'query' => Event::find()
-//                ->where(new Expression('`start_date` >= CURRENT_TIMESTAMP'))
-                ->orderBy(new Expression('`created_at` DESC')),
+                ->orderBy($sort),
         ]);
 
         return $this->render('index', [

@@ -60,5 +60,4 @@ class UpcomingEventController extends BaseController
             return $this->redirect(Yii::$app->params['root']);
         }
     }
-
 }

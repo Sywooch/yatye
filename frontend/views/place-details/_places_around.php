@@ -21,7 +21,7 @@ use yii\widgets\ListView;
                 'dataProvider' => $dataProvider,
                 'itemView' => function ($model, $key, $index, $widget) {
 
-                    $itemContent = $this->render('_list_item',['model' => $model]);
+                    $itemContent = $this->render('_places_around_item',['model' => $model]);
                     return $itemContent;
 
                 },

@@ -6,9 +6,11 @@
  * Time: 21:04
  */
 /* @var $free_place backend\models\place\Place */
+/* @var $service backend\models\place\Service */
+/* @var $model backend\models\place\Category */
 use yii\helpers\Html;
 use yii\helpers\Url;
-
+use yii\widgets\ListView;
 ?>
 <?php if (!empty($free_places)): ?>
 <div class="block background-white mt30 p30 row div">
@@ -19,26 +21,31 @@ use yii\helpers\Url;
     </div>
     <div class="cards-simple-wrapper">
         <div id="basic-list" class="row">
-            <?php foreach ($free_places as $free_place):?>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="card-simple" data-background-image="<?php echo $free_place->getThumbnailLogo() ?>">
-                        <div class="card-simple-background">
-                            <div class="card-simple-content">
-                                <h2><?php echo Html::a($free_place->name, $free_place->getPlaceUrl(), ['target' => '_blank']) ?></h2>
-                                <div class="card-simple-rating">
-                                    <?php echo $free_place->getRatingStars() ?>
-                                </div>
-                                <div class="card-simple-actions">
-                                    <?php echo Html::a(Html::tag('i', '', ['class' => 'fa fa-eye']), $free_place->getPlaceUrl(), ['target' => '_blank']) ?>
-                                </div>
-                            </div>
-                            <div class="card-simple-label">
-                                <small><?php echo $free_place->getThisPlaceHasServiceName($model->id) ?></small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+            <?= ListView::widget([
+                'options' => [
+                    'tag' => 'div',
+                ],
+                'dataProvider' => $dataProvider,
+                'itemView' => function ($model, $key, $index, $widget) {
+
+
+                    $itemContent = $this->render('_free_item', ['model' => $model]);
+
+                    /* Display an Advertisement after the first list item */
+//                        if ($index == 0) {
+//                            $adContent = $this->render('_ad');
+//                            $itemContent .= $adContent;
+//                        }
+                    return $itemContent;
+
+                },
+                'itemOptions' => [
+                    'tag' => false,
+                    'class' => 'item'
+                ],
+                'layout' => '{items}',
+
+            ]); ?>
         </div>
         <?php if (count($free_places) >= 16) : ?>
             <div class="row">

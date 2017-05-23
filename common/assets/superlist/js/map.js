@@ -75,8 +75,8 @@ $(document).ready(function() {
                 var street = document.getElementById('street');
                 var name = document.getElementById('name');
                 name.value = place.name;
-                street.value = place.address_components[0].short_name;
-                neighborhood.value = place.address_components[1].short_name + ', ' + place.address_components[2].short_name + ', ' + place.address_components[3].short_name;
+                neighborhood.value = place.address_components[0].short_name;
+                street.value = place.address_components[1].short_name + ', ' + place.address_components[2].short_name + ', ' + place.address_components[3].short_name;
             });
         }
 

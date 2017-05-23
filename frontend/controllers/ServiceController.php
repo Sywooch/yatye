@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use yii\data\ActiveDataProvider;
 use backend\models\place\Service;
@@ -22,6 +23,9 @@ class ServiceController extends BaseController
 
             $dataProvider = new ActiveDataProvider([
                 'query' => $model->getList(),
+                'pagination' => [
+                    'pageSize' => 16,
+                ],
 
             ]);
             return $this->render('index', [
@@ -33,6 +37,4 @@ class ServiceController extends BaseController
             return $this->redirect(Yii::$app->params['root']);
         }
     }
-
-
 }

@@ -52,11 +52,8 @@ class AdsController extends BackendAdminController
     {
         $model = new Ads();
         $model->scenario = 'create';
-        $sizes = Helpers::getSizes();
-        $params = [
-            'model' => $model,
-            'sizes' => $sizes,
-        ];
+        $params = $model->getParams();
+
 
         if ($model->load(Yii::$app->request->post())) {
             $model->image_file = UploadedFile::getInstance($model, 'image_file');
@@ -65,7 +62,7 @@ class AdsController extends BackendAdminController
             $path = Yii::$app->params['frontend_alias'] . Yii::$app->params['ads'] . $file_name;
             $file_name = preg_replace('/\s+/', '', $file_name);
 
-            $image_size = $model->checkImageSizes($model);
+            $image_size = $model->checkImageSizes();
             if (GalleryHelper::uploadAds($model->image_file->tempName, $path, $image_size['width'], $image_size['height'])) {
                 $model->image = $file_name;
                 $model->save(0);
@@ -89,11 +86,7 @@ class AdsController extends BackendAdminController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $sizes = Helpers::getSizes();
-        $params = [
-            'model' => $model,
-            'sizes' => $sizes,
-        ];
+        $params = $model->getParams();
 
         if ($model->load(Yii::$app->request->post())) {
 

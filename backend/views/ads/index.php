@@ -14,20 +14,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Ads'), ['create'], ['class' => 'btn btn-primary btn-xs']) ?>
+        <?= Html::a(Yii::t('app', 'Create Ads'), ['create'], ['class' => 'btn btn-primary btn-xs pull-right']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
             'title',
-//            'slug',
-//            'image',
-            'caption',
              'start_at',
              'end_at',
              'type',
-            // 'created_at',
+             'created_at',
             // 'updated_at',
             // 'status',
             // 'created_by',
@@ -62,5 +58,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ],
+        'tableOptions' => ['class' => 'table mb0'],
     ]); ?>
 </div>

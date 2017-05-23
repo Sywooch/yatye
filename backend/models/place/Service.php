@@ -113,6 +113,11 @@ class Service extends ServiceData
             ->all();
     }
 
+    public function getUrl()
+    {
+        return Yii::$app->request->baseUrl . '/service/' . $this->slug;
+    }
+
     public function getStatus()
     {
         return ValueHelpers::getStatus($this);

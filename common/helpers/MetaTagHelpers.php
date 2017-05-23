@@ -19,6 +19,7 @@ class MetaTagHelpers
 //        Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $description]);
 //        Yii::$app->view->registerMetaTag(['name' => 'subject', 'content' => $description]);
 //        Yii::$app->view->registerMetaTag(['name' => 'abstract', 'content' => $description]);
+//        Yii::$app->view->registerMetaTag(['name' => 'news_keywords', 'content' => $description]);
 
         /*Open Graph data*/
         Yii::$app->view->registerMetaTag(['property' => 'og:url', 'content' => $url]);

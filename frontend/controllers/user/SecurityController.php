@@ -8,9 +8,8 @@
 
 namespace frontend\controllers\user;
 
-use common\models\LoginForm;
 use Yii;
-use common\components\BaseController;
+use common\helpers\DataHelpers;
 use dektrium\user\controllers\SecurityController as BaseSecurityController;
 
 class SecurityController extends BaseSecurityController
@@ -18,13 +17,42 @@ class SecurityController extends BaseSecurityController
 
     public function accessData()
     {
-        return BaseController::accessData();
+        return [
+            'get_keywords' => DataHelpers::getKeywords(),
+            'all_categories' => DataHelpers::getAllCategories(),
+        ];
     }
 
-    public function accessDataByIds($id)
+    public static function getAds()
     {
-        return BaseController::accessDataByIds($id);
+        return DataHelpers::getAds();
     }
+
+    public static function getKeywords()
+    {
+        return DataHelpers::getKeywords();
+    }
+
+    public static function getAllCategories()
+    {
+        return DataHelpers::getAllCategories();
+    }
+
+    public static function getUpcomingEvents()
+    {
+        return DataHelpers::getUpcomingEvents();
+    }
+
+    public static function getPostArchives()
+    {
+        return DataHelpers::getPostArchives();
+    }
+
+    public static function getPlaceContacts($place_id)
+    {
+        return DataHelpers::getPlaceContacts($place_id);
+    }
+
 
 //    /**
 //     * Logs in a user.

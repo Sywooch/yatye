@@ -61,16 +61,21 @@ class PlaceDetailsController extends AdminController
 
 
             $related_place_ids = $model->getRelatedPlaceIds();
-            $related_places = $model->getRelatedPlaces();
-            $other_places = $model->getNearByPlaces()->all();
+            $related_places = $model->getRelatedPlaces()->all();
+            $other_places = ($model->getNearByPlaces() != null) ? $model->getNearByPlaces()->all() : null;
 
-            $dataProvider = new ActiveDataProvider([
+            $nearByPlacesDataProvider = new ActiveDataProvider([
                 'query' => $model->getNearByPlaces(),
+            ]);
+
+            $relatedPlacesDataProvider = new ActiveDataProvider([
+                'query' => $model->getRelatedPlaces(),
             ]);
 
             return $this->render('index', [
                 'model' => $model,
-                'dataProvider' => $dataProvider,
+                'nearByPlacesDataProvider' => $nearByPlacesDataProvider,
+                'relatedPlacesDataProvider' => $relatedPlacesDataProvider,
                 'photos' => $photos,
                 'working_hours' => $working_hours,
                 'socials' => $socials,
@@ -152,6 +157,5 @@ class PlaceDetailsController extends AdminController
 
             return $this->redirect(Yii::$app->request->baseUrl . '/place-details/' . $place->slug);
         }
-
     }
 }

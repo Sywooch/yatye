@@ -8,6 +8,7 @@
 
 namespace common\helpers;
 
+use backend\models\Ads;
 use Yii;
 use yii\db\Expression;
 use common\models\Cell;
@@ -116,7 +117,7 @@ class DataHelpers
         return ArrayHelper::map(Place::find()
             ->where(['status' => Yii::$app->params['pending']])
             ->orderBy(new Expression('updated_at ASC'))
-            ->limit(30)
+            ->limit(10)
             ->all(), 'id', 'name');
     }
 
@@ -138,11 +139,9 @@ class DataHelpers
     public static function getPlaceContacts($place_id)
     {
         $model = Place::findOne(['id' => $place_id]);
-
-        if ($model) {
+        if (!empty($model)) {
             return $model->getContacts();
         }
-
     }
 
     public static function getPlacesWithStatuses($status)
@@ -223,19 +222,19 @@ class DataHelpers
 
     public static function getKeywords()
     {
-        $places = Place::findAll(['status' => Yii::$app->params['active']]);
+//        $places = Place::findAll(['status' => Yii::$app->params['active']]);
         $categories = Category::findAll(['status' => Yii::$app->params['active']]);
         $services = Service::findAll(['status' => Yii::$app->params['active']]);
-        $posts = Post::findAll(['status' => Yii::$app->params['active']]);
-        $post_categories = PostCategory::findAll(['status' => Yii::$app->params['active']]);
-        $events = Event::findAll(['status' => Yii::$app->params['active']]);
-        $event_tags = EventTags::findAll(['status' => Yii::$app->params['active']]);
+//        $posts = Post::findAll(['status' => Yii::$app->params['active']]);
+//        $post_categories = PostCategory::findAll(['status' => Yii::$app->params['active']]);
+//        $events = Event::findAll(['status' => Yii::$app->params['active']]);
+//        $event_tags = EventTags::findAll(['status' => Yii::$app->params['active']]);
 
         $keywords = array();
 
-        foreach ($places as $place) {
-//            $keywords[] = $place->name;
-        }
+        /*foreach ($places as $place) {
+            $keywords[] = $place->name;
+        }*/
 
         foreach ($categories as $category) {
             $keywords[] = $category->name . ' in Rwanda';
@@ -245,21 +244,21 @@ class DataHelpers
             $keywords[] = $service->name . ' in Rwanda';
         }
 
-        foreach ($posts as $post) {
-//            $keywords[] = $post->title;
+        /*foreach ($posts as $post) {
+            $keywords[] = $post->title;
         }
 
         foreach ($post_categories as $post_category) {
-//            $keywords[] = 'Rwanda Guide - Posts - ' . $post_category->name;
+            $keywords[] = 'Rwanda Guide - Posts - ' . $post_category->name;
         }
 
         foreach ($events as $event) {
-//            $keywords[] = 'Rwanda Guide - Events - ' . $event->name;
+            $keywords[] = 'Rwanda Guide - Events - ' . $event->name;
         }
 
         foreach ($event_tags as $event_tag) {
-//            $keywords[] = 'Rwanda - Events - ' . $event_tag->name;
-        }
+            $keywords[] = 'Rwanda - Events - ' . $event_tag->name;
+        }*/
 
         $keywords[] = implode(",", Yii::$app->params['meta_classification']);
 
@@ -274,6 +273,34 @@ class DataHelpers
             ->orderBy(new Expression("STR_TO_DATE(CONCAT(month, '/', year), '%m/%Y') DESC"))
             ->asArray()
             ->all();
+    }
+
+    public static function getAds()
+    {
+        $ads_300x300 = Ads::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->andWhere(['size' => Yii::$app->params['300x300']])
+            ->orderBy(new Expression('RAND()'))
+            ->limit(2)
+            ->all();
+
+        $ads_730x300 = Ads::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->andWhere(['size' => Yii::$app->params['730x300']])
+            ->orderBy(new Expression('RAND()'))
+            ->all();
+
+        $ads_350x630 = Ads::find()
+            ->where(['status' => Yii::$app->params['active']])
+            ->andWhere(['size' => Yii::$app->params['350x630']])
+            ->orderBy(new Expression('RAND()'))
+            ->all();
+
+        return [
+            '300x300' => $ads_300x300,
+            '730x300' => $ads_730x300,
+            '350x630' => $ads_350x630,
+        ];
     }
 
 }

@@ -12,8 +12,7 @@ use yii\helpers\Url;
 ?>
 
 <?php
-$data = $this->context->accessData();
-$post_archives = $data['get_post_archives'];
+$post_archives = $this->context->getPostArchives();
 if (!empty($post_archives)): ?>
     <div class="widget">
         <h2 class="widgettitle"><?php echo Yii::t('app', 'Archives') ?></h2>

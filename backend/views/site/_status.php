@@ -10,7 +10,7 @@ use yii\helpers\Html;
 
 <div class="panel">
     <div class="panel-heading">
-        <?= Html::a(Yii::t('app', 'More Reports'), ['report'], ['class' => 'btn btn-primary btn-xs pull-right', 'style'=>'']) ?>
+        <?php //echo Html::a(Yii::t('app', 'More Reports'), ['report'], ['class' => 'btn btn-primary btn-xs pull-right', 'style'=>'']) ?>
     </div>
     <div class="panel-body">
         <div class="row">

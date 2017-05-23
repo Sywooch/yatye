@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use yii\data\ActiveDataProvider;
 use backend\models\post\PostCategory;
@@ -33,5 +34,4 @@ class PostCategoryController extends BaseController
             return $this->redirect(Yii::$app->params['root']);
         }
     }
-
 }

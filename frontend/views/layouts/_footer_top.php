@@ -7,8 +7,8 @@
  */
 ?>
 
-<div class="footer-top visible-md visible-lg p30 div" style="background-color: white;">
-    <div class="row pre-load">
+<div class="footer-top visible-md visible-lg p30 div pre-load" style="background-color: white;">
+    <div class="row">
         <div class="col-sm-3">
             <a data-pin-do="embedUser" data-pin-board-width="370" data-pin-scale-height="230"
                data-pin-scale-width="115" href="https://www.pinterest.com/rwandaguide/"></a>

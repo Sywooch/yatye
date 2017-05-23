@@ -86,13 +86,13 @@ use yii\helpers\Url;
                         <?php if ($contact->type === Yii::$app->params['SKYPE']): ?>
                             <div class="detail-contact-skype">
                                 <i class="fa fa-skype"></i> <a
-                                        href="<?php echo $contact->name ?>"><?php echo $contact->name ?></a>
+                                        href="#"><?php echo $contact->name ?></a>
                             </div>
                         <?php endif; ?>
                         <?php if ($contact->type === Yii::$app->params['WEBSITE']): ?>
                             <div class="detail-contact-website">
                                 <i class="fa fa-globe"></i> <a
-                                        href="<?php echo $contact->name ?>">Visit website</a>
+                                        href="<?php echo $contact->name ?>" target="_blank">Visit website</a>
                             </div>
                         <?php endif; ?>
 
@@ -191,7 +191,7 @@ use yii\helpers\Url;
         <ul class="detail-amenities">
             <?php foreach ($amenities as $amenity): ?>
                 <li class="yes">
-                    <a href="<?php echo Url::to(['/service/' . $amenity['slug']]) ?>"><?php echo $amenity['name'] ?></a>
+                    <a href="<?php echo Url::to(['/service/' . $amenity->slug]) ?>"><?php echo $amenity->name ?></a>
                 </li>
             <?php endforeach; ?>
         </ul>

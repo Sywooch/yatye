@@ -58,42 +58,49 @@ class Category extends CategoryData
         ];
     }
 
-    public function getServiceIds()
-    {
-        $services = $this->getServices();
-        $service_ids = array();
-        foreach ($services as $service) {
-            $service_ids[] = $service->id;
-        }
-        return $service_ids;
-    }
+//    public function getServiceIds()
+//    {
+//        $services = $this->getServices();
+//        $service_ids = array();
+//        foreach ($services as $service) {
+//            $service_ids[] = $service->id;
+//        }
+//        return $service_ids;
+//    }
+//
+//    public function getPlaceIds()
+//    {
+//        $place_ids = array();
+//        $place_has_services = $this->getPlaceHasServices();
+//
+//        foreach ($place_has_services as $place_has_service) {
+//            $place_ids[] = $place_has_service['place_id'];
+//        }
+//        return $place_ids;
+//    }
 
-    public function getPlaceIds()
+    public function sql()
     {
-        $place_ids = array();
-        $place_has_services = $this->getPlaceHasServices();
-
-        foreach ($place_has_services as $place_has_service) {
-            $place_ids[] = $place_has_service['place_id'];
-        }
-        return $place_ids;
+        return "SELECT DISTINCT `place`.* 
+                FROM `place_has_service`, `place`, `service` 
+                WHERE `place_has_service`.`place_id`= `place`.`id` 
+                AND `place_has_service`.`service_id` = `service`.`id` 
+                AND `service`.`category_id` = " . $this->id . "
+                AND `service`.`status` = " . Yii::$app->params['active'] . " 
+                AND `place`.`status` = " . Yii::$app->params['active'];
     }
 
     public function getList()
     {
-        $place_ids = $this->getPlaceIds();
-        return Place::find()
-            ->where(['in', 'id', $place_ids])
-            ->andWhere(['status' => Yii::$app->params['active']]);
+        $sql = $this->sql();
+        return Place::findBySql($sql);
     }
 
     public function getOneRandomPlace()
     {
-        $list = $this->getList();
-        return $list->andWhere(['!=', 'logo', ''])
-            ->orderBy(new Expression('RAND()'))
-            ->limit(1)
-            ->all();
+        $sql = $this->sql();
+        $sql .= " AND (`place`.`logo` != '' OR `place`.`logo` IS NOT NULL) ORDER BY RAND() LIMIT 1";
+        return Place::findBySql($sql);
     }
 
     public function getPictures()
@@ -106,27 +113,40 @@ class Category extends CategoryData
         return Yii::$app->params['thumbnails'] . $logos[0];
     }
 
+    public function getPlaceIds()
+    {
+        $placeIds = array();
+        foreach ($this->getList()->all() as $place) {
+            $placeIds[] = $place->id;
+        }
+
+        return $placeIds;
+    }
+
     public function getPremiumList()
     {
-        return $this->getList()
+        return Place::find()
+            ->where(['in', 'id', $this->getPlaceIds()])
             ->andWhere(['profile_type' => Yii::$app->params['PREMIUM']])
             ->orderBy(new Expression('RAND()'));
     }
 
     public function getBasicList()
     {
-        return $this->getList()
-            ->orderBy(new Expression('`profile_type` <> '
-                . Yii::$app->params['PREMIUM'] . ', `profile_type` <> '
-                . Yii::$app->params['BASIC'] . ', RAND()'));
+        return Place::find()
+            ->where(['in', 'id', $this->getPlaceIds()])
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['PREMIUM'] . ', 
+                 `profile_type` <> ' . Yii::$app->params['BASIC'] . ', 
+                  RAND()'));
     }
 
     public function getFreeList()
     {
-        return $this->getList()
-            ->orderBy(new Expression('`profile_type` <> '
-                . Yii::$app->params['BASIC'] . ', `profile_type` <> '
-                . Yii::$app->params['FREE'] . ', RAND()'));
+        return Place::find()
+            ->where(['in', 'id', $this->getPlaceIds()])
+            ->orderBy(new Expression('`profile_type` <> ' . Yii::$app->params['BASIC'] . ', 
+                 `profile_type` <> ' . Yii::$app->params['FREE'] . ', 
+                  RAND() '));
     }
 
     public function getMostViewed()
@@ -139,19 +159,26 @@ class Category extends CategoryData
         return Place::find()
             ->where(['in', 'id', $place_ids])
             ->andWhere(['status' => Yii::$app->params['active']])
-            ->orderBy(new Expression('FIELD(id, ' . implode(',' , $place_ids) . ')'))
+            ->orderBy(new Expression('FIELD(id, ' . implode(',', $place_ids) . ')'))
             ->all();
     }
 
     public function getOneRandomGallery()
     {
-        $service_ids = $this->getServiceIds();
-        return Gallery::find()
+//        $service_ids = $this->getServiceIds();
+
+        /*return Gallery::find()
             ->where(['in', 'service_id', $service_ids])
             ->andWhere(['!=', 'name', ''])
             ->orderBy(new Expression('RAND()'))
             ->limit(1)
-            ->all();
+            ->all();*/
+        $sql = "SELECT `gallery`.*
+                FROM `gallery`, `service`
+                WHERE `gallery`.`service_id` = `service`.`id`
+                AND (`gallery`.`name` != '' OR `gallery`.`name` IS NOT NULL)
+                AND `service`.`category_id` = " . $this->id . ' ORDER BY RAND() LIMIT 1';
+        return Gallery::findBySql($sql)->all();
     }
 
     public function getGalleries()

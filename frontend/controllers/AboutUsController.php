@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use backend\models\AboutUs;
 use yii\data\ActiveDataProvider;
@@ -36,5 +37,4 @@ class AboutUsController extends BaseController
             return $this->redirect(Yii::$app->params['root']);
         }
     }
-
 }

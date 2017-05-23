@@ -6,9 +6,12 @@
  * Time: 22:33
  */
 /* @var $model backend\models\place\Place */
+/* @var $service backend\models\place\Service */
+use yii\helpers\Html;
 
 $session = Yii::$app->session;
 $category_id = $session->get('category_id');
+$service = $model->getThisPlaceHasServiceByCategory($category_id)
 ?>
 <div class="col-sm-6 col-lg-4 item" data-key="<?= $model->id ?>">
     <div class="card-simple" data-background-image="<?php echo $model->getThumbnailLogo() ?>">
@@ -26,7 +29,7 @@ $category_id = $session->get('category_id');
                     <a href="<?php echo $model->getPlaceUrl() ?>" target="_blank" class="fa fa-eye"></a>
                 </div>
             </div>
-            <div class="card-simple-label"><?php echo $model->getThisPlaceHasServiceName($category_id) ?></div>
+            <div class="card-simple-label"><?php echo $service->name ?></div>
             <div class="card-simple-price" style="opacity: 0.7"><small><?php echo $model->street ?></small></div>
         </div>
     </div>

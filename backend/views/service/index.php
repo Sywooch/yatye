@@ -6,6 +6,7 @@ use backend\assets\RwandaguideAsset;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model backend\models\place\Service */
 
 $this->title = 'Services';
 $this->params['breadcrumbs'][] = $this->title;

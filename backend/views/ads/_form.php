@@ -15,58 +15,31 @@ use kartik\widgets\DatePicker;
 
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-            </div>
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?= $form->field($model, 'caption')->textInput(['maxlength' => true]) ?>
-            </div>
+            <?= $form->field($model, 'image_file')->fileInput(['maxlength' => true]) ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?= $form->field($model, 'image_file')->fileInput(['maxlength' => true]) ?>
-            </div>
+            <?php echo $form->field($model, 'type')->dropDownList($types, [
+                'prompt' => Yii::t('app', 'Profile type'),
+            ])->label(false); ?>
         </div>
         <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?= $form->field($model, 'type')->textInput() ?>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?php echo $form->field($model, 'start_at')->widget(DatePicker::classname(), [
-                    'options' => [
-                        'placeholder' => '',
-                        'class' => 'form-control',
-                    ],
-                    'pluginOptions' => [
-                        'autoclose' => false,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ]); ?>
-            </div>
-
-        </div>
-        <div class="col-md-6 col-lg-6">
-            <div class="form-group">
-                <?php echo $form->field($model, 'end_at')->widget(DatePicker::classname(), [
-                    'options' => [
-                        'placeholder' => '',
-                        'class' => 'form-control',
-                    ],
-                    'pluginOptions' => [
-                        'autoclose' => false,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ]); ?>
-            </div>
+            <?php echo $form->field($model, 'period')->widget(DatePicker::classname(), [
+                'attribute' => 'start_at',
+                'attribute2' => 'end_at',
+                'options' => ['placeholder' => Yii::t('app', 'Start')],
+                'options2' => ['placeholder' => Yii::t('app', 'End')],
+                'type' => DatePicker::TYPE_RANGE,
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd'
+                ]
+            ]); ?>
         </div>
     </div>
 
@@ -87,7 +60,7 @@ use kartik\widgets\DatePicker;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

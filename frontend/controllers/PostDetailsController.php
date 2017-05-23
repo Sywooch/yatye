@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\helpers\DataHelpers;
 use Yii;
 use backend\models\post\Post;
 use common\helpers\MetaTagHelpers;
@@ -33,5 +34,4 @@ class PostDetailsController extends BaseController
             return $this->redirect(Yii::$app->params['root']);
         }
     }
-
 }

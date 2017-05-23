@@ -8,6 +8,7 @@
 
 namespace backend\models;
 
+use backend\helpers\Helpers;
 use common\helpers\ValueHelpers;
 use Yii;
 use common\models\Ads as BaseAds;
@@ -19,6 +20,7 @@ use yii\db\Expression;
 class Ads extends BaseAds
 {
     public $image_file;
+    public $period;
 
     public function rules()
     {
@@ -27,13 +29,13 @@ class Ads extends BaseAds
             ['image_file', 'file', 'extensions' => ['png', 'jpg', 'gif']],
             [['image_file'], 'required', 'on' => 'create'],
 
-            [['title', 'slug', 'type', 'status', 'size'], 'required'],
+            [['title', 'image', 'size'], 'required'],
             [['start_at', 'end_at', 'created_at', 'updated_at'], 'safe'],
             [['type', 'status', 'created_by', 'updated_by', 'size'], 'integer'],
-            [['title', 'slug'], 'string', 'max' => 75],
+            [['title'], 'string', 'max' => 75],
             [['image', 'url'], 'string', 'max' => 255],
-            [['caption'], 'string', 'max' => 125],
             [['status'], 'default', 'value' => Yii::$app->params['pending']],
+            [['type'], 'default', 'value' => Yii::$app->params['FREE']],
         ];
     }
 
@@ -53,14 +55,6 @@ class Ads extends BaseAds
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
             ],
-
-            'sluggable' => [
-                'class' => SluggableBehavior::className(),
-                'attribute' => 'title',
-
-                // In case of attribute that contains slug has different name
-                // 'slugAttribute' => 'alias',
-            ],
         ];
     }
 
@@ -72,53 +66,27 @@ class Ads extends BaseAds
         return parent::beforeValidate();
     }
 
-    public function checkImageSizes($model)
+    public function checkImageSizes()
     {
-
-        if ($model->size == Yii::$app->params['468x60']) {
-            $width = 468;
-            $height = 60;
-        } elseif ($model->size == Yii::$app->params['840x120']) {
-            $width = 840;
-            $height = 120;
-        } elseif ($model->size == Yii::$app->params['250x250']) {
-            $width = 250;
-            $height = 250;
-        } elseif ($model->size == Yii::$app->params['260x400']) {
-            $width = 260;
-            $height = 400;
-        } elseif ($model->size == Yii::$app->params['180x150']) {
-            $width = 180;
-            $height = 150;
-        } elseif ($model->size == Yii::$app->params['240x200']) {
-            $width = 240;
-            $height = 200;
+        if ($this->size == Yii::$app->params['300x300']) {
+            $width = 300;
+            $height = 300;
+        } elseif ($this->size == Yii::$app->params['730x300']) {
+            $width = 730;
+            $height = 300;
+        } elseif ($this->size == Yii::$app->params['350x630']) {
+            $width = 350;
+            $height = 630;
         } else {
             $width = 0;
             $height = 0;
         }
-
         return ['width' => $width, 'height' => $height];
     }
 
-    public static function getAds()
+    public function getPath()
     {
-        $query = self::find();
-        $ads_468x60 = $query->where(['size' => Yii::$app->params['468x60']])->orderBy(new Expression('RAND()'))->limit(1)->all();
-        $ads_840x120 = $query->where(['size' => Yii::$app->params['840x120']])->orderBy(new Expression('RAND()'))->limit(1)->all();
-        $ads_250x250 = $query->where(['size' => Yii::$app->params['250x250']])->orderBy(new Expression('RAND()'))->limit(1)->all();
-        $ads_260x400 = $query->where(['size' => Yii::$app->params['260x400']])->orderBy(new Expression('RAND()'))->limit(1)->all();
-        $ads_180x150 = $query->where(['size' => Yii::$app->params['180x150']])->orderBy(new Expression('RAND()'))->limit(1)->all();
-        $ads_240x200 = $query->where(['size' => Yii::$app->params['240x200']])->orderBy(new Expression('RAND()'))->limit(1)->all();
-
-        return [
-            '468x60' => $ads_468x60,
-            '840x120' => $ads_840x120,
-            '250x250' => $ads_250x250,
-            '260x400' => $ads_260x400,
-            '180x150' => $ads_180x150,
-            '240x200' => $ads_240x200,
-        ];
+        return Yii::$app->params['ads_images'] . $this->image;
     }
 
     public function getStatus()
@@ -129,5 +97,17 @@ class Ads extends BaseAds
     public function getUser()
     {
         return ValueHelpers::getUser($this);
+    }
+
+    public function getParams()
+    {
+        $sizes = Helpers::getSizes();
+        $types = Helpers::getProfileType();
+
+        return [
+            'model' => $this,
+            'sizes' => $sizes,
+            'types' => $types,
+        ];
     }
 }
