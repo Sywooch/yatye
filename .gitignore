@@ -33,10 +33,3 @@ phpunit.phar
 
 # vagrant runtime
 /.vagrant
-#.htaccess
-
-#common/models
-
-# Server deployment
-/recipe
-deploy.php

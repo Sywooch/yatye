@@ -2,15 +2,15 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\web\Controller;
 use yii\filters\VerbFilter;
-use common\models\LoginForm;
 use yii\filters\AccessControl;
-use backend\components\AdminController as BackendAdminController;
+use common\models\LoginForm;
 
 /**
  * Site controller
  */
-class SiteController extends BackendAdminController
+class SiteController extends Controller
 {
     /**
      * @inheritdoc
@@ -26,7 +26,7 @@ class SiteController extends BackendAdminController
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'report'],
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -53,20 +53,46 @@ class SiteController extends BackendAdminController
         ];
     }
 
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
     public function actionIndex()
     {
         return $this->render('index');
     }
 
+    /**
+     * Login action.
+     *
+     * @return string
+     */
+    public function actionLogin()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        } else {
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Logout action.
+     *
+     * @return string
+     */
     public function actionLogout()
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-
-    public function actionReport()
-    {
-        return $this->render('report');
     }
 }

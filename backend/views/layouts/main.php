@@ -5,6 +5,10 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+use common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -13,121 +17,63 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" type="image/png" href="<?= Yii::$app->params['favicon']; ?>"/>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo Yii::$app->params['GOOGLE_MAP_API_KEY'] ?>&libraries=weather,geometry,visualization,places,drawing"
-            type="text/javascript"></script>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
-<?php
-$_header = '';
-$_sidebar_admin = '';
-if (!Yii::$app->user->isGuest):
-    $_header = $this->render('_header');
-    $_sidebar_admin = $this->render('_sidebar_admin');
-endif;
-?>
 
-<div class="page-wrapper">
-    <?php echo $this->render('@app/views/layouts/_messages') ?>
-    <?php if (!Yii::$app->user->isGuest): ?>
-        <?= $this->render('_header'); ?>
-        <div class="main">
-            <div class="outer-admin">
-                <div class="wrapper-admin">
-                    <?= $this->render('_sidebar_admin') ?>
-                    <div class="content-admin">
-                        <div class="content-admin-wrapper">
-                            <div class="content-admin-main">
-                                <div class="content-admin-main-inner">
-                                    <div class="container-fluid">
-                                        <?= $content ?>
-                                    </div>
-                                </div>
-                            </div>
+<div class="wrap">
+    <?php
+    NavBar::begin([
+        'brandLabel' => 'My Company',
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+            'class' => 'navbar-inverse navbar-fixed-top',
+        ],
+    ]);
+    $menuItems = [
+        ['label' => 'Home', 'url' => ['/site/index']],
+    ];
+    if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+    } else {
+        $menuItems[] = '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'btn btn-link logout']
+            )
+            . Html::endForm()
+            . '</li>';
+    }
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => $menuItems,
+    ]);
+    NavBar::end();
+    ?>
 
-                            <div class="content-admin-footer">
-                                <div class="container-fluid">
-                                    <div class="content-admin-footer-inner">
-                                        &copy; <?= Yii::$app->name . ' ' . date('Y') ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php else: ?>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-4">
-                    <a href="<?php echo Yii::$app->request->baseUrl; ?>/">
-                        <img style="width: 240px; margin-left: 15%; margin-top: 30px;"
-                             src="<?= Yii::$app->params['logo_512'] ?>" alt="<?= Yii::$app->name ?>">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="main">
-            <div class="main-inner">
-                <div class="container">
-                    <div class="content">
-                        <div class="row">
-                            <div class="col-sm-4 col-sm-offset-4 div p30">
-                                <div class="page-title text-center">
-                                    <h4><?php echo Yii::$app->name; ?></h4>
-                                </div>
-                                <?= $content ?>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endif ?>
+    <div class="container">
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= Alert::widget() ?>
+        <?= $content ?>
+    </div>
 </div>
-<?php $this->registerJs("
 
-//    $('a[data-toggle=\"tab\"]').on('shown.bs.tab', function (e) {
-//        mapa();
-//    });
-//
-    $('a[data-toggle=\"collapse\"]').on('shown.bs.collapse', function(e) {
-        mapa();
-    });
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-    ") ?>
-<?php
-$this->registerJs("
+        <p class="pull-right"><?= Yii::powered() ?></p>
+    </div>
+</footer>
 
-$(function(){
-    $(document).on('click','.fc-day',function(){
-        var date = $(this).attr('data-date');
-
-        $.get('index.php?r=event/create',{'date':date},function(data){
-            $('#modal').modal('show')
-                .find('#modalContent')
-                .html(data);
-        });
-    });
-
-    // get the click of the create button
-    $('#modalButton').click(function (){
-        $('#modal').modal('show')
-            .find('#modalContent')
-            .load($(this).attr('value'));
-    });
-});
-
-")
-?>
 <?php $this->endBody() ?>
 </body>
 </html>
