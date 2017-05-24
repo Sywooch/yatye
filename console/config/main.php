@@ -11,6 +11,15 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
+    'controllerMap' => [
+        'fixture' => [
+            'class' => 'yii\console\controllers\FixtureController',
+            'namespace' => 'common\fixtures',
+        ],
+        'backup' => [
+            'class' => 'console\controllers\BackupController',
+        ],
+    ],
     'modules' => [
         'rbac' => 'dektrium\rbac\RbacConsoleModule',
         'backup' => [
@@ -47,15 +56,6 @@ return [
             ],
         ],
     ],
-    'controllerMap' => [
-        'fixture' => [
-            'class' => 'yii\console\controllers\FixtureController',
-            'namespace' => 'common\fixtures',
-        ],
-        'backup' => [
-            'class' => 'console\controllers\BackupController',
-        ],
-    ],
     'components' => [
         'log' => [
             'targets' => [
@@ -64,14 +64,6 @@ return [
                     'levels' => ['error', 'warning'],
                 ],
             ],
-        ],
-        'user' => [
-            'class' => 'yii\web\User',
-            'identityClass' => 'app\models\User',
-            //'enableAutoLogin' => true,
-        ],
-        'session' => [ // for use session in console application
-            'class' => 'yii\web\Session'
         ],
     ],
     'params' => $params,
