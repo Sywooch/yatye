@@ -61,7 +61,7 @@ class PlaceDetailsController extends AdminController
 
 
             $related_place_ids = $model->getRelatedPlaceIds();
-            $related_places = $model->getRelatedPlaces()->all();
+            $related_places = ($model->getRelatedPlaces() != null) ? $model->getRelatedPlaces()->all() : null;
             $other_places = ($model->getNearByPlaces() != null) ? $model->getNearByPlaces()->all() : null;
 
             $nearByPlacesDataProvider = new ActiveDataProvider([
