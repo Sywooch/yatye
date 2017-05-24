@@ -59,7 +59,6 @@ class PlaceDetailsController extends AdminController
                 ->limit($pagination->limit)
                 ->all();
 
-
             $related_place_ids = $model->getRelatedPlaceIds();
             $related_places = ($model->getRelatedPlaces() != null) ? $model->getRelatedPlaces()->all() : null;
             $other_places = ($model->getNearByPlaces() != null) ? $model->getNearByPlaces()->all() : null;
