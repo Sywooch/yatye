@@ -78,7 +78,6 @@ class Place extends BasePlace
     public function getRelatedPlaces()
     {
         $place_ids = $this->getRelatedPlaceIds();
-
         if (!empty($place_ids)){
             $sql = "SELECT `place`.*
                 FROM `place` 
