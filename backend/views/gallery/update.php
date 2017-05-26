@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Gallery */
+/* @var $model backend\models\place\Gallery */
 
 $this->title = $model->getPlaceName() . ' - ' . $model->getServiceName();
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Galleries'), 'url' => ['index']];
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
     	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
     		<div class="thumbnail">
-                <img class="img-responsive" alt="" src="<?php echo Yii::$app->params['galleries'] . $model->name ?>"/>
+                <img class="img-responsive" alt="" src="<?php echo $model->getPath() ?>"/>
     		</div>
     	</div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">

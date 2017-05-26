@@ -5,6 +5,8 @@
  * Date: 5/11/17
  * Time: 1:48 PM
  */
+/* @var $this yii\web\View */
+/* @var $category backend\models\place\Category */
 use yii\helpers\Url;
 ?>
 
@@ -32,12 +34,12 @@ use yii\helpers\Url;
                         <div class="card" data-background-image="<?php echo $category->getGalleries() ?>">
                             <div class="card-content">
                                 <h2>
-                                    <a href="<?php echo Url::to(['/category/' . $category->slug]) ?>">
+                                    <a href="<?php echo $category->getUrl() ?>">
                                         <?php echo $category->name ?>
                                     </a>
                                 </h2>
                                 <div class="card-actions">
-                                    <a href="<?php echo Url::to(['/category/' . $category->slug]) ?>"
+                                    <a href="<?php echo $category->getUrl() ?>"
                                        class="fa fa-eye"></a>
                                 </div>
                             </div>

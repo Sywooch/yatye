@@ -63,7 +63,7 @@
                 <?php echo $this->render('_set_gallery', [
                     'model' => $model,
                     'place_id' => $place_id,
-                    'gallery' => $gallery,
+                    'galleries' => $galleries,
                     'gallery_modal' => $gallery_modal,
                 ]) ?>
             </div>

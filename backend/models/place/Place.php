@@ -8,6 +8,7 @@
 
 namespace backend\models\place;
 
+use common\helpers\GalleryHelper;
 use Yii;
 use yii\db\Query;
 use yii\db\Expression;
@@ -102,17 +103,6 @@ class Place extends PlaceData
         return $stars;
     }
 
-    public function getPhoto()
-    {
-        $photo = array();
-        $galleries = $this->getGalleries();
-        foreach ($galleries as $gallery) {
-            $photo[] = $gallery->name;
-        }
-
-        return (!empty($photo)) ? Yii::$app->params['galleries'] . $photo[0] : Yii::$app->params['pragmaticmates-logo-jpg'];
-    }
-
     /** The Haversine formula is used generally for
      * computing great-circle distances between two pairs
      * of coordinates on a sphere
@@ -134,7 +124,7 @@ class Place extends PlaceData
     public function getPlaceIdsFromTheGreatCircleDistances()
     {
         $formula = $this->getHaversineFormula();
-        if ($formula){
+        if ($formula) {
             return "SELECT `place`.*, " . $formula . " 
                 FROM `place` 
                 WHERE `status`= " . Yii::$app->params['active'] . "
@@ -147,8 +137,8 @@ class Place extends PlaceData
     public function getNearByPlaces()
     {
         $sql = $this->getPlaceIdsFromTheGreatCircleDistances();
-        if($sql){
-            return Place::findBySql($sql);
+        if ($sql) {
+            return self::findBySql($sql);
         }
 
     }
@@ -270,7 +260,6 @@ class Place extends PlaceData
     public function getOtherPlaces()
     {
         $query = new Query();
-
         $select = $query
             ->select('`place`.`id`')
             ->addSelect('`place`.`name`')
@@ -287,7 +276,6 @@ class Place extends PlaceData
 
         return $select;
     }
-
 
     public static function getRecentAddedPlaces()
     {
@@ -319,4 +307,13 @@ class Place extends PlaceData
         return $select;
     }
 
+    public function saveLogo($gallery, $file_name)
+    {
+        echo $file_name;
+        $this->logo = $file_name;
+        $this->save(0);
+
+        $gallery->logo = 'yes';
+        $gallery->save(0);
+    }
 }

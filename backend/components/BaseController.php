@@ -98,8 +98,7 @@ class BaseController extends AdminController
         endif;
 
 
-
-        if (!is_null ($model)) :
+        if (!is_null($model)) :
             RecordHelpers::status($model);
 
             Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Status changed successfully!'));
@@ -114,20 +113,22 @@ class BaseController extends AdminController
     public function actionActivateLogo()
     {
         $model = Gallery::findOne(Yii::$app->request->get('id'));
-
         $place_id = Yii::$app->request->get('place_id');
-        $place = Place::findOne($place_id);
         $url = $this->getUrl($place_id);
+        $place = Place::findOne($place_id);
 
-        if (!is_null ($model)) :
-            RecordHelpers::logo($model, $place);
-
-            Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Logo is set successfully!'));
-            return $this->redirect($url);
-        else:
+        if (!empty($model) && !empty($place)) {
+            if (RecordHelpers::logo($model, $place)) {
+                Yii::$app->getSession()->setFlash("success", Yii::t('app', 'Logo is set successfully!'));
+                return $this->redirect($url);
+            } else {
+                Yii::$app->getSession()->setFlash("fail", Yii::t('app', 'Logo did not set! Try again'));
+                return $this->redirect($url);
+            }
+        } else {
             Yii::$app->getSession()->setFlash("fail", Yii::t('app', 'Logo did not set! Try again'));
             return $this->redirect($url);
-        endif;
+        }
     }
 
     public function actionSetGallery()
@@ -214,7 +215,7 @@ class BaseController extends AdminController
         $count = count(Yii::$app->request->post('Contact', []));
         $contacts = [new Contact()];
 
-        for($i = 1; $i < $count; $i++) {
+        for ($i = 1; $i < $count; $i++) {
             $contacts[] = new Contact();
         }
 
@@ -245,7 +246,7 @@ class BaseController extends AdminController
 
         $count = count(Yii::$app->request->post('SocialMedia', []));
         $socials = [new SocialMedia()];
-        for($i = 1; $i < $count; $i++) {
+        for ($i = 1; $i < $count; $i++) {
             $socials[] = new SocialMedia();
         }
 
@@ -269,7 +270,8 @@ class BaseController extends AdminController
         }
     }
 
-    public function actionSetWorkingHours(){
+    public function actionSetWorkingHours()
+    {
 
         $place_id = Yii::$app->request->get('place_id');
         $url = $this->getUrl($place_id);
@@ -318,7 +320,7 @@ class BaseController extends AdminController
             $model = UserPlace::findOne(['place_id' => $place_id, 'user_id' => $user_id]);
         endif;
 
-        if (!is_null ($model)) :
+        if (!is_null($model)) :
             RecordHelpers::deleteOneRecord($model);
             return $this->redirect($url);
         else:

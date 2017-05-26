@@ -114,26 +114,23 @@ class RecordHelpers
         endif;
     }
 
-    public static function logo($model, $place)
+    public static function logo($gallery, $place)
     {
-        if ($model->logo == 'no') {
-            if ($place !== null) {
-                $model->logo = 'yes';
-                $model->save(0);
-
-                $place->logo = $model->name;
-                $place->save(0);
+        $photos = Gallery::findAll(['place_id' => $place->id]);
+        if (!empty($photos)) {
+            foreach ($photos as $photo) {
+                $photo->logo = 'no';
+                $photo->save(0);
             }
-        } else {
-            $model->logo = 'no';
-            $model->save(0);
-        }
 
-        $gallery = Gallery::findAll(['place_id' => $place->id]);
-        foreach ($gallery as $photo):
-            $photo->logo = 'no';
-            $photo->save(0);
-        endforeach;
+            $place->logo = $gallery->name;
+            if ($place->save(0)) {
+                $gallery->logo = 'yes';
+                $gallery->save(0);
+            }
+            return true;
+        }
+        return false;
     }
 
     public static function deleteOneRecord($model)

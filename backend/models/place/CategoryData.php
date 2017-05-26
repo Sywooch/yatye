@@ -14,6 +14,7 @@ use yii\db\Query;
 use frontend\models\Views;
 use common\helpers\ValueHelpers;
 use common\models\Category as BaseCategory;
+use yii\helpers\Url;
 
 class CategoryData extends BaseCategory
 {
@@ -54,6 +55,11 @@ class CategoryData extends BaseCategory
             ->orderBy(new Expression('views DESC'))
             ->limit(5)
             ->all();
+    }
+
+    public function getUrl()
+    {
+        return Url::to(['/category/' . $this->slug]);
     }
 
 }

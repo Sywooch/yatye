@@ -7,20 +7,19 @@ use Yii;
 /**
  * This is the model class for table "gallery".
  *
- * @property integer $id
- * @property integer $place_id
+ * @property int $id
+ * @property int $place_id
  * @property string $name
  * @property string $title
  * @property string $caption
- * @property string $path
  * @property string $logo
  * @property string $created_at
  * @property string $expire_at
  * @property string $updated_at
- * @property integer $status
- * @property integer $created_by
- * @property integer $service_id
- * @property integer $updated_by
+ * @property int $status
+ * @property int $created_by
+ * @property int $service_id
+ * @property int $updated_by
  *
  * @property Place $place
  */
@@ -45,7 +44,6 @@ class Gallery extends \yii\db\ActiveRecord
             [['logo'], 'string'],
             [['created_at', 'expire_at', 'updated_at'], 'safe'],
             [['name', 'title', 'caption'], 'string', 'max' => 255],
-            [['path'], 'string', 'max' => 500],
             [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => Place::className(), 'targetAttribute' => ['place_id' => 'id']],
         ];
     }
@@ -56,20 +54,19 @@ class Gallery extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'place_id' => Yii::t('app', 'Place ID'),
-            'name' => Yii::t('app', 'Name'),
-            'title' => Yii::t('app', 'Title'),
-            'caption' => Yii::t('app', 'Caption'),
-            'path' => Yii::t('app', 'Path'),
-            'logo' => Yii::t('app', 'Logo'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'expire_at' => Yii::t('app', 'Expire At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'status' => Yii::t('app', 'Status'),
-            'created_by' => Yii::t('app', 'Created By'),
-            'service_id' => Yii::t('app', 'Service ID'),
-            'updated_by' => Yii::t('app', 'Updated By'),
+            'id' => 'ID',
+            'place_id' => 'Place ID',
+            'name' => 'Name',
+            'title' => 'Title',
+            'caption' => 'Caption',
+            'logo' => 'Logo',
+            'created_at' => 'Created At',
+            'expire_at' => 'Expire At',
+            'updated_at' => 'Updated At',
+            'status' => 'Status',
+            'created_by' => 'Created By',
+            'service_id' => 'Service ID',
+            'updated_by' => 'Updated By',
         ];
     }
 

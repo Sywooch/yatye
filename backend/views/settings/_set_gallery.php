@@ -6,7 +6,8 @@
  * Time: 01:15
  */
 /* @var $this yii\web\View */
-/* @var $model common\models\Address */
+/* @var $model backend\models\place\Place */
+/* @var $gallery backend\models\place\Gallery */
 /* @var $form yii\widgets\ActiveForm */
 
 use toriphes\lazyload\LazyLoad;
@@ -58,20 +59,20 @@ $this->registerCss("
 <br>
 
 <div class="row">
-    <?php if (!empty($gallery)): ?>
+    <?php if (!empty($galleries)): ?>
         <div class='list-group gallery'>
-            <?php foreach ($gallery as $photo): ?>
+            <?php foreach ($galleries as $gallery): ?>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <img class="img-responsive thumbnail" alt="<?php echo $photo->name ?>"
-                         src="<?php echo Yii::$app->params['galleries'] . $photo->name ?>" style="width: 240px; height: 140px;"/>
+                    <img class="img-responsive thumbnail" alt="<?php echo $gallery->name ?>"
+                         src="<?php echo $gallery->getPath() ?>" style="width: 240px; height: 140px;"/>
                     <div style="margin-top: -20px; margin-bottom: 20px;">
-                        <?php if ($photo->logo == 'no'): ?>
+                        <?php if ($gallery->logo == 'no'): ?>
                             <a class="btn btn-xs btn-secondary"
-                               href="<?php echo Url::to([(Yii::$app->controller->id == 'settings') ? 'settings/activate-logo' : 'place/activate-logo', 'id' => $photo->id, 'place_id' => $photo->place_id]); ?>">
+                               href="<?php echo Url::to([(Yii::$app->controller->id == 'settings') ? 'settings/activate-logo' : 'place/activate-logo', 'id' => $gallery->id, 'place_id' => $gallery->place_id]); ?>">
                                 <i class="fa fa-photo"></i></a>
                         <?php endif; ?>
                         <a class="btn btn-xs btn-danger" data-confirm="Are you sure you want to delete this item?" data-method="post"
-                           href="<?php echo Url::to([(Yii::$app->controller->id == 'settings') ? 'settings/delete-gallery' : 'place/delete-gallery', 'gallery_id' => $photo->id, 'place_id' => $photo->place_id]); ?>">
+                           href="<?php echo Url::to([(Yii::$app->controller->id == 'settings') ? 'settings/delete-gallery' : 'place/delete-gallery', 'gallery_id' => $gallery->id, 'place_id' => $gallery->place_id]); ?>">
                             <i class="fa fa-trash"></i></a>
                     </div>
                 </div>

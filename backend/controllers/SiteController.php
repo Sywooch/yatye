@@ -1,7 +1,10 @@
 <?php
 namespace backend\controllers;
 
+use common\helpers\GalleryHelper;
+use common\helpers\S3Helpers;
 use Yii;
+use yii\helpers\FileHelper;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -11,6 +14,7 @@ use backend\components\AdminController as BackendAdminController;
 /**
  * Site controller
  */
+
 class SiteController extends BackendAdminController
 {
     /**

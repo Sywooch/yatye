@@ -8,6 +8,7 @@
 
 namespace backend\models\place;
 
+use common\helpers\S3Helpers;
 use Yii;
 use yii\db\Expression;
 use common\models\Cell;
@@ -84,13 +85,26 @@ class PlaceData extends BasePlace
             ->orderBy(new Expression('updated_at'));
     }
 
-    public function getGalleries()
+    public function getPhotos()
     {
         return Gallery::find()
-            ->where(['place_id' => $this->id])
+            ->where(['place_id' => $this->id, 'status' => Yii::$app->params['active']])
             ->orderBy(new Expression('RAND()'))
             ->all();
     }
+
+    public function getPhoto()
+    {
+        $photo = array();
+        $galleries = $this->getPhotos();
+        foreach ($galleries as $gallery) {
+            $photo[] = $gallery->name;
+        }
+        $path = S3Helpers::getBucketAndPath('s3_place_object', $this->id) . $photo[0];
+
+        return (!empty($photo)) ? $path : Yii::$app->params['pragmaticmates-logo-jpg'];
+    }
+
 
     public function getContactNames($type)
     {

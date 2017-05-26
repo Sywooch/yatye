@@ -8,6 +8,7 @@
 
 namespace backend\models\place;
 
+use common\helpers\S3Helpers;
 use Yii;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
@@ -60,7 +61,6 @@ class Gallery extends BaseGallery
             [['place_id', 'status'], 'integer'],
             [['created_at', 'expire_at', 'updated_at', 'service_id', 'updated_by'], 'safe'],
             [['name', 'title', 'caption'], 'string', 'max' => 255],
-            [['path'], 'string', 'max' => 500],
             [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => Place::className(), 'targetAttribute' => ['place_id' => 'id']],
         ];
     }
@@ -144,7 +144,8 @@ class Gallery extends BaseGallery
     }
 
 
-    public function uploadAndSaveImages($file, $file_name, $id){
+    public function uploadAndSaveImages($file, $file_name, $id)
+    {
 
         $path = Yii::$app->params['frontend_alias'] . Yii::$app->params['gallery'] . $file_name;
 
@@ -163,21 +164,24 @@ class Gallery extends BaseGallery
             Yii::$app->params['max_width_768'],
             Yii::$app->params['min_width_512'],
             Yii::$app->params['min_heigth_384']
-        )) {
+        )
+        ) {
             if (GalleryHelper::resizeBeforeUpload(
                 $file->tempName,
                 $thumbnail_path,
                 Yii::$app->params['max_width_490'],
                 Yii::$app->params['min_width_328'],
                 Yii::$app->params['min_heigth_246']
-            )) {
+            )
+            ) {
                 if (GalleryHelper::resizeBeforeUpload(
                     $file->tempName,
                     $tn_thumbnail_path,
                     Yii::$app->params['max_width_128'],
                     Yii::$app->params['min_width_96'],
                     Yii::$app->params['min_heigth_70']
-                )) {
+                )
+                ) {
                     $this->place_id = $id;
                     $this->name = $file_name;
                     $this->status = Yii::$app->params['active'];
@@ -212,12 +216,25 @@ class Gallery extends BaseGallery
 
         return $place_name;
     }
+
     public function getStatus()
     {
         return ValueHelpers::getStatus($this);
     }
+
     public function getUser()
     {
         return ValueHelpers::getUser($this);
+    }
+
+    public function getPath()
+    {
+        return S3Helpers::getBucketAndPath('s3_place_object', $this->place_id) . $this->name;
+    }
+
+    public function updateGallery($name)
+    {
+        $this->name = $name;
+        $this->save(0);
     }
 }

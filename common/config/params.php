@@ -4,6 +4,13 @@ return [
     'supportEmail' => 'support@example.com',
     'user.passwordResetTokenExpire' => 3600,
 
+    //Get images from S3
+    's3_bucket' => 'https://s3-us-west-2.amazonaws.com/rwandaguide/',
+    's3_place_object' => 'uploads/places/',
+
+
+
+
     //Google API Console
     'GOOGLE_MAP_API_KEY'=>'AIzaSyBbPGik7q6wMLnQKWXwh5Q9MMCkbWFi3YY',
 

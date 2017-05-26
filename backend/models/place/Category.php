@@ -5,7 +5,6 @@
  * Date: 07/02/2016
  * Time: 20:06
  */
-
 namespace backend\models\place;
 
 use Yii;
@@ -57,28 +56,6 @@ class Category extends CategoryData
             ],
         ];
     }
-
-//    public function getServiceIds()
-//    {
-//        $services = $this->getServices();
-//        $service_ids = array();
-//        foreach ($services as $service) {
-//            $service_ids[] = $service->id;
-//        }
-//        return $service_ids;
-//    }
-//
-//    public function getPlaceIds()
-//    {
-//        $place_ids = array();
-//        $place_has_services = $this->getPlaceHasServices();
-//
-//        foreach ($place_has_services as $place_has_service) {
-//            $place_ids[] = $place_has_service['place_id'];
-//        }
-//        return $place_ids;
-//    }
-
     public function sql()
     {
         return "SELECT DISTINCT `place`.* 
@@ -165,14 +142,6 @@ class Category extends CategoryData
 
     public function getOneRandomGallery()
     {
-//        $service_ids = $this->getServiceIds();
-
-        /*return Gallery::find()
-            ->where(['in', 'service_id', $service_ids])
-            ->andWhere(['!=', 'name', ''])
-            ->orderBy(new Expression('RAND()'))
-            ->limit(1)
-            ->all();*/
         $sql = "SELECT `gallery`.*
                 FROM `gallery`, `service`
                 WHERE `gallery`.`service_id` = `service`.`id`
@@ -183,11 +152,16 @@ class Category extends CategoryData
 
     public function getGalleries()
     {
-        $photo = array();
         $galleries = $this->getOneRandomGallery();
-        foreach ($galleries as $gallery) {
-            $photo[] = $gallery->name;
+
+        if(!empty($galleries)){
+            $photo = array();
+            foreach ($galleries as $gallery) {
+                $photo[] = $gallery->getPath();
+            }
+            return $photo[0];
+        }else{
+            return false;
         }
-        return Yii::$app->params['thumbnails'] . $photo[0];
     }
 }

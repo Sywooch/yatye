@@ -5,6 +5,8 @@
  * Date: 3/25/17
  * Time: 9:04 PM
  */
+/* @var $model frontend\models\Place */
+/* @var $photo backend\models\place\Gallery */
 ?>
 
 <div class="detail-gallery">
@@ -36,8 +38,8 @@
     <ul class="detail-gallery-index div">
         <?php foreach ($photos as $photo): ?>
             <li class="detail-gallery-list-item active">
-                <a data-target="<?php echo Yii::$app->params['galleries'] . $photo->name ?>">
-                    <img src="<?php echo Yii::$app->params['tn_thumbnails'] . $photo->name ?>"
+                <a data-target="<?php echo $photo->getPath() ?>">
+                    <img src="<?php echo $photo->getPath() ?>"
                          alt="<?php echo $model->name ?>"
                          class="img-responsive img-alt-thumbnail_tn">
                 </a>

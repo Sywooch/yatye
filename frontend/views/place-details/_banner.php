@@ -5,6 +5,7 @@
  * Date: 3/25/17
  * Time: 9:02 PM
  */
+/* @var $model frontend\models\Place */
 ?>
 <div class="mt-80 mb50">
     <div class="detail-banner" style="background-image: url(<?php echo $model->getPhoto() ?>);">

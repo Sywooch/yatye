@@ -100,7 +100,7 @@ class GalleryController extends BackendAdminController
 
         $galleries = Gallery::find()->where(['place_id' => $place_id])->orderBy('id')->indexBy('id')->all();
         $categories = ArrayHelper::map(Category::find()->orderBy('name')->all(), 'id', 'name');
-//        $services = ArrayHelper::map(Service::find()->where(['status' => Yii::$app->params['active']])->orderBy('name')->all(), 'id', 'name');
+        //$services = ArrayHelper::map(Service::find()->where(['status' => Yii::$app->params['active']])->orderBy('name')->all(), 'id', 'name');
         $services = ArrayHelper::map(Service::find()->where(['status' => Yii::$app->params['active']])->all(), 'id', 'name');
 
         $places = DataHelpers::getPlacesInArray1();

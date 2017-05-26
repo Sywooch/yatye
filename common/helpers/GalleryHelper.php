@@ -8,8 +8,12 @@
 
 namespace common\helpers;
 
+use backend\models\place\Gallery;
+use backend\models\place\Place;
 use Yii;
 use common\components\SimpleImage;
+use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
 
 class GalleryHelper
 {
@@ -96,6 +100,44 @@ class GalleryHelper
         } else {
             Yii::$app->getSession()->setFlash("fail", 'There is an error while uploading your event image');
             return false;
+        }
+    }
+
+    public static function getAllFiles()
+    {
+        $path = Yii::$app->params['frontend_alias'] . Yii::$app->params['gallery'];
+        $all_files = FileHelper::findFiles($path);
+        $all_files_ = array();
+
+        if (!empty($all_files)) {
+            for ($i = 0; $i < count($all_files); $i++) {
+                $all_files_[] = substr($all_files[$i], 73);
+            }
+            return $all_files_;
+        }
+        return null;
+    }
+
+    public static function getPhotos($place)
+    {
+//        $id = $place->id;
+        $id = 2;
+
+        $all_files = self::getAllFiles();
+        if (!empty($all_files)) {
+            $photos = Gallery::findAll(['place_id' => $id]);
+
+            if (!empty($photos)) {
+                foreach ($photos as $photo) {
+                    if (in_array($photo->name, $all_files)) {
+                        $file_name = S3Helpers::upload($id, 'tests', $photo);
+
+                        if (in_array($place->logo, $all_files)) {
+                            $place->saveLogo($photo, $file_name);
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -15,14 +15,12 @@ use backend\models\place\Place as BasePlace;
 
 class Place extends BasePlace
 {
-    public function getPhotos()
-    {
-        return Gallery::find()->where(['place_id' => $this->id, 'status' => Yii::$app->params['active']])->all();
-    }
-
     public function getHours()
     {
-        return WorkingHours::find()->where(['place_id' => $this->id, 'status' => Yii::$app->params['active']])->orderBy('id')->all();
+        return WorkingHours::find()
+            ->where(['place_id' => $this->id, 'status' => Yii::$app->params['active']])
+            ->orderBy('id')
+            ->all();
     }
 
     public function getSocials()
@@ -40,11 +38,6 @@ class Place extends BasePlace
         return self::findBySql($sql)->all();
     }
 
-    public function getAllAmenities()
-    {
-        return Service::find()->where(['category_id' => 5])->all();
-    }
-
     public function getViews()
     {
         $view = Views::findOne(['place_id' => $this->id, 'status' => Yii::$app->params['active']]);
@@ -53,7 +46,6 @@ class Place extends BasePlace
 
     public function getRelatedPlaceIds()
     {
-
         $service_ids = (new Query())
             ->select('`service_id`')
             ->from('`place_has_service`')
@@ -105,9 +97,10 @@ class Place extends BasePlace
 
     public function hasUser()
     {
-        $user_place = UserPlace::find()->where(['user_id' => Yii::$app->user->identity->id, 'place_id' => $this->id])->all();
+        $user_place = UserPlace::find()
+            ->where(['user_id' => Yii::$app->user->identity->id, 'place_id' => $this->id])
+            ->all();
         if (!empty($user_place)) :
-
             return true;
         else: return
             false;

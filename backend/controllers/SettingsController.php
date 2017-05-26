@@ -54,12 +54,11 @@ class SettingsController extends BackendAdminController
         $place_has_another = new PlaceHasAnother();
         $places = DataHelpers::getPlacesInArray();
         $available_other_places = PlaceHasAnother::getAvailableOtherPlaces($place_id);
-
         $all_places = Place::find()->all();
+
         /*Galleries*/
         $gallery_modal = new  Gallery();
-        $gallery = Gallery::find()->where(['place_id' => $place_id])->all();
-
+        $galleries = Gallery::find()->where(['place_id' => $place_id])->all();
 
         /*Contacts*/
         $contact_types = Helpers::getContactTypes();
@@ -121,7 +120,7 @@ class SettingsController extends BackendAdminController
 
             /*Galleries*/
             'gallery_modal' => $gallery_modal,
-            'gallery' => $gallery,
+            'galleries' => $galleries,
 
             /*Services*/
             'place_has_service' => $place_has_service,

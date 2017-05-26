@@ -41,7 +41,6 @@ class PlaceDetailsController extends AdminController
             $working_hours = $model->getHours();
             $socials = $model->getSocials();
             $amenities = $model->getAmenities();
-            $all_amenities = $model->getAllAmenities();
             $contacts = $model->getContacts();
 
             $ratings = new Ratings();
@@ -79,7 +78,6 @@ class PlaceDetailsController extends AdminController
                 'working_hours' => $working_hours,
                 'socials' => $socials,
                 'amenities' => $amenities,
-                'all_amenities' => $all_amenities,
                 'ratings' => $ratings,
                 'place_id' => $model->id,
                 'contacts' => $contacts,
