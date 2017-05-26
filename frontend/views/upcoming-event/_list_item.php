@@ -5,7 +5,7 @@
  * Date: 06/07/2016
  * Time: 22:33
  */
-
+/** @var $model backend\models\Event*/
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>

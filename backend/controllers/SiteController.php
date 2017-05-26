@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\post\Post;
 use common\helpers\GalleryHelper;
 use common\helpers\S3Helpers;
 use Yii;

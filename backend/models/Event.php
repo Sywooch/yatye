@@ -10,6 +10,7 @@ namespace backend\models;
 
 use backend\helpers\Helpers;
 use common\helpers\RecordHelpers;
+use common\helpers\S3Helpers;
 use common\helpers\ValueHelpers;
 use dektrium\user\helpers\Timezone;
 use frontend\models\UserProfile;
@@ -185,7 +186,7 @@ class Event extends BaseEvent
 
     public function getBanner()
     {
-        return ($this->banner != null) ? Yii::$app->params['event_images'] . $this->banner : Yii::$app->params['pragmaticmates-logo-jpg'];
+        return ($this->banner != null) ? S3Helpers::getBucket('s3_event_object') . $this->banner : Yii::$app->params['pragmaticmates-logo-jpg'];
     }
 
     public function getEventHasTags()

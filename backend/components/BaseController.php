@@ -37,15 +37,17 @@ class BaseController extends AdminController
 {
     public function actions()
     {
-        return ['image-upload' => [
+        return [
+            'image-upload' => [
 
-            'class' => 'vova07\imperavi\actions\UploadAction',
+                'class' => 'vova07\imperavi\actions\UploadAction',
 
-            // Directory URL address, where files are stored.
-            'url' => Yii::$app->params['blog_images'],
+                // Directory URL address, where files are stored.
+                'url' => Yii::$app->params['blog_images'],
 
-            // Or absolute path to directory where files are stored.
-            'path' => Yii::$app->params['frontend_alias'] . Yii::$app->params['blog']],
+                // Or absolute path to directory where files are stored.
+                'path' => Yii::$app->params['frontend_alias'] . Yii::$app->params['blog']
+            ],
         ];
     }
 

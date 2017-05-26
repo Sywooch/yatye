@@ -7,6 +7,8 @@ return [
     //Get images from S3
     's3_bucket' => 'https://s3-us-west-2.amazonaws.com/rwandaguide/',
     's3_place_object' => 'uploads/places/',
+    's3_post_object' => 'uploads/posts/',
+    's3_event_object' => 'uploads/events/',
 
 
 

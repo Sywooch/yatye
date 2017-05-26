@@ -100,7 +100,7 @@ class PlaceData extends BasePlace
         foreach ($galleries as $gallery) {
             $photo[] = $gallery->name;
         }
-        $path = S3Helpers::getBucketAndPath('s3_place_object', $this->id) . $photo[0];
+        $path = S3Helpers::getBucketPlaces($this->id) . $photo[0];
 
         return (!empty($photo)) ? $path : Yii::$app->params['pragmaticmates-logo-jpg'];
     }

@@ -8,13 +8,15 @@
 /* @var $model backend\models\post\Post */
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 ?>
 <div class="post text-left item background-white p30 div" data-key="<?= $model->id ?>">
     <?php if ($model->image != '' || $model->image != null): ?>
         <div class="post-image">
-            <img src="<?php echo $model->getPostThumbnails(); ?>"
+            <img src="<?php echo $model->getPostPicture(); ?>"
                  alt="<?php echo $model->title; ?>"
-                 class="img-alt img-responsive">
+                 class="img-alt img-responsive"
+                 style="width: 180px; 120px;">
             <a class="read-more" href="<?php echo $model->getPostUrl(); ?>">View</a>
         </div>
     <?php endif; ?>

@@ -146,9 +146,7 @@ class Gallery extends BaseGallery
 
     public function uploadAndSaveImages($file, $file_name, $id)
     {
-
         $path = Yii::$app->params['frontend_alias'] . Yii::$app->params['gallery'] . $file_name;
-
         $thumbnail_file_name = 'tn_' . $file_name;
         $thumbnail_path = Yii::$app->params['frontend_alias'] . Yii::$app->params['thumbnail'] . $thumbnail_file_name;
 
@@ -229,7 +227,7 @@ class Gallery extends BaseGallery
 
     public function getPath()
     {
-        return S3Helpers::getBucketAndPath('s3_place_object', $this->place_id) . $this->name;
+        return S3Helpers::getBucketPlaces($this->place_id) . $this->name;
     }
 
     public function updateGallery($name)

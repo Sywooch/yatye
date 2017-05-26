@@ -8,6 +8,7 @@
 
 namespace backend\models\post;
 
+use common\helpers\S3Helpers;
 use Yii;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
@@ -104,7 +105,7 @@ class Post extends BasePost
 
     public function getPostPicture()
     {
-        return Yii::$app->params['post_images'] . $this->image;
+        return S3Helpers::getBucket('s3_post_object') . $this->image;
     }
 
     public function getPostThumbnails()
